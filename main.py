@@ -1,39 +1,38 @@
-import sys
-from PyQt5.QtWidgets import QWidget, QDesktopWidget, QMessageBox, QApplication
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import QCoreApplication
-
-class Example(QWidget):
-
-    def __init__(self):
-        super().__init__()
-        self.initUI()
-
-    def initUI(self):
-        self.resize(1056, 896)
-        self.center()
-        self.setWindowIcon(QIcon('icon.png'))
-        self.setWindowTitle('Kings of New World')
-        self.show()
-		
-    def closeEvent(self, event):
-        reply = QMessageBox.question(self, 'Message', "Are you sure to quit?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            event.accept()
-        else:
-            event.ignore()   
-
-    def center(self):
-        qr = self.frameGeometry()
-        cp = QDesktopWidget().availableGeometry().center()
-        qr.moveCenter(cp)
-        self.move(qr.topLeft())
-		
+#self.resize(1056, 896)
+# здесь подключаются модули
+import pygame
+ 
+# здесь определяются константы, классы и функции
+FPS = 60
+ 
+# здесь происходит инициация, создание объектов и др.
+pygame.init()
+sc = pygame.display.set_mode((1056, 896))
+clock = pygame.time.Clock()
+ 
+# если надо до цикла отобразить объекты на экране
+pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896))
 
 
-if __name__ == '__main__':
 
-    app = QApplication(sys.argv)
-    ex = Example()
-sys.exit(app.exec_())
+pygame.display.update()
+ 
+# главный цикл
+while True:
+ 
+    # задержка
+    clock.tick(FPS)
+ 
+    # цикл обработки событий
+    for i in pygame.event.get():
+        if i.type == pygame.QUIT:
+            exit()
 
+
+ 
+    # --------
+    # изменение объектов и многое др.
+    # --------
+ 
+    # обновление экрана
+    pygame.display.update()
