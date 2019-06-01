@@ -1,38 +1,46 @@
-#self.resize(1056, 896)
-# здесь подключаются модули
+# -*- coding: utf-8 -*-
 import pygame
  
-# здесь определяются константы, классы и функции
 FPS = 60
- 
-# здесь происходит инициация, создание объектов и др.
+xMapGame = 64 # Игровое поле состоит из квадратов 22х14
+yMapGame = 100 
+xMap = 0
+yMap = 0
+n = 0
+
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
 clock = pygame.time.Clock()
- 
-# если надо до цикла отобразить объекты на экране
-pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896))
+pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896)) 
+
+for yMap in range(14): # Рисуем игровое поле
+    
+    for xMap in range(22):
+        pix = pygame.image.load('Images/weed.jpg')
+        pixRect = pix.get_rect(bottomright=(xMapGame, yMapGame))
+        sc.blit(pix, pixRect)
+        xMapGame += 32
+
+    xMapGame = 64
+    yMapGame += 32 # Закончили рисовать
+    
 
 
 
 pygame.display.update()
  
-# главный цикл
+
 while True:
  
-    # задержка
-    clock.tick(FPS)
+    
+    clock.tick(FPS) 
  
-    # цикл обработки событий
+   
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             exit()
 
 
  
-    # --------
-    # изменение объектов и многое др.
-    # --------
- 
-    # обновление экрана
+    
     pygame.display.update()
