@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
 import pygame
+import sys
  
 FPS = 60
 xGameMap = 16 
 yGameMap = 96 
 xMap = 0
 yMap = 0
+xHero = 384
+yHero = 256
 n = 0
 newGame = 0 # Переменная, которая означает, что идёт игра
+hero = 0 # Код персонажа
 
 newGameButton = 0
 loadButton = 0
@@ -22,6 +26,7 @@ clock = pygame.time.Clock()
 pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896)) 
 
 def initGame(heroSelect):  # функция инициации игры
+    hero = heroSelect
     newGame = 1
     xGameMap = 16 
     yGameMap = 548 
@@ -49,6 +54,7 @@ def initGame(heroSelect):  # функция инициации игры
 
         xGameMap = 772
         yGameMap += 68 
+        print(newGame)  
 
 
 
@@ -100,11 +106,101 @@ while True:
  
     
     clock.tick(FPS) 
- 
+    if newGame > 1: # Отображаем персонажа на игровом поле
+            pix = pygame.image.load('Images/akami_32.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 51:
+            pix = pygame.image.load('Images/artes_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 52:
+            pix = pygame.image.load('Images/deathOwner_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 54:
+            pix = pygame.image.load('Images/djepotai_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 55:
+            pix = pygame.image.load('Images/farion_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 56:
+            pix = pygame.image.load('Images/garitos_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 57:
+            pix = pygame.image.load('Images/gendalf_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 58:
+            pix = pygame.image.load('Images/illidan_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 59:
+            pix = pygame.image.load('Images/jaina_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 60:
+            pix = pygame.image.load('Images/kell_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 70:
+            pix = pygame.image.load('Images/uter_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 72:
+            pix = pygame.image.load('Images/vulDjin_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 68:
+            pix = pygame.image.load('Images/silvana_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 65:
+            pix = pygame.image.load('Images/pradmur_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 69:
+            pix = pygame.image.load('Images/trall_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        if hero == 73:
+            pix = pygame.image.load('Images/zadira_32.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xHero,yHero))
+        
+            
+        
+        
+        
+        
+        
    
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             exit()
+            
+        if i.type == pygame.KEYUP:
+            #sas
+            pass            
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
     
@@ -200,12 +296,7 @@ while True:
                  x_len = pix.get_width()
                  y_len = pix.get_height() 
                  sc.blit(pix, (220,752))
-                 
-                 
-                 
-                 
-                 
-                 
+              
                  print("new game")
                  pygame.time.delay(500)
                  pass
@@ -295,7 +386,7 @@ while True:
             if i.button == 1:
                  if newGameButton == 1:
                      newGameButton = 0 
-                     initGame(50)
+                     initGame(50)                   
                  pygame.time.delay(500)
                  pass
                  
