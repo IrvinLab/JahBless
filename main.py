@@ -7,7 +7,7 @@ xGameMap = 16
 yGameMap = 96 
 xMap = 0
 yMap = 0
-xHero = 384
+xHero = 368
 yHero = 256
 n = 0
 newGame = 0 # Переменная, которая означает, что идёт игра
@@ -26,12 +26,10 @@ clock = pygame.time.Clock()
 pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896)) 
 
 def initGame(heroSelect):  # функция инициации игры
-    hero = heroSelect
-    newGame = 1
     xGameMap = 16 
     yGameMap = 548 
     for yMap in range(4): # Помещаем поле действий и инвентаря
-    
+    # Пока выполняле
         for xMap in range(4):
             pix = pygame.image.load('Images/zero.jpg') 
             x_len = pix.get_width()
@@ -53,8 +51,7 @@ def initGame(heroSelect):  # функция инициации игры
             xGameMap += 68
 
         xGameMap = 772
-        yGameMap += 68 
-        print(newGame)  
+        yGameMap += 68  
 
 
 
@@ -99,14 +96,24 @@ y_len = pix.get_height()
 sc.blit(pix, (832,16))
 
 
+
 pygame.display.update()
  
 
 while True:
  
-    
     clock.tick(FPS) 
-    if newGame > 1: # Отображаем персонажа на игровом поле
+    for i in pygame.event.get():
+        if i.type == pygame.QUIT:
+            exit()
+            
+        if i.type == pygame.KEYUP:
+            #sas
+            pass            
+
+    mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
+    if newGame == 1: # Отображаем персонажа на игровом поле
+        if hero == 50:
             pix = pygame.image.load('Images/akami_32.jpg')
             x_len = pix.get_width()
             y_len = pix.get_height() 
@@ -186,24 +193,8 @@ while True:
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xHero,yHero))
+        pygame.display.update()
         
-            
-        
-        
-        
-        
-        
-   
-    for i in pygame.event.get():
-        if i.type == pygame.QUIT:
-            exit()
-            
-        if i.type == pygame.KEYUP:
-            #sas
-            pass            
-
-    mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
-    
 #============================================================================================================================================    
 #======================================================ОБРАБОТКА НАЖАТИЙ КНОПОК МЕНЮ=========================================================
 #============================================================================================================================================
@@ -386,7 +377,8 @@ while True:
             if i.button == 1:
                  if newGameButton == 1:
                      newGameButton = 0 
-                     initGame(50)                   
+                     hero = 50 
+                     newGame = 1                
                  pygame.time.delay(500)
                  pass
                  
@@ -401,7 +393,8 @@ while True:
             if i.button == 1:
                  if newGameButton == 1:
                      newGameButton = 0
-                     initGame(51)
+                     hero = 51
+                     newGame = 1   
                  pygame.time.delay(500)
                  pass                 
                  
@@ -416,7 +409,8 @@ while True:
             if i.button == 1:
                  if newGameButton == 1:
                      newGameButton = 0
-                     initGame(52)
+                     hero = 52
+                     newGame = 1   
                  pygame.time.delay(500)
                  pass                   
                                                             
@@ -431,7 +425,8 @@ while True:
             if i.button == 1:
                  if newGameButton == 1:
                      newGameButton = 0
-                     initGame(54)
+                     hero = 54
+                     newGame = 1   
                  pygame.time.delay(500)
                  pass
                  
@@ -446,7 +441,8 @@ while True:
             if i.button == 1:
                  if newGameButton == 1:
                      newGameButton = 0
-                     initGame(55)
+                     hero = 55
+                     newGame = 1   
                  pygame.time.delay(500)
                  pass
                  
@@ -461,7 +457,8 @@ while True:
             if i.button == 1:
                  if newGameButton == 1:
                      newGameButton = 0
-                     initGame(56)
+                     hero = 56
+                     newGame = 1   
                  pygame.time.delay(500)
                  pass                 
                  
@@ -475,7 +472,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(57)
+                     hero = 57
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                   
@@ -490,7 +488,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(58)
+                     hero = 58
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass  
@@ -505,7 +504,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(59)
+                     hero = 59
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass
@@ -520,7 +520,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(60)
+                     hero = 60
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                 
@@ -535,7 +536,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(70)
+                     hero = 70
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                   
@@ -550,7 +552,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(72)
+                     hero = 72
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                                 
@@ -565,7 +568,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(68)
+                     hero = 68
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass
@@ -580,7 +584,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(65)
+                     hero = 65
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                 
@@ -595,7 +600,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(69)
+                     hero = 69
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                   
@@ -610,7 +616,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 1:
-                     initGame(73)
+                     hero = 73
+                     newGame = 1   
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                  
@@ -670,15 +677,4 @@ while True:
 # 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
 # 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
 # 172 - Женщина-эльф 7 ур    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
