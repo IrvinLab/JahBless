@@ -11,7 +11,7 @@ yHero = 256
 n = 0
 newGame = 0 # Переменная, которая означает, что идёт игра
 hero = 0 # Код персонажа
-step = 204 # Исходное положение на карте
+step = 172 # Исходное положение на карте
 
 newGameButton = 0
 loadButton = 0
@@ -19,7 +19,7 @@ saveButton = 0
 netGameButton = 0
 settingsButton = 0
 world = [] # Это игровое поле
-
+tmp = 0
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
 clock = pygame.time.Clock()
@@ -31,7 +31,7 @@ def initGame(heroSelect):  # функция инициации игры
     global yHero
     global world
     global step
-    step = 204
+    step = 172
     xGameMap = 16 
     yGameMap = 96 
     
@@ -76,19 +76,32 @@ def initGame(heroSelect):  # функция инициации игры
         yGameMap += 68
     # Тут мы генерируем объекты игрового мира 
     n = 0
-    for n in range(448):
+    for n in range(480):
         world.append(n)
         world[n] = 0
         
     n = 0
+    xMap = 16 
+    yMap = 96 
     for n in range(448):
-        step = int(random.random()*10)
-        if step == 5:
+        tmp = int(random.random()*15)
+        if tmp == 5:
             world[n] = 1
-        elif step == 6:
+            pix = pygame.image.load('Images/mount.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xMap,yMap))
+        elif tmp == 6:
             world[n] = 2
-            
-            
+            pix = pygame.image.load('Images/water.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xMap,yMap))
+        
+        xMap += 32    
+        if xMap >= 1040:
+            xMap = 16
+            yMap += 32    
     
 
 
@@ -146,6 +159,7 @@ while True:
             exit()
             
         elif i.type == pygame.KEYDOWN and newGame == 1:
+            
             if i.key == pygame.K_LEFT:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -153,6 +167,7 @@ while True:
                 sc.blit(pix, (xHero,yHero))
                 xHero -= 32
                 world[step] = 0
+                step -= 1
                 world[step-1] = hero
             elif i.key == pygame.K_RIGHT:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -161,6 +176,7 @@ while True:
                 sc.blit(pix, (xHero,yHero))
                 xHero += 32
                 world[step] = 0
+                step += 1
                 world[step+1] = hero
             elif i.key == pygame.K_UP:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -169,6 +185,7 @@ while True:
                 sc.blit(pix, (xHero,yHero))
                 yHero -= 32
                 world[step] = 0
+                step -= 32
                 world[step-32] = hero
             elif i.key == pygame.K_DOWN:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -177,8 +194,9 @@ while True:
                 sc.blit(pix, (xHero,yHero))
                 yHero += 32
                 world[step] = 0
+                step += 32
+                print(step)
                 world[step+32] = hero
-        
 
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
