@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import pygame
-import sys
+import pygame, sys, random
  
 FPS = 60
 xGameMap = 16 
@@ -12,24 +11,45 @@ yHero = 256
 n = 0
 newGame = 0 # Переменная, которая означает, что идёт игра
 hero = 0 # Код персонажа
+step = 204 # Исходное положение на карте
 
 newGameButton = 0
 loadButton = 0
 saveButton = 0
 netGameButton = 0
 settingsButton = 0
-
+world = [] # Это игровое поле
 
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
 clock = pygame.time.Clock()
 pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896)) 
 
+
 def initGame(heroSelect):  # функция инициации игры
+    global xHero
+    global yHero
+    global world
+    global step
+    step = 204
     xGameMap = 16 
-    yGameMap = 548 
+    yGameMap = 96 
+    
+    for yMap in range(14): # Рисуем игровое поле
+    
+        for xMap in range(32):
+            pix = pygame.image.load('Images/weed.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xGameMap,yGameMap))
+            xGameMap += 32
+
+        xGameMap = 16
+        yGameMap += 32 # Закончили рисовать
+    
+    
+    
     for yMap in range(4): # Помещаем поле действий и инвентаря
-    # Пока выполняле
         for xMap in range(4):
             pix = pygame.image.load('Images/zero.jpg') 
             x_len = pix.get_width()
@@ -41,6 +61,8 @@ def initGame(heroSelect):  # функция инициации игры
         yGameMap += 68 
     xGameMap = 772
     yGameMap = 548 
+    xHero = 368
+    yHero = 256
     for yMap in range(4): 
     
         for xMap in range(4):
@@ -51,7 +73,23 @@ def initGame(heroSelect):  # функция инициации игры
             xGameMap += 68
 
         xGameMap = 772
-        yGameMap += 68  
+        yGameMap += 68
+    # Тут мы генерируем объекты игрового мира 
+    n = 0
+    for n in range(448):
+        world.append(n)
+        world[n] = 0
+        
+    n = 0
+    for n in range(448):
+        step = int(random.random()*10)
+        if step == 5:
+            world[n] = 1
+        elif step == 6:
+            world[n] = 2
+            
+            
+    
 
 
 
@@ -59,7 +97,7 @@ def initGame(heroSelect):  # функция инициации игры
 for yMap in range(14): # Рисуем игровое поле
     
     for xMap in range(32):
-        pix = pygame.image.load('Images/weed.jpg') # Рисуем кнопки
+        pix = pygame.image.load('Images/weed.jpg')
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xGameMap,yGameMap))
@@ -109,13 +147,37 @@ while True:
             
         elif i.type == pygame.KEYDOWN and newGame == 1:
             if i.key == pygame.K_LEFT:
+                pix = pygame.image.load('Images/weed.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xHero,yHero))
                 xHero -= 32
+                world[step] = 0
+                world[step-1] = hero
             elif i.key == pygame.K_RIGHT:
+                pix = pygame.image.load('Images/weed.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xHero,yHero))
                 xHero += 32
+                world[step] = 0
+                world[step+1] = hero
             elif i.key == pygame.K_UP:
+                pix = pygame.image.load('Images/weed.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xHero,yHero))
                 yHero -= 32
+                world[step] = 0
+                world[step-32] = hero
             elif i.key == pygame.K_DOWN:
+                pix = pygame.image.load('Images/weed.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xHero,yHero))
                 yHero += 32
+                world[step] = 0
+                world[step+32] = hero
         
 
 
@@ -701,4 +763,3 @@ while True:
 # 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
 # 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
 # 172 - Женщина-эльф 7 ур    
-
