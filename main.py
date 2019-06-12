@@ -48,7 +48,7 @@ def initGame(heroSelect):  # функция инициации игры
         yGameMap += 32 # Закончили рисовать
     
     
-    
+    yGameMap += 4
     for yMap in range(4): # Помещаем поле действий и инвентаря
         for xMap in range(4):
             pix = pygame.image.load('Images/zero.jpg') 
@@ -84,7 +84,7 @@ def initGame(heroSelect):  # функция инициации игры
     xMap = 16 
     yMap = 96 
     for n in range(448):
-        tmp = int(random.random()*15)
+        tmp = int(random.random()*22)
         if tmp == 5:
             world[n] = 1
             pix = pygame.image.load('Images/mount.jpg') 
@@ -195,7 +195,6 @@ while True:
                 yHero += 32
                 world[step] = 0
                 step += 32
-                print(step)
                 world[step+32] = hero
 
 
@@ -780,4 +779,4 @@ while True:
 # 161 - Тролль 4 ур, 162 - Тролль 5 ур, 163 - Тролль 6 ур, 164 - Вампир, 165 - Колдун
 # 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
 # 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
-# 172 - Женщина-эльф 7 ур    
+# 172 - Женщина-эльф 7 ур   
