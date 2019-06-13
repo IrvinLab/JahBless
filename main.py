@@ -162,7 +162,7 @@ pygame.display.update()
 
 while True:
     n = 0  # Это сотри
-    temp = 0
+    temp = 0 # И это
     clock.tick(FPS) 
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
@@ -170,7 +170,7 @@ while True:
             
         elif i.type == pygame.KEYDOWN and newGame == 1:
             
-            if i.key == pygame.K_LEFT:
+            if i.key == pygame.K_LEFT and xHero >= 18 and world[step-1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
@@ -183,7 +183,7 @@ while True:
                     print(world[temp:temp+32]) 
                     temp += 32
                 print(" ")    # =======
-            elif i.key == pygame.K_RIGHT:
+            elif i.key == pygame.K_RIGHT and xHero <= 990 and world[step+1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
@@ -196,7 +196,7 @@ while True:
                     print(world[temp:temp+32]) 
                     temp += 32
                 print(" ")   # =======
-            elif i.key == pygame.K_UP:
+            elif i.key == pygame.K_UP and yHero >= 96 and world[step-32] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
@@ -209,7 +209,7 @@ while True:
                     print(world[temp:temp+32]) 
                     temp += 32
                 print(" ")  # =======
-            elif i.key == pygame.K_DOWN:
+            elif i.key == pygame.K_DOWN and yHero <= 510 and world[step+32] == 0: 
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
