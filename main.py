@@ -110,6 +110,7 @@ def initGame(heroSelect):  # функция инициации игры
             temp += 32                  # Вот это тоже надо стереть
             xMap = 16
             yMap += 32    
+    print(" ")
     
 
 
@@ -177,7 +178,7 @@ while True:
                 xHero -= 32
                 world[step] = 0
                 step -= 1
-                world[step-1] = hero
+                world[step] = hero
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
@@ -190,7 +191,7 @@ while True:
                 xHero += 32
                 world[step] = 0
                 step += 1
-                world[step+1] = hero
+                world[step] = hero
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
@@ -203,7 +204,7 @@ while True:
                 yHero -= 32
                 world[step] = 0
                 step -= 32
-                world[step-32] = hero
+                world[step] = hero
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
@@ -216,7 +217,7 @@ while True:
                 yHero += 32
                 world[step] = 0
                 step += 32
-                world[step+32] = hero
+                world[step] = hero
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
