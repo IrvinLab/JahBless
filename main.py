@@ -20,7 +20,7 @@ netGameButton = 0
 settingsButton = 0
 world = [] # Это игровое поле
 tmp = 0
-temp = 0 # Удали эту переменную прямо сейчас
+temp = 0 # Отладочная переменная, нужна для отслеживания состояния поля
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
 clock = pygame.time.Clock()
@@ -29,27 +29,6 @@ pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896))
 for n in range(480):
     world.append(n)
     world[n] = 0
-
-def midleWorld():
-    n = 0
-    xMap = 16 
-    yMap = 96
-    for n in range(448):
-        if world[n] == 1:
-            pix = pygame.image.load('Images/mount.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xMap,yMap))
-        elif world[n] == 2:
-            pix = pygame.image.load('Images/water.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xMap,yMap))
-        
-        xMap += 32    
-        if xMap >= 1040:
-            xMap = 16
-            yMap += 32 
 
 def initGame(heroSelect):  # функция инициации игры
     global xHero
@@ -106,9 +85,31 @@ def initGame(heroSelect):  # функция инициации игры
     for n in range(480):
         world.append(n)
         world[n] = 0
-     
-    midleWorld()
-       
+        
+    n = 0
+    xMap = 16 
+    yMap = 96 
+    for n in range(448):
+        tmp = int(random.random()*20)
+        if tmp == 5:
+            world[n] = 1
+            pix = pygame.image.load('Images/mount.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xMap,yMap))
+        elif tmp == 6:
+            world[n] = 2
+            pix = pygame.image.load('Images/water.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xMap,yMap))
+        
+        xMap += 32    
+        if xMap >= 1040:
+            print(world[temp:temp+32])  # Сотри, это отладочные строки
+            temp += 32                  # Вот это тоже надо стереть
+            xMap = 16
+            yMap += 32    
     
 
 
@@ -160,6 +161,7 @@ pygame.display.update()
 
 while True:
     n = 0  # Это сотри
+    temp = 0
     clock.tick(FPS) 
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
@@ -179,6 +181,7 @@ while True:
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
+                print(" ")    # =======
             elif i.key == pygame.K_RIGHT:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -191,6 +194,7 @@ while True:
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
+                print(" ")   # =======
             elif i.key == pygame.K_UP:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -203,6 +207,7 @@ while True:
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
+                print(" ")  # =======
             elif i.key == pygame.K_DOWN:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -215,6 +220,7 @@ while True:
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
+                print(" ")  # =======
 
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
