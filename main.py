@@ -20,17 +20,43 @@ netGameButton = 0
 settingsButton = 0
 world = [] # Это игровое поле
 tmp = 0
+temp = 0 # Удали эту переменную прямо сейчас
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
 clock = pygame.time.Clock()
 pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896)) 
 
+for n in range(480):
+    world.append(n)
+    world[n] = 0
+
+def midleWorld():
+    n = 0
+    xMap = 16 
+    yMap = 96
+    for n in range(448):
+        if world[n] == 1:
+            pix = pygame.image.load('Images/mount.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xMap,yMap))
+        elif world[n] == 2:
+            pix = pygame.image.load('Images/water.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xMap,yMap))
+        
+        xMap += 32    
+        if xMap >= 1040:
+            xMap = 16
+            yMap += 32 
 
 def initGame(heroSelect):  # функция инициации игры
     global xHero
     global yHero
     global world
     global step
+    temp = 0
     step = 172
     xGameMap = 16 
     yGameMap = 96 
@@ -47,8 +73,9 @@ def initGame(heroSelect):  # функция инициации игры
         xGameMap = 16
         yGameMap += 32 # Закончили рисовать
     
+    xGameMap = 16
+    yGameMap = 548 
     
-    yGameMap += 4
     for yMap in range(4): # Помещаем поле действий и инвентаря
         for xMap in range(4):
             pix = pygame.image.load('Images/zero.jpg') 
@@ -79,29 +106,9 @@ def initGame(heroSelect):  # функция инициации игры
     for n in range(480):
         world.append(n)
         world[n] = 0
-        
-    n = 0
-    xMap = 16 
-    yMap = 96 
-    for n in range(448):
-        tmp = int(random.random()*22)
-        if tmp == 5:
-            world[n] = 1
-            pix = pygame.image.load('Images/mount.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xMap,yMap))
-        elif tmp == 6:
-            world[n] = 2
-            pix = pygame.image.load('Images/water.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xMap,yMap))
-        
-        xMap += 32    
-        if xMap >= 1040:
-            xMap = 16
-            yMap += 32    
+     
+    midleWorld()
+       
     
 
 
@@ -152,7 +159,7 @@ pygame.display.update()
  
 
 while True:
- 
+    n = 0  # Это сотри
     clock.tick(FPS) 
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
@@ -169,6 +176,9 @@ while True:
                 world[step] = 0
                 step -= 1
                 world[step-1] = hero
+                for n in range(14): # Сотри, это отладочные строки
+                    print(world[temp:temp+32]) 
+                    temp += 32
             elif i.key == pygame.K_RIGHT:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -178,6 +188,9 @@ while True:
                 world[step] = 0
                 step += 1
                 world[step+1] = hero
+                for n in range(14): # Сотри, это отладочные строки
+                    print(world[temp:temp+32]) 
+                    temp += 32
             elif i.key == pygame.K_UP:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -187,6 +200,9 @@ while True:
                 world[step] = 0
                 step -= 32
                 world[step-32] = hero
+                for n in range(14): # Сотри, это отладочные строки
+                    print(world[temp:temp+32]) 
+                    temp += 32
             elif i.key == pygame.K_DOWN:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -196,6 +212,9 @@ while True:
                 world[step] = 0
                 step += 32
                 world[step+32] = hero
+                for n in range(14): # Сотри, это отладочные строки
+                    print(world[temp:temp+32]) 
+                    temp += 32
 
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
@@ -779,4 +798,4 @@ while True:
 # 161 - Тролль 4 ур, 162 - Тролль 5 ур, 163 - Тролль 6 ур, 164 - Вампир, 165 - Колдун
 # 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
 # 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
-# 172 - Женщина-эльф 7 ур   
+# 172 - Женщина-эльф 7 ур    
