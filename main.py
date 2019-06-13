@@ -106,8 +106,6 @@ def initGame(heroSelect):  # функция инициации игры
         
         xMap += 32    
         if xMap >= 1040:
-            print(world[temp:temp+32])  # Сотри, это отладочные строки
-            temp += 32                  # Вот это тоже надо стереть
             xMap = 16
             yMap += 32    
     print(" ")
