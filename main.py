@@ -6,12 +6,28 @@ xGameMap = 16
 yGameMap = 96 
 xMap = 0
 yMap = 0
-xHero = 400
-yHero = 256
 n = 0
 newGame = 0 # Переменная, которая означает, что идёт игра
+
+# Переменные персонажа
 hero = 0 # Код персонажа
 step = 172 # Исходное положение на карте
+xHero = 400
+yHero = 256
+expirience = 0
+lvl = 1
+rasa = 0
+inventar = []
+zaklinania = []
+vozdeistvie = []
+zdorovie = 0
+mana = 0
+sila = 0
+lovkost = 0
+ydacha = 0
+zoloto = 0
+serebro = 0
+bronza = 0
 
 newGameButton = 0
 loadButton = 0
@@ -35,6 +51,190 @@ def initGame(heroSelect):  # функция инициации игры
     global yHero
     global world
     global step
+    
+    global expirience
+    global lvl
+    global rasa
+    global inventar
+    global zaklinania
+    global vozdeistvie
+    global zdorovie
+    global mana
+    global sila
+    global lovkost
+    global ydacha
+    global zoloto
+    global serebro
+    global bronza
+    # Герои
+# 50 - Аками, 51 - Артес, 52 - Владыка Смерти, 53 - Детерок, 54 - Джепотай, 55 - Фарион
+# 56 - Гаритос, 57 - Гендальф, 58 - Илидан, 59 - Джайна
+# 60 - Келл, 61 - Келл Тузед, 62 - Магерион, 63 - Мефистофор, 64 - Паладин, 65 - Прадмур
+# 66 - Саргарас, 67 - Саурон, 68 - Сильвана, 69 - Тралл, 70 - Утер, 71 - Варомир
+# 72 - Вул Джин, 73 - Задира
+
+     # Задаём начальные параметры персонажа
+    if heroSelect == 50: # Akami
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 100
+        mana = 50
+        sila = 14
+        lovkost = 4
+        ydacha = 7
+        zoloto = 0
+        serebro = 12
+        bronza = 0
+        
+    elif heroSelect == 51: # Artes
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 110
+        mana = 30
+        sila = 12
+        lovkost = 4
+        ydacha = 5
+        zoloto = 0
+        serebro = 9
+        bronza = 50
+        
+    elif heroSelect == 52: # Death Owner
+        expirience = 0
+        lvl = 1
+        rasa = 7
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 90
+        mana = 100
+        sila = 9
+        lovkost = 3
+        ydacha = 9
+        zoloto = 0
+        serebro = 0
+        bronza = 0  
+
+    elif heroSelect == 54: # DjePoTai
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 120
+        mana = 60
+        sila = 15
+        lovkost = 5
+        ydacha = 5
+        zoloto = 0
+        serebro = 0
+        bronza = 150
+
+    elif heroSelect == 55: # Farion
+        expirience = 0
+        lvl = 1
+        rasa = 6
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 110
+        mana = 80
+        sila = 10
+        lovkost = 4
+        ydacha = 6
+        zoloto = 0
+        serebro = 0
+        bronza = 200  
+
+    elif heroSelect == 56: # Garitos
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 130
+        mana = 30
+        sila = 15
+        lovkost = 5
+        ydacha = 7
+        zoloto = 0
+        serebro = 5
+        bronza = 0   
+
+    elif heroSelect == 57: # Gendalf
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 85
+        mana = 120
+        sila = 9
+        lovkost = 4
+        ydacha = 9
+        zoloto = 0
+        serebro = 0
+        bronza = 0   
+
+    elif heroSelect == 58: # Illidan
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 120
+        mana = 60
+        sila = 11
+        lovkost = 5
+        ydacha = 5
+        zoloto = 0
+        serebro = 0
+        bronza = 0  
+
+    elif heroSelect == 59: # Jaina
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 100
+        mana = 50
+        sila = 9
+        lovkost = 5
+        ydacha = 10
+        zoloto = 0
+        serebro = 1
+        bronza = 120   
+
+    elif heroSelect == 59: # Jaina
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 100
+        mana = 50
+        sila = 9
+        lovkost = 5
+        ydacha = 10
+        zoloto = 0
+        serebro = 1
+        bronza = 120         
+        
+        
     temp = 0
     step = 172
     xGameMap = 16 
@@ -490,7 +690,7 @@ while True:
                      newGameButton = 0 
                      hero = 50 
                      newGame = 1
-                     initGame(1)                
+                     initGame(50)                
                  pygame.time.delay(500)
                  pass
                  
@@ -507,7 +707,7 @@ while True:
                      newGameButton = 0
                      hero = 51
                      newGame = 1 
-                     initGame(1)  
+                     initGame(51)  
                  pygame.time.delay(500)
                  pass                 
                  
@@ -524,7 +724,7 @@ while True:
                      newGameButton = 0
                      hero = 52
                      newGame = 1  
-                     initGame(1) 
+                     initGame(52) 
                  pygame.time.delay(500)
                  pass                   
                                                             
@@ -541,7 +741,7 @@ while True:
                      newGameButton = 0
                      hero = 54
                      newGame = 1 
-                     initGame(1)  
+                     initGame(54)  
                  pygame.time.delay(500)
                  pass
                  
@@ -558,7 +758,7 @@ while True:
                      newGameButton = 0
                      hero = 55
                      newGame = 1 
-                     initGame(1)  
+                     initGame(55)  
                  pygame.time.delay(500)
                  pass
                  
@@ -575,7 +775,7 @@ while True:
                      newGameButton = 0
                      hero = 56
                      newGame = 1 
-                     initGame(1)  
+                     initGame(56)  
                  pygame.time.delay(500)
                  pass                 
                  
@@ -591,7 +791,7 @@ while True:
                  if newGameButton == 1:
                      hero = 57
                      newGame = 1 
-                     initGame(1)  
+                     initGame(57)  
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                   
@@ -608,7 +808,7 @@ while True:
                  if newGameButton == 1:
                      hero = 58
                      newGame = 1  
-                     initGame(1) 
+                     initGame(58) 
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass  
@@ -625,7 +825,7 @@ while True:
                  if newGameButton == 1:
                      hero = 59
                      newGame = 1 
-                     initGame(1)  
+                     initGame(59)  
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass
@@ -642,7 +842,7 @@ while True:
                  if newGameButton == 1:
                      hero = 60
                      newGame = 1   
-                     initGame(1)
+                     initGame(60)
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                 
@@ -659,7 +859,7 @@ while True:
                  if newGameButton == 1:
                      hero = 70
                      newGame = 1 
-                     initGame(1)  
+                     initGame(70)  
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                   
@@ -676,7 +876,7 @@ while True:
                  if newGameButton == 1:
                      hero = 72
                      newGame = 1 
-                     initGame(1)  
+                     initGame(72)  
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                                 
@@ -693,7 +893,7 @@ while True:
                  if newGameButton == 1:
                      hero = 68
                      newGame = 1  
-                     initGame(1) 
+                     initGame(68) 
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass
@@ -710,7 +910,7 @@ while True:
                  if newGameButton == 1:
                      hero = 65
                      newGame = 1  
-                     initGame(1) 
+                     initGame(65) 
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                 
@@ -727,7 +927,7 @@ while True:
                  if newGameButton == 1:
                      hero = 69
                      newGame = 1 
-                     initGame(1)  
+                     initGame(69)  
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                   
@@ -744,7 +944,7 @@ while True:
                  if newGameButton == 1:
                      hero = 73
                      newGame = 1  
-                     initGame(1) 
+                     initGame(73) 
                      newGameButton = 0
                  pygame.time.delay(500)
                  pass                  
