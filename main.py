@@ -6,7 +6,7 @@ xGameMap = 16
 yGameMap = 96 
 xMap = 0
 yMap = 0
-xHero = 368
+xHero = 400
 yHero = 256
 n = 0
 newGame = 0 # Переменная, которая означает, что идёт игра
@@ -67,7 +67,7 @@ def initGame(heroSelect):  # функция инициации игры
         yGameMap += 68 
     xGameMap = 772
     yGameMap = 548 
-    xHero = 368
+    xHero = 400
     yHero = 256
     for yMap in range(4): 
     
