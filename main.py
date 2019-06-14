@@ -28,6 +28,12 @@ ydacha = 0
 zoloto = 0
 serebro = 0
 bronza = 0
+hod = 0
+
+# Время мира
+den = 1
+mesiac = 1
+god = 1
 
 newGameButton = 0
 loadButton = 0
@@ -66,6 +72,11 @@ def initGame(heroSelect):  # функция инициации игры
     global zoloto
     global serebro
     global bronza
+    
+    global den
+    global mesiac
+    global god
+
     # Герои
 # 50 - Аками, 51 - Артес, 52 - Владыка Смерти, 53 - Детерок, 54 - Джепотай, 55 - Фарион
 # 56 - Гаритос, 57 - Гендальф, 58 - Илидан, 59 - Джайна
@@ -79,9 +90,9 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 2
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zdorovie = 100
+        zdorovie = 120
         mana = 50
         sila = 14
         lovkost = 4
@@ -93,9 +104,9 @@ def initGame(heroSelect):  # функция инициации игры
     elif heroSelect == 51: # Artes
         expirience = 0
         lvl = 1
-        rasa = 1
+        rasa = 7
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 110
         mana = 30
@@ -111,7 +122,7 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 7
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 90
         mana = 100
@@ -127,7 +138,7 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 2
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 120
         mana = 60
@@ -143,7 +154,7 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 6
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 110
         mana = 80
@@ -159,7 +170,7 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 1
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 130
         mana = 30
@@ -175,7 +186,7 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 1
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 85
         mana = 120
@@ -191,7 +202,7 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 2
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 120
         mana = 60
@@ -207,7 +218,7 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 2
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 100
         mana = 50
@@ -218,28 +229,126 @@ def initGame(heroSelect):  # функция инициации игры
         serebro = 1
         bronza = 120   
 
-    elif heroSelect == 59: # Jaina
+    elif heroSelect == 60: # Kell
+        expirience = 0
+        lvl = 1
+        rasa = 7
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [8,6,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 120
+        mana = 80
+        sila = 14
+        lovkost = 5
+        ydacha = 7
+        zoloto = 0
+        serebro = 0
+        bronza = 200  
+
+    elif heroSelect == 70: # Uter
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 150
+        mana = 0
+        sila = 15
+        lovkost = 4
+        ydacha = 8
+        zoloto = 0
+        serebro = 10
+        bronza = 0   
+
+    elif heroSelect == 72: # Vul Djin
+        expirience = 0
+        lvl = 1
+        rasa = 6
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [7,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 120
+        mana = 100
+        sila = 12
+        lovkost = 4
+        ydacha = 8
+        zoloto = 0
+        serebro = 10
+        bronza = 0         
+    
+    elif heroSelect == 68: # Silvana
         expirience = 0
         lvl = 1
         rasa = 2
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 110
+        mana = 70
+        sila = 11
+        lovkost = 5
+        ydacha = 4
+        zoloto = 0
+        serebro = 0
+        bronza = 50  
+
+    elif heroSelect == 65: # Pradmur
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zdorovie = 100
-        mana = 50
-        sila = 9
-        lovkost = 5
-        ydacha = 10
+        mana = 0
+        sila = 10
+        lovkost = 4
+        ydacha = 9
         zoloto = 0
-        serebro = 1
-        bronza = 120         
-        
+        serebro = 5
+        bronza = 0  
+
+    elif heroSelect == 69: # Trall
+        expirience = 0
+        lvl = 1
+        rasa = 6
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 140
+        mana = 0
+        sila = 17
+        lovkost = 4
+        ydacha = 5
+        zoloto = 0
+        serebro = 0
+        bronza = 0      
+
+    elif heroSelect == 73: # Zadira
+        expirience = 0
+        lvl = 1
+        rasa = 6
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zdorovie = 120
+        mana = 0
+        sila = 15
+        lovkost = 4
+        ydacha = 7
+        zoloto = 0
+        serebro = 0
+        bronza = 170         
         
     temp = 0
     step = 172
     xGameMap = 16 
     yGameMap = 96 
-    
+    den = 1
+    mesiac = 1
+    god = 1
+
     for yMap in range(14): # Рисуем игровое поле
     
         for xMap in range(32):
@@ -290,7 +399,7 @@ def initGame(heroSelect):  # функция инициации игры
     xMap = 16 
     yMap = 96 
     for n in range(448):
-        tmp = int(random.random()*20)
+        tmp = int(random.random()*22)
         if tmp == 5:
             world[n] = 1
             pix = pygame.image.load('Images/mount.jpg') 
