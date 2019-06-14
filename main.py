@@ -6,6 +6,8 @@ xGameMap = 16
 yGameMap = 96 
 xMap = 0
 yMap = 0
+xHeroIcon = 0
+yHeroIcon = 0
 n = 0
 newGame = 0 # Переменная, которая означает, что идёт игра
 
@@ -20,7 +22,9 @@ rasa = 0
 inventar = []
 zaklinania = []
 vozdeistvie = []
+ishZdorovie = 0
 zdorovie = 0
+ishMana = 0
 mana = 0
 sila = 0
 lovkost = 0
@@ -29,6 +33,7 @@ zoloto = 0
 serebro = 0
 bronza = 0
 hod = 0
+zachita = 0
 
 # Время мира
 den = 1
@@ -45,12 +50,135 @@ tmp = 0
 temp = 0 # Отладочная переменная, нужна для отслеживания состояния поля
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
+pygame.display.set_caption("Kings of New World")
 clock = pygame.time.Clock()
 pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896)) 
 
-for n in range(480):
+pygame.font.init()                    
+healt = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Здоровье
+manna = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Ману
+
+for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
+    
+def heroPanel(myHero): # Рисуем панель героя с его картинкой и параметрами
+    global expirience
+    global lvl
+    global rasa
+    global inventar
+    global zaklinania
+    global vozdeistvie
+    global ishZdorovie
+    global zdorovie
+    global ishMana
+    global mana
+    global sila
+    global lovkost
+    global ydacha
+    global zoloto
+    global serebro
+    global bronza
+    global zachita
+    
+    global den
+    global mesiac
+    global god
+    
+    xHero = 340
+    yHero = 548
+    if myHero == 50:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 51:
+        pix = pygame.image.load('Images/artes.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 52:
+        pix = pygame.image.load('Images/deathOwner.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 54:
+        pix = pygame.image.load('Images/djepotai.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 55:
+        pix = pygame.image.load('Images/farion.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 56:
+        pix = pygame.image.load('Images/garitos.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 57:
+        pix = pygame.image.load('Images/gendalf.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 58:
+        pix = pygame.image.load('Images/illidan.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 59:
+        pix = pygame.image.load('Images/jaina.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 60:
+        pix = pygame.image.load('Images/kell.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 70:
+        pix = pygame.image.load('Images/uter.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 72:
+        pix = pygame.image.load('Images/vulDjin.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 68:
+        pix = pygame.image.load('Images/silvana.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 65:
+        pix = pygame.image.load('Images/pradmur.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 69:
+        pix = pygame.image.load('Images/trall.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if myHero == 73:
+        pix = pygame.image.load('Images/zadira.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        
+    
+    variableHealt = "" + str(zdorovie) + " / " + str(ishZdorovie) # переменная типа String отображающая здоровие как ххх/ххх
+    healtObj = healt.render(variableHealt, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(healtObj,(340, 615)) # Отображаем здоровье
+    
+    variableMana = "" + str(mana) + " / " + str(ishMana) # переменная типа String отображающая здоровие как ххх/ххх
+    manaObj = manna.render(variableMana, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(manaObj,(340, 628)) # Отображаем здоровье
+    
+    pygame.display.update()  
+    # ============================================================================================
 
 def initGame(heroSelect):  # функция инициации игры
     global xHero
@@ -64,7 +192,9 @@ def initGame(heroSelect):  # функция инициации игры
     global inventar
     global zaklinania
     global vozdeistvie
+    global ishZdorovie
     global zdorovie
+    global ishMana
     global mana
     global sila
     global lovkost
@@ -72,18 +202,12 @@ def initGame(heroSelect):  # функция инициации игры
     global zoloto
     global serebro
     global bronza
+    global zachita
     
     global den
     global mesiac
     global god
-
-    # Герои
-# 50 - Аками, 51 - Артес, 52 - Владыка Смерти, 53 - Детерок, 54 - Джепотай, 55 - Фарион
-# 56 - Гаритос, 57 - Гендальф, 58 - Илидан, 59 - Джайна
-# 60 - Келл, 61 - Келл Тузед, 62 - Магерион, 63 - Мефистофор, 64 - Паладин, 65 - Прадмур
-# 66 - Саргарас, 67 - Саурон, 68 - Сильвана, 69 - Тралл, 70 - Утер, 71 - Варомир
-# 72 - Вул Джин, 73 - Задира
-
+    pygame.draw.rect(sc, (255, 255, 255), (0, 548, 1056, 896)) 
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
         expirience = 0
@@ -92,8 +216,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
         zdorovie = 120
         mana = 50
+        ishMana = 50
         sila = 14
         lovkost = 4
         ydacha = 7
@@ -108,8 +234,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 110
         zdorovie = 110
-        mana = 30
+        mana = 0
+        ishMana = 0
         sila = 12
         lovkost = 4
         ydacha = 5
@@ -124,6 +252,7 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 90
         zdorovie = 90
         mana = 100
         sila = 9
@@ -140,8 +269,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
         zdorovie = 120
         mana = 60
+        ishMana = 60
         sila = 15
         lovkost = 5
         ydacha = 5
@@ -156,8 +287,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 110
         zdorovie = 110
         mana = 80
+        ishMana = 80
         sila = 10
         lovkost = 4
         ydacha = 6
@@ -172,8 +305,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 130
         zdorovie = 130
-        mana = 30
+        mana = 0
+        ishMana = 0
         sila = 15
         lovkost = 5
         ydacha = 7
@@ -186,10 +321,12 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 1
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        zaklinania = [8,22,6,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 85
         zdorovie = 85
         mana = 120
+        ishMana = 120
         sila = 9
         lovkost = 4
         ydacha = 9
@@ -204,8 +341,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
         zdorovie = 120
         mana = 60
+        ishMana = 60
         sila = 11
         lovkost = 5
         ydacha = 5
@@ -220,8 +359,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 100
         zdorovie = 100
         mana = 50
+        ishMana = 50
         sila = 9
         lovkost = 5
         ydacha = 10
@@ -236,8 +377,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [8,6,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
         zdorovie = 120
         mana = 80
+        ishMana = 80
         sila = 14
         lovkost = 5
         ydacha = 7
@@ -252,8 +395,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 150
         zdorovie = 150
         mana = 0
+        ishMana = 0
         sila = 15
         lovkost = 4
         ydacha = 8
@@ -268,8 +413,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [7,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
         zdorovie = 120
         mana = 100
+        ishMana = 100
         sila = 12
         lovkost = 4
         ydacha = 8
@@ -284,8 +431,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 110
         zdorovie = 110
         mana = 70
+        ishMana = 70
         sila = 11
         lovkost = 5
         ydacha = 4
@@ -300,8 +449,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 100
         zdorovie = 100
         mana = 0
+        ishMana = 0
         sila = 10
         lovkost = 4
         ydacha = 9
@@ -316,8 +467,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 140
         zdorovie = 140
         mana = 0
+        ishMana = 0
         sila = 17
         lovkost = 4
         ydacha = 5
@@ -332,8 +485,10 @@ def initGame(heroSelect):  # функция инициации игры
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
         zdorovie = 120
         mana = 0
+        ishMana = 0
         sila = 15
         lovkost = 4
         ydacha = 7
@@ -348,7 +503,8 @@ def initGame(heroSelect):  # функция инициации игры
     den = 1
     mesiac = 1
     god = 1
-
+    
+    heroPanel(heroSelect)  # Вызов функции рисования панели
     for yMap in range(14): # Рисуем игровое поле
     
         for xMap in range(32):
@@ -418,7 +574,8 @@ def initGame(heroSelect):  # функция инициации игры
             xMap = 16
             yMap += 32    
     print(" ")
-    
+    zachita = 0 # Обнуляем защиту при новой игре
+    # ==========================================================================================
 
 
 
@@ -698,7 +855,7 @@ while True:
                  y_len = pix.get_height() 
                  sc.blit(pix, (84,752))
                  
-                 pix = pygame.image.load('Images/trall.jpeg') 
+                 pix = pygame.image.load('Images/trall.jpg') 
                  x_len = pix.get_width()
                  y_len = pix.get_height() 
                  sc.blit(pix, (152,752))
@@ -1064,8 +1221,8 @@ while True:
     
     
 # Объекты которые могут быть на карте и их номера
-# 0 - Трава, 1 - Горы, 2 - Вода, 3 - Крестьянин(0 ур)
-# 8 - рынок, 9 - вспаханная земля, 10 - портал
+# 0 - Трава, 1 - Горы, 2 - Вода, 3 - жилище зельевара, 4 - лачуга шамана, 5 - хижина мага, 6 - кузница,
+# 7 - дом коллекционера, 8 - рынок, 9 - вспаханная земля, 10 - портал
 # 11 - Полуросль, 12 - Рожь, 13 - Картофель, 23 - Сундук, 24 - Врата города
 # 25 - Таверна, 26 - Портал
 
