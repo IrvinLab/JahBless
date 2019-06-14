@@ -54,9 +54,13 @@ pygame.display.set_caption("Kings of New World")
 clock = pygame.time.Clock()
 pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896)) 
 
-pygame.font.init()                    
+pygame.font.init()    
+textNameHero = pygame.font.SysFont('Comic Sans MS', 23) # Текст отображающий Здоровье                
 healt = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Здоровье
 manna = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Ману
+textSila = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Силу
+textLovk = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Ловкость
+textYdacha = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Удачу
 
 for n in range(480): # Забиваем мир нулями
     world.append(n)
@@ -92,90 +96,150 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Akami - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 51:
         pix = pygame.image.load('Images/artes.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Artes - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 52:
         pix = pygame.image.load('Images/deathOwner.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Death Owner - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 54:
         pix = pygame.image.load('Images/djepotai.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Dje Potai - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 55:
         pix = pygame.image.load('Images/farion.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Farion - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 56:
         pix = pygame.image.load('Images/garitos.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Garitos - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 57:
         pix = pygame.image.load('Images/gendalf.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Gendalf - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 58:
         pix = pygame.image.load('Images/illidan.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Illidan - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 59:
         pix = pygame.image.load('Images/jaina.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Jaina - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 60:
         pix = pygame.image.load('Images/kell.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Kell - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 70:
         pix = pygame.image.load('Images/uter.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Uter - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 72:
         pix = pygame.image.load('Images/vulDjin.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Vul Djin - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 68:
         pix = pygame.image.load('Images/silvana.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Silvana - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 65:
         pix = pygame.image.load('Images/pradmur.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Pradmur - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 69:
         pix = pygame.image.load('Images/trall.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
+        variableName = "Trall - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
     if myHero == 73:
         pix = pygame.image.load('Images/zadira.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        
+        variableName = "Zadira - " + str(lvl) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+       
     
-    variableHealt = "" + str(zdorovie) + " / " + str(ishZdorovie) # переменная типа String отображающая здоровие как ххх/ххх
+    variableHealt = "" + str(zdorovie) + " / " + str(ishZdorovie) # переменная типа String отображающая здоровье как ххх/ххх
     healtObj = healt.render(variableHealt, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(healtObj,(340, 615)) # Отображаем здоровье
+    sc.blit(healtObj,(290, 631)) # Отображаем здоровье
     
-    variableMana = "" + str(mana) + " / " + str(ishMana) # переменная типа String отображающая здоровие как ххх/ххх
+    variableMana = "" + str(mana) + " / " + str(ishMana) # переменная типа String отображающая ману как ххх/ххх
     manaObj = manna.render(variableMana, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(manaObj,(340, 628)) # Отображаем здоровье
+    sc.blit(manaObj,(290, 644)) # Отображаем ману
+    
+    variableSila = "Sila: " + str(sila) 
+    silaObj = textSila.render(variableSila, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(silaObj,(290, 657)) 
+    
+    variableLovk = "Lovkost: " + str(lovkost) 
+    lovkObj = textLovk.render(variableLovk, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(lovkObj,(290, 670)) 
+    
+    variableYdacha = "Ydacha: " + str(ydacha) 
+    ydachaObj = textYdacha.render(variableYdacha, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(ydachaObj,(290, 683))
     
     pygame.display.update()  
     # ============================================================================================
@@ -255,6 +319,7 @@ def initGame(heroSelect):  # функция инициации игры
         ishZdorovie = 90
         zdorovie = 90
         mana = 100
+        ishMana = 100
         sila = 9
         lovkost = 3
         ydacha = 9
