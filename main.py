@@ -69,9 +69,13 @@ for n in range(480): # Забиваем мир нулями
     world[n] = 0
 
 def visibleMagic(xMag, yMag, por):
-    global zaklinania 
-    print(por)
+    global zaklinania
     print(zaklinania[por])
+    if zaklinania[por] == 0:
+        pix = pygame.image.load('Images/zero.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
     if zaklinania[por] == 100:
         pix = pygame.image.load('Images/attack.jpg') 
         x_len = pix.get_width()
@@ -108,7 +112,7 @@ def visibleMagic(xMag, yMag, por):
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
     if zaklinania[por] == 7:
-        pix = pygame.image.load('Images/jad.jpg') 
+        pix = pygame.image.load('Images/jad.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
@@ -121,41 +125,117 @@ def visibleMagic(xMag, yMag, por):
         pix = pygame.image.load('Images/lunniiObriad.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
-        sc.blit(pix, (xMag,yMag))             
+        sc.blit(pix, (xMag,yMag))  
+    if zaklinania[por] == 10:
+        pix = pygame.image.load('Images/mochLda.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if zaklinania[por] == 11:
+        pix = pygame.image.load('Images/mogilniiLuch.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag)) 
+    if zaklinania[por] == 12:
+        pix = pygame.image.load('Images/molnia.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))    
+    if zaklinania[por] == 13:
+        pix = pygame.image.load('Images/pechatChaosa.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))    
+    if zaklinania[por] == 14:
+        pix = pygame.image.load('Images/pechatSmerti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))   
+    if zaklinania[por] == 15:
+        pix = pygame.image.load('Images/poceluiSmerti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))      
+    if zaklinania[por] == 16:
+        pix = pygame.image.load('Images/prokliatie.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))   
+    if zaklinania[por] == 17:
+        pix = pygame.image.load('Images/pronzauchiiKrik.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))         
+    if zaklinania[por] == 18:
+        pix = pygame.image.load('Images/reincarnation.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag)) 
+    if zaklinania[por] == 19:
+        pix = pygame.image.load('Images/sjiganieMani.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag)) 
+    if zaklinania[por] == 20:
+        pix = pygame.image.load('Images/vampirizm.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag)) 
+    if zaklinania[por] == 21:
+        pix = pygame.image.load('Images/vosstanovitSkeletov.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if zaklinania[por] == 22:
+        pix = pygame.image.load('Images/lechenie.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))   
+    if zaklinania[por] == 23:
+        pix = pygame.image.load('Images/rasseiatChari.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if zaklinania[por] == 24:
+        pix = pygame.image.load('Images/plenitDuchu.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))              
+                                
 
 def printMagic(numberMagic):
     if numberMagic == 0:
-        visibleMagic(16,548,1)
+        visibleMagic(16,548,0)
     if numberMagic == 1:
-        visibleMagic(84,548,2)
+        visibleMagic(84,548,1)
     if numberMagic == 2:
-        visibleMagic(152,548,3)
+        visibleMagic(152,548,2)
     if numberMagic == 3:
-        visibleMagic(220,548,4)
+        visibleMagic(220,548,3)
     if numberMagic == 4:
-        visibleMagic(16,616,5)
+        visibleMagic(16,616,4)
     if numberMagic == 5:
-        visibleMagic(84,616,6)
+        visibleMagic(84,616,5)
     if numberMagic == 6:
-        visibleMagic(152,616,7)
+        visibleMagic(152,616,6)
     if numberMagic == 7:
-        visibleMagic(220,616,8)
+        visibleMagic(220,616,7)
     if numberMagic == 8:
-        visibleMagic(16,684,9)
+        visibleMagic(16,684,8)
     if numberMagic == 9:
-        visibleMagic(84,684,10)
+        visibleMagic(84,684,9)
     if numberMagic == 10:
-        visibleMagic(152,684,11)
+        visibleMagic(152,684,10)
     if numberMagic == 11:
-        visibleMagic(220,684,12)
+        visibleMagic(220,684,11)
     if numberMagic == 12:
-        visibleMagic(16,752,13)
+        visibleMagic(16,752,12)
     if numberMagic == 13:
-        visibleMagic(84,752,14)
+        visibleMagic(84,752,13)
     if numberMagic == 14:
-        visibleMagic(152,752,15)
+        visibleMagic(152,752,14)
     if numberMagic == 15:
-        visibleMagic(220,752,16)
+        visibleMagic(220,752,15)
          
     
     
@@ -533,7 +613,7 @@ def initGame(heroSelect):  # функция инициации игры
         lvl = 1
         rasa = 7
         inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        zaklinania = [8,6,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        zaklinania = [10,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         ishZdorovie = 120
         zdorovie = 120
@@ -662,6 +742,7 @@ def initGame(heroSelect):  # функция инициации игры
     mesiac = 1
     god = 1
     
+    
     heroPanel(heroSelect)  # Вызов функции рисования панели
     for yMap in range(14): # Рисуем игровое поле
     
@@ -733,6 +814,10 @@ def initGame(heroSelect):  # функция инициации игры
             yMap += 32    
     print(" ")
     zachita = 0 # Обнуляем защиту при новой игре
+    n = 0
+    for n in range(16): # Рисуем иконки заклинаний
+        #print(n)
+        printMagic(n)
     # ==========================================================================================
 
 
@@ -1116,8 +1201,8 @@ while True:
                      newGame = 1
                      initGame(50)                
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(0)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass
                      
                  
     if mos_x>84 and (mos_x<148): 
@@ -1135,8 +1220,8 @@ while True:
                      newGame = 1 
                      initGame(51)  
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(1)                
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass                
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -1153,8 +1238,8 @@ while True:
                      newGame = 1  
                      initGame(52) 
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(2)     
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass     
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -1171,8 +1256,8 @@ while True:
                      newGame = 1 
                      initGame(54)  
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(3)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass 
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -1189,8 +1274,8 @@ while True:
                      newGame = 1 
                      initGame(55)  
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(4)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass 
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -1207,8 +1292,8 @@ while True:
                      newGame = 1 
                      initGame(56)  
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(5)          
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass           
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -1225,8 +1310,8 @@ while True:
                      initGame(57)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(6)                  
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass                  
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -1243,8 +1328,8 @@ while True:
                      initGame(58) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(7)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass 
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -1261,8 +1346,8 @@ while True:
                      initGame(59)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(8)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass 
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -1279,8 +1364,8 @@ while True:
                      initGame(60)
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(9)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass 
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -1297,8 +1382,8 @@ while True:
                      initGame(70)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(10)                  
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass                 
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -1315,8 +1400,8 @@ while True:
                      initGame(72)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(11)                           
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass                            
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -1333,8 +1418,8 @@ while True:
                      initGame(68) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(12)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass 
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -1351,8 +1436,8 @@ while True:
                      initGame(65) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(13)              
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass               
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -1369,8 +1454,8 @@ while True:
                      initGame(69)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(14)             
+                 if newGameButton == 0 and newGame == 1:  # Нажали на заклинание 
+                     pass              
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -1387,8 +1472,8 @@ while True:
                      initGame(73) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
-                     printMagic(15)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     pass 
                  
                  
                     
