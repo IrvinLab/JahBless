@@ -72,11 +72,6 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
-# 3 - жилище зельевара, 4 - лачуга шамана, 5 - хижина мага, 6 - кузница,
-# 7 - дом коллекционера, 8 - рынок, 9 - вспаханная земля, 10 - портал
-# 11 - Полуросль, 12 - Рожь, 13 - Картофель, 23 - Сундук, 24 - Врата города
-# 25 - Таверна, 26 - Портал
-
 # Герои
 # 50 - Аками, 51 - Артес, 52 - Владыка Смерти, 53 - Детерок, 54 - Джепотай, 55 - Фарион
 # 56 - Гаритос, 57 - Гендальф, 58 - Илидан, 59 - Джайна
@@ -171,7 +166,152 @@ def markLocation(numberMark, iconka):
         pix = pygame.image.load('Images/market_32.jpg')
         x_len = pix.get_width()
         y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap))      
+    if iconka == 10:
+        pix = pygame.image.load('Images/portal_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap))  
+    if iconka == 14:
+        pix = pygame.image.load('Images/sunduk_32.png')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
         sc.blit(pix, (xMap,yMap))       
+    if iconka == 15:
+        pix = pygame.image.load('Images/city_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap))   
+    if iconka == 16:
+        pix = pygame.image.load('Images/taverna_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap))     
+    if iconka == 17:
+        pix = pygame.image.load('Images/portal_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap))   
+    if iconka == 50:
+        pix = pygame.image.load('Images/akami_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap)) 
+    if iconka == 51:
+        pix = pygame.image.load('Images/artes_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap))    
+    if iconka == 52:
+        pix = pygame.image.load('Images/deathOwner_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap)) 
+    if iconka == 53:
+        pix = pygame.image.load('Images/deterok_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap))
+    if iconka == 54:
+        pix = pygame.image.load('Images/djepotai_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap))  
+    if iconka == 55:
+        pix = pygame.image.load('Images/farion_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap)) 
+    if iconka == 56:
+        pix = pygame.image.load('Images/garitos_32.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMap,yMap)) 
+    if hero == 57:
+        pix = pygame.image.load('Images/gendalf_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 58:
+        pix = pygame.image.load('Images/illidan_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 59:
+        pix = pygame.image.load('Images/jaina_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 60:
+        pix = pygame.image.load('Images/kell_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 61:
+        pix = pygame.image.load('Images/kelTuZed_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))    
+    if hero == 62:
+        pix = pygame.image.load('Images/magerion_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero)) 
+    if hero == 63:
+        pix = pygame.image.load('Images/mefistofor_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))  
+    if hero == 64:
+        pix = pygame.image.load('Images/paladin_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))         
+    if hero == 65:
+        pix = pygame.image.load('Images/pradmur_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 66:
+        pix = pygame.image.load('Images/sargaras_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 67:
+        pix = pygame.image.load('Images/sauron_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 68:
+        pix = pygame.image.load('Images/silvana_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))    
+    if hero == 69:
+        pix = pygame.image.load('Images/trall_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 70:
+        pix = pygame.image.load('Images/uter_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 71:
+        pix = pygame.image.load('Images/varomir_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))    
+    if hero == 72:
+        pix = pygame.image.load('Images/vulDjin_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+    if hero == 73:
+        pix = pygame.image.load('Images/zadira_32.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
         
         
         
@@ -1406,88 +1546,6 @@ while True:
 
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
-    if newGame == 1: # Отображаем персонажей на игровом поле
-        if hero == 50:
-            pix = pygame.image.load('Images/akami_32.jpg')
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 51:
-            pix = pygame.image.load('Images/artes_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 52:
-            pix = pygame.image.load('Images/deathOwner_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 54:
-            pix = pygame.image.load('Images/djepotai_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 55:
-            pix = pygame.image.load('Images/farion_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 56:
-            pix = pygame.image.load('Images/garitos_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 57:
-            pix = pygame.image.load('Images/gendalf_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 58:
-            pix = pygame.image.load('Images/illidan_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 59:
-            pix = pygame.image.load('Images/jaina_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 60:
-            pix = pygame.image.load('Images/kell_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 70:
-            pix = pygame.image.load('Images/uter_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 72:
-            pix = pygame.image.load('Images/vulDjin_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 68:
-            pix = pygame.image.load('Images/silvana_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 65:
-            pix = pygame.image.load('Images/pradmur_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 69:
-            pix = pygame.image.load('Images/trall_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        if hero == 73:
-            pix = pygame.image.load('Images/zadira_32.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xHero,yHero))
-        pygame.display.update()
 #============================================================================================================================================    
 #==================================================ОБРАБОТКА НАЖАТИЙ КНОПОК ИГРОВОГО ПОЛЯ====================================================
 #============================================================================================================================================
