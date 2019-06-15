@@ -8,6 +8,8 @@ xMap = 0
 yMap = 0
 xHeroIcon = 0
 yHeroIcon = 0
+xMagic = 0
+yMagic = 0
 n = 0
 newGame = 0 # Переменная, которая означает, что идёт игра
 
@@ -55,16 +57,107 @@ clock = pygame.time.Clock()
 pygame.draw.rect(sc, (255, 255, 255), (0, 0, 1056, 896)) 
 
 pygame.font.init()    
-textNameHero = pygame.font.SysFont('Comic Sans MS', 23) # Текст отображающий Здоровье                
-healt = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Здоровье
-manna = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Ману
-textSila = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Силу
-textLovk = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Ловкость
-textYdacha = pygame.font.SysFont('Comic Sans MS', 20) # Текст отображающий Удачу
+textNameHero = pygame.font.SysFont('Monospace Regular', 23) # Текст отображающий имя игрока               
+healt = pygame.font.SysFont('Monospace Regular', 20) # Текст отображающий Здоровье
+manna = pygame.font.SysFont('Monospace Regular', 20) # Текст отображающий Ману
+textSila = pygame.font.SysFont('Monospace Regular', 20) # Текст отображающий Силу
+textLovk = pygame.font.SysFont('Monospace Regular', 20) # Текст отображающий Ловкость
+textYdacha = pygame.font.SysFont('Monospace Regular', 20) # Текст отображающий Удачу
 
 for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
+
+def visibleMagic(xMag, yMag, por):
+    global zaklinania 
+    print(por)
+    print(zaklinania[por])
+    if zaklinania[por] == 100:
+        pix = pygame.image.load('Images/attack.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if zaklinania[por] == 1:
+        pix = pygame.image.load('Images/pronzauchaiaSmert.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if zaklinania[por] == 2:
+        pix = pygame.image.load('Images/dobitIvoskresit.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if zaklinania[por] == 3:
+        pix = pygame.image.load('Images/dospechiFenicha.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if zaklinania[por] == 4:
+        pix = pygame.image.load('Images/krajaMagii.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if zaklinania[por] == 5:
+        pix = pygame.image.load('Images/obman.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))    
+    if zaklinania[por] == 6:
+        pix = pygame.image.load('Images/ognennaiaSfera.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if zaklinania[por] == 7:
+        pix = pygame.image.load('Images/jad.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if zaklinania[por] == 8:
+        pix = pygame.image.load('Images/krovojadnost.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))        
+    if zaklinania[por] == 9:
+        pix = pygame.image.load('Images/lunniiObriad.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))             
+
+def printMagic(numberMagic):
+    if numberMagic == 0:
+        visibleMagic(16,548,1)
+    if numberMagic == 1:
+        visibleMagic(84,548,2)
+    if numberMagic == 2:
+        visibleMagic(152,548,3)
+    if numberMagic == 3:
+        visibleMagic(220,548,4)
+    if numberMagic == 4:
+        visibleMagic(16,616,5)
+    if numberMagic == 5:
+        visibleMagic(84,616,6)
+    if numberMagic == 6:
+        visibleMagic(152,616,7)
+    if numberMagic == 7:
+        visibleMagic(220,616,8)
+    if numberMagic == 8:
+        visibleMagic(16,684,9)
+    if numberMagic == 9:
+        visibleMagic(84,684,10)
+    if numberMagic == 10:
+        visibleMagic(152,684,11)
+    if numberMagic == 11:
+        visibleMagic(220,684,12)
+    if numberMagic == 12:
+        visibleMagic(16,752,13)
+    if numberMagic == 13:
+        visibleMagic(84,752,14)
+    if numberMagic == 14:
+        visibleMagic(152,752,15)
+    if numberMagic == 15:
+        visibleMagic(220,752,16)
+         
+    
     
 def heroPanel(myHero): # Рисуем панель героя с его картинкой и параметрами
     global expirience
@@ -222,11 +315,11 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
        
     
     variableHealt = "" + str(zdorovie) + " / " + str(ishZdorovie) # переменная типа String отображающая здоровье как ххх/ххх
-    healtObj = healt.render(variableHealt, False, (0, 0, 0)) # Создали объект типа "текст" 
+    healtObj = healt.render(variableHealt, False, (0, 255, 0)) # Создали объект типа "текст" 
     sc.blit(healtObj,(290, 631)) # Отображаем здоровье
     
     variableMana = "" + str(mana) + " / " + str(ishMana) # переменная типа String отображающая ману как ххх/ххх
-    manaObj = manna.render(variableMana, False, (0, 0, 0)) # Создали объект типа "текст" 
+    manaObj = manna.render(variableMana, False, (0, 0, 255)) # Создали объект типа "текст" 
     sc.blit(manaObj,(290, 644)) # Отображаем ману
     
     variableSila = "Sila: " + str(sila) 
@@ -754,7 +847,7 @@ while True:
 
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
-    if newGame == 1: # Отображаем персонажа на игровом поле
+    if newGame == 1: # Отображаем персонажей на игровом поле
         if hero == 50:
             pix = pygame.image.load('Images/akami_32.jpg')
             x_len = pix.get_width()
@@ -1023,7 +1116,9 @@ while True:
                      newGame = 1
                      initGame(50)                
                  pygame.time.delay(500)
-                 pass
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(0)
+                     
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -1040,7 +1135,8 @@ while True:
                      newGame = 1 
                      initGame(51)  
                  pygame.time.delay(500)
-                 pass                 
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(1)                
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -1057,7 +1153,8 @@ while True:
                      newGame = 1  
                      initGame(52) 
                  pygame.time.delay(500)
-                 pass                   
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(2)     
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -1074,7 +1171,8 @@ while True:
                      newGame = 1 
                      initGame(54)  
                  pygame.time.delay(500)
-                 pass
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(3)
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -1091,7 +1189,8 @@ while True:
                      newGame = 1 
                      initGame(55)  
                  pygame.time.delay(500)
-                 pass
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(4)
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -1108,7 +1207,8 @@ while True:
                      newGame = 1 
                      initGame(56)  
                  pygame.time.delay(500)
-                 pass                 
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(5)          
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -1125,7 +1225,8 @@ while True:
                      initGame(57)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass                   
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(6)                  
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -1142,7 +1243,8 @@ while True:
                      initGame(58) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass  
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(7)
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -1159,7 +1261,8 @@ while True:
                      initGame(59)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(8)
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -1176,7 +1279,8 @@ while True:
                      initGame(60)
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass                 
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(9)
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -1193,7 +1297,8 @@ while True:
                      initGame(70)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass                   
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(10)                  
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -1210,7 +1315,8 @@ while True:
                      initGame(72)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass                                 
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(11)                           
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -1227,7 +1333,8 @@ while True:
                      initGame(68) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(12)
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -1244,7 +1351,8 @@ while True:
                      initGame(65) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass                 
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(13)              
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -1261,7 +1369,8 @@ while True:
                      initGame(69)  
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass                   
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(14)             
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -1278,7 +1387,8 @@ while True:
                      initGame(73) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 pass                  
+                 if newGameButton == 0 and newGame == 1: # Рисуем иконку способности
+                     printMagic(15)
                  
                  
                     
