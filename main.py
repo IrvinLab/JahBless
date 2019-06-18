@@ -19,6 +19,7 @@ step = 172 # Исходное положение на карте
 xHero = 400
 yHero = 256
 expirience = 0
+expToLvlUp = 1000 
 lvl = 1
 rasa = 0
 inventar = []
@@ -38,8 +39,10 @@ hod = 0
 zachita = 0
 
 # Переменные ботов
-botType = []
-botStep = []
+bot = 0 # Количество ботов
+botNumer = [] # Порядковый номер бота
+botType = [] # 1 - союзник, 2 - враждебныйб 3 - мирный
+botStep = [] # Сколько шагов у бота
 xBot = []
 yBot = []
 botExpirience = []
@@ -69,6 +72,8 @@ settingsButton = 0
 world = [] # Это игровое поле
 tmp = 0
 temp = 0 # Отладочная переменная, нужна для отслеживания состояния поля
+
+
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
 pygame.display.set_caption("Kings of New World")
@@ -91,8 +96,82 @@ textHod = pygame.font.SysFont('Monospace Regular', 20) # Отображает к
 for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
-    
-def botActivity():
+ 
+def botActivity():  # Создание и управление ботами
+    global bot 
+    global botType
+    global botStep
+    global xBot
+    global yBot
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botIshZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+        
+    temp = int(random.random()*10) # Вероятность появления нового бота 1/10
+    print(bot)
+    if temp == 5:   
+        tmp = int(random.random()*72)
+        tmp += 100
+        # Войны
+# 100 - Эльф 1 ур, 101 - Эльф 2 ур, 102 - Эльф 3 ур, 103 - гнолл 1 ур, 104 - гнолл 2 ур
+# 105 - Гнолл 3 ур, 106 - Гном 1 ур, 107 - Гном 2 ур, 108 - Гном 3 ур, 109 - Гном 4 ур
+# 110 - Гоблин 0 ур, 111 - Гоблин 1 ур, 112 - Гоблин 2 ур, 113 - Гоблин 3 ур
+# 114 - Отшельник 1 ур, 115 - Отшельник 2 ур, 116 - Отшельник 3 ур
+# 117 - Охотник за головами 1 ур, 118 - Человек, 119 - Монстр 1 ур, 120 - Монстр 2 ур
+# 121 - Монстр 3 ур, 122 - Монстр 4 ур, 123 - Морлок 1 ур, 124 - Морлок 2 ур, 125 - Морлок 3 ур
+# 126 - Наемник 1 ур, 127 - Наемник 2 ур, 128 - Наемник 3 ур, 129 - наемник 4 ур
+# 130 - Некромант, 131 - Непобедимый 1 ур, 132 - Непобедимый 2 ур, 133 - Огр 1 ур, 134 - Огр 2 ур
+# 135 - Оккультист, 136 - Орк 1 ур, 137 - Орк 2 ур, 138 - Орк 3 ур, 139 - Окр 4 ур, 140 - орк 5 ур
+# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Отступник, 145 - Разбойник, 146 - грабитель
+# 147 - Красный огненный голем, 148 - Скелет 1 ур, 149 - Скелет 2 ур, 150 - Скелет 3 ур
+# 151 - Скелет 4 ур, 152 - Скелет 5 ур, 153 - Скелет 6 ур, 154 - Скелет 7 ур, 155 - Скелет 8 ур
+# 156 - Душекрад, 157 - Странник, 158 - Тролль 1 ур, 159 - Тролль 2 ур, 160 - Тролль 3 ур
+# 161 - Тролль 4 ур, 162 - Тролль 5 ур, 163 - Тролль 6 ур, 164 - Вампир, 165 - Колдун
+# 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
+# 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
+# 172 - Женщина-эльф 7 ур    
+        if tmp == 114 or tmp == 115 or tmp == 116 or tmp == 117 or tmp == 118 or tmp == 126 or tmp == 127 or tmp == 128 or tmp == 129 or tmp == 144 or tmp == 145 or tmp == 146 or tmp == 165:  # Если персонажи человеческой расы
+            botRasa.append(bot)
+            botRasa[bot] = 1
+        
+        elif tmp == 100 or tmp == 101 or tmp == 102 or tmp == 166 or tmp == 167 or tmp == 168 or tmp == 169 or tmp == 170 or tmp == 171 or tmp == 172:
+            botRasa.append(bot)
+            botRasa[bot] = 2
+            
+        elif tmp == 106 or tmp == 107 or tmp == 108 or tmp == 109:
+            botRasa.append(bot)
+            botRasa[bot] = 3
+            
+        elif tmp == 110 or tmp == 111 or tmp == 112 or tmp == 113:
+            botRasa.append(bot)
+            botRasa[bot] = 4
+            
+        elif tmp == 119 or tmp == 120 or tmp == 121 or tmp == 122 or tmp == 123 or tmp == 124 or tmp == 125 or tmp == 131 or tmp == 132 or tmp == 133 or tmp == 134 or tmp == 147:
+            botRasa.append(bot)
+            botRasa[bot] = 5
+            
+        elif tmp == 136 or tmp == 137 or tmp == 138 or tmp == 139 or tmp == 140 or tmp == 141 or tmp == 142 or tmp == 143 or tmp == 158 or tmp == 159 or tmp == 160 or tmp == 161 or tmp == 162 or tmp == 163:
+            botRasa.append(bot)
+            botRasa[bot] = 6
+            
+        elif tmp == 148 or tmp == 149 or tmp == 150 or tmp == 151 or tmp == 152 or tmp == 153 or tmp == 154 or tmp == 155 or tmp == 156 or tmp == 164 or tmp == 135 or tmp == 130:  
+        
+        
+        else:
+            print("WARNING " + tmp)
+        bot += 1
+        # Конец создания бота
+        
     pass    
 
 def markLocation(numberMark, iconka): # Определяем кординаты пиктограммы 32х32
@@ -449,22 +528,22 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
-        variableName = "Жилище зельевара"
+        variableName = u"Жилище зельевара"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = "В этом доме живёт потомственный мастер зелья"
+        variableName = u"В этом доме живёт потомственный мастер зелья"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580)) 
-        variableName = "У него можно приобрести магические зелья"
+        variableName = u"У него можно приобрести магические зелья"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = "под различные нужны."
+        variableName = u"под различные нужны."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620)) 
-        variableName = "Ты можешь взять задание у зельевара,"
+        variableName = u"Ты можешь взять задание у зельевара,"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))  
-        variableName = "выполнив которые ты получишь золотые монеты"
+        variableName = u"выполнив которые ты получишь золотые монеты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
     if world[hehmda] == 4:
@@ -472,25 +551,25 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
-        variableName = "Лачуга шамана"
+        variableName = u"Лачуга шамана"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = "В этой хижине живёт шаман племени Яки."
+        variableName = u"В этой хижине живёт шаман племени Яки."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = "За символическую сумму он обучит вас основам"
+        variableName = u"За символическую сумму он обучит вас основам"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = "магии и некоторым заклинаниям. У него можно "
+        variableName = u"магии и некоторым заклинаниям. У него можно "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = "также приобрести магические артефакты."
+        variableName = u"также приобрести магические артефакты."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640)) 
-        variableName = "Шаман может предложить тебе работу, и если"
+        variableName = u"Шаман может предложить тебе работу, и если"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))  
-        variableName = "ты с ней справишься он отплатит тебе серебром"
+        variableName = u"ты с ней справишься он отплатит тебе серебром"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680)) 
     if world[hehmda] == 5:
@@ -498,25 +577,25 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
-        variableName = "Хижина мага"
+        variableName = u"Хижина мага"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = "В этой хижине живёт старый маг, который"
+        variableName = u"В этой хижине живёт старый маг, который"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = "способен обучить вас основам магии, а также"
+        variableName = u"способен обучить вас основам магии, а также"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = "у него можно купить и продать некоторые"
+        variableName = u"у него можно купить и продать некоторые"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = "магические артефакты и зелья."
+        variableName = u"магические артефакты и зелья."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))    
-        variableName = "У мага можно получить задание и заработать"
+        variableName = u"У мага можно получить задание и заработать"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))  
-        variableName = "деньги. Платит маг обычно бронзой"
+        variableName = u"деньги. Платит маг обычно бронзой"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680)) 
     if world[hehmda] == 6:
@@ -524,19 +603,19 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
-        variableName = "Кузница"
+        variableName = u"Кузница"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = "В этой кузнице трудятся мастера своего дела"
+        variableName = u"В этой кузнице трудятся мастера своего дела"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = "Здесь ты найдёшь доспехи и оружие"
+        variableName = u"Здесь ты найдёшь доспехи и оружие"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))  
-        variableName = "У кузнецов можно получить задание и выполнив"
+        variableName = u"У кузнецов можно получить задание и выполнив"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = "его получить редкие артефакты"
+        variableName = u"его получить редкие артефакты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))   
     if world[hehmda] == 8:
@@ -544,19 +623,19 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
-        variableName = "Рынок"
+        variableName = u"Рынок"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = "Сюда ведут все дороги - на рынок."
+        variableName = u"Сюда ведут все дороги - на рынок."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = "Тут найдутся абсолютно все вещи первой"
+        variableName = u"Тут найдутся абсолютно все вещи первой"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = "необходимости. На рынке ты можешь "
+        variableName = u"необходимости. На рынке ты можешь "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = "получить деньги подрабатывая у торговцев"
+        variableName = u"получить деньги подрабатывая у торговцев"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))     
         
@@ -753,7 +832,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Аками - " + str(lvl) + " lvl"
+        variableName = u"Аками - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 51:
@@ -761,7 +840,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Артес - " + str(lvl) + " lvl"
+        variableName = u"Артес - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 52:
@@ -769,7 +848,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Владыка Смерти - " + str(lvl) + " lvl"
+        variableName = u"Владыка Смерти - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 54:
@@ -777,7 +856,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Джепотай - " + str(lvl) + " lvl"
+        variableName = u"Джепотай - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 55:
@@ -785,7 +864,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Фарион - " + str(lvl) + " lvl"
+        variableName = u"Фарион - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 56:
@@ -793,7 +872,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Гаритос - " + str(lvl) + " lvl"
+        variableName = u"Гаритос - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 57:
@@ -801,7 +880,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Гендальф - " + str(lvl) + " lvl"
+        variableName = u"Гендальф - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 58:
@@ -809,7 +888,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Иллидан - " + str(lvl) + " lvl"
+        variableName = u"Иллидан - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 59:
@@ -817,7 +896,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Джайна - " + str(lvl) + " lvl"
+        variableName = u"Джайна - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 60:
@@ -825,7 +904,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Келл - " + str(lvl) + " lvl"
+        variableName = u"Келл - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 70:
@@ -833,7 +912,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Утер - " + str(lvl) + " lvl"
+        variableName = u"Утер - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 72:
@@ -841,7 +920,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Вул Джин - " + str(lvl) + " lvl"
+        variableName = u"Вул Джин - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 68:
@@ -849,7 +928,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Сильвана - " + str(lvl) + " lvl"
+        variableName = u"Сильвана - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 65:
@@ -857,7 +936,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Прадмур - " + str(lvl) + " lvl"
+        variableName = u"Прадмур - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 69:
@@ -865,7 +944,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Тралл - " + str(lvl) + " lvl"
+        variableName = u"Тралл - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 73:
@@ -873,7 +952,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = "Задира - " + str(lvl) + " lvl"
+        variableName = u"Задира - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
        
@@ -886,31 +965,31 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     manaObj = manna.render(variableMana, False, (0, 0, 255)) # Создали объект типа "текст" 
     sc.blit(manaObj,(290, 644)) # Отображаем ману
     
-    variableSila = "Сила: " + str(sila) 
+    variableSila = u"Сила: " + str(sila) 
     silaObj = textSila.render(variableSila, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(silaObj,(290, 657)) 
     
-    variableLovk = "Ловкость: " + str(lovkost) 
+    variableLovk = u"Ловкость: " + str(lovkost) 
     lovkObj = textLovk.render(variableLovk, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(lovkObj,(290, 670)) 
     
-    variableYdacha = "Удача: " + str(ydacha) 
+    variableYdacha = u"Удача: " + str(ydacha) 
     ydachaObj = textYdacha.render(variableYdacha, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(ydachaObj,(290, 683))
     
-    variableHod = "Остаток хода: " + str(hod) 
+    variableHod = u"Остаток хода: " + str(hod) 
     hodObj = textHod.render(variableHod, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(hodObj,(290, 696))
     
-    variableZoloto = "Золото: " + str(zoloto) 
+    variableZoloto = u"Золото: " + str(zoloto) 
     zolotoObj = textZoloto.render(variableZoloto, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(zolotoObj,(290, 709))
     
-    variableSerebro = "Серебро: " + str(serebro) 
+    variableSerebro = u"Серебро: " + str(serebro) 
     serebroObj = textSerebro.render(variableSerebro, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(serebroObj,(290, 722))
     
-    variableBronza = "Бронза: " + str(bronza) 
+    variableBronza = u"Бронза: " + str(bronza) 
     bronzaObj = textBronza.render(variableBronza, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(bronzaObj,(290, 735))
     
@@ -6704,6 +6783,7 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                 if newGame == 1:
+                    pygame.time.delay(300)
                     hod = lovkost
                     heroPanel(hero)
                     botActivity() 
