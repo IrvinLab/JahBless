@@ -51,6 +51,7 @@ botRasa = []
 botZaklinania = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
 botVozdeistvie = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
 botIshZdorovie = []
+botZdorovie = []
 botMana = []
 botIshMana = []
 botSila = []
@@ -109,6 +110,7 @@ def botActivity():  # Создание и управление ботами
     global botZaklinania 
     global botVozdeistvie
     global botIshZdorovie
+    global botZdorovie
     global botMana
     global botIshMana
     global botSila
@@ -132,7 +134,7 @@ def botActivity():  # Создание и управление ботами
 # 126 - Наемник 1 ур, 127 - Наемник 2 ур, 128 - Наемник 3 ур, 129 - наемник 4 ур
 # 130 - Некромант, 131 - Непобедимый 1 ур, 132 - Непобедимый 2 ур, 133 - Огр 1 ур, 134 - Огр 2 ур
 # 135 - Оккультист, 136 - Орк 1 ур, 137 - Орк 2 ур, 138 - Орк 3 ур, 139 - Окр 4 ур, 140 - орк 5 ур
-# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Отступник, 145 - Разбойник, 146 - грабитель
+# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Оккультист, 145 - Разбойник, 146 - грабитель
 # 147 - Красный огненный голем, 148 - Скелет 1 ур, 149 - Скелет 2 ур, 150 - Скелет 3 ур
 # 151 - Скелет 4 ур, 152 - Скелет 5 ур, 153 - Скелет 6 ур, 154 - Скелет 7 ур, 155 - Скелет 8 ур
 # 156 - Душекрад, 157 - Странник, 158 - Тролль 1 ур, 159 - Тролль 2 ур, 160 - Тролль 3 ур
@@ -143,6 +145,372 @@ def botActivity():  # Создание и управление ботами
         if tmp == 114 or tmp == 115 or tmp == 116 or tmp == 117 or tmp == 118 or tmp == 126 or tmp == 127 or tmp == 128 or tmp == 129 or tmp == 144 or tmp == 145 or tmp == 146 or tmp == 165:  # Если персонажи человеческой расы
             botRasa.append(bot)
             botRasa[bot] = 1
+            if tmp == 114: # Отшельник 1 ур.
+                if rasa = 7 or rasa = 1:
+                    botType[bot] = 1
+                else:
+                    botType[bot] = 2    
+                botLvl[bot] = 1
+                botZdorovie[bot] = 85
+                botIshZdorovie[bot] = 85
+                botMana[bot] = 100
+                botIshMana[bot] = 100
+                botZaklinania[bot][2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 7
+                botLovkost[bot] = 5
+                botYdacha[bot] = 3
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp 
+                    
+            if tmp == 115: # Отшельник 2 ур.
+                if rasa = 7 or rasa = 1:
+                    botType[bot] = 1
+                else:
+                    botType[bot] = 2    
+                botLvl[bot] = 2
+                botZdorovie[bot] = 105
+                botIshZdorovie[bot] = 105
+                botMana[bot] = 130
+                botIshMana[bot] = 130
+                botZaklinania[bot][2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 14
+                botLovkost[bot] = 6
+                botYdacha[bot] = 5
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp 
+                    
+            if tmp == 116: # Отшельник 3 ур.
+                if rasa = 7 or rasa = 1:
+                    botType[bot] = 1
+                else:
+                    botType[bot] = 2    
+                botLvl[bot] = 3
+                botZdorovie[bot] = 125
+                botIshZdorovie[bot] = 125
+                botMana[bot] = 200
+                botIshMana[bot] = 200
+                botZaklinania[bot][2,3,12,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 20
+                botLovkost[bot] = 7
+                botYdacha[bot] = 9
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp    
+                    
+            if tmp == 117: # Охотник за головами.
+                if rasa = 2 or rasa = 1:
+                    botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
+                else:
+                    botType[bot] = 2 # Иначе враг    
+                botLvl[bot] = 3
+                botZdorovie[bot] = 155
+                botIshZdorovie[bot] = 155
+                botMana[bot] = 60
+                botIshMana[bot] = 60
+                botZaklinania[bot][22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 25
+                botLovkost[bot] = 7
+                botYdacha[bot] = 15
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp   
+                    
+            if tmp == 118: # Человек
+                botType[bot] = 3 # Мирный    
+                botLvl[bot] = 1
+                botZdorovie[bot] = 30
+                botIshZdorovie[bot] = 30
+                botMana[bot] = 0
+                botIshMana[bot] = 0
+                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botSila[bot] = 0
+                botLovkost[bot] = 4
+                botYdacha[bot] = 5
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp  
+                    
+            if tmp == 126: # Наёмник 1 ур.
+                if rasa = 2 or rasa = 1:
+                    botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
+                else:
+                    botType[bot] = 2 # Иначе враг    
+                botLvl[bot] = 1
+                botZdorovie[bot] = 100
+                botIshZdorovie[bot] = 100
+                botMana[bot] = 0
+                botIshMana[bot] = 0
+                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 10
+                botLovkost[bot] = 5
+                botYdacha[bot] = 5
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp     
+                    
+            if tmp == 127: # Наёмник 2 ур.
+                if rasa = 2 or rasa = 1:
+                    botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
+                else:
+                    botType[bot] = 2 # Иначе враг    
+                botLvl[bot] = 2
+                botZdorovie[bot] = 140
+                botIshZdorovie[bot] = 140
+                botMana[bot] = 0
+                botIshMana[bot] = 0
+                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 17
+                botLovkost[bot] = 6
+                botYdacha[bot] = 8
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp     
+                    
+            if tmp == 128: # Наёмник 3 ур.
+                if rasa = 2 or rasa = 1:
+                    botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
+                else:
+                    botType[bot] = 2 # Иначе враг    
+                botLvl[bot] = 3
+                botZdorovie[bot] = 170
+                botIshZdorovie[bot] = 170
+                botMana[bot] = 0
+                botIshMana[bot] = 0
+                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 27
+                botLovkost[bot] = 7
+                botYdacha[bot] = 10
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp    
+                    
+            if tmp == 129: # Наёмник 4 ур.
+                if rasa = 2 or rasa = 1:
+                    botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
+                else:
+                    botType[bot] = 2 # Иначе враг    
+                botLvl[bot] = 4
+                botZdorovie[bot] = 200
+                botIshZdorovie[bot] = 200
+                botMana[bot] = 0
+                botIshMana[bot] = 0
+                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 40
+                botLovkost[bot] = 7
+                botYdacha[bot] = 10
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp 
+                    
+            if tmp == 144: # Оккультист
+                botType[bot] = 2     
+                botLvl[bot] = 5
+                botZdorovie[bot] = 250
+                botIshZdorovie[bot] = 250
+                botMana[bot] = 200
+                botIshMana[bot] = 200
+                botZaklinania[bot][1,2,4,11,13,23,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 20
+                botLovkost[bot] = 7
+                botYdacha[bot] = 20
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp  
+                    
+            if tmp == 145: # Разбойник
+                botType[bot] = 2    
+                botLvl[bot] = 2
+                botZdorovie[bot] = 145
+                botIshZdorovie[bot] = 145
+                botMana[bot] = 0
+                botIshMana[bot] = 0
+                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 16
+                botLovkost[bot] = 7
+                botYdacha[bot] = 10
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp  
+                  
+            if tmp == 146: # Грабитель
+                botType[bot] = 2    
+                botLvl[bot] = 2
+                botZdorovie[bot] = 150
+                botIshZdorovie[bot] = 150
+                botMana[bot] = 0
+                botIshMana[bot] = 0
+                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 18
+                botLovkost[bot] = 6
+                botYdacha[bot] = 10
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp     
+                    
+            if tmp == 165: # Колдун
+                if rasa = 2 or rasa = 1:
+                    botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
+                else:
+                    botType[bot] = 2 # Иначе враг    
+                botLvl[bot] = 4
+                botZdorovie[bot] = 175
+                botIshZdorovie[bot] = 175
+                botMana[bot] = 200
+                botIshMana[bot] = 200
+                botZaklinania[bot][22,23,12,11,3,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 20
+                botLovkost[bot] = 6
+                botYdacha[bot] = 25
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 96
+                    world[30] == tmp
+                elif world[63] == 0:
+                    xBot[bot] == 976
+                    yBot[bot] == 128
+                    world[63] == tmp
+                elif world[62] == 0:
+                    xBot[bot] == 1008
+                    yBot[bot] == 128
+                    world[62] == tmp                                                                                     
+                
+                
         
         elif tmp == 100 or tmp == 101 or tmp == 102 or tmp == 166 or tmp == 167 or tmp == 168 or tmp == 169 or tmp == 170 or tmp == 171 or tmp == 172:
             botRasa.append(bot)
@@ -164,7 +532,9 @@ def botActivity():  # Создание и управление ботами
             botRasa.append(bot)
             botRasa[bot] = 6
             
-        elif tmp == 148 or tmp == 149 or tmp == 150 or tmp == 151 or tmp == 152 or tmp == 153 or tmp == 154 or tmp == 155 or tmp == 156 or tmp == 164 or tmp == 135 or tmp == 130:  
+        elif tmp == 148 or tmp == 149 or tmp == 150 or tmp == 151 or tmp == 152 or tmp == 153 or tmp == 154 or tmp == 155 or tmp == 156 or tmp == 164 or tmp == 135 or tmp == 130: 
+            botRasa.append(bot)
+            botRasa[bot] = 7 
         
         
         else:
@@ -6814,7 +7184,7 @@ while True:
 # 126 - Наемник 1 ур, 127 - Наемник 2 ур, 128 - Наемник 3 ур, 129 - наемник 4 ур
 # 130 - Некромант, 131 - Непобедимый 1 ур, 132 - Непобедимый 2 ур, 133 - Огр 1 ур, 134 - Огр 2 ур
 # 135 - Оккультист, 136 - Орк 1 ур, 137 - Орк 2 ур, 138 - Орк 3 ур, 139 - Окр 4 ур, 140 - орк 5 ур
-# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Отступник, 145 - Разбойник, 146 - грабитель
+# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Оккультист, 145 - Разбойник, 146 - грабитель
 # 147 - Красный огненный голем, 148 - Скелет 1 ур, 149 - Скелет 2 ур, 150 - Скелет 3 ур
 # 151 - Скелет 4 ур, 152 - Скелет 5 ур, 153 - Скелет 6 ур, 154 - Скелет 7 ур, 155 - Скелет 8 ур
 # 156 - Душекрад, 157 - Странник, 158 - Тролль 1 ур, 159 - Тролль 2 ур, 160 - Тролль 3 ур
