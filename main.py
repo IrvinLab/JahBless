@@ -37,6 +37,25 @@ bronza = 0
 hod = 0
 zachita = 0
 
+# Переменные ботов
+botType = []
+botStep = []
+xBot = []
+yBot = []
+botExpirience = []
+botLvl = []
+botRasa = []
+botZaklinania = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+botVozdeistvie = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+botIshZdorovie = []
+botMana = []
+botIshMana = []
+botSila = []
+botLovkost = []
+botYdacha = []
+botZachita = []
+botHod = []
+
 # Время мира
 den = 1
 mesiac = 1
@@ -67,10 +86,14 @@ textZoloto = pygame.font.SysFont('Monospace Regular', 20)
 textSerebro = pygame.font.SysFont('Monospace Regular', 20)
 textBronza = pygame.font.SysFont('Monospace Regular', 20)
 textDescription = pygame.font.SysFont('Monospace Regular', 20) #Описание объекта
+textHod = pygame.font.SysFont('Monospace Regular', 20) # Отображает количество оставшегося хода
 
 for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
+    
+def botActivity():
+    pass    
 
 def markLocation(numberMark, iconka): # Определяем кординаты пиктограммы 32х32
     if numberMark <= 31 and numberMark >= 0: yMap = 96; xMap = 16 + (32*numberMark)
@@ -717,7 +740,12 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     global mesiac
     global god
     
-    pygame.draw.rect(sc, (255, 255, 255), (405, 558, 360, 896)) 
+    pygame.draw.rect(sc, (255, 255, 255), (284, 558, 481, 896)) 
+    pix = pygame.image.load('Images/next.png') # Кнопка "Конец хода" она нужна)
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (286,752))
+    
     xHero = 340
     yHero = 548
     if myHero == 50:
@@ -869,6 +897,10 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     variableYdacha = "Удача: " + str(ydacha) 
     ydachaObj = textYdacha.render(variableYdacha, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(ydachaObj,(290, 683))
+    
+    variableHod = "Остаток хода: " + str(hod) 
+    hodObj = textHod.render(variableHod, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(hodObj,(290, 696))
     
     variableZoloto = "Золото: " + str(zoloto) 
     zolotoObj = textZoloto.render(variableZoloto, False, (0, 0, 0)) # Создали объект типа "текст" 
@@ -1310,7 +1342,7 @@ def initGame(heroSelect):  # функция инициации игры
     world[31] = 15
     
     worldUpdate()
-    pix = pygame.image.load('Images/next.png')
+    pix = pygame.image.load('Images/next.png') # Рисуем кнопку "Конец хода"
     x_len = pix.get_width()
     y_len = pix.get_height() 
     sc.blit(pix, (286,752))
@@ -6673,7 +6705,8 @@ while True:
             if i.button == 1:
                 if newGame == 1:
                     hod = lovkost
-                     
+                    heroPanel(hero)
+                    botActivity() 
                     pass 
         
     
