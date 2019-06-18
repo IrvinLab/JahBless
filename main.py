@@ -908,6 +908,7 @@ def initGame(heroSelect):  # функция инициации игры
     global serebro
     global bronza
     global zachita
+    global hod
     
     global den
     global mesiac
@@ -926,11 +927,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 50
         ishMana = 50
         sila = 14
-        lovkost = 4
+        lovkost = 6
         ydacha = 7
         zoloto = 0
         serebro = 3
         bronza = 0
+        hod = lovkost
         
     elif heroSelect == 51: # Artes
         expirience = 0
@@ -944,11 +946,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 0
         ishMana = 0
         sila = 12
-        lovkost = 4
+        lovkost = 6
         ydacha = 5
         zoloto = 0
         serebro = 9
         bronza = 50
+        hod = lovkost
         
     elif heroSelect == 52: # Death Owner
         expirience = 0
@@ -962,11 +965,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 100
         ishMana = 100
         sila = 9
-        lovkost = 3
+        lovkost = 5
         ydacha = 9
         zoloto = 0
         serebro = 0
-        bronza = 0  
+        bronza = 0
+        hod = lovkost         
 
     elif heroSelect == 54: # DjePoTai
         expirience = 0
@@ -980,11 +984,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 60
         ishMana = 60
         sila = 15
-        lovkost = 5
+        lovkost = 7
         ydacha = 5
         zoloto = 0
         serebro = 0
         bronza = 150
+        hod = lovkost
 
     elif heroSelect == 55: # Farion
         expirience = 0
@@ -998,11 +1003,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 80
         ishMana = 80
         sila = 10
-        lovkost = 4
+        lovkost = 6
         ydacha = 6
         zoloto = 0
         serebro = 0
-        bronza = 200  
+        bronza = 200
+        hod = lovkost        
 
     elif heroSelect == 56: # Garitos
         expirience = 0
@@ -1016,11 +1022,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 0
         ishMana = 0
         sila = 15
-        lovkost = 5
+        lovkost = 7
         ydacha = 7
         zoloto = 0
         serebro = 5
-        bronza = 0   
+        bronza = 0
+        hod = lovkost        
 
     elif heroSelect == 57: # Gendalf
         expirience = 0
@@ -1034,11 +1041,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 120
         ishMana = 120
         sila = 9
-        lovkost = 4
+        lovkost = 6
         ydacha = 9
         zoloto = 0
         serebro = 0
-        bronza = 0   
+        bronza = 0  
+        hod = lovkost        
 
     elif heroSelect == 58: # Illidan
         expirience = 0
@@ -1052,11 +1060,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 60
         ishMana = 60
         sila = 11
-        lovkost = 5
+        lovkost = 7
         ydacha = 5
         zoloto = 0
         serebro = 0
         bronza = 0  
+        hod = lovkost
 
     elif heroSelect == 59: # Jaina
         expirience = 0
@@ -1070,11 +1079,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 50
         ishMana = 50
         sila = 9
-        lovkost = 5
+        lovkost = 7
         ydacha = 10
         zoloto = 0
         serebro = 1
         bronza = 120   
+        hod = lovkost
 
     elif heroSelect == 60: # Kell
         expirience = 0
@@ -1088,11 +1098,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 80
         ishMana = 80
         sila = 14
-        lovkost = 5
+        lovkost = 7
         ydacha = 7
         zoloto = 0
         serebro = 0
-        bronza = 200  
+        bronza = 200
+        hod = lovkost        
 
     elif heroSelect == 70: # Uter
         expirience = 0
@@ -1106,11 +1117,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 0
         ishMana = 0
         sila = 15
-        lovkost = 4
+        lovkost = 6
         ydacha = 8
         zoloto = 0
         serebro = 10
-        bronza = 0   
+        bronza = 0 
+        hod = lovkost        
 
     elif heroSelect == 72: # Vul Djin
         expirience = 0
@@ -1124,11 +1136,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 100
         ishMana = 100
         sila = 12
-        lovkost = 4
+        lovkost = 6
         ydacha = 8
         zoloto = 0
         serebro = 10
-        bronza = 0         
+        bronza = 0  
+        hod = lovkost         
     
     elif heroSelect == 68: # Silvana
         expirience = 0
@@ -1142,12 +1155,13 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 70
         ishMana = 70
         sila = 11
-        lovkost = 5
+        lovkost = 7
         ydacha = 4
         zoloto = 0
         serebro = 0
         bronza = 50  
-
+        hod = lovkost
+        
     elif heroSelect == 65: # Pradmur
         expirience = 0
         lvl = 1
@@ -1160,11 +1174,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 0
         ishMana = 0
         sila = 10
-        lovkost = 4
+        lovkost = 6
         ydacha = 9
         zoloto = 0
         serebro = 5
-        bronza = 0  
+        bronza = 0 
+        hod = lovkost        
 
     elif heroSelect == 69: # Trall
         expirience = 0
@@ -1178,11 +1193,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 0
         ishMana = 0
         sila = 17
-        lovkost = 4
+        lovkost = 6
         ydacha = 5
         zoloto = 0
         serebro = 0
-        bronza = 0      
+        bronza = 0   
+        hod = lovkost        
 
     elif heroSelect == 73: # Zadira
         expirience = 0
@@ -1196,11 +1212,12 @@ def initGame(heroSelect):  # функция инициации игры
         mana = 0
         ishMana = 0
         sila = 15
-        lovkost = 4
+        lovkost = 6
         ydacha = 7
         zoloto = 0
         serebro = 0
-        bronza = 170         
+        bronza = 170 
+        hod = lovkost        
         
     temp = 0
     step = 172
@@ -1293,6 +1310,10 @@ def initGame(heroSelect):  # функция инициации игры
     world[31] = 15
     
     worldUpdate()
+    pix = pygame.image.load('Images/next.png')
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (286,752))
     # ==========================================================================================
 
 
@@ -1350,7 +1371,7 @@ while True:
         if i.type == pygame.QUIT:
             exit()
             
-        elif i.type == pygame.KEYDOWN and newGame == 1:
+        elif i.type == pygame.KEYDOWN and newGame == 1 and hod > 0:
             
             if i.key == pygame.K_LEFT and xHero >= 18 and world[step-1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -1361,6 +1382,7 @@ while True:
                 world[step] = 0
                 step -= 1
                 world[step] = hero
+                hod -= 1
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
@@ -1375,6 +1397,7 @@ while True:
                 xHero += 32
                 world[step] = 0
                 step += 1
+                hod -= 1
                 world[step] = hero
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
@@ -1391,6 +1414,7 @@ while True:
                 world[step] = 0
                 step -= 32
                 world[step] = hero
+                hod -= 1
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
@@ -1406,6 +1430,7 @@ while True:
                 world[step] = 0
                 step += 32
                 world[step] = hero
+                hod -= 1
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
@@ -6636,6 +6661,21 @@ while True:
                  
                     
     pygame.display.update()
+    
+    if mos_x>286 and (mos_x<414): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                if newGame == 1:
+                    hod = lovkost
+                     
+                    pass 
+        
     
     
 # Объекты которые могут быть на карте и их номера
