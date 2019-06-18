@@ -48,8 +48,8 @@ yBot = []
 botExpirience = []
 botLvl = []
 botRasa = []
-botZaklinania = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
-botVozdeistvie = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+botZaklinania = []
+botVozdeistvie = []
 botIshZdorovie = []
 botZdorovie = []
 botMana = []
@@ -146,21 +146,33 @@ def botActivity():  # Создание и управление ботами
             botRasa.append(bot)
             botRasa[bot] = 1
             if tmp == 114: # Отшельник 1 ур.
-                if rasa = 7 or rasa = 1:
+                botType.append(bot)
+                if rasa == 7 or rasa == 1:
                     botType[bot] = 1
                 else:
                     botType[bot] = 2    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 1
                 botZdorovie[bot] = 85
                 botIshZdorovie[bot] = 85
                 botMana[bot] = 100
                 botIshMana[bot] = 100
-                botZaklinania[bot][2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 7
                 botLovkost[bot] = 5
                 botYdacha[bot] = 3
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -175,21 +187,33 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp 
                     
             if tmp == 115: # Отшельник 2 ур.
-                if rasa = 7 or rasa = 1:
+                botType.append(bot)
+                if rasa == 7 or rasa == 1:
                     botType[bot] = 1
                 else:
                     botType[bot] = 2    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 2
                 botZdorovie[bot] = 105
                 botIshZdorovie[bot] = 105
                 botMana[bot] = 130
                 botIshMana[bot] = 130
-                botZaklinania[bot][2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 14
                 botLovkost[bot] = 6
                 botYdacha[bot] = 5
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -204,21 +228,33 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp 
                     
             if tmp == 116: # Отшельник 3 ур.
-                if rasa = 7 or rasa = 1:
+                botType.append(bot)
+                if rasa == 7 or rasa == 1:
                     botType[bot] = 1
                 else:
                     botType[bot] = 2    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 3
                 botZdorovie[bot] = 125
                 botIshZdorovie[bot] = 125
                 botMana[bot] = 200
                 botIshMana[bot] = 200
-                botZaklinania[bot][2,3,12,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[2,3,12,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 20
                 botLovkost[bot] = 7
                 botYdacha[bot] = 9
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -233,21 +269,33 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp    
                     
             if tmp == 117: # Охотник за головами.
-                if rasa = 2 or rasa = 1:
+                botType.append(bot)
+                if rasa == 2 or rasa == 1:
                     botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                 else:
                     botType[bot] = 2 # Иначе враг    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 3
                 botZdorovie[bot] = 155
                 botIshZdorovie[bot] = 155
                 botMana[bot] = 60
                 botIshMana[bot] = 60
-                botZaklinania[bot][22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 25
                 botLovkost[bot] = 7
                 botYdacha[bot] = 15
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -262,18 +310,30 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp   
                     
             if tmp == 118: # Человек
+                botType.append(bot)
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botType[bot] = 3 # Мирный    
                 botLvl[bot] = 1
                 botZdorovie[bot] = 30
                 botIshZdorovie[bot] = 30
                 botMana[bot] = 0
                 botIshMana[bot] = 0
-                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botSila[bot] = 0
                 botLovkost[bot] = 4
                 botYdacha[bot] = 5
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -288,21 +348,33 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp  
                     
             if tmp == 126: # Наёмник 1 ур.
-                if rasa = 2 or rasa = 1:
+                botType.append(bot)
+                if rasa == 2 or rasa == 1:
                     botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                 else:
                     botType[bot] = 2 # Иначе враг    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 1
                 botZdorovie[bot] = 100
                 botIshZdorovie[bot] = 100
                 botMana[bot] = 0
                 botIshMana[bot] = 0
-                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 10
                 botLovkost[bot] = 5
                 botYdacha[bot] = 5
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -317,21 +389,33 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp     
                     
             if tmp == 127: # Наёмник 2 ур.
-                if rasa = 2 or rasa = 1:
+                botType.append(bot)
+                if rasa == 2 or rasa == 1:
                     botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                 else:
                     botType[bot] = 2 # Иначе враг    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 2
                 botZdorovie[bot] = 140
                 botIshZdorovie[bot] = 140
                 botMana[bot] = 0
                 botIshMana[bot] = 0
-                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 17
                 botLovkost[bot] = 6
                 botYdacha[bot] = 8
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -346,21 +430,33 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp     
                     
             if tmp == 128: # Наёмник 3 ур.
-                if rasa = 2 or rasa = 1:
+                botType.append(bot)
+                if rasa == 2 or rasa == 1:
                     botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                 else:
                     botType[bot] = 2 # Иначе враг    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 3
                 botZdorovie[bot] = 170
                 botIshZdorovie[bot] = 170
                 botMana[bot] = 0
                 botIshMana[bot] = 0
-                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 27
                 botLovkost[bot] = 7
                 botYdacha[bot] = 10
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -375,21 +471,33 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp    
                     
             if tmp == 129: # Наёмник 4 ур.
-                if rasa = 2 or rasa = 1:
+                botType.append(bot)
+                if rasa == 2 or rasa == 1:
                     botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                 else:
                     botType[bot] = 2 # Иначе враг    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 4
                 botZdorovie[bot] = 200
                 botIshZdorovie[bot] = 200
                 botMana[bot] = 0
                 botIshMana[bot] = 0
-                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 40
                 botLovkost[bot] = 7
                 botYdacha[bot] = 10
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -404,18 +512,30 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp 
                     
             if tmp == 144: # Оккультист
+                botType.append(bot)
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botType[bot] = 2     
                 botLvl[bot] = 5
                 botZdorovie[bot] = 250
                 botIshZdorovie[bot] = 250
                 botMana[bot] = 200
                 botIshMana[bot] = 200
-                botZaklinania[bot][1,2,4,11,13,23,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[1,2,4,11,13,23,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 20
                 botLovkost[bot] = 7
                 botYdacha[bot] = 20
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -430,18 +550,30 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp  
                     
             if tmp == 145: # Разбойник
+                botType.append(bot)
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botType[bot] = 2    
                 botLvl[bot] = 2
                 botZdorovie[bot] = 145
                 botIshZdorovie[bot] = 145
                 botMana[bot] = 0
                 botIshMana[bot] = 0
-                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 16
                 botLovkost[bot] = 7
                 botYdacha[bot] = 10
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -456,18 +588,30 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp  
                   
             if tmp == 146: # Грабитель
+                botType.append(bot)
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botType[bot] = 2    
                 botLvl[bot] = 2
                 botZdorovie[bot] = 150
                 botIshZdorovie[bot] = 150
                 botMana[bot] = 0
                 botIshMana[bot] = 0
-                botZaklinania[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 18
                 botLovkost[bot] = 6
                 botYdacha[bot] = 10
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] == 976
                     yBot[bot] == 96
@@ -482,16 +626,28 @@ def botActivity():  # Создание и управление ботами
                     world[62] == tmp     
                     
             if tmp == 165: # Колдун
-                if rasa = 2 or rasa = 1:
+                botType.append(bot)
+                if rasa == 2 or rasa == 1:
                     botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                 else:
                     botType[bot] = 2 # Иначе враг    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
                 botLvl[bot] = 4
                 botZdorovie[bot] = 175
                 botIshZdorovie[bot] = 175
                 botMana[bot] = 200
                 botIshMana[bot] = 200
-                botZaklinania[bot][22,23,12,11,3,0,0,0,0,0,0,0,0,0,0,100]
+                botZaklinania[bot]=[22,23,12,11,3,0,0,0,0,0,0,0,0,0,0,100]
                 botSila[bot] = 20
                 botLovkost[bot] = 6
                 botYdacha[bot] = 25
