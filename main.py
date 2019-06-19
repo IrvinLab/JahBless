@@ -118,18 +118,60 @@ def botActivity():  # Создание и управление ботами
     global botYdacha
     global botZachita
     global botHod
+    global n
         
-    temp = int(random.random()*10) # Вероятность появления нового бота 1/10
+    temp = int(random.random()*5) # Вероятность появления нового бота 1/5
     print(bot)
-    if temp == 5:   
+    if temp == 3:   
         tmp = int(random.random()*72)
         tmp += 100
         xBot.append(bot)
         yBot.append(bot)
     
-        if tmp == 114 or tmp == 115 or tmp == 116 or tmp == 117 or tmp == 118 or tmp == 126 or tmp == 127 or tmp == 128 or tmp == 129 or tmp == 144 or tmp == 145 or tmp == 146 or tmp == 165:  # Если персонажи человеческой расы
+        if tmp == 157 or tmp == 114 or tmp == 115 or tmp == 116 or tmp == 117 or tmp == 118 or tmp == 126 or tmp == 127 or tmp == 128 or tmp == 129 or tmp == 144 or tmp == 145 or tmp == 146 or tmp == 165:  # Если персонажи человеческой расы
             botRasa.append(bot)
             botRasa[bot] = 1
+            if tmp == 157: # Странник 3 ур.
+                botType.append(bot)
+                if rasa == 2 or rasa == 1:
+                    botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
+                else:
+                    botType[bot] = 2 # Иначе враг    
+                botLvl.append(bot)
+                botZdorovie.append(bot)
+                botIshZdorovie.append(bot)
+                botMana.append(bot)
+                botIshMana.append(bot)
+                botZaklinania.append(bot)
+                botSila.append(bot)
+                botLovkost.append(bot)
+                botYdacha.append(bot)
+                botHod.append(bot)
+                botVozdeistvie.append(bot)
+                botLvl[bot] = 3
+                botZdorovie[bot] = 135
+                botIshZdorovie[bot] = 135
+                botMana[bot] = 50
+                botIshMana[bot] = 50
+                botZaklinania[bot]=[5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[bot] = 22
+                botLovkost[bot] = 6
+                botYdacha[bot] = 19
+                botHod[bot] = botLovkost[bot]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if world[30] == 0:
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
+                elif world[63] == 0:
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
+                elif world[62] == 0:
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp   
+                    
             if tmp == 114: # Отшельник 1 ур.
                 botType.append(bot)
                 if rasa == 7 or rasa == 1:
@@ -637,7 +679,7 @@ def botActivity():  # Создание и управление ботами
                 botLovkost[bot] = 6
                 botYdacha[bot] = 25
                 botHod[bot] = botLovkost[bot]
-                botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
                     xBot[bot] = 976
                     yBot[bot] = 96
@@ -3041,9 +3083,16 @@ def botActivity():  # Создание и управление ботами
         else:
             print("WARNING " + tmp)
         bot += 1
+        worldUpdate()
         # Конец создания бота
         
-    pass    
+    pass # Тут будем делать алгоритмы поведения ботов
+    n = 0
+    for n in range(bot): 
+        pass    
+
+    n = 0 # Закончили ходить ботами
+    # ===================================================================================================================    
 
 def markLocation(numberMark, iconka): # Определяем кординаты пиктограммы 32х32
     if numberMark <= 31 and numberMark >= 0: yMap = 96; xMap = 16 + (32*numberMark)
@@ -3101,7 +3150,7 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
     if iconka == 103: pix = pygame.image.load('Images/gnoll1_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 104: pix = pygame.image.load('Images/gnoll2_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 105: pix = pygame.image.load('Images/gnoll3_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))
-    if iconka == 106: pix = pygame.image.load('Images/gnom1.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
+    if iconka == 106: pix = pygame.image.load('Images/gnom1_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 107: pix = pygame.image.load('Images/gnom2_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 108: pix = pygame.image.load('Images/gnom3_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap)) 
     if iconka == 109: pix = pygame.image.load('Images/gnom4_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
@@ -3137,7 +3186,7 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
     if iconka == 139: pix = pygame.image.load('Images/ork4_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 140: pix = pygame.image.load('Images/ork5_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 141: pix = pygame.image.load('Images/ork6_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))
-    if iconka == 142: pix = pygame.image.load('Images/ork_7_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
+    if iconka == 142: pix = pygame.image.load('Images/ork7_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 143: pix = pygame.image.load('Images/ork-shaman_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 144: pix = pygame.image.load('Images/otstupnik_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap)) 
     if iconka == 145: pix = pygame.image.load('Images/razboinik_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
@@ -3892,10 +3941,52 @@ def initGame(heroSelect):  # функция инициации игры
     global zachita
     global hod
     
+    global bot
+    global botNumer
+    global botType
+    global botStep
+    global xBot
+    global yBot
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania
+    global botVozdeistvie
+    global botIshZdorovie
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+
+    
     global den
     global mesiac
     global god
     pygame.draw.rect(sc, (255, 255, 255), (0, 548, 1056, 896)) 
+    bot = 0 # Очищаем информацию о ботах
+    botNumer.clear()
+    botType.clear()
+    botStep.clear()
+    xBot.clear()
+    yBot.clear()
+    botExpirience.clear()
+    botLvl.clear()
+    botRasa.clear()
+    botZaklinania.clear()
+    botVozdeistvie.clear()
+    botIshZdorovie.clear()
+    botZdorovie.clear()
+    botMana.clear()
+    botIshMana.clear()
+    botSila.clear()
+    botLovkost.clear()
+    botYdacha.clear()
+    botZachita.clear()
+    botHod.clear()
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
         expirience = 0
