@@ -124,6 +124,8 @@ def botActivity():  # Создание и управление ботами
     if temp == 5:   
         tmp = int(random.random()*72)
         tmp += 100
+        xBot.append(bot)
+        yBot.append(bot)
     
         if tmp == 114 or tmp == 115 or tmp == 116 or tmp == 117 or tmp == 118 or tmp == 126 or tmp == 127 or tmp == 128 or tmp == 129 or tmp == 144 or tmp == 145 or tmp == 146 or tmp == 165:  # Если персонажи человеческой расы
             botRasa.append(bot)
@@ -157,17 +159,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp 
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
                     
             if tmp == 115: # Отшельник 2 ур.
                 botType.append(bot)
@@ -198,17 +200,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp 
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
                     
             if tmp == 116: # Отшельник 3 ур.
                 botType.append(bot)
@@ -239,17 +241,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp    
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp   
                     
             if tmp == 117: # Охотник за головами.
                 botType.append(bot)
@@ -280,17 +282,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp   
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp   
                     
             if tmp == 118: # Человек
                 botType.append(bot)
@@ -318,17 +320,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp  
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
                     
             if tmp == 126: # Наёмник 1 ур.
                 botType.append(bot)
@@ -359,17 +361,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp     
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp    
                     
             if tmp == 127: # Наёмник 2 ур.
                 botType.append(bot)
@@ -400,17 +402,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp     
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp   
                     
             if tmp == 128: # Наёмник 3 ур.
                 botType.append(bot)
@@ -441,17 +443,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp    
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp     
                     
             if tmp == 129: # Наёмник 4 ур.
                 botType.append(bot)
@@ -482,17 +484,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp 
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
                     
             if tmp == 144: # Оккультист
                 botType.append(bot)
@@ -520,17 +522,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp  
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp  
                     
             if tmp == 145: # Разбойник
                 botType.append(bot)
@@ -558,17 +560,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp  
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp  
                   
             if tmp == 146: # Грабитель
                 botType.append(bot)
@@ -596,17 +598,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp     
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp    
                     
             if tmp == 165: # Колдун
                 botType.append(bot)
@@ -637,17 +639,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot][0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp                                                                                     
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp                                                                                     
                 
                 
         
@@ -683,17 +685,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp     
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp    
                 
             if tmp == 101: # Эльф 2 ур.
                 botType.append(bot)
@@ -724,17 +726,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp 
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
 
             if tmp == 102: # Эльф 3 ур.
                 botType.append(bot)
@@ -765,17 +767,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp 
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
 
             if tmp == 166: # Женщина-эльф 1 ур.
                 botType.append(bot)
@@ -806,17 +808,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp  
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
                     
             if tmp == 167: # Женщина-эльф 2 ур.
                 botType.append(bot)
@@ -847,17 +849,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp  
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp   
 
             if tmp == 168: # Женщина-эльф 3 ур.
                 botType.append(bot)
@@ -888,18 +890,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp  
-
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
             if tmp == 169: # Женщина-эльф 4 ур.
                 botType.append(bot)
                 if rasa == 2 or rasa == 1:
@@ -929,17 +930,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp   
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp  
 
             if tmp == 170: # Женщина-эльф 5 ур.
                 botType.append(bot)
@@ -970,17 +971,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp                       
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp                      
                     
             if tmp == 171: # Женщина-эльф 6 ур.
                 botType.append(bot)
@@ -1011,17 +1012,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp   
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
 
             if tmp == 172: # Женщина-эльф 7 ур.
                 botType.append(bot)
@@ -1052,17 +1053,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp                    
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp                     
                     
         elif tmp == 106 or tmp == 107 or tmp == 108 or tmp == 109:
             botRasa.append(bot)
@@ -1096,17 +1097,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp 
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
 
             if tmp == 107: # Гном 2 ур.
                 botType.append(bot)
@@ -1137,17 +1138,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
 
             if tmp == 108: # Гном 3 ур.
                 botType.append(bot)
@@ -1178,17 +1179,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp  
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
 
             if tmp == 109: # Гном 4 ур.
                 botType.append(bot)
@@ -1219,17 +1220,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp                     
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp                    
                 
         elif tmp == 110 or tmp == 111 or tmp == 112 or tmp == 113:
             botRasa.append(bot)
@@ -1260,17 +1261,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp 
                     
             if tmp == 111: # Гоблин 1 ур.
                 botType.append(bot)
@@ -1298,17 +1299,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp 
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp  
 
             if tmp == 112: # Гоблин 2 ур.
                 botType.append(bot)
@@ -1336,17 +1337,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp 
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp  
 
             if tmp == 113: # Гоблин 3 ур.
                 botType.append(bot)
@@ -1374,17 +1375,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[30] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 96
-                    world[30] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 96
+                    world[30] = tmp
                 elif world[63] == 0:
-                    xBot[bot] == 976
-                    yBot[bot] == 128
-                    world[63] == tmp
+                    xBot[bot] = 976
+                    yBot[bot] = 128
+                    world[63] = tmp
                 elif world[62] == 0:
-                    xBot[bot] == 1008
-                    yBot[bot] == 128
-                    world[62] == tmp                    
+                    xBot[bot] = 1008
+                    yBot[bot] = 128
+                    world[62] = tmp                    
                 
         elif tmp == 103 or tmp == 104 or tmp == 105 or tmp == 119 or tmp == 120 or tmp == 121 or tmp == 122 or tmp == 123 or tmp == 124 or tmp == 125 or tmp == 131 or tmp == 132 or tmp == 133 or tmp == 134 or tmp == 147:
             botRasa.append(bot)
@@ -1415,17 +1416,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp 
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
                     
             if tmp == 104: # Гнолл 2 ур.
                 botType.append(bot)
@@ -1453,17 +1454,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 105: # Гнолл 3 ур.
                 botType.append(bot)
@@ -1491,17 +1492,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 119: # Монстр 1 ур.
                 botType.append(bot)
@@ -1529,17 +1530,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
 
             if tmp == 120: # Монстр 2 ур.
                 botType.append(bot)
@@ -1567,17 +1568,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 121: # Монстр 3 ур.
                 botType.append(bot)
@@ -1605,17 +1606,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
 
             if tmp == 122: # Монстр 4 ур.
                 botType.append(bot)
@@ -1643,17 +1644,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp
 
             if tmp == 123: # Морлок 1 ур.
                 botType.append(bot)
@@ -1681,17 +1682,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 124: # Морлок 2 ур.
                 botType.append(bot)
@@ -1719,17 +1720,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp    
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp   
 
             if tmp == 125: # Морлок 3 ур.
                 botType.append(bot)
@@ -1757,17 +1758,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp 
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp
 
             if tmp == 131: # Непобедимый 1 ур.
                 botType.append(bot)
@@ -1798,17 +1799,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
 
             if tmp == 132: # Непобедимый 2 ур.
                 botType.append(bot)
@@ -1839,17 +1840,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp
 
             if tmp == 133: # Огр 1 ур.
                 botType.append(bot)
@@ -1877,17 +1878,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 134: # Огр 2 ур.
                 botType.append(bot)
@@ -1915,17 +1916,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp 
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp
 
             if tmp == 147: # Красный огненный голем ур.
                 botType.append(bot)
@@ -1953,17 +1954,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp                    
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp                   
       
         elif tmp == 136 or tmp == 137 or tmp == 138 or tmp == 139 or tmp == 140 or tmp == 141 or tmp == 142 or tmp == 143 or tmp == 158 or tmp == 159 or tmp == 160 or tmp == 161 or tmp == 162 or tmp == 163:
             botRasa.append(bot)
@@ -1997,17 +1998,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp   
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp   
                     
             if tmp == 137: # Орк 2 ур.
                 botType.append(bot)
@@ -2038,17 +2039,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp     
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp     
 
             if tmp == 138: # Орк 3 ур.
                 botType.append(bot)
@@ -2079,17 +2080,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp   
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp   
 
             if tmp == 139: # Орк 4 ур.
                 botType.append(bot)
@@ -2120,17 +2121,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp    
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp   
 
             if tmp == 140: # Орк 5 ур.
                 botType.append(bot)
@@ -2161,17 +2162,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp    
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp    
 
             if tmp == 141: # Орк 6 ур.
                 botType.append(bot)
@@ -2202,17 +2203,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp    
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp    
 
             if tmp == 142: # Орк 7 ур.
                 botType.append(bot)
@@ -2243,17 +2244,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp   
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 143: # Орк-шаман  3 ур.
                 botType.append(bot)
@@ -2284,17 +2285,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp    
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp    
 
             if tmp == 158: # Тролль 1 ур.
                 botType.append(bot)
@@ -2325,17 +2326,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 159: # Тролль 2 ур.
                 botType.append(bot)
@@ -2366,17 +2367,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
                     
             if tmp == 160: # Тролль 3 ур.
                 botType.append(bot)
@@ -2407,17 +2408,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp   
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp   
 
             if tmp == 161: # Тролль 4 ур.
                 botType.append(bot)
@@ -2448,17 +2449,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp    
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp   
 
             if tmp == 162: # Тролль 5 ур.
                 botType.append(bot)
@@ -2489,17 +2490,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 163: # Тролль 6 ур.
                 botType.append(bot)
@@ -2530,17 +2531,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp                     
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp                     
          
         elif tmp == 148 or tmp == 149 or tmp == 150 or tmp == 151 or tmp == 152 or tmp == 153 or tmp == 154 or tmp == 155 or tmp == 156 or tmp == 164 or tmp == 135 or tmp == 130: 
             botRasa.append(bot)
@@ -2574,17 +2575,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp   
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp   
                     
             if tmp == 149: # Скелет 2 ур.
                 botType.append(bot)
@@ -2615,17 +2616,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
 
             if tmp == 150: # Скелет 3 ур.
                 botType.append(bot)
@@ -2656,17 +2657,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp     
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp     
 
             if tmp == 151: # Скелет 4 ур.
                 botType.append(bot)
@@ -2697,17 +2698,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp 
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp
 
             if tmp == 152: # Скелет 5 ур.
                 botType.append(bot)
@@ -2738,17 +2739,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp   
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp   
 
             if tmp == 153: # Скелет 6 ур.
                 botType.append(bot)
@@ -2779,17 +2780,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp 
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
 
             if tmp == 154: # Скелет 7 ур.
                 botType.append(bot)
@@ -2820,17 +2821,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 155: # Скелет 8 ур.
                 botType.append(bot)
@@ -2861,17 +2862,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp  
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
 
             if tmp == 156: # Душекрад 10 ур.
                 botType.append(bot)
@@ -2902,17 +2903,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp 
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
 
             if tmp == 164: # Вампир 3 ур.
                 botType.append(bot)
@@ -2943,17 +2944,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp   
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp  
 
             if tmp == 135: # Оккультист 5 ур.
                 botType.append(bot)
@@ -2984,17 +2985,17 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp 
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp 
 
             if tmp == 130: # Некромант 6 ур.
                 botType.append(bot)
@@ -3025,36 +3026,18 @@ def botActivity():  # Создание и управление ботами
                 botHod[bot] = botLovkost[bot]
                 botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 if world[384] == 0:
-                    xBot[bot] == 16
-                    yBot[bot] == 480
-                    world[384] == tmp
+                    xBot[bot] = 16
+                    yBot[bot] = 480
+                    world[384] = tmp
                 elif world[385] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 480
-                    world[385] == tmp
+                    xBot[bot] = 48
+                    yBot[bot] = 480
+                    world[385] = tmp
                 elif world[417] == 0:
-                    xBot[bot] == 48
-                    yBot[bot] == 512
-                    world[417] == tmp                      
+                    xBot[bot] = 48
+                    yBot[bot] = 512
+                    world[417] = tmp                      
         
-        # Войны
-# 100 - Эльф 1 ур, 101 - Эльф 2 ур, 102 - Эльф 3 ур, 103 - гнолл 1 ур, 104 - гнолл 2 ур
-# 105 - Гнолл 3 ур, 106 - Гном 1 ур, 107 - Гном 2 ур, 108 - Гном 3 ур, 109 - Гном 4 ур
-# 110 - Гоблин 0 ур, 111 - Гоблин 1 ур, 112 - Гоблин 2 ур, 113 - Гоблин 3 ур
-# 114 - Отшельник 1 ур, 115 - Отшельник 2 ур, 116 - Отшельник 3 ур
-# 117 - Охотник за головами 1 ур, 118 - Человек, 119 - Монстр 1 ур, 120 - Монстр 2 ур
-# 121 - Монстр 3 ур, 122 - Монстр 4 ур, 123 - Морлок 1 ур, 124 - Морлок 2 ур, 125 - Морлок 3 ур
-# 126 - Наемник 1 ур, 127 - Наемник 2 ур, 128 - Наемник 3 ур, 129 - наемник 4 ур
-# 130 - Некромант, 131 - Непобедимый 1 ур, 132 - Непобедимый 2 ур, 133 - Огр 1 ур, 134 - Огр 2 ур
-# 135 - Оккультист, 136 - Орк 1 ур, 137 - Орк 2 ур, 138 - Орк 3 ур, 139 - Окр 4 ур, 140 - орк 5 ур
-# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Оккультист, 145 - Разбойник, 146 - грабитель
-# 147 - Красный огненный голем, 148 - Скелет 1 ур, 149 - Скелет 2 ур, 150 - Скелет 3 ур
-# 151 - Скелет 4 ур, 152 - Скелет 5 ур, 153 - Скелет 6 ур, 154 - Скелет 7 ур, 155 - Скелет 8 ур
-# 156 - Душекрад, 157 - Странник, 158 - Тролль 1 ур, 159 - Тролль 2 ур, 160 - Тролль 3 ур
-# 161 - Тролль 4 ур, 162 - Тролль 5 ур, 163 - Тролль 6 ур, 164 - Вампир, 165 - Колдун
-# 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
-# 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
-# 172 - Женщина-эльф 7 ур 
         else:
             print("WARNING " + tmp)
         bot += 1
