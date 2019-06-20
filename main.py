@@ -3495,19 +3495,19 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"В этой хижине живёт шаман племени Яки."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"За символическую сумму он обучит вас основам"
+        variableName = u"За символическую сумму он обучит основам"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"магии и некоторым заклинаниям. У него можно "
+        variableName = u"магии и некоторым заклинаниям. Здесь "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
         variableName = u"также приобрести магические артефакты."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640)) 
-        variableName = u"Шаман может предложить тебе работу, и если"
+        variableName = u"Шаман может предложить тебе работу,если"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))  
-        variableName = u"ты с ней справишься он отплатит тебе серебром"
+        variableName = u"ты справишься он отплатит тебе серебром"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680)) 
     if world[hehmda] == 5:
@@ -3521,7 +3521,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"В этой хижине живёт старый маг, который"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"способен обучить вас основам магии, а также"
+        variableName = u"способен обучить вас основам магии, также"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
         variableName = u"у него можно купить и продать некоторые"
@@ -3530,10 +3530,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"магические артефакты и зелья."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))    
-        variableName = u"У мага можно получить задание и заработать"
+        variableName = u"У мага можно получить задание."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))  
-        variableName = u"деньги. Платит маг обычно бронзой"
+        variableName = u"Платит маг обычно бронзой"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680)) 
     if world[hehmda] == 6:
@@ -3544,16 +3544,16 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Кузница"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"В этой кузнице трудятся мастера своего дела"
+        variableName = u"В этой кузнице трудятся мастера своего"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Здесь ты найдёшь доспехи и оружие"
+        variableName = u"дела. Здесь ты найдёшь доспехи и оружие"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))  
-        variableName = u"У кузнецов можно получить задание и выполнив"
+        variableName = u"У кузнецов можно получить задание и"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = u"его получить редкие артефакты"
+        variableName = u"выполнив его получить редкие артефакты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))   
     if world[hehmda] == 8:
@@ -3576,6 +3576,81 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"получить деньги подрабатывая у торговцев"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))     
+    if world[hehmda] == 10:
+        pix = pygame.image.load('Images/portal.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Портал"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Зайдя в него можно телепортироваться"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"в долину проклятых земель. Там ты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"найдёшь гробницу с несметными "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"сокровищами. Но она хорошо охраняется"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"нежитью. Живые в тех землях находят"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+        variableName = u"только смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))    
+    if world[hehmda] == 15:
+        pix = pygame.image.load('Images/city.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Городские врата"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"По ту сторону стен находится город "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"короля Альбрехта. В нём иожно нанять"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"рекрутов, потожить деньги в банк "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"и ещё много чего. У короля есть сокровища"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"которые охраняет свита отборных бойцов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 16:
+        pix = pygame.image.load('Images/city.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Таверна"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Это находка, оазис по среди холодных гор"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Тут ты можешь нанять пару бойцов для"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"похода, получить задание, купить редкие "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"предметы и сыграть в кости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Так же здесь ты можешь создать задание"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+        variableName = u"Возможно кто-то за него возмётся"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))      
         
         
         
@@ -3758,6 +3833,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     global god
     
     pygame.draw.rect(sc, (255, 255, 255), (284, 558, 481, 896)) 
+    pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896))
     pix = pygame.image.load('Images/next.png') # Кнопка "Конец хода" она нужна)
     x_len = pix.get_width()
     y_len = pix.get_height() 
@@ -4389,13 +4465,7 @@ def initGame(heroSelect):  # функция инициации игры
             xMap = 16
             yMap += 32    
     print(" ")
-    world[384] = 0 # Вокруг портала и городских врат сделали траву, чтобы боты спокойно спаунились и гуляли
-    world[385] = 0
-    world[417] = 0
-    world[30] = 0
-    world[63] = 0
-    world[62] = 0
-    
+        
     zachita = 0 # Обнуляем защиту при новой игре
     n = 0
     for n in range(16): # Рисуем иконки заклинаний
@@ -9782,7 +9852,7 @@ while True:
 # 0 - Трава, 1 - Горы, 2 - Вода, 3 - жилище зельевара, 4 - лачуга шамана, 5 - хижина мага, 6 - кузница,
 # 7 - дом коллекционера, 8 - рынок, 9 - вспаханная земля, 10 - портал
 # 11 - Полуросль, 12 - Рожь, 13 - Картофель, 14 - Сундук, 15 - Врата города
-# 16 - Таверна, 26 - Портал
+# 16 - Таверна
 
 # Герои
 # 50 - Аками, 51 - Артес, 52 - Владыка Смерти, 53 - Детерок, 54 - Джепотай, 55 - Фарион
