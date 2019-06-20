@@ -119,7 +119,8 @@ def botActivity():  # Создание и управление ботами
     global botZachita
     global botHod
     global n
-        
+     
+    botLoad = 0    
     temp = int(random.random()*5) # Вероятность появления нового бота 1/5
     print(bot)
     if temp == 3:   
@@ -130,6 +131,7 @@ def botActivity():  # Создание и управление ботами
     
         if tmp == 157 or tmp == 114 or tmp == 115 or tmp == 116 or tmp == 117 or tmp == 118 or tmp == 126 or tmp == 127 or tmp == 128 or tmp == 129 or tmp == 144 or tmp == 145 or tmp == 146 or tmp == 165:  # Если персонажи человеческой расы
             if world[30] == 0 or world[63] == 0 or world[62] == 0:
+                botLoad = 1
                 botRasa.append(bot)
                 botRasa[bot] = 1
                 if tmp == 157: # Странник 3 ур.
@@ -696,6 +698,7 @@ def botActivity():  # Создание и управление ботами
         
         elif tmp == 100 or tmp == 101 or tmp == 102 or tmp == 166 or tmp == 167 or tmp == 168 or tmp == 169 or tmp == 170 or tmp == 171 or tmp == 172:
             if world[30] == 0 or world[63] == 0 or world[62] == 0:
+                botLoad = 1
                 botRasa.append(bot)  # Эльфы
                 botRasa[bot] = 2
                 if tmp == 100: # Эльф 1 ур.
@@ -1108,7 +1111,8 @@ def botActivity():  # Создание и управление ботами
                         world[62] = tmp                     
                     
         elif tmp == 106 or tmp == 107 or tmp == 108 or tmp == 109:
-            if world[30] == 0 or world[63] == 0 or world[62] == 0:         
+            if world[30] == 0 or world[63] == 0 or world[62] == 0:
+                botLoad = 1         
                 botRasa.append(bot)
                 botRasa[bot] = 3
                 if tmp == 106: # Гном 1 ур.
@@ -1275,7 +1279,9 @@ def botActivity():  # Создание и управление ботами
                         yBot[bot] = 128
                         world[62] = tmp                    
                 
-            elif tmp == 110 or tmp == 111 or tmp == 112 or tmp == 113:
+        elif tmp == 110 or tmp == 111 or tmp == 112 or tmp == 113:
+            if world[30] == 0 or world[63] == 0 or world[62] == 0:        
+                botLoad = 1
                 botRasa.append(bot)
                 botRasa[bot] = 4
                 if tmp == 110: # Гоблин 0 ур.
@@ -1431,7 +1437,8 @@ def botActivity():  # Создание и управление ботами
                         world[62] = tmp                    
                 
         elif tmp == 103 or tmp == 104 or tmp == 105 or tmp == 119 or tmp == 120 or tmp == 121 or tmp == 122 or tmp == 123 or tmp == 124 or tmp == 125 or tmp == 131 or tmp == 132 or tmp == 133 or tmp == 134 or tmp == 147:
-            if world[384] == 0 or world[385] == 0 or world[417] == 0: 
+            if world[384] == 0 or world[385] == 0 or world[417] == 0:
+                botLoad = 1 
                 botRasa.append(bot)
                 botRasa[bot] = 5
                 if tmp == 103: # Гнолл 1 ур.
@@ -2012,6 +2019,7 @@ def botActivity():  # Создание и управление ботами
       
         elif tmp == 136 or tmp == 137 or tmp == 138 or tmp == 139 or tmp == 140 or tmp == 141 or tmp == 142 or tmp == 143 or tmp == 158 or tmp == 159 or tmp == 160 or tmp == 161 or tmp == 162 or tmp == 163:
             if world[384] == 0 or world[385] == 0 or world[417] == 0: 
+                botLoad = 1
                 botRasa.append(bot)
                 botRasa[bot] = 6
                 if tmp == 136: # Орк 1 ур.
@@ -2589,7 +2597,8 @@ def botActivity():  # Создание и управление ботами
                         world[417] = tmp                     
          
         elif tmp == 148 or tmp == 149 or tmp == 150 or tmp == 151 or tmp == 152 or tmp == 153 or tmp == 154 or tmp == 155 or tmp == 156 or tmp == 164 or tmp == 135 or tmp == 130: 
-            if world[384] == 0 or world[385] == 0 or world[417] == 0: 
+            if world[384] == 0 or world[385] == 0 or world[417] == 0:
+                botLoad = 1 
                 botRasa.append(bot)
                 botRasa[bot] = 7 
                 if tmp == 148: # Скелет 1 ур.
@@ -3085,8 +3094,10 @@ def botActivity():  # Создание и управление ботами
                         world[417] = tmp                      
         
         else:
-            print("WARNING " + tmp)
-        bot += 1
+            print("WARNING " + str(tmp))
+        if botLoad == 1:
+            botLoad = 0
+            bot += 1
         worldUpdate()
         # Конец создания бота
         
@@ -3114,6 +3125,9 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
     if numberMark <= 415 and numberMark >= 384: yMap = 480; xMap = 16 + (32*(numberMark-384)) 
     if numberMark <= 447 and numberMark >= 416: yMap = 512; xMap = 16 + (32*(numberMark-416))                         
                      
+    if iconka == 0: pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xMap,yMap))
+    if iconka == 1: pix = pygame.image.load('Images/mount.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xMap,yMap))
+    if iconka == 2: pix = pygame.image.load('Images/water.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xMap,yMap))
     if iconka == 3: pix = pygame.image.load('Images/jilZelievara_32.png'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xMap,yMap))               
     if iconka == 4: pix = pygame.image.load('Images/lachugaShamana_32.png'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap)) 
     if iconka == 5: pix = pygame.image.load('Images/hijinaMaga_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))    
@@ -4375,6 +4389,13 @@ def initGame(heroSelect):  # функция инициации игры
             xMap = 16
             yMap += 32    
     print(" ")
+    world[384] = 0 # Вокруг портала и городских врат сделали траву, чтобы боты спокойно спаунились и гуляли
+    world[385] = 0
+    world[417] = 0
+    world[30] = 0
+    world[63] = 0
+    world[62] = 0
+    
     zachita = 0 # Обнуляем защиту при новой игре
     n = 0
     for n in range(16): # Рисуем иконки заклинаний
