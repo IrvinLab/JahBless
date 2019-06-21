@@ -4476,7 +4476,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))  
     if world[hehmda] == 144:
-        pix = pygame.image.load('Images/okylt.jpg')
+        pix = pygame.image.load('Images/otstupnik.jpg')
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
@@ -5060,8 +5060,30 @@ def doebaca(hehmda):  #Функция отображающая информац�
         sc.blit(nameObj,(440, 640))  
         variableName = u"а также защитной и лечебной магиями"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))        
-        
+        sc.blit(nameObj,(440, 660))     
+    if world[hehmda] == 50:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Аками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Эльф магического леса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"В прошлом был жрецом Древа Мудрости,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"но был лишён своих регалий. Теперь он"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"вольный странник, ищущий своё"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"место в этом мире"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
                   
         
         
