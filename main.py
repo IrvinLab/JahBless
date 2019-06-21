@@ -152,8 +152,8 @@ def botActivity():  # Создание и управление ботами
                     botHod.append(bot)
                     botVozdeistvie.append(bot)
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 135
-                    botIshZdorovie[bot] = 135
+                    botZdorovie[bot] = 185
+                    botIshZdorovie[bot] = 185
                     botMana[bot] = 50
                     botIshMana[bot] = 50
                     botZaklinania[bot]=[5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -3741,10 +3741,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Гнолл 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Относительно опасное существо"
+        variableName = u"Относительно сильное существо"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Агрессивное и способен порядком навредить"
+        variableName = u"Агрессивный и опасный монстр"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
         variableName = u"Не обладает магическими способностями"
@@ -3995,7 +3995,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))     
     if world[hehmda] == 120:
-        pix = pygame.image.load('Images/monster2.jpg')
+        pix = pygame.image.load('Images/monster2.png')
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
@@ -4536,7 +4536,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))   
     if world[hehmda] == 147:
-        pix = pygame.image.load('Images/redFireHolem.jpg')
+        pix = pygame.image.load('Images/redFireHolem.png')
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
@@ -4753,6 +4753,316 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"и владеет множеством темных заклинаний"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))   
+    if world[hehmda] == 157:
+        pix = pygame.image.load('Images/strannik.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Странник"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Не один десяток лет этот старик"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"блуждает по мирам. Не совсем ясно что"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"им движет, говорят что он раньше"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"был шаманом, пока духи не овладели"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"уго разумом и не свели с ума."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Относительно сильный человек 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+        variableName = u"Владеет заклинанием Обман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+        variableName = u"У этого старца можно купить артефакты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 720))  
+    if world[hehmda] == 158:
+        pix = pygame.image.load('Images/troll1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Тролль 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Относительно слабый воин из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Острого Копья. Не владеет магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+    if world[hehmda] == 159:
+        pix = pygame.image.load('Images/troll2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Тролль 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Относительно слабый воин из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Острого Копья. Не владеет магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+    if world[hehmda] == 160:
+        pix = pygame.image.load('Images/troll3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Тролль 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Бесстрашный боец из клана Острого"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Копья. Воин не обладает магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+    if world[hehmda] == 161:
+        pix = pygame.image.load('Images/troll4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Тролль 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Бесстрашный боец из клана Острого"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Копья. Сильный и опасный воин."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Не владеет магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if world[hehmda] == 162:
+        pix = pygame.image.load('Images/troll5.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Тролль 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильный воин и колдун из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Острого Копья. Владеет заклинаниями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Кража магии, Молния и Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 163:
+        pix = pygame.image.load('Images/troll6.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Тролль 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильный воин и колдун из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Острого Копья. Владеет заклинаниями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Кража магии, Молния и Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"Весьма опасный противник."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 164:
+        pix = pygame.image.load('Images/vampir.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Вампир"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Нежить 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"В одиночку он представляет серьёзную"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"угрозу из-за способности Вампиризм"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"которым он восстанавливает своё"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"здоровье. "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if world[hehmda] == 165:
+        pix = pygame.image.load('Images/wizard.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Колдун"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Белый Маг 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Отголосок славных лет, когда Гильдия"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Белых Магов имела серьёзный вес в"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"Королевстве. Теперь маги скитаются"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"по миру в поисках магического"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+        variableName = u"артефакта, способного сплотить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))   
+        variableName = u"Гильдию и снова подчинить Королевство"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if world[hehmda] == 166:
+        pix = pygame.image.load('Images/womanElf1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабый воин расы эльфов."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Страж магического леса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Не владеет магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+    if world[hehmda] == 167:
+        pix = pygame.image.load('Images/womanElf2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабый воин расы эльфов. Страж "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Магического леса. Не обладает магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+    if world[hehmda] == 168:
+        pix = pygame.image.load('Images/womanElf3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Целительница"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Относительно сильный воин. Владеет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"заклинанием Лунный обряд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+    if world[hehmda] == 169:
+        pix = pygame.image.load('Images/womanElf4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Ученик жрицы Древа Мудрости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Сильный воин владеющий боевой и"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"лечебной магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 170:
+        pix = pygame.image.load('Images/womanElf5.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Адепт жрицы Древа Мудрости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Она является сильным бойцом магом."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"Владеет заклинаниями боевой и защитной"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"магии."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 171:
+        pix = pygame.image.load('Images/womanElf6.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Адепт жрицы Древа Мудрости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Она является сильным бойцом и опасным"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"магом. Владеет заклинаниями боевой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"и защитной магии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 172:
+        pix = pygame.image.load('Images/womanElf7.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 7 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Жрица Древа Мудрости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Боевой маг расы эльфов. в мире нет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"женщин опаснее этих эльфиек"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"Владеет заклинанием Пронзающая смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"а также защитной и лечебной магиями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+        
+                  
         
         
         
