@@ -4150,7 +4150,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         sc.blit(nameObj,(440, 640))
         variableName = u"городе или таверне."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 640)) 
+        sc.blit(nameObj,(440, 660)) 
     if world[hehmda] == 128:
         pix = pygame.image.load('Images/naemnik3.jpg')
         x_len = pix.get_width()
@@ -4205,16 +4205,16 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Верный слуга демонов, обладающий"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"опасной магией. Таким волшебникам доверяют"
+        variableName = u"опасной магией. Таким волшебникам"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))  
-        variableName = u"иметь при себе очень ценные магические"
+        variableName = u"позволено иметь при себе очень ценные"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))   
-        variableName = u"предметы и зелья. Однако опасная затея"
+        variableName = u"магические предметы. Но не вздумайте"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))   
-        variableName = u"попытаться у него их отнять"
+        variableName = u"пытаться у него их отнять"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680)) 
     if world[hehmda] == 131:
@@ -4234,15 +4234,6 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Не обладает магическими способностями"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))  
-        variableName = u"иметь при себе очень ценные магические"
-        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 640))   
-        variableName = u"предметы и зелья. Однако опасная затея"
-        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))   
-        variableName = u"попытаться у него их отнять"
-        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 680))    
     if world[hehmda] == 132:
         pix = pygame.image.load('Images/nepobedimii1.jpg')
         x_len = pix.get_width()
@@ -4251,10 +4242,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Непобедимый 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Грозный страж гробницы проклятых земель"
+        variableName = u"Страж гробницы проклятых земель"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Не каждому такой монстр по пдечу"
+        variableName = u"Не каждому такой монстр по плечу"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
         variableName = u"Принадлежит к классу потомков проклятых"
@@ -4291,14 +4282,14 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Злобный великан-людоед"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Отностиельно слабое существо не обладающее"
+        variableName = u"Отностиельно слабое существо"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"магическими способностями"
+        variableName = u"не обладающее магией"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))  
     if world[hehmda] == 135:
-        pix = pygame.image.load('Images/okult.jpg')
+        pix = pygame.image.load('Images/okylt.jpg')
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
@@ -4397,15 +4388,15 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Боец расы орков. Пехотинец клана"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580)) 
-        variableName = u"Орков можно нанять в таверне или "
-        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 600)) 
-        variableName = u"в пустошах."
-        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 620))        
         variableName = u"Кровавых Топоров. Достойный противник"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 640)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Орков можно нанять в таверне или "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))        
+        variableName = u"в пустошах."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
         
         variableName = u"Не обладает магическими способностями"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -4444,10 +4435,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Грозный боец расы орков из клана"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Кровавых Топоров. Он свиреп и безпощаден."
+        variableName = u"Кровавых Топоров. Не обладает "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"магическими способностями"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))      
     if world[hehmda] == 142:
@@ -4466,9 +4457,302 @@ def doebaca(hehmda):  #Функция отображающая информац�
         sc.blit(nameObj,(440, 600)) 
         variableName = u"Не обладает магическими способностями"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if world[hehmda] == 143:
+        pix = pygame.image.load('Images/ork-shaman.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Орк-шаман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Колдун клана Кровавых Топоров"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Опасный маг 3 уровня, владеющий"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"боевыми и защитными заклинаниями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 144:
+        pix = pygame.image.load('Images/okylt.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Оккультист"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Грозный волшебник 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Такие маги часто носят при себе"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"различные книги тёмных заклинаний."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"Однако забрать их у него не просто"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 145:
+        pix = pygame.image.load('Images/razboinik.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Разбойник"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Принадлежит к классу хаотичных"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Обычно за его голову в Королевстве"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"дают вознаграждение. Существо не "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 146:
+        pix = pygame.image.load('Images/grabitel.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Грабитель"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Принадлежит к классу хаотичных"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Обычно за его голову в Королевстве"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"можно получить вознаграждение."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))   
+    if world[hehmda] == 147:
+        pix = pygame.image.load('Images/redFireHolem.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Красный огненный голем"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильное существо 4 уровня, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии посоха вечной жизни"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))    
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))      
-           
-        
+    if world[hehmda] == 148:
+        pix = pygame.image.load('Images/skelet1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабое существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии. Покуда колдовские"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"чары связывают его кости, этот скелет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"подчиняются своему хозяину"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 149:
+        pix = pygame.image.load('Images/skelet2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабое существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии. Покуда колдовские"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"чары связывают его кости, этот скелет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"подчиняются своему хозяину"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+    if world[hehmda] == 150:
+        pix = pygame.image.load('Images/skelet3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Бессмертное существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии. Покуда колдовские"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"чары связывают его кости, этот скелет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"подчиняется воле своего хозяина"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 151:
+        pix = pygame.image.load('Images/skelet4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Бессмертное существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии. Покуда колдовские"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"чары связывают его кости, этот скелет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"подчиняется воле своего хозяина"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+    if world[hehmda] == 152:
+        pix = pygame.image.load('Images/skelet5.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Верный боец некроманта, созданный"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии посоха Вечной Жизни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Нужно быть достаточно сильным колдуном"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"чтобы создать такое существо"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 153:
+        pix = pygame.image.load('Images/skelet6.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Верный боец некроманта, созданный"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии посоха Вечной Жизни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Опасное существо, не каждый сможет ему"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"противостоять"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 154:
+        pix = pygame.image.load('Images/skelet7.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 7 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильное существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии посоха Вечной Жизни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Этот скелет способен в одиночку"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"разделаться с пятью наёмниками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+    if world[hehmda] == 155:
+        pix = pygame.image.load('Images/skelet8.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 8 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Самое опасное существо, которое может"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"быть создано посохом Вечной Жизни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Этот скелет способен в одиночку"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"разделаться с десятком наёмников"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+    if world[hehmda] == 156:
+        pix = pygame.image.load('Images/soulCatcher.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Душекрад"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Нежить 10 уровня, правая рука демонов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Этот мертвец чудовищно силён"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"и владеет множеством темных заклинаний"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
         
         
         
@@ -5266,17 +5550,19 @@ def initGame(heroSelect):  # функция инициации игры
     for n in range(448):
         tmp = int(random.random()*22)
         if tmp == 5:
-            world[n] = 1
-            pix = pygame.image.load('Images/mount.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xMap,yMap))
+            if n != 30 or n != 62 or n != 63 or n != 384 or n != 385 or n != 471:
+                world[n] = 1
+                pix = pygame.image.load('Images/mount.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xMap,yMap))
         elif tmp == 6:
-            world[n] = 2
-            pix = pygame.image.load('Images/water.jpg') 
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (xMap,yMap))
+            if n != 30 or n != 62 or n != 63 or n != 384 or n != 385 or n != 471:
+                world[n] = 2
+                pix = pygame.image.load('Images/water.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xMap,yMap))
         
         xMap += 32    
         if xMap >= 1040:
