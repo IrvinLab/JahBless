@@ -121,9 +121,9 @@ def botActivity():  # Создание и управление ботами
     global n
      
     botLoad = 0    
-    temp = int(random.random()*5) # Вероятность появления нового бота 1/5
+    temp = int(random.random()*3) # Вероятность появления нового бота 1/4
     print(bot)
-    if temp == 3:   
+    if temp == 2:   
         tmp = int(random.random()*72)
         tmp += 100
         xBot.append(bot)
@@ -3665,7 +3665,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"В одиночку почти не представляет угрозы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"Не обладает магическими способностями "
+        variableName = u"Не обладает магическими навыками. "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))   
     if world[hehmda] == 101:
@@ -3747,7 +3747,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Агрессивный и опасный монстр"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
     if world[hehmda] == 106:
@@ -3761,7 +3761,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Крепкий боец расы гномов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
     if world[hehmda] == 107:
@@ -3775,7 +3775,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Крепкий боец расы гномов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))     
     if world[hehmda] == 108:
@@ -3837,7 +3837,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Слабый воин расы гоблинов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))            
         variableName = u"Иногда у него можно купить артефакты"
@@ -3854,7 +3854,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Слабый воин расы гоблинов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))            
         variableName = u"Иногда у него можно купить артефакты"
@@ -3871,7 +3871,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Самый сильный представитель расы гоблинов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))            
         variableName = u"Но шутки с ним плохи"
@@ -4014,7 +4014,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"вымещает свою агрессию на всех"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640)) 
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))    
     if world[hehmda] == 121:
@@ -4037,7 +4037,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"однаково яростно."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640)) 
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))  
     if world[hehmda] == 122:
@@ -4231,7 +4231,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Опасное и свирепое существо"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))  
     if world[hehmda] == 132:
@@ -4251,7 +4251,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Принадлежит к классу потомков проклятых"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))  
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))   
     if world[hehmda] == 133:
@@ -4328,7 +4328,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"в пустошах."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))        
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))   
     if world[hehmda] == 137:
@@ -4351,7 +4351,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"в пустошах."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Не обладает магическими способностями"
+        variableName = u"Не обладает магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))  
     if world[hehmda] == 138:
@@ -4393,7 +4393,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         sc.blit(nameObj,(440, 600)) 
         variableName = u"Орков можно нанять в таверне или "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 620))        
+        sc.blit(nameObj,(440, 640))        
         variableName = u"в пустошах."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660)) 
@@ -4947,7 +4947,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Страж магического леса"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"Не владеет магическими способностями"
+        variableName = u"Не владеет магическими навыками"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
     if world[hehmda] == 167:
