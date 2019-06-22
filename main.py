@@ -43,6 +43,8 @@ bot = 0 # Количество ботов
 botNumer = [] # Порядковый номер бота
 botType = [] # 1 - союзник, 2 - враждебныйб 3 - мирный
 botStep = [] # Сколько шагов у бота
+botLocation = [] # Локация бота
+botMap = [] # Карта на которой
 xBot = []
 yBot = []
 botExpirience = []
@@ -59,7 +61,7 @@ botLovkost = []
 botYdacha = []
 botZachita = []
 botHod = []
-
+   
 # Время мира
 den = 1
 mesiac = 1
@@ -73,7 +75,6 @@ settingsButton = 0
 world = [] # Это игровое поле
 tmp = 0
 temp = 0 # Отладочная переменная, нужна для отслеживания состояния поля
-
 
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
@@ -97,6 +98,31 @@ textHod = pygame.font.SysFont('Monospace Regular', 20) # Отображает к
 for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
+
+def botGoing():
+    global n
+    global bot 
+    global botType
+    global botStep
+    global xBot
+    global yBot
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botIshZdorovie
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+    
+    for n in range(1000):
+        pass
  
 def botActivity():  # Создание и управление ботами
     global bot 
@@ -132,25 +158,12 @@ def botActivity():  # Создание и управление ботами
         if tmp == 157 or tmp == 114 or tmp == 115 or tmp == 116 or tmp == 117 or tmp == 118 or tmp == 126 or tmp == 127 or tmp == 128 or tmp == 129 or tmp == 144 or tmp == 145 or tmp == 146 or tmp == 165:  # Если персонажи человеческой расы
             if world[30] == 0 or world[63] == 0 or world[62] == 0:
                 botLoad = 1
-                botRasa.append(bot)
                 botRasa[bot] = 1
                 if tmp == 157: # Странник 3 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 3
                     botZdorovie[bot] = 185
                     botIshZdorovie[bot] = 185
@@ -166,32 +179,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp   
+                        world[62] = tmp  
+                        botLocation[bot] = 62    
                     
                 if tmp == 114: # Отшельник 1 ур.
-                    botType.append(bot)
                     if rasa == 7 or rasa == 1:
-                            botType[bot] = 1
+                        botType[bot] = 1
                     else:
-                        botType[bot] = 2    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2   
                     botLvl[bot] = 1
                     botZdorovie[bot] = 85
                     botIshZdorovie[bot] = 85
@@ -207,32 +211,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
                     
                 if tmp == 115: # Отшельник 2 ур.
-                    botType.append(bot)
                     if rasa == 7 or rasa == 1:
                         botType[bot] = 1
                     else:
-                        botType[bot] = 2    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2   
                     botLvl[bot] = 2
                     botZdorovie[bot] = 105
                     botIshZdorovie[bot] = 105
@@ -248,32 +243,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
                     
                 if tmp == 116: # Отшельник 3 ур.
-                    botType.append(bot)
                     if rasa == 7 or rasa == 1:
                         botType[bot] = 1
                     else:
                         botType[bot] = 2    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 3
                     botZdorovie[bot] = 125
                     botIshZdorovie[bot] = 125
@@ -289,32 +275,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp   
+                        world[62] = tmp  
+                        botLocation[bot] = 62   
                     
                 if tmp == 117: # Охотник за головами.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 155
                     botIshZdorovie[bot] = 155
@@ -330,28 +307,19 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp   
+                        world[62] = tmp  
+                        botLocation[bot] = 62   
                     
                 if tmp == 118: # Человек
-                    botType.append(bot)
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botType[bot] = 3 # Мирный    
                     botLvl[bot] = 1
                     botZdorovie[bot] = 30
@@ -368,32 +336,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
                         
                 if tmp == 126: # Наёмник 1 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 1
                     botZdorovie[bot] = 100
                     botIshZdorovie[bot] = 100
@@ -409,32 +368,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp    
+                        world[62] = tmp  
+                        botLocation[bot] = 62    
                     
                 if tmp == 127: # Наёмник 2 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 140
                     botIshZdorovie[bot] = 140
@@ -450,32 +400,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp   
+                        world[62] = tmp  
+                        botLocation[bot] = 62    
                     
                 if tmp == 128: # Наёмник 3 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 170
                     botIshZdorovie[bot] = 170
@@ -491,32 +432,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp     
+                        world[62] = tmp  
+                        botLocation[bot] = 62     
                     
                 if tmp == 129: # Наёмник 4 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 4
                     botZdorovie[bot] = 200
                     botIshZdorovie[bot] = 200
@@ -532,28 +464,19 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
                     
                 if tmp == 144: # Оккультист
-                    botType.append(bot)
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botType[bot] = 2     
                     botLvl[bot] = 5
                     botZdorovie[bot] = 250
@@ -570,28 +493,19 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
                         world[62] = tmp  
+                        botLocation[bot] = 62   
                     
                 if tmp == 145: # Разбойник
-                    botType.append(bot)
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botType[bot] = 2    
                     botLvl[bot] = 2
                     botZdorovie[bot] = 145
@@ -608,28 +522,19 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
                         world[62] = tmp  
+                        botLocation[bot] = 62   
                   
                 if tmp == 146: # Грабитель
-                    botType.append(bot)
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botType[bot] = 2    
                     botLvl[bot] = 2
                     botZdorovie[bot] = 150
@@ -646,32 +551,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp    
+                        world[62] = tmp  
+                        botLocation[bot] = 62     
                     
                 if tmp == 165: # Колдун
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 175
                     botIshZdorovie[bot] = 175
@@ -687,37 +583,29 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp                                                                                     
+                        world[62] = tmp  
+                        botLocation[bot] = 62                                                                                     
         
         elif tmp == 100 or tmp == 101 or tmp == 102 or tmp == 166 or tmp == 167 or tmp == 168 or tmp == 169 or tmp == 170 or tmp == 171 or tmp == 172:
             if world[30] == 0 or world[63] == 0 or world[62] == 0:
                 botLoad = 1
-                botRasa.append(bot)  # Эльфы
+                # Эльфы
                 botRasa[bot] = 2
                 if tmp == 100: # Эльф 1 ур.
                     botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 105
                     botIshZdorovie[bot] = 105
@@ -733,32 +621,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp    
+                        world[62] = tmp  
+                        botLocation[bot] = 62    
                     
                 if tmp == 101: # Эльф 2 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 135
                     botIshZdorovie[bot] = 135
@@ -774,32 +653,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
     
                 if tmp == 102: # Эльф 3 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг   
                     botLvl[bot] = 3
                     botZdorovie[bot] = 165
                     botIshZdorovie[bot] = 165
@@ -815,32 +685,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
 
                 if tmp == 166: # Женщина-эльф 1 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 1
                     botZdorovie[bot] = 85
                     botIshZdorovie[bot] = 85
@@ -856,32 +717,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
                     
                 if tmp == 167: # Женщина-эльф 2 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 110
                     botIshZdorovie[bot] = 110
@@ -897,32 +749,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp   
+                        world[62] = tmp  
+                        botLocation[bot] = 62    
 
                 if tmp == 168: # Женщина-эльф 3 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 140
                     botIshZdorovie[bot] = 140
@@ -938,31 +781,22 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
                 if tmp == 169: # Женщина-эльф 4 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 4
                     botZdorovie[bot] = 190
                     botIshZdorovie[bot] = 190
@@ -978,32 +812,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
                         world[62] = tmp  
+                        botLocation[bot] = 62  
 
                 if tmp == 170: # Женщина-эльф 5 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 5
                     botZdorovie[bot] = 260
                     botIshZdorovie[bot] = 260
@@ -1019,32 +844,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp                      
+                        world[62] = tmp  
+                        botLocation[bot] = 62                       
                     
                 if tmp == 171: # Женщина-эльф 6 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 6
                     botZdorovie[bot] = 370
                     botIshZdorovie[bot] = 370
@@ -1060,32 +876,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
 
                 if tmp == 172: # Женщина-эльф 7 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 7
                     botZdorovie[bot] = 520
                     botIshZdorovie[bot] = 520
@@ -1101,19 +908,21 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp                     
+                        world[62] = tmp  
+                        botLocation[bot] = 62                       
                     
         elif tmp == 106 or tmp == 107 or tmp == 108 or tmp == 109:
             if world[30] == 0 or world[63] == 0 or world[62] == 0:
                 botLoad = 1         
-                botRasa.append(bot)
                 botRasa[bot] = 3
                 if tmp == 106: # Гном 1 ур.
                     botType.append(bot)
@@ -1121,17 +930,6 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 1
                     botZdorovie[bot] = 120
                     botIshZdorovie[bot] = 120
@@ -1147,32 +945,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
 
                 if tmp == 107: # Гном 2 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг   
                     botLvl[bot] = 2
                     botZdorovie[bot] = 180
                     botIshZdorovie[bot] = 180
@@ -1188,32 +977,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
 
                 if tmp == 108: # Гном 3 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг   
                     botLvl[bot] = 3
                     botZdorovie[bot] = 260
                     botIshZdorovie[bot] = 260
@@ -1229,32 +1009,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62  
 
                 if tmp == 109: # Гном 4 ур.
-                    botType.append(bot)
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 350
                     botIshZdorovie[bot] = 350
@@ -1270,34 +1041,24 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp                    
+                        world[62] = tmp  
+                        botLocation[bot] = 62                     
                 
         elif tmp == 110 or tmp == 111 or tmp == 112 or tmp == 113:
             if world[30] == 0 or world[63] == 0 or world[62] == 0:        
                 botLoad = 1
-                botRasa.append(bot)
                 botRasa[bot] = 4
                 if tmp == 110: # Гоблин 0 ур.
-                    botType.append(bot)
                     botType[bot] = 3 # Мирный
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 0
                     botZdorovie[bot] = 50
                     botIshZdorovie[bot] = 50
@@ -1313,29 +1074,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp 
+                        world[62] = tmp  
+                        botLocation[bot] = 62   
                     
                 if tmp == 111: # Гоблин 1 ур.
-                    botType.append(bot)
                     botType[bot] = 1    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 1
                     botZdorovie[bot] = 100
                     botIshZdorovie[bot] = 100
@@ -1351,29 +1103,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
                         world[62] = tmp  
+                        botLocation[bot] = 62   
 
                 if tmp == 112: # Гоблин 2 ур.
-                    botType.append(bot)
-                    botType[bot] = 1    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 1  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 135
                     botIshZdorovie[bot] = 135
@@ -1389,29 +1132,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
                         world[62] = tmp  
+                        botLocation[bot] = 62   
 
                 if tmp == 113: # Гоблин 3 ур.
-                    botType.append(bot)
-                    botType[bot] = 1    
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 1   
                     botLvl[bot] = 3
                     botZdorovie[bot] = 175
                     botIshZdorovie[bot] = 175
@@ -1427,34 +1161,24 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 976
                         yBot[bot] = 96
                         world[30] = tmp
+                        botLocation[bot] = 30
                     elif world[63] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 128
                         world[63] = tmp
+                        botLocation[bot] = 63 
                     elif world[62] == 0:
                         xBot[bot] = 1008
                         yBot[bot] = 128
-                        world[62] = tmp                    
+                        world[62] = tmp  
+                        botLocation[bot] = 62                  
                 
         elif tmp == 103 or tmp == 104 or tmp == 105 or tmp == 119 or tmp == 120 or tmp == 121 or tmp == 122 or tmp == 123 or tmp == 124 or tmp == 125 or tmp == 131 or tmp == 132 or tmp == 133 or tmp == 134 or tmp == 147:
             if world[384] == 0 or world[385] == 0 or world[417] == 0:
                 botLoad = 1 
-                botRasa.append(bot)
                 botRasa[bot] = 5
-                if tmp == 103: # Гнолл 1 ур.
-                    botType.append(bot)
+                if tmp == 103: # Гнолл 1 ур
                     botType[bot] = 2  
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 1
                     botZdorovie[bot] = 90
                     botIshZdorovie[bot] = 90
@@ -1470,29 +1194,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417  
                     
                 if tmp == 104: # Гнолл 2 ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 135
                     botIshZdorovie[bot] = 135
@@ -1508,29 +1223,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 105: # Гнолл 3 ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2   
                     botLvl[bot] = 4
                     botZdorovie[bot] = 185
                     botIshZdorovie[bot] = 185
@@ -1546,29 +1252,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 119: # Монстр 1 ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2    
                     botLvl[bot] = 1
                     botZdorovie[bot] = 135
                     botIshZdorovie[bot] = 135
@@ -1584,29 +1281,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 120: # Монстр 2 ур.
-                    botType.append(bot)
                     botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 2
                     botZdorovie[bot] = 195
                     botIshZdorovie[bot] = 195
@@ -1622,29 +1310,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 121: # Монстр 3 ур.
-                    botType.append(bot)
                     botType[bot] = 3
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 4
                     botZdorovie[bot] = 300
                     botIshZdorovie[bot] = 300
@@ -1660,29 +1339,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 122: # Монстр 4 ур.
-                    botType.append(bot)
                     botType[bot] = 4
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 6
                     botZdorovie[bot] = 560
                     botIshZdorovie[bot] = 560
@@ -1698,29 +1368,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
                         world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 123: # Морлок 1 ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2    
                     botLvl[bot] = 1
                     botZdorovie[bot] = 70
                     botIshZdorovie[bot] = 70
@@ -1736,29 +1397,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
     
                 if tmp == 124: # Морлок 2 ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2   
                     botLvl[bot] = 2
                     botZdorovie[bot] = 90
                     botIshZdorovie[bot] = 90
@@ -1774,29 +1426,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp   
+                        world[417] = tmp
+                        botLocation[bot] = 417    
     
                 if tmp == 125: # Морлок 3 ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2   
                     botLvl[bot] = 3
                     botZdorovie[bot] = 130
                     botIshZdorovie[bot] = 130
@@ -1812,32 +1455,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
                         world[417] = tmp
+                        botLocation[bot] = 417  
     
                 if tmp == 131: # Непобедимый 1 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг      
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 200
                     botIshZdorovie[bot] = 200
@@ -1853,32 +1487,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 132: # Непобедимый 2 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг      
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 280
                     botIshZdorovie[bot] = 280
@@ -1894,29 +1519,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
                         world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 133: # Огр 1 ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2   
                     botLvl[bot] = 1
                     botZdorovie[bot] = 130
                     botIshZdorovie[bot] = 130
@@ -1932,29 +1548,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 134: # Огр 2 ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 150
                     botIshZdorovie[bot] = 150
@@ -1970,29 +1577,20 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
                         world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 147: # Красный огненный голем ур.
-                    botType.append(bot)
-                    botType[bot] = 2     
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                    botType[bot] = 2 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 300
                     botIshZdorovie[bot] = 300
@@ -2008,37 +1606,28 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp                   
+                        world[417] = tmp
+                        botLocation[bot] = 417                    
       
         elif tmp == 136 or tmp == 137 or tmp == 138 or tmp == 139 or tmp == 140 or tmp == 141 or tmp == 142 or tmp == 143 or tmp == 158 or tmp == 159 or tmp == 160 or tmp == 161 or tmp == 162 or tmp == 163:
             if world[384] == 0 or world[385] == 0 or world[417] == 0: 
                 botLoad = 1
-                botRasa.append(bot)
                 botRasa[bot] = 6
                 if tmp == 136: # Орк 1 ур.
                     botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 120
                     botIshZdorovie[bot] = 120
@@ -2054,32 +1643,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp   
+                        world[417] = tmp
+                        botLocation[bot] = 417    
                     
                 if tmp == 137: # Орк 2 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 160
                     botIshZdorovie[bot] = 160
@@ -2095,32 +1675,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp     
+                        world[417] = tmp
+                        botLocation[bot] = 417       
 
                 if tmp == 138: # Орк 3 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 220
                     botIshZdorovie[bot] = 220
@@ -2136,32 +1707,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp   
+                        world[417] = tmp
+                        botLocation[bot] = 417     
 
                 if tmp == 139: # Орк 4 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 310
                     botIshZdorovie[bot] = 310
@@ -2177,32 +1739,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp   
+                        world[417] = tmp
+                        botLocation[bot] = 417    
         
                 if tmp == 140: # Орк 5 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 5
                     botZdorovie[bot] = 390
                     botIshZdorovie[bot] = 390
@@ -2218,32 +1771,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp    
+                        world[417] = tmp
+                        botLocation[bot] = 417     
     
                 if tmp == 141: # Орк 6 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 6
                     botZdorovie[bot] = 520
                     botIshZdorovie[bot] = 520
@@ -2259,32 +1803,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp    
+                        world[417] = tmp
+                        botLocation[bot] = 417    
 
                 if tmp == 142: # Орк 7 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 7
                     botZdorovie[bot] = 700
                     botIshZdorovie[bot] = 700
@@ -2300,32 +1835,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 143: # Орк-шаман  3 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 240
                     botIshZdorovie[bot] = 240
@@ -2341,32 +1867,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp    
+                        world[417] = tmp
+                        botLocation[bot] = 417     
 
                 if tmp == 158: # Тролль 1 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 1
                     botZdorovie[bot] = 100
                     botIshZdorovie[bot] = 100
@@ -2382,32 +1899,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 159: # Тролль 2 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
                     botLvl[bot] = 2
                     botZdorovie[bot] = 135
                     botIshZdorovie[bot] = 135
@@ -2423,32 +1931,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
                     
                 if tmp == 160: # Тролль 3 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 195
                     botIshZdorovie[bot] = 195
@@ -2464,32 +1963,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp   
+                        world[417] = tmp
+                        botLocation[bot] = 417     
 
                 if tmp == 161: # Тролль 4 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 250
                     botIshZdorovie[bot] = 250
@@ -2505,32 +1995,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp   
+                        world[417] = tmp
+                        botLocation[bot] = 417    
 
                 if tmp == 162: # Тролль 5 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 5
                     botZdorovie[bot] = 320
                     botIshZdorovie[bot] = 320
@@ -2546,32 +2027,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 163: # Тролль 6 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 6
                     botZdorovie[bot] = 400
                     botIshZdorovie[bot] = 400
@@ -2587,37 +2059,27 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp                     
+                        world[417] = tmp
+                        botLocation[bot] = 417                       
          
         elif tmp == 148 or tmp == 149 or tmp == 150 or tmp == 151 or tmp == 152 or tmp == 153 or tmp == 154 or tmp == 155 or tmp == 156 or tmp == 164 or tmp == 135 or tmp == 130: 
             if world[384] == 0 or world[385] == 0 or world[417] == 0:
                 botLoad = 1 
-                botRasa.append(bot)
                 botRasa[bot] = 7 
                 if tmp == 148: # Скелет 1 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг       
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 50
                     botIshZdorovie[bot] = 50
@@ -2633,32 +2095,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp   
+                        world[417] = tmp
+                        botLocation[bot] = 417    
                     
                 if tmp == 149: # Скелет 2 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг       
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 90
                     botIshZdorovie[bot] = 90
@@ -2674,32 +2127,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 150: # Скелет 3 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг       
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 3
                     botZdorovie[bot] = 145
                     botIshZdorovie[bot] = 145
@@ -2715,32 +2159,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp     
+                        world[417] = tmp
+                        botLocation[bot] = 417      
 
                 if tmp == 151: # Скелет 4 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг       
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 4
                     botZdorovie[bot] = 190
                     botIshZdorovie[bot] = 190
@@ -2756,32 +2191,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
                         world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 152: # Скелет 5 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг       
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 5
                     botZdorovie[bot] = 245
                     botIshZdorovie[bot] = 245
@@ -2797,32 +2223,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp   
+                        world[417] = tmp
+                        botLocation[bot] = 417    
 
                 if tmp == 153: # Скелет 6 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг       
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 6
                     botZdorovie[bot] = 315
                     botIshZdorovie[bot] = 315
@@ -2838,32 +2255,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417  
 
                 if tmp == 154: # Скелет 7 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг       
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 7
                     botZdorovie[bot] = 395
                     botIshZdorovie[bot] = 395
@@ -2879,32 +2287,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
     
                 if tmp == 155: # Скелет 8 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг       
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 8
                     botZdorovie[bot] = 500
                     botIshZdorovie[bot] = 500
@@ -2920,32 +2319,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 156: # Душекрад 10 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 10
                     botZdorovie[bot] = 1250
                     botIshZdorovie[bot] = 1250
@@ -2961,32 +2351,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 164: # Вампир 3 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 175
                     botIshZdorovie[bot] = 175
@@ -3002,32 +2383,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp  
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 135: # Оккультист 5 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 5
                     botZdorovie[bot] = 285
                     botIshZdorovie[bot] = 285
@@ -3043,32 +2415,23 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp 
+                        world[417] = tmp
+                        botLocation[bot] = 417   
 
                 if tmp == 130: # Некромант 6 ур.
-                    botType.append(bot)
                     if rasa == 6 or rasa == 7:
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг   
-                    botLvl.append(bot)
-                    botZdorovie.append(bot)
-                    botIshZdorovie.append(bot)
-                    botMana.append(bot)
-                    botIshMana.append(bot)
-                    botZaklinania.append(bot)
-                    botSila.append(bot)
-                    botLovkost.append(bot)
-                    botYdacha.append(bot)
-                    botHod.append(bot)
-                    botVozdeistvie.append(bot)
+                        botType[bot] = 2 # Иначе враг  
                     botLvl[bot] = 6
                     botZdorovie[bot] = 340
                     botIshZdorovie[bot] = 340
@@ -3084,14 +2447,17 @@ def botActivity():  # Создание и управление ботами
                         xBot[bot] = 16
                         yBot[bot] = 480
                         world[384] = tmp
+                        botLocation[bot] = 384 
                     elif world[385] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 480
                         world[385] = tmp
+                        botLocation[bot] = 385 
                     elif world[417] == 0:
                         xBot[bot] = 48
                         yBot[bot] = 512
-                        world[417] = tmp                      
+                        world[417] = tmp
+                        botLocation[bot] = 417                      
         
         else:
             print("WARNING " + str(tmp))
@@ -3100,13 +2466,8 @@ def botActivity():  # Создание и управление ботами
             bot += 1
         worldUpdate()
         # Конец создания бота
-        
-    pass # Тут будем делать алгоритмы поведения ботов
-    n = 0
-    for n in range(bot): 
-        pass    
-
-    n = 0 # Закончили ходить ботами
+    
+    botGoing()
     # ===================================================================================================================    
 
 def markLocation(numberMark, iconka): # Определяем кординаты пиктограммы 32х32
@@ -4289,7 +3650,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))  
     if world[hehmda] == 135:
-        pix = pygame.image.load('Images/okylt.jpg')
+        pix = pygame.image.load('Images/okylt.png')
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
@@ -5515,6 +4876,31 @@ def initGame(heroSelect):  # функция инициации игры
     botYdacha.clear()
     botZachita.clear()
     botHod.clear()
+    n = 0 # Создаём массивы для ботов
+    for n in range(1000):
+        botNumer.append(bot)
+        botNumer.append(bot)
+        botType.append(bot)
+        botStep.append(bot)
+        botLocation.append(bot)
+        botMap.append(bot)
+        xBot.append(bot)
+        yBot.append(bot)
+        botExpirience.append(bot)
+        botLvl.append(bot)
+        botRasa.append(bot)
+        botZaklinania.append(bot)
+        botVozdeistvie.append(bot)
+        botIshZdorovie.append(bot)
+        botZdorovie.append(bot)
+        botMana.append(bot)
+        botIshMana.append(bot)
+        botSila.append(bot)
+        botLovkost.append(bot)
+        botYdacha.append(bot)
+        botZachita.append(bot)
+        botHod.append(bot)
+    n = 0  
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
         expirience = 0
@@ -5919,9 +5305,6 @@ def initGame(heroSelect):  # функция инициации игры
     y_len = pix.get_height() 
     sc.blit(pix, (286,752))
     # ==========================================================================================
-
-
-
 
 for yMap in range(14): # Рисуем игровое поле
     
@@ -6566,1924 +5949,1402 @@ while True:
             if i.button == 1: doebaca(63)    
                 
     #===================================================3 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(64)
+            if i.button == 1: doebaca(64)
+
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(65)
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(65)
+            if i.button == 1: doebaca(66)            
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(66)            
-    
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
-    else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
-    else: y_inside = False
-    if x_inside and y_inside: 
-        if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(67)
+            if i.button == 1: doebaca(67)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(68) 
+            if i.button == 1: doebaca(68) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(69)
+            if i.button == 1: doebaca(69)
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(70)
+            if i.button == 1: doebaca(70)
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(71)            
+            if i.button == 1: doebaca(71)            
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(72)
+            if i.button == 1: doebaca(72)
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(73) 
+            if i.button == 1: doebaca(73) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(74)
+            if i.button == 1: doebaca(74)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(75)
+            if i.button == 1: doebaca(75)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(76)            
+            if i.button == 1: doebaca(76)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(77)
+            if i.button == 1: doebaca(77)
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(78) 
+            if i.button == 1: doebaca(78) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(79)
+            if i.button == 1: doebaca(79)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(80)
+            if i.button == 1: doebaca(80)
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(81)
+            if i.button == 1: doebaca(81)
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(82)
+            if i.button == 1: doebaca(82)
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(83)
+            if i.button == 1: doebaca(83)
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(84)
+            if i.button == 1: doebaca(84)
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(85)
+            if i.button == 1: doebaca(85)
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(86)
+            if i.button == 1: doebaca(86)
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(87)
+            if i.button == 1: doebaca(87)
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(88)
+            if i.button == 1: doebaca(88)
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(89)
+            if i.button == 1: doebaca(89)
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(90)
+            if i.button == 1: doebaca(90)
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(91)
+            if i.button == 1: doebaca(91)
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(92)
+            if i.button == 1: doebaca(92)
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(93)
+            if i.button == 1: doebaca(93)
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(94)
+            if i.button == 1: doebaca(94)
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>161 and (mos_y<191):
-        y_inside = True
+    if mos_y>161 and (mos_y<191): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(95)
+            if i.button == 1: doebaca(95)
     
     #===================================================4 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(96)
+            if i.button == 1: doebaca(96)
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79):  x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(97)
+            if i.button == 1: doebaca(97)
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(98)
+            if i.button == 1: doebaca(98)
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(99)
+            if i.button == 1: doebaca(99)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(100) 
+            if i.button == 1: doebaca(100) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(101)
+            if i.button == 1: doebaca(101)
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(102)
+            if i.button == 1: doebaca(102)
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(103)            
+            if i.button == 1: doebaca(103)            
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(104)
+            if i.button == 1: doebaca(104)
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(105) 
+            if i.button == 1: doebaca(105) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(106)
+            if i.button == 1: doebaca(106)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(107)
+            if i.button == 1: doebaca(107)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(108)            
+            if i.button == 1: doebaca(108)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(109)
+            if i.button == 1: doebaca(109)
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(110) 
+            if i.button == 1: doebaca(110) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(111)
+            if i.button == 1: doebaca(111)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(112) 
+            if i.button == 1: doebaca(112) 
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(113)             
+            if i.button == 1: doebaca(113)             
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(114) 
+            if i.button == 1: doebaca(114) 
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(115) 
+            if i.button == 1: doebaca(115) 
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(116) 
+            if i.button == 1: doebaca(116) 
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(117) 
+            if i.button == 1: doebaca(117) 
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(118)             
+            if i.button == 1: doebaca(118)             
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(119) 
+            if i.button == 1: doebaca(119) 
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(120)  
+            if i.button == 1: doebaca(120)  
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(121) 
+            if i.button == 1: doebaca(121) 
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(122) 
+            if i.button == 1: doebaca(122) 
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(123)             
+            if i.button == 1: doebaca(123)             
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(124)   
+            if i.button == 1: doebaca(124)   
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(125) 
+            if i.button == 1: doebaca(125) 
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(126)     
+            if i.button == 1: doebaca(126)     
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>193 and (mos_y<223):
-        y_inside = True
+    if mos_y>193 and (mos_y<223): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(127)    
+            if i.button == 1: doebaca(127)    
                 
     #===================================================5 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(128) 
+            if i.button == 1: doebaca(128) 
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(129) 
+            if i.button == 1: doebaca(129) 
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(130)             
+            if i.button == 1: doebaca(130)             
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(131)
+            if i.button == 1: doebaca(131)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(132) 
+            if i.button == 1: doebaca(132) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(133)
+            if i.button == 1: doebaca(133)
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(134)
+            if i.button == 1: doebaca(134)
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(135)            
+            if i.button == 1: doebaca(135)            
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(136)
+            if i.button == 1: doebaca(136)
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(137) 
+            if i.button == 1: doebaca(137) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(138)
+            if i.button == 1: doebaca(138)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(139)
+            if i.button == 1: doebaca(139)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(140)            
+            if i.button == 1: doebaca(140)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(141)
+            if i.button == 1: doebaca(141)
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(142) 
+            if i.button == 1: doebaca(142) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(143)
+            if i.button == 1: doebaca(143)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(144)
+            if i.button == 1: doebaca(144)
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(145)            
+            if i.button == 1: doebaca(145)            
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(146)
+            if i.button == 1: doebaca(146)
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(147)
+            if i.button == 1: doebaca(147)
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(148)
+            if i.button == 1: doebaca(148)
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(149)
+            if i.button == 1: doebaca(149)
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(150)            
+            if i.button == 1: doebaca(150)            
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(151)
+            if i.button == 1: doebaca(151)
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(152)  
+            if i.button == 1: doebaca(152)  
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(153) 
+            if i.button == 1: doebaca(153) 
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(154) 
+            if i.button == 1: doebaca(154) 
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(155)             
+            if i.button == 1: doebaca(155)             
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(156)   
+            if i.button == 1: doebaca(156)   
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(157) 
+            if i.button == 1: doebaca(157) 
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(158)     
+            if i.button == 1: doebaca(158)     
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>225 and (mos_y<255):
-        y_inside = True
+    if mos_y>225 and (mos_y<255): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(159)  
+            if i.button == 1: doebaca(159)  
                 
     #===================================================6 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(160) 
+            if i.button == 1: doebaca(160) 
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(161)
+            if i.button == 1: doebaca(161)
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(162)            
+            if i.button == 1: doebaca(162)            
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(163)
+            if i.button == 1: doebaca(163)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(164) 
+            if i.button == 1: doebaca(164) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(165)
+            if i.button == 1: doebaca(165)
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(166)
+            if i.button == 1: doebaca(166)
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(167)            
+            if i.button == 1: doebaca(167)            
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(168)
+            if i.button == 1: doebaca(168)
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(169) 
+            if i.button == 1: doebaca(169) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(170)
+            if i.button == 1: doebaca(170)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(171)
+            if i.button == 1: doebaca(171)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(172)            
+            if i.button == 1: doebaca(172)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(173)
+            if i.button == 1: doebaca(173)
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(174) 
+            if i.button == 1: doebaca(174) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(175)
+            if i.button == 1: doebaca(175)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(176)
+            if i.button == 1: doebaca(176)
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(177)            
+            if i.button == 1: doebaca(177)            
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(178)
+            if i.button == 1: doebaca(178)
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(179)
+            if i.button == 1: doebaca(179)
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(180)
+            if i.button == 1: doebaca(180)
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(181)
+            if i.button == 1: doebaca(181)
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(182)            
+            if i.button == 1: doebaca(182)            
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(183)
+            if i.button == 1: doebaca(183)
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(184) 
+            if i.button == 1: doebaca(184) 
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(185)
+            if i.button == 1: doebaca(185)
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(186)
+            if i.button == 1: doebaca(186)
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(187)            
+            if i.button == 1: doebaca(187)            
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(188)  
+            if i.button == 1: doebaca(188)  
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(189)
+            if i.button == 1: doebaca(189)
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(190)    
+            if i.button == 1: doebaca(190)    
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>257 and (mos_y<287):
-        y_inside = True
+    if mos_y>257 and (mos_y<287): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(191)     
+            if i.button == 1: doebaca(191)     
                 
     #===================================================7 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(192) 
+            if i.button == 1: doebaca(192) 
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(193) 
+            if i.button == 1: doebaca(193) 
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(194)             
+            if i.button == 1: doebaca(194)             
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(195) 
+            if i.button == 1: doebaca(195) 
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(196)  
+            if i.button == 1: doebaca(196)  
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(197) 
+            if i.button == 1: doebaca(197) 
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(198) 
+            if i.button == 1: doebaca(198) 
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(199)             
+            if i.button == 1: doebaca(199)             
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(200) 
+            if i.button == 1: doebaca(200) 
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(201) 
+            if i.button == 1: doebaca(201) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(202)
+            if i.button == 1: doebaca(202)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(203)
+            if i.button == 1: doebaca(203)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(204)            
+            if i.button == 1: doebaca(204)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(205)
+            if i.button == 1: doebaca(205)
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(206) 
+            if i.button == 1: doebaca(206) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(207)
+            if i.button == 1: doebaca(207)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(208)
+            if i.button == 1: doebaca(208)
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(209)            
+            if i.button == 1: doebaca(209)            
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(210)
+            if i.button == 1: doebaca(210)
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(211)
+            if i.button == 1: doebaca(211)
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(212)
+            if i.button == 1: doebaca(212)
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(213)
+            if i.button == 1: doebaca(213)
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(214)            
+            if i.button == 1: doebaca(214)            
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(215)
+            if i.button == 1: doebaca(215)
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(216) 
+            if i.button == 1: doebaca(216) 
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(217)
+            if i.button == 1: doebaca(217)
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879):  x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(218)
+            if i.button == 1: doebaca(218)
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(219)            
+            if i.button == 1: doebaca(219)            
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(220)  
+            if i.button == 1: doebaca(220)  
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(221)
+            if i.button == 1: doebaca(221)
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(222)    
+            if i.button == 1: doebaca(222)    
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>289 and (mos_y<319):
-        y_inside = True
+    if mos_y>289 and (mos_y<319): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(223)
+            if i.button == 1: doebaca(223)
             
     #===================================================8 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(224)
+            if i.button == 1: doebaca(224)
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(225)
+            if i.button == 1: doebaca(225)
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(226)            
+            if i.button == 1: doebaca(226)            
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(227)
+            if i.button == 1: doebaca(227)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(228) 
+            if i.button == 1: doebaca(228) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(229)
+            if i.button == 1: doebaca(229)
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(230)
+            if i.button == 1: doebaca(230)
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(231)            
+            if i.button == 1: doebaca(231)            
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(232)
+            if i.button == 1: doebaca(232)
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(233) 
+            if i.button == 1: doebaca(233) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(234)
+            if i.button == 1: doebaca(234)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(235)
+            if i.button == 1: doebaca(235)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(236)            
+            if i.button == 1: doebaca(236)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(237)
+            if i.button == 1: doebaca(237)
                 
     if mos_x>465 and (mos_x<495): 
         x_inside = True
@@ -8493,548 +7354,401 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(238) 
+            if i.button == 1: doebaca(238) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(239)
+            if i.button == 1: doebaca(239)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(240)
+            if i.button == 1: doebaca(240)
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(241)            
+            if i.button == 1: doebaca(241)            
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(242)
+            if i.button == 1: doebaca(242)
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(243)
+            if i.button == 1: doebaca(243)
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(244)
+            if i.button == 1: doebaca(244)
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(245)
+            if i.button == 1: doebaca(245)
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(246)            
+            if i.button == 1: doebaca(246)            
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(247)
+            if i.button == 1: doebaca(247)
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(248) 
+            if i.button == 1: doebaca(248) 
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(249)
+            if i.button == 1: doebaca(249)
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(250)
+            if i.button == 1: doebaca(250)
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(251)            
+            if i.button == 1: doebaca(251)            
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(252)  
+            if i.button == 1: doebaca(252)  
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(253)
+            if i.button == 1: doebaca(253)
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(254)    
+            if i.button == 1: doebaca(254)    
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>321 and (mos_y<351):
-        y_inside = True
+    if mos_y>321 and (mos_y<351): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(255)  
+            if i.button == 1: doebaca(255)  
             
     #===================================================9 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(256)
+            if i.button == 1: doebaca(256)
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(257)
+            if i.button == 1: doebaca(257)
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(258)            
+            if i.button == 1: doebaca(258)            
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(259)
+            if i.button == 1: doebaca(259)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(260) 
+            if i.button == 1: doebaca(260) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(261) 
+            if i.button == 1: doebaca(261) 
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(262) 
+            if i.button == 1: doebaca(262) 
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(263)             
+            if i.button == 1: doebaca(263)             
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303):  x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(264) 
+            if i.button == 1: doebaca(264) 
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
     if mos_y>353 and (mos_y<383):
         y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(265)  
+            if i.button == 1: doebaca(265)  
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(266) 
+            if i.button == 1: doebaca(266) 
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(267) 
+            if i.button == 1: doebaca(267) 
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(268)             
+            if i.button == 1: doebaca(268)             
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(269) 
+            if i.button == 1: doebaca(269) 
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(270)  
+            if i.button == 1: doebaca(270)  
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(271) 
+            if i.button == 1: doebaca(271) 
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(272) 
+            if i.button == 1: doebaca(272) 
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(273)             
+            if i.button == 1: doebaca(273)             
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(274) 
+            if i.button == 1: doebaca(274) 
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(275) 
+            if i.button == 1: doebaca(275) 
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(276) 
+            if i.button == 1: doebaca(276) 
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(277) 
+            if i.button == 1: doebaca(277) 
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(278)             
+            if i.button == 1: doebaca(278)             
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(279) 
+            if i.button == 1: doebaca(279) 
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(280)  
+            if i.button == 1: doebaca(280)  
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(281)
+            if i.button == 1: doebaca(281)
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(282)
+            if i.button == 1: doebaca(282)
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(283)            
+            if i.button == 1: doebaca(283)            
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(284)  
+            if i.button == 1: doebaca(284)  
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(285)
+            if i.button == 1: doebaca(285)
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(286)    
+            if i.button == 1: doebaca(286)    
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>353 and (mos_y<383):
-        y_inside = True
+    if mos_y>353 and (mos_y<383): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(287)    
+            if i.button == 1: doebaca(287)    
             
     #===================================================10 ряд===============================================
     if mos_x>17 and (mos_x<47): 
