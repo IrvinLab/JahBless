@@ -40,11 +40,13 @@ zachita = 0
 
 # Переменные ботов
 bot = 0 # Количество ботов
-botNumer = [] # Порядковый номер бота
-botType = [] # 1 - союзник, 2 - враждебныйб 3 - мирный
+botNumer = [] # Порядковый номер бота в списке ботов
+botType = [] # 1 - союзник, 2 - враждебный, 3 - мирный
 botStep = [] # Сколько шагов у бота
 botLocation = [] # Локация бота
 botMap = [] # Карта на которой
+botVariant = [] # Номер/вариант бота. т.е. что это именно за бот эльф 2 уровня или скелет 5 уровня
+botAlgoritm = []
 xBot = []
 yBot = []
 botExpirience = []
@@ -120,9 +122,14 @@ def botGoing():
     global botYdacha
     global botZachita
     global botHod
-    
+    global world
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botLocation
     for n in range(1000):
-        pass
+        if botZdorovie[n] > 0:
+            pass
  
 def botActivity():  # Создание и управление ботами
     global bot 
@@ -144,6 +151,12 @@ def botActivity():  # Создание и управление ботами
     global botYdacha
     global botZachita
     global botHod
+    global botLocation
+    global world
+    global botStep
+    global botNumer
+    global botVariant
+    global botAlgoritm
     global n
      
     botLoad = 0    
@@ -163,7 +176,9 @@ def botActivity():  # Создание и управление ботами
                     if rasa == 2 or rasa == 1:
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
-                        botType[bot] = 2 # Иначе враг    
+                        botType[bot] = 2 # Иначе враг
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp        
                     botLvl[bot] = 3
                     botZdorovie[bot] = 185
                     botIshZdorovie[bot] = 185
@@ -196,6 +211,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1
                     else:
                         botType[bot] = 2   
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 85
                     botIshZdorovie[bot] = 85
@@ -228,6 +245,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1
                     else:
                         botType[bot] = 2   
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 105
                     botIshZdorovie[bot] = 105
@@ -260,6 +279,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1
                     else:
                         botType[bot] = 2    
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 125
                     botIshZdorovie[bot] = 125
@@ -292,6 +313,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 155
                     botIshZdorovie[bot] = 155
@@ -320,6 +343,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 62   
                     
                 if tmp == 118: # Человек
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 3 # Мирный    
                     botLvl[bot] = 1
                     botZdorovie[bot] = 30
@@ -353,6 +378,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг    
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 100
                     botIshZdorovie[bot] = 100
@@ -385,6 +412,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 140
                     botIshZdorovie[bot] = 140
@@ -417,6 +446,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 170
                     botIshZdorovie[bot] = 170
@@ -449,6 +480,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 200
                     botIshZdorovie[bot] = 200
@@ -477,6 +510,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 62  
                     
                 if tmp == 144: # Оккультист
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2     
                     botLvl[bot] = 5
                     botZdorovie[bot] = 250
@@ -506,6 +541,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 62   
                     
                 if tmp == 145: # Разбойник
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2    
                     botLvl[bot] = 2
                     botZdorovie[bot] = 145
@@ -535,6 +572,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 62   
                   
                 if tmp == 146: # Грабитель
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2    
                     botLvl[bot] = 2
                     botZdorovie[bot] = 150
@@ -568,6 +607,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 175
                     botIshZdorovie[bot] = 175
@@ -606,6 +647,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 105
                     botIshZdorovie[bot] = 105
@@ -638,6 +681,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 135
                     botIshZdorovie[bot] = 135
@@ -670,6 +715,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг   
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 165
                     botIshZdorovie[bot] = 165
@@ -702,6 +749,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 85
                     botIshZdorovie[bot] = 85
@@ -734,6 +783,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 110
                     botIshZdorovie[bot] = 110
@@ -766,6 +817,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 140
                     botIshZdorovie[bot] = 140
@@ -797,6 +850,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 190
                     botIshZdorovie[bot] = 190
@@ -829,6 +884,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 5
                     botZdorovie[bot] = 260
                     botIshZdorovie[bot] = 260
@@ -861,6 +918,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 6
                     botZdorovie[bot] = 370
                     botIshZdorovie[bot] = 370
@@ -893,6 +952,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг    
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 7
                     botZdorovie[bot] = 520
                     botIshZdorovie[bot] = 520
@@ -930,6 +991,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг    
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 120
                     botIshZdorovie[bot] = 120
@@ -962,6 +1025,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг   
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 180
                     botIshZdorovie[bot] = 180
@@ -994,6 +1059,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг   
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 260
                     botIshZdorovie[bot] = 260
@@ -1026,6 +1093,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты человек или эльф, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 350
                     botIshZdorovie[bot] = 350
@@ -1058,6 +1127,8 @@ def botActivity():  # Создание и управление ботами
                 botLoad = 1
                 botRasa[bot] = 4
                 if tmp == 110: # Гоблин 0 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 3 # Мирный
                     botLvl[bot] = 0
                     botZdorovie[bot] = 50
@@ -1087,6 +1158,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 62   
                     
                 if tmp == 111: # Гоблин 1 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 1    
                     botLvl[bot] = 1
                     botZdorovie[bot] = 100
@@ -1116,6 +1189,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 62   
 
                 if tmp == 112: # Гоблин 2 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 1  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 135
@@ -1145,6 +1220,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 62   
 
                 if tmp == 113: # Гоблин 3 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 1   
                     botLvl[bot] = 3
                     botZdorovie[bot] = 175
@@ -1178,6 +1255,8 @@ def botActivity():  # Создание и управление ботами
                 botLoad = 1 
                 botRasa[bot] = 5
                 if tmp == 103: # Гнолл 1 ур
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2  
                     botLvl[bot] = 1
                     botZdorovie[bot] = 90
@@ -1207,6 +1286,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417  
                     
                 if tmp == 104: # Гнолл 2 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 135
@@ -1236,6 +1317,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417   
 
                 if tmp == 105: # Гнолл 3 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2   
                     botLvl[bot] = 4
                     botZdorovie[bot] = 185
@@ -1265,6 +1348,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417   
 
                 if tmp == 119: # Монстр 1 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2    
                     botLvl[bot] = 1
                     botZdorovie[bot] = 135
@@ -1294,6 +1379,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417  
 
                 if tmp == 120: # Монстр 2 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2     
                     botLvl[bot] = 2
                     botZdorovie[bot] = 195
@@ -1323,6 +1410,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417   
 
                 if tmp == 121: # Монстр 3 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 3
                     botLvl[bot] = 4
                     botZdorovie[bot] = 300
@@ -1352,6 +1441,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417  
 
                 if tmp == 122: # Монстр 4 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 4
                     botLvl[bot] = 6
                     botZdorovie[bot] = 560
@@ -1381,6 +1472,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417  
 
                 if tmp == 123: # Морлок 1 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2    
                     botLvl[bot] = 1
                     botZdorovie[bot] = 70
@@ -1410,6 +1503,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417   
     
                 if tmp == 124: # Морлок 2 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2   
                     botLvl[bot] = 2
                     botZdorovie[bot] = 90
@@ -1439,6 +1534,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417    
     
                 if tmp == 125: # Морлок 3 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2   
                     botLvl[bot] = 3
                     botZdorovie[bot] = 130
@@ -1472,6 +1569,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 200
                     botIshZdorovie[bot] = 200
@@ -1504,6 +1603,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 280
                     botIshZdorovie[bot] = 280
@@ -1532,6 +1633,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417  
 
                 if tmp == 133: # Огр 1 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2   
                     botLvl[bot] = 1
                     botZdorovie[bot] = 130
@@ -1561,6 +1664,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417   
 
                 if tmp == 134: # Огр 2 ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2  
                     botLvl[bot] = 2
                     botZdorovie[bot] = 150
@@ -1590,6 +1695,8 @@ def botActivity():  # Создание и управление ботами
                         botLocation[bot] = 417  
 
                 if tmp == 147: # Красный огненный голем ур.
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botType[bot] = 2 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 300
@@ -1628,6 +1735,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 120
                     botIshZdorovie[bot] = 120
@@ -1660,6 +1769,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 160
                     botIshZdorovie[bot] = 160
@@ -1692,6 +1803,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 220
                     botIshZdorovie[bot] = 220
@@ -1724,6 +1837,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 310
                     botIshZdorovie[bot] = 310
@@ -1756,6 +1871,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 5
                     botZdorovie[bot] = 390
                     botIshZdorovie[bot] = 390
@@ -1788,6 +1905,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 6
                     botZdorovie[bot] = 520
                     botIshZdorovie[bot] = 520
@@ -1820,6 +1939,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 7
                     botZdorovie[bot] = 700
                     botIshZdorovie[bot] = 700
@@ -1852,6 +1973,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 240
                     botIshZdorovie[bot] = 240
@@ -1884,6 +2007,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 100
                     botIshZdorovie[bot] = 100
@@ -1916,6 +2041,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг   
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 135
                     botIshZdorovie[bot] = 135
@@ -1948,6 +2075,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 195
                     botIshZdorovie[bot] = 195
@@ -1980,6 +2109,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 250
                     botIshZdorovie[bot] = 250
@@ -2012,6 +2143,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 5
                     botZdorovie[bot] = 320
                     botIshZdorovie[bot] = 320
@@ -2044,6 +2177,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 6
                     botZdorovie[bot] = 400
                     botIshZdorovie[bot] = 400
@@ -2080,6 +2215,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 1
                     botZdorovie[bot] = 50
                     botIshZdorovie[bot] = 50
@@ -2112,6 +2249,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 2
                     botZdorovie[bot] = 90
                     botIshZdorovie[bot] = 90
@@ -2144,6 +2283,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 145
                     botIshZdorovie[bot] = 145
@@ -2176,6 +2317,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 4
                     botZdorovie[bot] = 190
                     botIshZdorovie[bot] = 190
@@ -2208,6 +2351,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 5
                     botZdorovie[bot] = 245
                     botIshZdorovie[bot] = 245
@@ -2240,6 +2385,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 6
                     botZdorovie[bot] = 315
                     botIshZdorovie[bot] = 315
@@ -2272,6 +2419,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 7
                     botZdorovie[bot] = 395
                     botIshZdorovie[bot] = 395
@@ -2304,6 +2453,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 8
                     botZdorovie[bot] = 500
                     botIshZdorovie[bot] = 500
@@ -2336,6 +2487,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 10
                     botZdorovie[bot] = 1250
                     botIshZdorovie[bot] = 1250
@@ -2368,6 +2521,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг 
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 3
                     botZdorovie[bot] = 175
                     botIshZdorovie[bot] = 175
@@ -2400,6 +2555,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 5
                     botZdorovie[bot] = 285
                     botIshZdorovie[bot] = 285
@@ -2432,6 +2589,8 @@ def botActivity():  # Создание и управление ботами
                         botType[bot] = 1 # Если ты Нежить или Орк, то он тебе друг
                     else:
                         botType[bot] = 2 # Иначе враг  
+                    botNumer[bot] = bot
+                    botVariant[bot] = tmp 
                     botLvl[bot] = 6
                     botZdorovie[bot] = 340
                     botIshZdorovie[bot] = 340
@@ -4850,7 +5009,10 @@ def initGame(heroSelect):  # функция инициации игры
     global botYdacha
     global botZachita
     global botHod
-
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botLocation
     
     global den
     global mesiac
@@ -4860,6 +5022,8 @@ def initGame(heroSelect):  # функция инициации игры
     botNumer.clear()
     botType.clear()
     botStep.clear()
+    botVariant.clear()
+    botAlgoritm.clear()
     xBot.clear()
     yBot.clear()
     botExpirience.clear()
@@ -4876,30 +5040,32 @@ def initGame(heroSelect):  # функция инициации игры
     botYdacha.clear()
     botZachita.clear()
     botHod.clear()
+    botLocation.clear()
     n = 0 # Создаём массивы для ботов
     for n in range(1000):
-        botNumer.append(bot)
-        botNumer.append(bot)
-        botType.append(bot)
-        botStep.append(bot)
-        botLocation.append(bot)
-        botMap.append(bot)
-        xBot.append(bot)
-        yBot.append(bot)
-        botExpirience.append(bot)
-        botLvl.append(bot)
-        botRasa.append(bot)
-        botZaklinania.append(bot)
-        botVozdeistvie.append(bot)
-        botIshZdorovie.append(bot)
-        botZdorovie.append(bot)
-        botMana.append(bot)
-        botIshMana.append(bot)
-        botSila.append(bot)
-        botLovkost.append(bot)
-        botYdacha.append(bot)
-        botZachita.append(bot)
-        botHod.append(bot)
+        botNumer.append(n)
+        botType.append(n)
+        botStep.append(n)
+        botLocation.append(n)
+        botMap.append(n)
+        xBot.append(n)
+        yBot.append(n)
+        botExpirience.append(n)
+        botLvl.append(n)
+        botRasa.append(n)
+        botZaklinania.append(n)
+        botVozdeistvie.append(n)
+        botIshZdorovie.append(n)
+        botZdorovie.append(n)
+        botMana.append(n)
+        botIshMana.append(n)
+        botSila.append(n)
+        botLovkost.append(n)
+        botYdacha.append(n)
+        botZachita.append(n)
+        botHod.append(n)
+        botAlgoritm.append(n)
+        botVariant.append(n)
     n = 0  
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
