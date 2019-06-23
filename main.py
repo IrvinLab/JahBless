@@ -46,7 +46,7 @@ botStep = [] # Сколько шагов у бота
 botLocation = [] # Локация бота
 botMap = [] # Карта на которой
 botVariant = [] # Номер/вариант бота. т.е. что это именно за бот эльф 2 уровня или скелет 5 уровня
-botAlgoritm = []
+botAlgoritm = [] # Алгоритм бота 1 - псих, 2 - мирный, 3 - добро, 4 - зло
 xBot = []
 yBot = []
 botExpirience = []
@@ -74,6 +74,7 @@ loadButton = 0
 saveButton = 0
 netGameButton = 0
 settingsButton = 0
+buttonNextStep = 0 # Кнопка следующего хода
 world = [] # Это игровое поле
 tmp = 0
 temp = 0 # Отладочная переменная, нужна для отслеживания состояния поля
@@ -101,6 +102,35 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
+def botVragBlizko(nomerBota):
+    global n
+    global bot 
+    global botType
+    global botStep
+    global xBot
+    global yBot
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botIshZdorovie
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+    global world
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botLocation
+    
+    print (nomerBota, botVariant[nomerBota], " Вижу врага")
+
 def botGoing():
     global n
     global bot 
@@ -127,9 +157,16 @@ def botGoing():
     global botVariant
     global botAlgoritm
     global botLocation
+    global buttonNextStep
+    
     for n in range(1000):
+        i = 0
         if botZdorovie[n] > 0:
-            pass
+            for i in range(botLovkost[n]): # Обрабатываем ходы
+                if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+31] >= 50 or world[botLocation[n]-31] >= 50:  # Если кто-то рядом с этим ботом тогда
+                    botVragBlizko(n)
+    
+    buttonNextStep = 0 # Разрешаем нажатие кнопки "Следующий ход/ночь"            
  
 def botActivity():  # Создание и управление ботами
     global bot 
@@ -4432,7 +4469,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Колдун"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Белый Маг 3 уровня"
+        variableName = u"Белый Маг 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
         variableName = u"Отголосок славных лет, когда Гильдия"
@@ -5066,6 +5103,30 @@ def initGame(heroSelect):  # функция инициации игры
         botHod.append(n)
         botAlgoritm.append(n)
         botVariant.append(n)
+        
+        botNumer[n] = 0
+        botType[n] = 0
+        botStep[n] = 0
+        botLocation[n] = 0
+        botMap[n] = 0
+        xBot[n] = 0
+        yBot[n] = 0
+        botExpirience[n] = 0
+        botLvl[n] = 0
+        botRasa[n] = 0
+        botZaklinania[n] = 0
+        botVozdeistvie[n] = 0
+        botIshZdorovie[n] = 0
+        botZdorovie[n] = 0
+        botMana[n] = 0
+        botIshMana[n] = 0
+        botSila[n] = 0
+        botLovkost[n] = 0
+        botYdacha[n] = 0
+        botZachita[n] = 0
+        botHod[n] = 0
+        botAlgoritm[n] = 0
+        botVariant[n] = 0
     n = 0  
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
@@ -9867,8 +9928,9 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                if newGame == 1:
+                if newGame == 1 and buttonNextStep == 0:
                     pygame.time.delay(300)
+                    buttonNextStep = 1 # Переводим кнопу в неактивный режим
                     hod = lovkost
                     heroPanel(hero)
                     botActivity() 
