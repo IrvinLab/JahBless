@@ -7751,1063 +7751,775 @@ while True:
             if i.button == 1: doebaca(287)    
             
     #===================================================10 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(288)
+            if i.button == 1: doebaca(288)
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(289)
+            if i.button == 1: doebaca(289)
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(290)            
+            if i.button == 1: doebaca(290)            
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(291)
+            if i.button == 1: doebaca(291)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(292) 
+            if i.button == 1: doebaca(292) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(293)
+            if i.button == 1: doebaca(293)
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(294)
+            if i.button == 1: doebaca(294)
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(295)            
+            if i.button == 1: doebaca(295)            
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(296)
+            if i.button == 1: doebaca(296)
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(297) 
+            if i.button == 1: doebaca(297) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
-        if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(298)
+        if i.type == pygame.MOUSEBUTTONDOWN: 
+            if i.button == 1: doebaca(298)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(299)
+            if i.button == 1: doebaca(299)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(300)            
+            if i.button == 1: doebaca(300)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(301)
+            if i.button == 1: doebaca(301)
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(302) 
+            if i.button == 1: doebaca(302) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(303)
+            if i.button == 1: doebaca(303)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(304)
+            if i.button == 1: doebaca(304)
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(305)            
+            if i.button == 1: doebaca(305)            
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(306)
+            if i.button == 1: doebaca(306)
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(307)
+            if i.button == 1: doebaca(307)
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(308)
+            if i.button == 1: doebaca(308)
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(309)
+            if i.button == 1: doebaca(309)
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(310)            
+            if i.button == 1: doebaca(310)            
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(311)
+            if i.button == 1: doebaca(311)
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(312) 
+            if i.button == 1: doebaca(312) 
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(313)
+            if i.button == 1: doebaca(313)
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(314)
+            if i.button == 1: doebaca(314)
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(315)            
+            if i.button == 1: doebaca(315)            
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(316)  
+            if i.button == 1: doebaca(316)  
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(317)
+            if i.button == 1: doebaca(317)
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(318)    
+            if i.button == 1: doebaca(318)    
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>385 and (mos_y<415):
-        y_inside = True
+    if mos_y>385 and (mos_y<415): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(319)    
+            if i.button == 1: doebaca(319)    
             
     #===================================================11 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(320)
+            if i.button == 1: doebaca(320)
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(321)
+            if i.button == 1: doebaca(321)
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(322)            
+            if i.button == 1: doebaca(322)            
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(323)
+            if i.button == 1: doebaca(323)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(324) 
+            if i.button == 1: doebaca(324) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(325)
+            if i.button == 1: doebaca(325)
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(326)
+            if i.button == 1: doebaca(326)
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(327)            
+            if i.button == 1: doebaca(327)            
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(328)
+            if i.button == 1: doebaca(328)
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(329) 
+            if i.button == 1: doebaca(329) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(330)
+            if i.button == 1: doebaca(330)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(331)
+            if i.button == 1: doebaca(331)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(332)            
+            if i.button == 1: doebaca(332)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(333)
+            if i.button == 1: doebaca(333)
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(334) 
+            if i.button == 1: doebaca(334) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(335)
+            if i.button == 1: doebaca(335)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(336)
+            if i.button == 1: doebaca(336)
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(337)            
+            if i.button == 1: doebaca(337)            
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(338)
+            if i.button == 1: doebaca(338)
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(339)
+            if i.button == 1: doebaca(339)
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(340)
+            if i.button == 1: doebaca(340)
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(341)
+            if i.button == 1: doebaca(341)
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(342)            
+            if i.button == 1: doebaca(342)            
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(343)
+            if i.button == 1: doebaca(343)
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(344) 
+            if i.button == 1: doebaca(344) 
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(345)
+            if i.button == 1: doebaca(345)
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(346)
+            if i.button == 1: doebaca(346)
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(347)            
+            if i.button == 1: doebaca(347)            
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(348)  
+            if i.button == 1: doebaca(348)  
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(349)
+            if i.button == 1: doebaca(349)
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(350)    
+            if i.button == 1: doebaca(350)    
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>417 and (mos_y<447):
-        y_inside = True
+    if mos_y>417 and (mos_y<447): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(351)  
+            if i.button == 1: doebaca(351)  
             
     #===================================================12 ряд===============================================
-    if mos_x>17 and (mos_x<47): 
-        x_inside = True
+    if mos_x>17 and (mos_x<47): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(352)
+            if i.button == 1: doebaca(352)
     
-    if mos_x>49 and (mos_x<79): 
-        x_inside = True
+    if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(353)
+            if i.button == 1: doebaca(353)
     
-    if mos_x>81 and (mos_x<111): 
-        x_inside = True
+    if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(354)            
+            if i.button == 1: doebaca(354)            
     
-    if mos_x>113 and (mos_x<143):
-        x_inside = True
+    if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(355)
+            if i.button == 1: doebaca(355)
                 
-    if mos_x>145 and (mos_x<175): 
-        x_inside = True
+    if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(356) 
+            if i.button == 1: doebaca(356) 
                
-    if mos_x>176 and (mos_x<207): 
-        x_inside = True
+    if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(357)
+            if i.button == 1: doebaca(357)
     
-    if mos_x>209 and (mos_x<239): 
-        x_inside = True
+    if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(358)
+            if i.button == 1: doebaca(358)
     
-    if mos_x>241 and (mos_x<271): 
-        x_inside = True
+    if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(359)            
+            if i.button == 1: doebaca(359)            
     
-    if mos_x>273 and (mos_x<303): 
-        x_inside = True
+    if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(360)
+            if i.button == 1: doebaca(360)
                 
-    if mos_x>305 and (mos_x<335):
-        x_inside = True
+    if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(361) 
+            if i.button == 1: doebaca(361) 
                 
-    if mos_x>337 and (mos_x<367): 
-        x_inside = True
+    if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(362)
+            if i.button == 1: doebaca(362)
     
-    if mos_x>369 and (mos_x<399): 
-        x_inside = True
+    if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(363)
+            if i.button == 1: doebaca(363)
     
-    if mos_x>401 and (mos_x<431):
-        x_inside = True
+    if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(364)            
+            if i.button == 1: doebaca(364)            
     
-    if mos_x>433 and (mos_x<463):
-        x_inside = True
+    if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(365)
+            if i.button == 1: doebaca(365)
                 
-    if mos_x>465 and (mos_x<495): 
-        x_inside = True
+    if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(366) 
+            if i.button == 1: doebaca(366) 
                
-    if mos_x>497 and (mos_x<527): 
-        x_inside = True
+    if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(367)
+            if i.button == 1: doebaca(367)
     
-    if mos_x>529 and (mos_x<559): 
-        x_inside = True
+    if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(368)
+            if i.button == 1: doebaca(368)
     
-    if mos_x>561 and (mos_x<591):
-        x_inside = True
+    if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(369)            
+            if i.button == 1: doebaca(369)            
     
-    if mos_x>593 and (mos_x<623): 
-        x_inside = True
+    if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(370)
+            if i.button == 1: doebaca(370)
                 
-    if mos_x>625 and (mos_x<655): 
-        x_inside = True
+    if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(371)
+            if i.button == 1: doebaca(371)
                 
-    if mos_x>657 and (mos_x<687): 
-        x_inside = True
+    if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(372)
+            if i.button == 1: doebaca(372)
     
-    if mos_x>689 and (mos_x<719):
-        x_inside = True
+    if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(373)
+            if i.button == 1: doebaca(373)
     
-    if mos_x>721 and (mos_x<751): 
-        x_inside = True
+    if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(374)            
+            if i.button == 1: doebaca(374)            
     
-    if mos_x>753 and (mos_x<783): 
-        x_inside = True
+    if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(375)
+            if i.button == 1: doebaca(375)
                 
-    if mos_x>785 and (mos_x<815): 
-        x_inside = True
+    if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(376) 
+            if i.button == 1: doebaca(376) 
                
-    if mos_x>817 and (mos_x<847): 
-        x_inside = True
+    if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(377)
+            if i.button == 1: doebaca(377)
     
-    if mos_x>849 and (mos_x<879): 
-        x_inside = True
+    if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(378)
+            if i.button == 1: doebaca(378)
     
-    if mos_x>881 and (mos_x<911): 
-        x_inside = True
+    if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(379)            
+            if i.button == 1: doebaca(379)            
     
-    if mos_x>913 and (mos_x<943):
-        x_inside = True
+    if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(380)  
+            if i.button == 1: doebaca(380)  
                 
-    if mos_x>945 and (mos_x<975):
-        x_inside = True
+    if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(381)
+            if i.button == 1: doebaca(381)
                 
-    if mos_x>977 and (mos_x<1007): 
-        x_inside = True
+    if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(382)    
+            if i.button == 1: doebaca(382)    
                 
-    if mos_x>1009 and (mos_x<1040): 
-        x_inside = True
+    if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
-    if mos_y>449 and (mos_y<479):
-        y_inside = True
+    if mos_y>449 and (mos_y<479): y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(383) 
+            if i.button == 1: doebaca(383) 
             
     #===================================================13 ряд===============================================
     if mos_x>17 and (mos_x<47): 
