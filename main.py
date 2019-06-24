@@ -102,13 +102,13 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
-def botVragBlizko(nomerBota):
+def botVragBlizko(nomerBota, xBota, yBota, locat, vari):
     global n
     global bot 
     global botType
     global botStep
-    global xBot
-    global yBot
+    #global xBot
+    #global yBot
     global botExpirience
     global botLvl
     global botRasa
@@ -130,14 +130,14 @@ def botVragBlizko(nomerBota):
     global botLocation
     
     print (nomerBota, botVariant[nomerBota], " Вижу врага")
+    
 
 def botGoing(): # Эта функция вызывается если рядом находится враг
     global n
-    global bot 
     global botType
     global botStep
-    global xBot
-    global yBot
+    #global xBot
+    #global yBot
     global botExpirience
     global botLvl
     global botRasa
@@ -165,24 +165,50 @@ def botGoing(): # Эта функция вызывается если рядом
             for i in range(botLovkost[n]): # Обрабатываем ходы
                 if botLocation[n] >= 1 and botLocation[n] <= 30: # Если бот находится на верхней кромке карты
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на верхней кромке мы кого-то видим
-                        botVragBlizko(n)
+                        botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                      
                 elif botLocation[n] <= 446 and botLocation[n] >= 417: # Если бот находится на нижней кромке карты
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50:  # Если, находясь на нижней кромке мы кого-то видим      
-                        botVragBlizko(n)
+                        botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                         
                 elif botLocation[n] == 63 or botLocation[n] == 95 or botLocation[n] == 127 or botLocation[n] == 159 or botLocation[n] == 191 or botLocation[n] == 223 or botLocation[n] == 255 or botLocation[n] == 287 or botLocation[n] == 319 or botLocation[n] == 351 or botLocation[n] == 383 or botLocation[n] == 415: # Если мы находимся на правой кромке карты
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+33] >= 50: # Если, находясь на правой кромке карты мы кого-то видим
-                        botVragBlizko(n)
+                        botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                         
                 elif botLocation[n] == 32 or botLocation[n] == 64 or botLocation[n] == 96 or botLocation[n] == 128 or botLocation[n] == 160 or botLocation[n] == 192 or botLocation[n] == 224 or botLocation[n] == 256 or botLocation[n] == 288 or botLocation[n] == 320 or botLocation[n] == 352 or botLocation[n] == 384:  # Если бот находится на левой кромке карты
                     if world[botLocation[n]+1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на правой кромке карты мы кого-то видим        
-                        botVragBlizko(n)
+                        botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                         
                 else:
                     if world[botLocation[n]+1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]+31] or world[botLocation[n]-1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50: 
-                        botVragBlizko(n)      
+                        botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
     
+        else:
+            pass
+            #pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
+            #botType[n] = 0
+            #botStep[n] = 0
+            #xBot[n] = 0
+            #yBot[n] = 0
+            #botExpirience[n] = 0
+            #botLvl[n] = 0
+            #botRasa[n] = 0
+            #botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            #botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            #botIshZdorovie[n] = 0
+            #botZdorovie[n] = 0
+            #botMana[n] = 0
+            #botIshMana[n] = 0
+            #botSila[n] = 0
+            #botLovkost[n] = 0
+            #botYdacha[n] = 0
+            #botZachita[n] = 0
+            #botHod[n] = 0
+            #world[botLocation[n]] = 0
+            #botNumer[n] = 0
+            #botVariant[n] = 0
+            #botAlgoritm[n] = 0
+            #botLocation[n] = 0
     
     buttonNextStep = 0 # Разрешаем нажатие кнопки "Следующий ход/ночь"            
               
@@ -2681,7 +2707,7 @@ def botActivity():  # Создание и управление ботами
             bot += 1
         worldUpdate()
         # Конец создания бота
-    
+     
     botGoing()
     # ===================================================================================================================    
 
@@ -5513,21 +5539,21 @@ def initGame(heroSelect):  # функция инициации игры
     yMap = 96 
     for n in range(448):
         tmp = int(random.random()*22)
-        if tmp == 5:
-            if n != 30 or n != 62 or n != 63 or n != 384 or n != 385 or n != 471:
+        if n == 30 or n == 62 or n == 63 or n == 384 or n == 385 or n == 471:
+            pass
+        else:
+            if tmp == 5:
                 world[n] = 1
                 pix = pygame.image.load('Images/mount.jpg') 
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
                 sc.blit(pix, (xMap,yMap))
-        elif tmp == 6:
-            if n != 30 or n != 62 or n != 63 or n != 384 or n != 385 or n != 471:
+            elif tmp == 6:
                 world[n] = 2
                 pix = pygame.image.load('Images/water.jpg') 
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xMap,yMap))
-        
+                sc.blit(pix, (xMap,yMap)) 
         xMap += 32    
         if xMap >= 1040:
             xMap = 16
