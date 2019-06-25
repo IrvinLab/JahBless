@@ -129,7 +129,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari):
     global botAlgoritm
     global botLocation
     
-    print (nomerBota, "Бот: ", botVariant[nomerBota], " Вижу врага, я здесь", botLocation[nomerBota])
+    #print (nomerBota, "Бот: ", botVariant[nomerBota], " Вижу врага, я здесь", botLocation[nomerBota])
     
 def botAlgoritmes(yaBot):
     global botType
@@ -159,7 +159,7 @@ def botAlgoritmes(yaBot):
     if botAlgoritm[yaBot] == 3: # Идём вниз 
         if botStep[yaBot] == 0 and world[botLocation[yaBot]+32] == 0:
             if world[botLocation[yaBot]+32] == 0:
-                if botLocation[yaBot] <= 446 and botLocation[yaBot] >= 417: # если дошли до низа карты, то идём налево
+                if botLocation[yaBot] <= 446 and botLocation[yaBot] >= 385: # если дошли до низа карты, то идём налево
                     botStep[yaBot] = 2  
                     print("Я дошёл до низа")                    
                 pix = pygame.image.load('Images/weed.jpg')
@@ -172,7 +172,9 @@ def botAlgoritmes(yaBot):
                 botLocation[yaBot] += 32
                 worldUpdate()
                 print("Лал, я иду вниз")
-            else:
+            
+            if world[botLocation[yaBot]+32] != 0:
+                print("Попробуем идти вбок")
                 if world[botLocation[yaBot]-1] == 0: # Если нельзя идти вниз то пробуем двинуться влево
                     pix = pygame.image.load('Images/weed.jpg')
                     x_len = pix.get_width()
@@ -218,7 +220,7 @@ def botAlgoritmes(yaBot):
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-            xBot[yaBot] -= 32
+            yBot[yaBot] -= 32
             world[botLocation[yaBot]] = 0
             world[botLocation[yaBot]-32] = botVariant[yaBot]
             botLocation[yaBot] -= 32
@@ -260,39 +262,29 @@ def botGoing(): # Эта функция вызывается если рядом
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на верхней кромке мы кого-то видим
                         botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                     else: 
-                        pass
-                        print("up ", n, botVariant[n], botLocation[n])
                         botAlgoritmes(n)                    
                          
                 elif botLocation[n] <= 446 and botLocation[n] >= 417: # Если бот находится на нижней кромке карты
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50:  # Если, находясь на нижней кромке мы кого-то видим      
                         botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                     else:
-                        pass
-                        print("down ", n, botVariant[n], botLocation[n])
                         botAlgoritmes(n) 
    
                 elif botLocation[n] == 63 or botLocation[n] == 95 or botLocation[n] == 127 or botLocation[n] == 159 or botLocation[n] == 191 or botLocation[n] == 223 or botLocation[n] == 255 or botLocation[n] == 287 or botLocation[n] == 319 or botLocation[n] == 351 or botLocation[n] == 383 or botLocation[n] == 415: # Если мы находимся на правой кромке карты
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+33] >= 50: # Если, находясь на правой кромке карты мы кого-то видим
                         botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                     else:
-                        pass
-                        botAlgoritmes(n)  
-                        print("right ", n, botVariant[n], botLocation[n])                        
+                        botAlgoritmes(n)                        
                 elif botLocation[n] == 32 or botLocation[n] == 64 or botLocation[n] == 96 or botLocation[n] == 128 or botLocation[n] == 160 or botLocation[n] == 192 or botLocation[n] == 224 or botLocation[n] == 256 or botLocation[n] == 288 or botLocation[n] == 320 or botLocation[n] == 352 or botLocation[n] == 384:  # Если бот находится на левой кромке карты
                     if world[botLocation[n]+1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на правой кромке карты мы кого-то видим        
                         botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                     else:
-                        pass
-                        print("left ", n, botVariant[n], botLocation[n])
                         botAlgoritmes(n) 
                         
                 else:
                     if world[botLocation[n]+1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]+31] >= 50 or world[botLocation[n]-1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50: 
                         botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n])
                     else:
-                        pass
-                        print("else ", n, botVariant[n], botLocation[n])
                         botAlgoritmes(n)  
                                                  
         else:
