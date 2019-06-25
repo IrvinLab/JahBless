@@ -157,10 +157,10 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
     global botLocation
     jah = 0
     if botAlgoritm[yaBot] == 3: # Алгоритм добра
-        if botStep[yaBot] == 0 and world[botLocation[yaBot]+32] == 0:
+        if botStep[yaBot] == 0 and world[botLocation[yaBot]+32] == 0: # Идём вниз
             if world[botLocation[yaBot]+32] == 0:
                 if botLocation[yaBot] <= 414 and botLocation[yaBot] >= 353: # если дошли до низа карты, то идём налево
-                    botStep[yaBot] = 2  
+                    botStep[yaBot] = 1  
                     print("Я дошёл до низа")                    
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -241,7 +241,19 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                         world[botLocation[yaBot]] = 0
                         world[botLocation[yaBot]-32] = botVariant[yaBot]
                         botLocation[yaBot] -= 32
-                        worldUpdate()                    
+                        worldUpdate() 
+                    
+                    if world[botLocation[yaBot]-32] != 0:
+                        botStep[yaBot] = 1
+                        pix = pygame.image.load('Images/weed.jpg')
+                        x_len = pix.get_width()
+                        y_len = pix.get_height() 
+                        sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
+                        yBot[yaBot] += 32
+                        world[botLocation[yaBot]] = 0
+                        world[botLocation[yaBot]+32] = botVariant[yaBot]
+                        botLocation[yaBot] += 32
+                        worldUpdate()                      
         
         if botStep[yaBot] == 1: # Идём вверх
             if world[botLocation[yaBot]-32] == 0: 
