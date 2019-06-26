@@ -130,10 +130,36 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):
     global botLocation
     jah = 0
     if botRasa[nomerBota] == 1:
-        print (nomerBota, "Бот: ", botVariant[nomerBota], " Вижу врага, я здесь", botLocation[nomerBota])
         for jah in range(1000):
             if botLocation[jah] == local:
-                print ("Это бот номер:", jah, "Расы: ", botRasa[jah])
+                print (vari, "Я человек, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                if botRasa[jah] == 1 or botRasa[jah]-1 == 1 or botRasa[jah]-2 == 1 or botRasa[jah]-3 == 1:
+                    botAlgoritmes(nomerBota)
+                    print("Это свой")
+                    
+    if botRasa[nomerBota] == 2:
+        for jah in range(1000):
+            if botLocation[jah] == local:
+                print (vari, "Я эльф, вижу жижу номер:", jah, "Расы: ", botRasa[jah])
+                if botRasa[jah] == 2 or botRasa[jah]-1 == 2 or botRasa[jah]-2 == 2 or botRasa[jah]+1 == 2:
+                    botAlgoritmes(nomerBota)
+                    print ("Это свой")
+                    
+    if botRasa[nomerBota] == 3:
+        for jah in range(1000):
+            if botLocation[jah] == local:
+                print (vari, "Я гном, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                if botRasa[jah] == 3 or botRasa[jah]-1 == 3 or botRasa[jah]+1 == 3 or botRasa[jah]+2 == 3:
+                    botAlgoritmes(nomerBota)
+                    print ("Это свой")
+                    
+    if botRasa[nomerBota] == 4:
+        for jah in range(1000):
+            if botLocation[jah] == local:
+                print (vari, "Я гоблин, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                if botRasa[jah] == 4 or botRasa[jah]+1 == 4 or botRasa[jah]+2 == 4 or botRasa[jah]+3 == 4:
+                    botAlgoritmes(nomerBota)
+                    print ("Это свой")                
     
 def botAlgoritmes(yaBot): # Тут мы обрабатываем алгоритмы ботов
     global botType
