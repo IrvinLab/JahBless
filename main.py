@@ -162,9 +162,6 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
     if botAlgoritm[yaBot] == 3: # =================================================== Алгоритм добра =======================================
         if botAlgoritm[yaBot] == 3: # Идём вниз 
             if botStep[yaBot] == 0 and world[botLocation[yaBot]+32] == 0:
-                if botLocation[yaBot] <= 351 and botLocation[yaBot] >= 383: # если дошли до низа карты, то идём налево
-                        botStep[yaBot] = 2 
-                        
                 if world[botLocation[yaBot]+32] == 0:   
                     pix = pygame.image.load('Images/weed.jpg')
                     x_len = pix.get_width()
@@ -175,6 +172,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                     world[botLocation[yaBot]+32] = botVariant[yaBot]
                     botLocation[yaBot] += 32
                     worldUpdate()
+                    print("Вниз")
                 
                 if world[botLocation[yaBot]+32] != 0:
                     if world[botLocation[yaBot]-1] == 0: # Если нельзя идти вниз то пробуем двинуться влево
@@ -187,6 +185,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                         world[botLocation[yaBot]-1] = botVariant[yaBot]
                         botLocation[yaBot] -= 1
                         worldUpdate()  
+                        print("Вниз не могу, Влево")
                     
                     if world[botLocation[yaBot]-1] != 0: # Если нельзя влево пойти, то мы идём вправо
                         if world[botLocation[yaBot]+1] == 0:
@@ -199,10 +198,13 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                             world[botLocation[yaBot]+1] = botVariant[yaBot]
                             botLocation[yaBot] += 1
                             worldUpdate() 
+                            print("Влево не могу - Вправо")
                         
                         if world[botLocation[yaBot]+1] != 0:  # Если ни влево ни в право нельзя - идём вверх
                             botStep[yaBot] = 1                
-
+            if botLocation[yaBot] <= 416 and botLocation[yaBot] >= 384: # если дошли до низа карты, то идём налево
+                        botStep[yaBot] = 1 
+                        
             if botStep[yaBot] == 2: # Идём налево
                 if world[botLocation[yaBot]-1] == 0 and botLocation[yaBot] >= 63:
                     botStep[yaBot] = 1
@@ -215,10 +217,34 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                     world[botLocation[yaBot]-1] = botVariant[yaBot]
                     botLocation[yaBot] -= 1
                     worldUpdate()
+                    print("Влево")
+                if world[botLocation[yaBot]-1] != 0: 
+                    if world[botLocation[yaBot]+1] == 0:
+                        botStep[yaBot] = 1
+                        pix = pygame.image.load('Images/weed.jpg')
+                        x_len = pix.get_width()
+                        y_len = pix.get_height() 
+                        sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
+                        xBot[yaBot] += 32
+                        world[botLocation[yaBot]] = 0
+                        world[botLocation[yaBot]+1] = botVariant[yaBot]
+                        botLocation[yaBot] += 1
+                        worldUpdate()
+                        print("Вправо") 
+                        if world[botLocation[yaBot]+1] == 0 and xBot[yaBot] < 1008:
+                            botStep[yaBot] = 1
+                            pix = pygame.image.load('Images/weed.jpg')
+                            x_len = pix.get_width()
+                            y_len = pix.get_height() 
+                            sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
+                            xBot[yaBot] += 32
+                            world[botLocation[yaBot]] = 0
+                            world[botLocation[yaBot]+1] = botVariant[yaBot]
+                            botLocation[yaBot] += 1
+                            worldUpdate()
+                            print("Ещё сас вправо")
+                                                
                 
-                if botLocation[yaBot] >= 63:
-                    botStep[yaBot] = 0                
-
             if botStep[yaBot] == 1: # Идём вверх
                 if world[botLocation[yaBot]-32] == 0 and botLocation[yaBot] >= 63:
                     botStep[yaBot] = 2 
@@ -231,8 +257,12 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                     world[botLocation[yaBot]-32] = botVariant[yaBot]
                     botLocation[yaBot] -= 32
                     worldUpdate()  
+                    print("Вверх")
+                    
+                if world[botLocation[yaBot]-32] != 0:
+                    botStep[yaBot] = 2                
                 
-                if botLocation[yaBot] >= 63:
+                if botLocation[yaBot] >= 63 and botLocation[yaBot] <= 32:
                     botStep[yaBot] = 0                 
         
         if botStep[yaBot] == 1 or botStep[yaBot] == 2 and botLocation[yaBot] <= 33 and botLocation[yaBot] >= 62: botStep[yaBot] = 0 
