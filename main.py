@@ -128,10 +128,12 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):
     global botVariant
     global botAlgoritm
     global botLocation
-    
+    jah = 0
     if botRasa[nomerBota] == 1:
-        
         print (nomerBota, "Бот: ", botVariant[nomerBota], " Вижу врага, я здесь", botLocation[nomerBota])
+        for jah in range(1000):
+            if botLocation[jah] == local:
+                print ("Это бот номер:", jah, "Расы: ", botRasa[jah])
     
 def botAlgoritmes(yaBot): # Тут мы обрабатываем алгоритмы ботов
     global botType
@@ -157,27 +159,53 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
     global botVariant
     global botAlgoritm
     global botLocation
-    jah = 0
     if botAlgoritm[yaBot] == 3: # =================================================== Алгоритм добра =======================================
-        if botStep[yaBot] == 0: # Идём вниз
-            if world[botLocation[yaBot]+32] == 0 and yBot[yaBot] < 512:                   
-                pix = pygame.image.load('Images/weed.jpg')
-                x_len = pix.get_width()
-                y_len = pix.get_height() 
-                sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                yBot[yaBot] += 32
-                world[botLocation[yaBot]] = 0
-                world[botLocation[yaBot]+32] = botVariant[yaBot]
-                botLocation[yaBot] += 32
-                worldUpdate() 
-                print("Лал, я иду вниз", botLocation[yaBot])
-                if botLocation[yaBot] <= 414 and botLocation[yaBot] >= 353: # если дошли до низа карты, то идём налево
+        if botAlgoritm[yaBot] == 3: # Идём вниз 
+            if botStep[yaBot] == 0 and world[botLocation[yaBot]+32] == 0:
+                if botLocation[yaBot] <= 351 and botLocation[yaBot] >= 383: # если дошли до низа карты, то идём налево
+                        botStep[yaBot] = 2 
+                        
+                if world[botLocation[yaBot]+32] == 0:   
+                    pix = pygame.image.load('Images/weed.jpg')
+                    x_len = pix.get_width()
+                    y_len = pix.get_height() 
+                    sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
+                    yBot[yaBot] += 32
+                    world[botLocation[yaBot]] = 0
+                    world[botLocation[yaBot]+32] = botVariant[yaBot]
+                    botLocation[yaBot] += 32
+                    worldUpdate()
+                
+                if world[botLocation[yaBot]+32] != 0:
+                    if world[botLocation[yaBot]-1] == 0: # Если нельзя идти вниз то пробуем двинуться влево
+                        pix = pygame.image.load('Images/weed.jpg')
+                        x_len = pix.get_width()
+                        y_len = pix.get_height() 
+                        sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
+                        xBot[yaBot] -= 32
+                        world[botLocation[yaBot]] = 0
+                        world[botLocation[yaBot]-1] = botVariant[yaBot]
+                        botLocation[yaBot] -= 1
+                        worldUpdate()  
+                    
+                    if world[botLocation[yaBot]-1] != 0: # Если нельзя влево пойти, то мы идём вправо
+                        if world[botLocation[yaBot]+1] == 0:
+                            pix = pygame.image.load('Images/weed.jpg')
+                            x_len = pix.get_width()
+                            y_len = pix.get_height() 
+                            sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
+                            xBot[yaBot] += 32
+                            world[botLocation[yaBot]] = 0
+                            world[botLocation[yaBot]+1] = botVariant[yaBot]
+                            botLocation[yaBot] += 1
+                            worldUpdate() 
+                        
+                        if world[botLocation[yaBot]+1] != 0:  # Если ни влево ни в право нельзя - идём вверх
+                            botStep[yaBot] = 1                
+
+            if botStep[yaBot] == 2: # Идём налево
+                if world[botLocation[yaBot]-1] == 0 and botLocation[yaBot] >= 63:
                     botStep[yaBot] = 1
-                    print("Я дошёл до низа")
-            
-            if world[botLocation[yaBot]+32] != 0:
-                print("Попробуем идти вбок")
-                if world[botLocation[yaBot]-1] == 0 and xBot[yaBot] > 16: # Если нельзя идти вниз то пробуем двинуться влево
                     pix = pygame.image.load('Images/weed.jpg')
                     x_len = pix.get_width()
                     y_len = pix.get_height() 
@@ -186,45 +214,14 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                     world[botLocation[yaBot]] = 0
                     world[botLocation[yaBot]-1] = botVariant[yaBot]
                     botLocation[yaBot] -= 1
-                    worldUpdate()  
-                    print("Предпядстивие, попробуй пойти влево")
+                    worldUpdate()
                 
-                if world[botLocation[yaBot]-1] != 0:
-                    if world[botLocation[yaBot]+1] == 0 and xBot[yaBot] < 1008: # Если нельзя влево пойти, то мы идём вправо
-                        botStep[yaBot] = 2
-                        pix = pygame.image.load('Images/weed.jpg')
-                        x_len = pix.get_width()
-                        y_len = pix.get_height() 
-                        sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                        xBot[yaBot] += 32
-                        world[botLocation[yaBot]] = 0
-                        world[botLocation[yaBot]+1] = botVariant[yaBot]
-                        botLocation[yaBot] += 1
-                        worldUpdate() 
-                        print("Пробую идти вправо")
-                    
-                    if world[botLocation[yaBot]+1] != 0:  # Если ни влево ни в право нельзя - идём вверх
-                        print("Хуй с ним, я вверх пойду")
-                        botStep[yaBot] = 2                        
-                               
-        
-        if botStep[yaBot] == 2: # Идём налево
-            if world[botLocation[yaBot]-1] == 0 and xBot[yaBot] < 16:
-                botStep[yaBot] = 1
-                pix = pygame.image.load('Images/weed.jpg')
-                x_len = pix.get_width()
-                y_len = pix.get_height() 
-                sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                xBot[yaBot] -= 32
-                world[botLocation[yaBot]] = 0
-                world[botLocation[yaBot]-1] = botVariant[yaBot]
-                botLocation[yaBot] -= 1
-                worldUpdate()
-                print("Программа 2, пробую идти направо")
-                
-            if world[botLocation[yaBot]-1] != 0: # Если налево невышло, идём ввехр
-                if world[botLocation[yaBot]-32] == 0 and xBot[yaBot] > 1008:
-                    botStep[yaBot] = 1
+                if botLocation[yaBot] >= 63:
+                    botStep[yaBot] = 0                
+
+            if botStep[yaBot] == 1: # Идём вверх
+                if world[botLocation[yaBot]-32] == 0 and botLocation[yaBot] >= 63:
+                    botStep[yaBot] = 2 
                     pix = pygame.image.load('Images/weed.jpg')
                     x_len = pix.get_width()
                     y_len = pix.get_height() 
@@ -233,90 +230,10 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                     world[botLocation[yaBot]] = 0
                     world[botLocation[yaBot]-32] = botVariant[yaBot]
                     botLocation[yaBot] -= 32
-                    worldUpdate()    
-                    print("Программа 2. Вниз невышло, иду вверх и переключаюсь на Программу 1")   
-                    
-                if world[botLocation[yaBot]-32] != 0:       # если вверх неполучается то вправо         
-                    if world[botLocation[yaBot]+32] == 0 and yBot[yaBot] < 512: 
-                        botStep[yaBot] = 2 
-                        pix = pygame.image.load('Images/weed.jpg')
-                        x_len = pix.get_width()
-                        y_len = pix.get_height() 
-                        sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                        yBot[yaBot] += 32
-                        world[botLocation[yaBot]] = 0
-                        world[botLocation[yaBot]+32] = botVariant[yaBot]
-                        botLocation[yaBot] += 32
-                        worldUpdate() 
-                        print("Программа 2, направо невышло. Иду вниз") 
-                    
-                    if world[botLocation[yaBot]+32] != 0: # Если вниз неполучается то вверх
-                        botStep[yaBot] = 1
-                        pix = pygame.image.load('Images/weed.jpg')
-                        x_len = pix.get_width()
-                        y_len = pix.get_height() 
-                        sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                        xBot[yaBot] += 32
-                        world[botLocation[yaBot]] = 0
-                        world[botLocation[yaBot]+1] = botVariant[yaBot]
-                        botLocation[yaBot] += 1
-                        worldUpdate()  
-                        print("Программа 2. Невышло идти вправо, иду вплево")                        
-        
-        if botStep[yaBot] == 1: # Идём вверх
-            if world[botLocation[yaBot]-32] == 0 and yBot[yaBot] > 96: 
-                botStep[yaBot] = 2 
-                pix = pygame.image.load('Images/weed.jpg')
-                x_len = pix.get_width()
-                y_len = pix.get_height() 
-                sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                yBot[yaBot] -= 32
-                world[botLocation[yaBot]] = 0
-                world[botLocation[yaBot]-32] = botVariant[yaBot]
-                botLocation[yaBot] -= 32
-                worldUpdate() 
-                print("Программа 1. Иду вверх")
+                    worldUpdate()  
                 
-            if world[botLocation[yaBot]-32] != 0: # Если наверх неполучается то вправо
-                if world[botLocation[yaBot]+1] == 0 and xBot[yaBot] < 1008:
-                    botStep[yaBot] = 1
-                    pix = pygame.image.load('Images/weed.jpg')
-                    x_len = pix.get_width()
-                    y_len = pix.get_height() 
-                    sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                    xBot[yaBot] += 32
-                    world[botLocation[yaBot]] = 0
-                    world[botLocation[yaBot]+1] = botVariant[yaBot]
-                    botLocation[yaBot] += 1
-                    worldUpdate() 
-                    print("Программа 1. Невышло идти вверх, иду вправо")
-
-                if world[botLocation[yaBot]+1] != 0:       # если направо неполучается то вниз         
-                    if world[botLocation[yaBot]+32] == 0 and yBot[yaBot] < 512: 
-                        botStep[yaBot] = 2 
-                        pix = pygame.image.load('Images/weed.jpg')
-                        x_len = pix.get_width()
-                        y_len = pix.get_height() 
-                        sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                        yBot[yaBot] += 32
-                        world[botLocation[yaBot]] = 0
-                        world[botLocation[yaBot]+32] = botVariant[yaBot]
-                        botLocation[yaBot] += 32
-                        worldUpdate()   
-                        print("Программа 1. Вправо невышло иду вниз") 
-                    
-                    if world[botLocation[yaBot]+32] != 0:  # Если вниз неполучается идти вниз то идём вверх  
-                        if world[botLocation[yaBot]-32] == 0 and yBot[yaBot] > 96:       
-                            pix = pygame.image.load('Images/weed.jpg')
-                            x_len = pix.get_width()
-                            y_len = pix.get_height() 
-                            sc.blit(pix, (xBot[yaBot],yBot[yaBot]))
-                            yBot[yaBot] -= 32
-                            world[botLocation[yaBot]] = 0
-                            world[botLocation[yaBot]-32] = botVariant[yaBot]
-                            botLocation[yaBot] -= 32
-                            worldUpdate() 
-                            botStep[yaBot] = 1                            
+                if botLocation[yaBot] >= 63:
+                    botStep[yaBot] = 0                 
         
         if botStep[yaBot] == 1 or botStep[yaBot] == 2 and botLocation[yaBot] <= 33 and botLocation[yaBot] >= 62: botStep[yaBot] = 0 
         # Если дошли до второй слева клетки любого ряда то останавливаемся botStep[yaBot] = 3
