@@ -102,7 +102,7 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
-def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):
+def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обрабатываем реакцию на присутвие персонажей и NPC
     global n
     global bot 
     global botType
@@ -132,34 +132,37 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):
     if botRasa[nomerBota] == 1:
         for jah in range(1000):
             if botLocation[jah] == local:
-                print (vari, "Я человек, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                #print (vari, "Я человек, вижу бота номер:", jah, "Расы: ", botRasa[jah])
                 if botRasa[jah] == 1 or botRasa[jah]-1 == 1 or botRasa[jah]-2 == 1 or botRasa[jah]-3 == 1:
                     botAlgoritmes(nomerBota)
-                    print("Это свой")
+                    #print("Это свой")
+                    
+                if botRasa[jah] != 1 or botRasa[jah]-1 != 1 or botRasa[jah]-2 != 1 or botRasa[jah]-3 != 1: # Если это враг, тогда бьём в морду
+                 pass                
                     
     if botRasa[nomerBota] == 2:
         for jah in range(1000):
             if botLocation[jah] == local:
-                print (vari, "Я эльф, вижу жижу номер:", jah, "Расы: ", botRasa[jah])
+                #print (vari, "Я эльф, вижу жижу номер:", jah, "Расы: ", botRasa[jah])
                 if botRasa[jah] == 2 or botRasa[jah]-1 == 2 or botRasa[jah]-2 == 2 or botRasa[jah]+1 == 2:
                     botAlgoritmes(nomerBota)
-                    print ("Это свой")
+                    #print ("Это свой")
                     
     if botRasa[nomerBota] == 3:
         for jah in range(1000):
             if botLocation[jah] == local:
-                print (vari, "Я гном, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                #print (vari, "Я гном, вижу бота номер:", jah, "Расы: ", botRasa[jah])
                 if botRasa[jah] == 3 or botRasa[jah]-1 == 3 or botRasa[jah]+1 == 3 or botRasa[jah]+2 == 3:
                     botAlgoritmes(nomerBota)
-                    print ("Это свой")
+                    #print ("Это свой")
                     
     if botRasa[nomerBota] == 4:
         for jah in range(1000):
             if botLocation[jah] == local:
-                print (vari, "Я гоблин, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                #print (vari, "Я гоблин, вижу бота номер:", jah, "Расы: ", botRasa[jah])
                 if botRasa[jah] == 4 or botRasa[jah]+1 == 4 or botRasa[jah]+2 == 4 or botRasa[jah]+3 == 4:
                     botAlgoritmes(nomerBota)
-                    print ("Это свой")   
+                    #print ("Это свой")   
 
     if botRasa[nomerBota] == 5: # Это монстр
         pass                 
@@ -167,21 +170,21 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):
     if botRasa[nomerBota] == 6:
         for jah in range(1000):
             if botLocation[jah] == local:
-                print (vari, "Я орк, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                #print (vari, "Я орк, вижу бота номер:", jah, "Расы: ", botRasa[jah])
                 if botRasa[jah] == 6 or botRasa[jah]-1 == 6:
                     botAlgoritmes(nomerBota)
-                    print ("Это свой") 
+                    #print ("Это свой") 
 
     if botRasa[nomerBota] == 7:
         for jah in range(1000):
             if botLocation[jah] == local:
-                print (vari, "Я нежить, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                #print (vari, "Я нежить, вижу бота номер:", jah, "Расы: ", botRasa[jah])
                 if botRasa[jah] == 7 or botRasa[jah]+1 == 7:
                     botAlgoritmes(nomerBota)
-                    print ("Это свой")                       
+                    #print ("Это свой")                       
         
     
-def botAlgoritmes(yaBot): # Тут мы обрабатываем алгоритмы ботов
+def botAlgoritmes(yaBot): # Тут мы обрабатываем алгоритмы ботов, их брождение по карте
     global botType
     global botStep
     global xBot
@@ -365,7 +368,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                 botLocation[yaBot] += 1
                 worldUpdate()
             if world[botLocation[yaBot]+1] != 0: 
-                if world[botLocation[yaBot]-1] == 0 and xBot[yaBot] > 16:
+                if world[botLocation[yaBot]-1] == 0 and xBot[yaBot] > 32:
                     botStep[yaBot] = 1
                     pix = pygame.image.load('Images/weed.jpg')
                     x_len = pix.get_width()
@@ -376,7 +379,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                     world[botLocation[yaBot]-1] = botVariant[yaBot]
                     botLocation[yaBot] -= 1
                     worldUpdate()
-                    if world[botLocation[yaBot]-1] == 0 and xBot[yaBot] < 1008:
+                    if world[botLocation[yaBot]-1] == 0 and xBot[yaBot] > 16:
                         botStep[yaBot] = 1
                         pix = pygame.image.load('Images/weed.jpg')
                         x_len = pix.get_width()
@@ -390,7 +393,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                                                 
                 
         if botStep[yaBot] == 1: # Идём вниз
-            if world[botLocation[yaBot]+32] == 0 and botLocation[yaBot] >= 32:
+            if world[botLocation[yaBot]+32] == 0 and botLocation[yaBot] >= 32 and yBot[yaBot] < 512:
                 botStep[yaBot] = 2 
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
@@ -414,7 +417,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
         #if botLocation[yaBot] == 417 or botLocation[yaBot] == 385 or botLocation[yaBot] == 353 or botLocation[yaBot] == 321 or botLocation[yaBot] == 289 or botLocation[yaBot] == 257 or botLocation[yaBot] == 225 or botLocation[yaBot] == 193 or botLocation[yaBot] == 161 or botLocation[yaBot] == 129 or botLocation[yaBot] == 97 or botLocation[yaBot] == 65 or botLocation[yaBot] == 33 or botLocation[yaBot] == 1: botStep[yaBot] = 3
         
     
-def botGoing(): # Эта функция вызывается если рядом находится враг
+def botGoing(): # Эта функция вызывается каждый раз когда жмётся кнопка НОЧЬ
     global n
     global botType
     global botStep
@@ -453,7 +456,7 @@ def botGoing(): # Эта функция вызывается если рядом
                         if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32)
                         if world[botLocation[n]+31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+31], botLocation[n]+31)
                     else: 
-                        botAlgoritmes(n)                    
+                        botAlgoritmes(n)   # если никого не видим, то идём вперед                 
                          
                 elif botLocation[n] <= 446 and botLocation[n] >= 417: # Если бот находится на нижней кромке карты
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50:  # Если, находясь на нижней кромке мы кого-то видим      
@@ -5959,7 +5962,7 @@ def initGame(heroSelect):  # функция инициации игры
         printMagic(n)
     
     world[145] = 8  
-    world[360] = 5
+    world[298] = 5
     world[416] = 10
     world[31] = 15
     
