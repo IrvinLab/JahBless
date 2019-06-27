@@ -102,6 +102,66 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
+def botKoldun(nom, poriad, vragBot): # функция колдовства (Номер колдующего бота, порядковый номер заклинания, номер вражеского бота)
+    if botZaklinania[nom][poriad] == 1:
+        pass
+    if botZaklinania[nom][poriad] == 2:
+        pass
+    if botZaklinania[nom][poriad] == 3:
+        pass
+    if botZaklinania[nom][poriad] == 4:
+        pass
+    if botZaklinania[nom][poriad] == 5:
+        pass
+    if botZaklinania[nom][poriad] == 6:
+        pass
+    if botZaklinania[nom][poriad] == 7:
+        pass  
+    if botZaklinania[nom][poriad] == 8:
+        pass
+    if botZaklinania[nom][poriad] == 9:
+        pass
+    if botZaklinania[nom][poriad] == 10:
+        pass
+    if botZaklinania[nom][poriad] == 11:
+        pass
+    if botZaklinania[nom][poriad] == 12:
+        pass
+    if botZaklinania[nom][poriad] == 13:
+        pass
+    if botZaklinania[nom][poriad] == 14:
+        pass
+    if botZaklinania[nom][poriad] == 15:
+        pass
+    if botZaklinania[nom][poriad] == 16:
+        pass
+    if botZaklinania[nom][poriad] == 17:
+        pass
+    if botZaklinania[nom][poriad] == 18:
+        pass
+    if botZaklinania[nom][poriad] == 19:
+        pass
+    if botZaklinania[nom][poriad] == 20:
+        pass
+    if botZaklinania[nom][poriad] == 21:
+        pass
+    if botZaklinania[nom][poriad] == 22:
+        pass
+    if botZaklinania[nom][poriad] == 23:
+        pass
+    if botZaklinania[nom][poriad] == 24:
+        pass
+    if botZaklinania[nom][poriad] == 25:
+        pass
+    if botZaklinania[nom][poriad] == 26:
+        pass
+    if botZaklinania[nom][poriad] == 27:
+        pass
+    if botZaklinania[nom][poriad] == 28:
+        pass    
+        
+    
+
 def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обрабатываем реакцию на присутвие персонажей и NPC
     global n
     global bot 
@@ -129,6 +189,8 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
     global botAlgoritm
     global botLocation
     jah = 0
+    n = 0
+    mag = 0
     if botRasa[nomerBota] == 1:
         for jah in range(1000):
             if botLocation[jah] == local:
@@ -138,8 +200,12 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     #print("Это свой")
                     
                 if botRasa[jah] != 1 or botRasa[jah]-1 != 1 or botRasa[jah]-2 != 1 or botRasa[jah]-3 != 1: # Если это враг, тогда бьём в морду
-                 pass                
-                    
+                    if botMana[n] > 0:
+                        for mag in range(16):
+                            botKoldun(n, mag , jah)
+                            botHod[nomerBota] -= 1
+                            
+                                
     if botRasa[nomerBota] == 2:
         for jah in range(1000):
             if botLocation[jah] == local:
@@ -415,7 +481,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
         # Если дошли до второй слева клетки любого ряда то останавливаемся botStep[yaBot] = 3
         # А лучше пойти потом вправо и дойдя по крайней правой кромки повторить алгоритм
         #if botLocation[yaBot] == 417 or botLocation[yaBot] == 385 or botLocation[yaBot] == 353 or botLocation[yaBot] == 321 or botLocation[yaBot] == 289 or botLocation[yaBot] == 257 or botLocation[yaBot] == 225 or botLocation[yaBot] == 193 or botLocation[yaBot] == 161 or botLocation[yaBot] == 129 or botLocation[yaBot] == 97 or botLocation[yaBot] == 65 or botLocation[yaBot] == 33 or botLocation[yaBot] == 1: botStep[yaBot] = 3
-        
+      
     
 def botGoing(): # Эта функция вызывается каждый раз когда жмётся кнопка НОЧЬ
     global n
@@ -446,60 +512,60 @@ def botGoing(): # Эта функция вызывается каждый раз
     
     for n in range(1000):
         i = 0
-        if botZdorovie[n] > 0:             
+        if botZdorovie[n] > 0 and botHod[n] > 0:             
             for i in range(botLovkost[n]): # Обрабатываем ходы
                 if botLocation[n] >= 1 and botLocation[n] <= 30: # Если бот находится на верхней кромке карты
-                    if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на верхней кромке мы кого-то видим
-                        if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1)
-                        if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1)
-                        if world[botLocation[n]+33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+33], botLocation[n]+33)
-                        if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32)
-                        if world[botLocation[n]+31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+31], botLocation[n]+31)
+                        if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на верхней кромке мы кого-то видим
+                        if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1); botHod[n] -= 1
+                        if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1); botHod[n] -= 1
+                        if world[botLocation[n]+33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+33], botLocation[n]+33); botHod[n] -= 1
+                        if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32); botHod[n] -= 1
+                        if world[botLocation[n]+31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+31], botLocation[n]+31); botHod[n] -= 1
                     else: 
-                        botAlgoritmes(n)   # если никого не видим, то идём вперед                 
+                        botAlgoritmes(n); botHod[n] -= 1   # если никого не видим, то идём вперед                 
                          
                 elif botLocation[n] <= 446 and botLocation[n] >= 417: # Если бот находится на нижней кромке карты
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50:  # Если, находясь на нижней кромке мы кого-то видим      
-                        if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1)
-                        if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1)
-                        if world[botLocation[n]-33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-33], botLocation[n]-33)
-                        if world[botLocation[n]-32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-32], botLocation[n]-32)
-                        if world[botLocation[n]-31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-31], botLocation[n]-31)
+                        if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1); botHod[n] -= 1
+                        if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1); botHod[n] -= 1
+                        if world[botLocation[n]-33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-33], botLocation[n]-33); botHod[n] -= 1
+                        if world[botLocation[n]-32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-32], botLocation[n]-32); botHod[n] -= 1
+                        if world[botLocation[n]-31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-31], botLocation[n]-31); botHod[n] -= 1
                     else:
-                        botAlgoritmes(n) 
+                        botAlgoritmes(n); botHod[n] -= 1 
    
                 elif botLocation[n] == 63 or botLocation[n] == 95 or botLocation[n] == 127 or botLocation[n] == 159 or botLocation[n] == 191 or botLocation[n] == 223 or botLocation[n] == 255 or botLocation[n] == 287 or botLocation[n] == 319 or botLocation[n] == 351 or botLocation[n] == 383 or botLocation[n] == 415: # Если мы находимся на правой кромке карты
                     if world[botLocation[n]-1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+33] >= 50: # Если, находясь на правой кромке карты мы кого-то видим
-                        if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1)
-                        if world[botLocation[n]-33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-33], botLocation[n]-33)
-                        if world[botLocation[n]-32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-32], botLocation[n]-32)
-                        if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32)
-                        if world[botLocation[n]+33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+33], botLocation[n]+33)
+                        if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1); botHod[n] -= 1
+                        if world[botLocation[n]-33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-33], botLocation[n]-33); botHod[n] -= 1
+                        if world[botLocation[n]-32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-32], botLocation[n]-32); botHod[n] -= 1
+                        if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32); botHod[n] -= 1
+                        if world[botLocation[n]+33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+33], botLocation[n]+33); botHod[n] -= 1
                     else:
-                        botAlgoritmes(n)                        
+                        botAlgoritmes(n); botHod[n] -= 1       
                 elif botLocation[n] == 32 or botLocation[n] == 64 or botLocation[n] == 96 or botLocation[n] == 128 or botLocation[n] == 160 or botLocation[n] == 192 or botLocation[n] == 224 or botLocation[n] == 256 or botLocation[n] == 288 or botLocation[n] == 320 or botLocation[n] == 352 or botLocation[n] == 384:  # Если бот находится на левой кромке карты
                     if world[botLocation[n]+1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на правой кромке карты мы кого-то видим        
-                        if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1)
-                        if world[botLocation[n]-31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-31], botLocation[n]-31)
-                        if world[botLocation[n]-32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-32], botLocation[n]-32)
-                        if world[botLocation[n]+31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+31], botLocation[n]+31)
-                        if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32)
+                        if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1); botHod[n] -= 1
+                        if world[botLocation[n]-31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-31], botLocation[n]-31); botHod[n] -= 1
+                        if world[botLocation[n]-32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-32], botLocation[n]-32); botHod[n] -= 1
+                        if world[botLocation[n]+31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+31], botLocation[n]+31); botHod[n] -= 1
+                        if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32); botHod[n] -= 1
                     else:
-                        botAlgoritmes(n) 
+                        botAlgoritmes(n); botHod[n] -= 1
                         
                 else:
                     if world[botLocation[n]+1] >= 50 or world[botLocation[n]-32] >= 50 or world[botLocation[n]-31] >= 50 or world[botLocation[n]-33] >= 50 or world[botLocation[n]+31] >= 50 or world[botLocation[n]-1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50: 
-                        if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1)
-                        if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1)
-                        if world[botLocation[n]-31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-31], botLocation[n]-31)
-                        if world[botLocation[n]-32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-32], botLocation[n]-32)
-                        if world[botLocation[n]+31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+31], botLocation[n]+31)
-                        if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32)
-                        if world[botLocation[n]-33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-33], botLocation[n]-33)
-                        if world[botLocation[n]+33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+33], botLocation[n]-33)
+                        if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1); botHod[n] -= 1
+                        if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1); botHod[n] -= 1
+                        if world[botLocation[n]-31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-31], botLocation[n]-31); botHod[n] -= 1
+                        if world[botLocation[n]-32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-32], botLocation[n]-32); botHod[n] -= 1
+                        if world[botLocation[n]+31] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+31], botLocation[n]+31); botHod[n] -= 1
+                        if world[botLocation[n]+32] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+32], botLocation[n]+32); botHod[n] -= 1
+                        if world[botLocation[n]-33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-33], botLocation[n]-33); botHod[n] -= 1
+                        if world[botLocation[n]+33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+33], botLocation[n]-33); botHod[n] -= 1
                     else:
-                        botAlgoritmes(n)  
-                                                 
+                        botAlgoritmes(n); botHod[n] -= 1
+                       
         else:
             pass
             #pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
@@ -527,6 +593,8 @@ def botGoing(): # Эта функция вызывается каждый раз
             #botAlgoritm[n] = 0
             #botLocation[n] = 0
     
+    
+    botHod[n] = botLovkost[n] 
     buttonNextStep = 0 # Разрешаем нажатие кнопки "Следующий ход/ночь"            
               
  
