@@ -208,7 +208,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] != 1 or botRasa[jah]-1 != 1 or botRasa[jah]-2 != 1 or botRasa[jah]-3 != 1: # Если это враг, тогда бьём в морду
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
-                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
+                        botZdorovie[jah] -= botSila[jah] - botZachita[jah]
                     if botMana[n] > 0:
                         for mag in range(16):
                             botKoldun(n, mag , jah)
@@ -225,7 +225,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] != 2 or botRasa[jah]-1 != 2 or botRasa[jah]-2 != 2 or botRasa[jah]+1 != 2:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
-                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
+                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                 
     if botRasa[nomerBota] == 3:
         for jah in range(1000):
@@ -237,7 +237,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] != 3 or botRasa[jah]-1 != 3 or botRasa[jah]+1 != 3 or botRasa[jah]+2 != 3:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
-                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
+                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                     
     if botRasa[nomerBota] == 4:
         for jah in range(1000):
@@ -249,11 +249,13 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] != 4 or botRasa[jah]+1 != 4 or botRasa[jah]+2 != 4 or botRasa[jah]+3 != 4:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
-                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
+                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
 
     if botRasa[nomerBota] == 5: # Это монстр
-        botHod[nomerBota] -= 1
-        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]                
+        for jah in range(1000):
+            if botLocation[jah] == local:
+                botHod[nomerBota] -= 1
+                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]                
     
     if botRasa[nomerBota] == 6:
         for jah in range(1000):
@@ -265,7 +267,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] != 6 or botRasa[jah]-1 != 6:   
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
-                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
+                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
 
     if botRasa[nomerBota] == 7:
         for jah in range(1000):
@@ -277,7 +279,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] != 7 or botRasa[jah]+1 != 7:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
-                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
+                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
     
 def botAlgoritmes(yaBot): # Тут мы обрабатываем алгоритмы ботов, их брождение по карте
     global botType
