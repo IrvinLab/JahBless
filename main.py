@@ -104,7 +104,13 @@ for n in range(480): # Забиваем мир нулями
 
 def botKoldun(nom, poriad, vragBot): # функция колдовства (Номер колдующего бота, порядковый номер заклинания, номер вражеского бота)
     if botZaklinania[nom][poriad] == 1:
-        pass
+        if botLvl[nom] == botLvl[vragBot] or botLvl[nom] < botLvl[vragBot] and botMana[nom] >= 200: # Если хватает маны, то колдуем
+            botMana[nom] -= 200
+            botZdorovie[vragBot] -= 200
+            print("Пронзающая смерть")
+        if botLvl[nom] > botLvl[vragBot] and botMana[nom] <= 200: # Если маны не хватает, то бъём оружием    
+            botHod[nomerBota] -= 1
+            botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
     if botZaklinania[nom][poriad] == 2:
         pass
     if botZaklinania[nom][poriad] == 3:
@@ -200,6 +206,9 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     #print("Это свой")
                     
                 if botRasa[jah] != 1 or botRasa[jah]-1 != 1 or botRasa[jah]-2 != 1 or botRasa[jah]-3 != 1: # Если это враг, тогда бьём в морду
+                    if botMana[n] <= 0:
+                        botHod[nomerBota] -= 1
+                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
                     if botMana[n] > 0:
                         for mag in range(16):
                             botKoldun(n, mag , jah)
@@ -213,7 +222,11 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] == 2 or botRasa[jah]-1 == 2 or botRasa[jah]-2 == 2 or botRasa[jah]+1 == 2:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")
-                    
+                if botRasa[jah] != 2 or botRasa[jah]-1 != 2 or botRasa[jah]-2 != 2 or botRasa[jah]+1 != 2:
+                    if botMana[n] <= 0:
+                        botHod[nomerBota] -= 1
+                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
+                
     if botRasa[nomerBota] == 3:
         for jah in range(1000):
             if botLocation[jah] == local:
@@ -221,6 +234,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] == 3 or botRasa[jah]-1 == 3 or botRasa[jah]+1 == 3 or botRasa[jah]+2 == 3:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")
+                if botRasa[jah] != 3 or botRasa[jah]-1 != 3 or botRasa[jah]+1 != 3 or botRasa[jah]+2 != 3:
+                    if botMana[n] <= 0:
+                        botHod[nomerBota] -= 1
+                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
                     
     if botRasa[nomerBota] == 4:
         for jah in range(1000):
@@ -229,9 +246,14 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] == 4 or botRasa[jah]+1 == 4 or botRasa[jah]+2 == 4 or botRasa[jah]+3 == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")   
+                if botRasa[jah] != 4 or botRasa[jah]+1 != 4 or botRasa[jah]+2 != 4 or botRasa[jah]+3 != 4:
+                    if botMana[n] <= 0:
+                        botHod[nomerBota] -= 1
+                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
 
     if botRasa[nomerBota] == 5: # Это монстр
-        pass                 
+        botHod[nomerBota] -= 1
+        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]                
     
     if botRasa[nomerBota] == 6:
         for jah in range(1000):
@@ -240,6 +262,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] == 6 or botRasa[jah]-1 == 6:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой") 
+                if botRasa[jah] != 6 or botRasa[jah]-1 != 6:   
+                    if botMana[n] <= 0:
+                        botHod[nomerBota] -= 1
+                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
 
     if botRasa[nomerBota] == 7:
         for jah in range(1000):
@@ -248,7 +274,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botRasa[jah] == 7 or botRasa[jah]+1 == 7:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")                       
-        
+                if botRasa[jah] != 7 or botRasa[jah]+1 != 7:
+                    if botMana[n] <= 0:
+                        botHod[nomerBota] -= 1
+                        botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
     
 def botAlgoritmes(yaBot): # Тут мы обрабатываем алгоритмы ботов, их брождение по карте
     global botType
@@ -515,7 +544,7 @@ def botGoing(): # Эта функция вызывается каждый раз
         if botZdorovie[n] > 0 and botHod[n] > 0:             
             for i in range(botLovkost[n]): # Обрабатываем ходы
                 if botLocation[n] >= 1 and botLocation[n] <= 30: # Если бот находится на верхней кромке карты
-                        if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на верхней кромке мы кого-то видим
+                    if world[botLocation[n]-1] >= 50 or world[botLocation[n]+1] >= 50 or world[botLocation[n]+33] >= 50 or world[botLocation[n]+32] >= 50 or world[botLocation[n]+31] >= 50: # Если, находясь на верхней кромке мы кого-то видим
                         if world[botLocation[n]-1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]-1], botLocation[n]-1); botHod[n] -= 1
                         if world[botLocation[n]+1] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+1], botLocation[n]+1); botHod[n] -= 1
                         if world[botLocation[n]+33] >= 50: botVragBlizko(n, xBot[n], yBot[n], botLocation[n], botVariant[n], world[botLocation[n]+33], botLocation[n]+33); botHod[n] -= 1
@@ -568,33 +597,32 @@ def botGoing(): # Эта функция вызывается каждый раз
                        
         else:
             pass
-            #pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
-            #botType[n] = 0
-            #botStep[n] = 0
-            #xBot[n] = 0
-            #yBot[n] = 0
-            #botExpirience[n] = 0
-            #botLvl[n] = 0
-            #botRasa[n] = 0
-            #botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            #botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            #botIshZdorovie[n] = 0
-            #botZdorovie[n] = 0
-            #botMana[n] = 0
-            #botIshMana[n] = 0
-            #botSila[n] = 0
-            #botLovkost[n] = 0
-            #botYdacha[n] = 0
-            #botZachita[n] = 0
-            #botHod[n] = 0
-            #world[botLocation[n]] = 0
-            #botNumer[n] = 0
-            #botVariant[n] = 0
-            #botAlgoritm[n] = 0
-            #botLocation[n] = 0
+            pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (176,512))
+            botType[n] = 0
+            botStep[n] = 0
+            xBot[n] = 0
+            yBot[n] = 0
+            botExpirience[n] = 0
+            botLvl[n] = 0
+            botRasa[n] = 0
+            botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            botIshZdorovie[n] = 0
+            botZdorovie[n] = 0
+            botMana[n] = 0
+            botIshMana[n] = 0
+            botSila[n] = 0
+            botLovkost[n] = 0
+            botYdacha[n] = 0
+            botZachita[n] = 0
+            botHod[n] = 0
+            world[botLocation[n]] = 0
+            botNumer[n] = 0
+            botVariant[n] = 0
+            botAlgoritm[n] = 0
+            botLocation[n] = 0
     
     
-    botHod[n] = botLovkost[n] 
     buttonNextStep = 0 # Разрешаем нажатие кнопки "Следующий ход/ночь"            
               
  
@@ -3301,6 +3329,8 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
 def worldUpdate():   # Отправляем данные об объекте
     n = 0
     for n in range(448):
+        if world[n] == 1: markLocation(n, world[n])
+        if world[n] == 2: markLocation(n, world[n])
         if world[n] == 3: markLocation(n, world[n])
         if world[n] == 4: markLocation(n, world[n])   
         if world[n] == 5: markLocation(n, world[n])
@@ -6033,6 +6063,10 @@ def initGame(heroSelect):  # функция инициации игры
     world[298] = 5
     world[416] = 10
     world[31] = 15
+    # "Кладбище"
+    world[420] = 1
+    world[422] = 1
+    world[389] = 1
     
     worldUpdate()
     pix = pygame.image.load('Images/next.png') # Рисуем кнопку "Конец хода"
@@ -10442,7 +10476,14 @@ while True:
                     hod = lovkost
                     heroPanel(hero)
                     botActivity() 
-                    pass 
+                    n = 0
+                    if zdorovie-1 < ishZdorovie: zdorovie += 2
+                    if mana-1 < ishMana: mana += 2
+                    for n in range(1000):
+                        botHod[n] = botLovkost[n]
+                        if botZdorovie[n]-1 < botIshZdorovie[n]: botZdorovie[n] += 2
+                        if botMana[n]-1 < botIshMana[n]: botMana[n] += 2
+                        
         
     
     
