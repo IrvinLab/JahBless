@@ -164,10 +164,9 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     if botZaklinania[nom][poriad] == 27:
         pass
     if botZaklinania[nom][poriad] == 28:
-        pass    
-        
-    
+        pass  
 
+    
 def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обрабатываем реакцию на присутвие персонажей и NPC
     global n
     global bot 
@@ -598,8 +597,8 @@ def botGoing(): # Эта функция вызывается каждый раз
                         botAlgoritmes(n); botHod[n] -= 1
                        
         else:
-            pass
-            pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (176,512))
+            if botYdacha[n] > 0:
+            pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
             botType[n] = 0
             botStep[n] = 0
             xBot[n] = 0
