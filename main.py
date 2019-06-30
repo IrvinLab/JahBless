@@ -104,7 +104,7 @@ for n in range(480): # Забиваем мир нулями
 
 def botKoldun(nom, poriad, vragBot): # функция колдовства (Номер колдующего бота, порядковый номер заклинания, номер вражеского бота)
     if botZaklinania[nom][poriad] == 1:
-        if botLvl[nom] == botLvl[vragBot] or botLvl[nom] < botLvl[vragBot] and botMana[nom] >= 200: # Если хватает маны, то колдуем
+        if botLvl[nom] == botLvl[vragBot] or botLvl[nom] < botLvl[vragBot] or botLvl[nom] == botLvl[vragBot]-1 or botLvl[nom] == botLvl[vragBot]-2 or botLvl[nom] == botLvl[vragBot]-3 or botLvl[nom] == botLvl[vragBot]-4 and botMana[nom] >= 200: # Если хватает маны, то колдуем
             botMana[nom] -= 200
             botZdorovie[vragBot] -= 200
             print("Пронзающая смерть")
@@ -598,30 +598,30 @@ def botGoing(): # Эта функция вызывается каждый раз
                        
         else:
             if botYdacha[n] > 0:
-            pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
-            botType[n] = 0
-            botStep[n] = 0
-            xBot[n] = 0
-            yBot[n] = 0
-            botExpirience[n] = 0
-            botLvl[n] = 0
-            botRasa[n] = 0
-            botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            botIshZdorovie[n] = 0
-            botZdorovie[n] = 0
-            botMana[n] = 0
-            botIshMana[n] = 0
-            botSila[n] = 0
-            botLovkost[n] = 0
-            botYdacha[n] = 0
-            botZachita[n] = 0
-            botHod[n] = 0
-            world[botLocation[n]] = 0
-            botNumer[n] = 0
-            botVariant[n] = 0
-            botAlgoritm[n] = 0
-            botLocation[n] = 0
+                pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
+                botType[n] = 0
+                botStep[n] = 0
+                xBot[n] = 0
+                yBot[n] = 0
+                botExpirience[n] = 0
+                botLvl[n] = 0
+                botRasa[n] = 0
+                botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botIshZdorovie[n] = 0
+                botZdorovie[n] = 0
+                botMana[n] = 0
+                botIshMana[n] = 0
+                botSila[n] = 0
+                botLovkost[n] = 0
+                botYdacha[n] = 0
+                botZachita[n] = 0
+                botHod[n] = 0
+                world[botLocation[n]] = 0
+                botNumer[n] = 0
+                botVariant[n] = 0
+                botAlgoritm[n] = 0
+                botLocation[n] = 0
     
     
     buttonNextStep = 0 # Разрешаем нажатие кнопки "Следующий ход/ночь"            
@@ -5082,7 +5082,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         sc.blit(nameObj,(440, 560)) 
         variableName = u"Ученик жрицы Древа Мудрости."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))  
+        sc.blit(nameObj,(440, 580))     
         variableName = u"Сильный воин владеющий боевой и"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))  
@@ -5090,7 +5090,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))  
     if world[hehmda] == 170:
-        pix = pygame.image.load('Images/womanElf5.jpg')
+        pix = pygame.image.load('Images/womanElf5.jpeg')
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
@@ -10478,8 +10478,8 @@ while True:
                     heroPanel(hero)
                     botActivity() 
                     n = 0
-                    if zdorovie-1 < ishZdorovie: zdorovie += 2
-                    if mana-1 < ishMana: mana += 2
+                    if zdorovie+2 < ishZdorovie: zdorovie += 2
+                    if mana+2 < ishMana: mana += 2
                     for n in range(1000):
                         botHod[n] = botLovkost[n]
                         if botZdorovie[n]-1 < botIshZdorovie[n]: botZdorovie[n] += 2
