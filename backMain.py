@@ -32,14 +32,14 @@ mana = 0
 sila = 0
 lovkost = 0
 ydacha = 0
-botZoloto = []
-botSerebro = []
-botBronza = []
+zoloto = 0
+serebro = 0
+bronza = 0
 hod = 0
 zachita = 0
 
 # Переменные ботов
-bot = 1 # Количество ботов
+bot = 0 # Количество ботов
 botNumer = [] # Порядковый номер бота в списке ботов
 botType = [] # 1 - союзник, 2 - враждебный, 3 - мирный
 botStep = [] # Сколько шагов у бота
@@ -54,7 +54,6 @@ botLvl = []
 botRasa = []
 botZaklinania = []
 botVozdeistvie = []
-botInventar = []
 botIshZdorovie = []
 botZdorovie = []
 botMana = []
@@ -104,32 +103,6 @@ for n in range(480): # Забиваем мир нулями
     world[n] = 0
 
 def botKoldun(nom, poriad, vragBot): # функция колдовства (Номер колдующего бота, порядковый номер заклинания, номер вражеского бота)
-    global n
-    global bot 
-    global botType
-    global botStep
-    global xBot
-    global yBot
-    global botExpirience
-    global botLvl
-    global botRasa
-    global botZaklinania 
-    global botVozdeistvie
-    global botInventar
-    global botIshZdorovie
-    global botZdorovie
-    global botMana
-    global botIshMana
-    global botSila
-    global botLovkost
-    global botYdacha
-    global botZachita
-    global botHod
-    global world
-    global botNumer
-    global botVariant
-    global botAlgoritm
-    global botLocation
     if botZaklinania[nom][poriad] == 1:
         if botLvl[nom] == botLvl[vragBot] or botLvl[nom] < botLvl[vragBot] or botLvl[nom] == botLvl[vragBot]-1 or botLvl[nom] == botLvl[vragBot]-2 or botLvl[nom] == botLvl[vragBot]-3 or botLvl[nom] == botLvl[vragBot]-4 and botMana[nom] >= 200: # Если хватает маны, то колдуем
             botMana[nom] -= 200
@@ -206,7 +179,6 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
     global botRasa
     global botZaklinania 
     global botVozdeistvie
-    global botInventar
     global botIshZdorovie
     global botZdorovie
     global botMana
@@ -222,7 +194,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
     global botAlgoritm
     global botLocation
     jah = 0
-    n = 1
+    n = 0
     mag = 0
     if botRasa[nomerBota] == 1:
         for jah in range(1000):
@@ -318,7 +290,6 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
     global botRasa
     global botZaklinania 
     global botVozdeistvie
-    global botInventar
     global botIshZdorovie
     global botZdorovie
     global botMana
@@ -553,7 +524,6 @@ def botGoing(): # Эта функция вызывается каждый раз
     global botRasa
     global botZaklinania 
     global botVozdeistvie
-    global botInventar
     global botIshZdorovie
     global botZdorovie
     global botMana
@@ -570,7 +540,6 @@ def botGoing(): # Эта функция вызывается каждый раз
     global botLocation
     global buttonNextStep
     
-    n = 1
     for n in range(1000):
         i = 0
         if botZdorovie[n] > 0 and botHod[n] > 0:             
@@ -639,7 +608,6 @@ def botGoing(): # Эта функция вызывается каждый раз
                 botRasa[n] = 0
                 botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botIshZdorovie[n] = 0
                 botZdorovie[n] = 0
                 botMana[n] = 0
@@ -657,7 +625,7 @@ def botGoing(): # Эта функция вызывается каждый раз
     
     
     buttonNextStep = 0 # Разрешаем нажатие кнопки "Следующий ход/ночь"            
-    heroPanel(hero)          
+              
  
 def botActivity():  # Создание и управление ботами
     global bot 
@@ -671,7 +639,6 @@ def botActivity():  # Создание и управление ботами
     global botZaklinania 
     global botVozdeistvie
     global botIshZdorovie
-    global botInventar
     global botZdorovie
     global botMana
     global botIshMana
@@ -5213,134 +5180,134 @@ def doebaca(hehmda):  #Функция отображающая информац�
         
         
 def visibleMagic(xMag, yMag, por): # Функция, отображающая заклинания
-    global botZaklinania
-    print(botZaklinania[0][por])
-    if botZaklinania[0][por] == 0:
+    global zaklinania
+    print(zaklinania[por])
+    if zaklinania[por] == 0:
         pix = pygame.image.load('Images/zero.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[0][por] == 100:
+    if zaklinania[por] == 100:
         pix = pygame.image.load('Images/attack.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[0][por] == 1:
+    if zaklinania[por] == 1:
         pix = pygame.image.load('Images/pronzauchaiaSmert.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[0][por] == 2:
+    if zaklinania[por] == 2:
         pix = pygame.image.load('Images/dobitIvoskresit.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[0][por] == 3:
+    if zaklinania[por] == 3:
         pix = pygame.image.load('Images/dospechiFenicha.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[0][por] == 4:
+    if zaklinania[por] == 4:
         pix = pygame.image.load('Images/krajaMagii.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[0][por] == 5:
+    if zaklinania[por] == 5:
         pix = pygame.image.load('Images/obman.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))    
-    if botZaklinania[0][por] == 6:
+    if zaklinania[por] == 6:
         pix = pygame.image.load('Images/ognennaiaSfera.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[0][por] == 7:
+    if zaklinania[por] == 7:
         pix = pygame.image.load('Images/jad.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[0][por] == 8:
+    if zaklinania[por] == 8:
         pix = pygame.image.load('Images/krovojadnost.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))        
-    if botZaklinania[0][por] == 9:
+    if zaklinania[por] == 9:
         pix = pygame.image.load('Images/lunniiObriad.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[0][por] == 10:
+    if zaklinania[por] == 10:
         pix = pygame.image.load('Images/mochLda.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[0][por] == 11:
+    if zaklinania[por] == 11:
         pix = pygame.image.load('Images/mogilniiLuch.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag)) 
-    if botZaklinania[0][por] == 12:
+    if zaklinania[por] == 12:
         pix = pygame.image.load('Images/molnia.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))    
-    if botZaklinania[0][por] == 13:
+    if zaklinania[por] == 13:
         pix = pygame.image.load('Images/pechatChaosa.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))    
-    if botZaklinania[0][por] == 14:
+    if zaklinania[por] == 14:
         pix = pygame.image.load('Images/pechatSmerti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))   
-    if botZaklinania[0][por] == 15:
+    if zaklinania[por] == 15:
         pix = pygame.image.load('Images/poceluiSmerti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))      
-    if botZaklinania[0][por] == 16:
+    if zaklinania[por] == 16:
         pix = pygame.image.load('Images/prokliatie.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))   
-    if botZaklinania[0][por] == 17:
+    if zaklinania[por] == 17:
         pix = pygame.image.load('Images/pronzauchiiKrik.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))         
-    if botZaklinania[0][por] == 18:
+    if zaklinania[por] == 18:
         pix = pygame.image.load('Images/reincarnation.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag)) 
-    if botZaklinania[0][por] == 19:
+    if zaklinania[por] == 19:
         pix = pygame.image.load('Images/sjiganieMani.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag)) 
-    if botZaklinania[0][por] == 20:
+    if zaklinania[por] == 20:
         pix = pygame.image.load('Images/vampirizm.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag)) 
-    if botZaklinania[0][por] == 21:
+    if zaklinania[por] == 21:
         pix = pygame.image.load('Images/vosstanovitSkeletov.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[0][por] == 22:
+    if zaklinania[por] == 22:
         pix = pygame.image.load('Images/lechenie.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))   
-    if botZaklinania[0][por] == 23:
+    if zaklinania[por] == 23:
         pix = pygame.image.load('Images/rasseiatChari.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[0][por] == 24:
+    if zaklinania[por] == 24:
         pix = pygame.image.load('Images/plenitDuchu.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
@@ -5368,23 +5335,23 @@ def printMagic(numberMagic):
     
     
 def heroPanel(myHero): # Рисуем панель героя с его картинкой и параметрами
-    global botExpirience
-    global botLvl
-    global botRasa
-    global botZaklinania
-    global botVozdeistvie
-    global botIshZdorovie
-    global botZdorovie
-    global botIshMana
-    global botInventar
-    global botMana
-    global botSila
-    global botLovkost
-    global botYdacha
-    global botZoloto
-    global botSerebro
-    global botBronza
-    global botZachita
+    global expirience
+    global lvl
+    global rasa
+    global inventar
+    global zaklinania
+    global vozdeistvie
+    global ishZdorovie
+    global zdorovie
+    global ishMana
+    global mana
+    global sila
+    global lovkost
+    global ydacha
+    global zoloto
+    global serebro
+    global bronza
+    global zachita
     
     global den
     global mesiac
@@ -5404,7 +5371,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Аками - " + str(botLvl[0]) + " lvl"
+        variableName = u"Аками - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 51:
@@ -5412,7 +5379,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Артес - " + str(botLvl[0]) + " lvl"
+        variableName = u"Артес - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 52:
@@ -5420,7 +5387,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Владыка Смерти - " + str(botLvl[0]) + " lvl"
+        variableName = u"Владыка Смерти - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 54:
@@ -5428,7 +5395,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Джепотай - " + str(botLvl[0]) + " lvl"
+        variableName = u"Джепотай - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 55:
@@ -5436,7 +5403,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Фарион - " + str(botLvl[0]) + " lvl"
+        variableName = u"Фарион - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 56:
@@ -5444,7 +5411,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Гаритос - " + str(botLvl[0]) + " lvl"
+        variableName = u"Гаритос - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 57:
@@ -5452,7 +5419,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Гендальф - " + str(botLvl[0]) + " lvl"
+        variableName = u"Гендальф - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 58:
@@ -5460,7 +5427,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Иллидан - " + str(botLvl[0]) + " lvl"
+        variableName = u"Иллидан - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 59:
@@ -5468,7 +5435,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Джайна - " + str(botLvl[0]) + " lvl"
+        variableName = u"Джайна - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 60:
@@ -5476,7 +5443,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Келл - " + str(botLvl[0]) + " lvl"
+        variableName = u"Келл - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 70:
@@ -5484,7 +5451,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Утер - " + str(botLvl[0]) + " lvl"
+        variableName = u"Утер - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 72:
@@ -5492,7 +5459,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Вул Джин - " + str(botLvl[0]) + " lvl"
+        variableName = u"Вул Джин - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 68:
@@ -5500,7 +5467,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Сильвана - " + str(botLvl[0]) + " lvl"
+        variableName = u"Сильвана - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 65:
@@ -5508,7 +5475,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Прадмур - " + str(botLvl[0]) + " lvl"
+        variableName = u"Прадмур - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 69:
@@ -5516,7 +5483,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Тралл - " + str(botLvl[0]) + " lvl"
+        variableName = u"Тралл - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 73:
@@ -5524,49 +5491,49 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Задира - " + str(botLvl[0]) + " lvl"
+        variableName = u"Задира - " + str(lvl) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
        
     
-    variableHealt = "" + str(botZdorovie[0]) + " / " + str(botIshZdorovie[0]) # переменная типа String отображающая здоровье как ххх/ххх
+    variableHealt = "" + str(zdorovie) + " / " + str(ishZdorovie) # переменная типа String отображающая здоровье как ххх/ххх
     healtObj = healt.render(variableHealt, False, (0, 255, 0)) # Создали объект типа "текст" 
     sc.blit(healtObj,(290, 631)) # Отображаем здоровье
     
-    variableMana = "" + str(botMana[0]) + " / " + str(botIshMana[0]) # переменная типа String отображающая ману как ххх/ххх
+    variableMana = "" + str(mana) + " / " + str(ishMana) # переменная типа String отображающая ману как ххх/ххх
     manaObj = manna.render(variableMana, False, (0, 0, 255)) # Создали объект типа "текст" 
     sc.blit(manaObj,(290, 644)) # Отображаем ману
     
-    variableSila = u"Сила: " + str(botSila[0]) 
+    variableSila = u"Сила: " + str(sila) 
     silaObj = textSila.render(variableSila, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(silaObj,(290, 657)) 
     
-    variableLovk = u"Ловкость: " + str(botLovkost[0]) 
+    variableLovk = u"Ловкость: " + str(lovkost) 
     lovkObj = textLovk.render(variableLovk, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(lovkObj,(290, 670)) 
     
-    variableYdacha = u"Удача: " + str(botYdacha[0]) 
+    variableYdacha = u"Удача: " + str(ydacha) 
     ydachaObj = textYdacha.render(variableYdacha, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(ydachaObj,(290, 683))
     
-    if botHod[0] >= 1:
-        variableHod = u"Остаток хода: " + str(botHod[0]) 
+    if hod >= 1:
+        variableHod = u"Остаток хода: " + str(hod) 
         hodObj = textHod.render(variableHod, False, (0, 0, 0)) # Создали объект типа "текст" 
         sc.blit(hodObj,(290, 696))
-    if botHod[0] < 1:   
-        variableHod = u"Остаток хода: " + str(botHod[0]) 
+    if hod < 1:   
+        variableHod = u"Остаток хода: " + str(hod) 
         hodObj = textHod.render(variableHod, False, (255, 0, 0)) # Создали объект типа "текст" 
         sc.blit(hodObj,(290, 696))    
     
-    variableZoloto = u"Золото: " + str(botZoloto[0]) 
+    variableZoloto = u"Золото: " + str(zoloto) 
     zolotoObj = textZoloto.render(variableZoloto, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(zolotoObj,(290, 709))
     
-    variableSerebro = u"Серебро: " + str(botSerebro[0]) 
+    variableSerebro = u"Серебро: " + str(serebro) 
     serebroObj = textSerebro.render(variableSerebro, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(serebroObj,(290, 722))
     
-    variableBronza = u"Бронза: " + str(botBronza[0]) 
+    variableBronza = u"Бронза: " + str(bronza) 
     bronzaObj = textBronza.render(variableBronza, False, (0, 0, 0)) # Создали объект типа "текст" 
     sc.blit(bronzaObj,(290, 735))
     
@@ -5579,9 +5546,25 @@ def initGame(heroSelect):  # функция инициации игры
     global world
     global step
     
-    global botZoloto
-    global botSerebro
-    global botBronza
+    global expirience
+    global lvl
+    global rasa
+    global inventar
+    global zaklinania
+    global vozdeistvie
+    global ishZdorovie
+    global zdorovie
+    global ishMana
+    global mana
+    global sila
+    global lovkost
+    global ydacha
+    global zoloto
+    global serebro
+    global bronza
+    global zachita
+    global hod
+    
     global bot
     global botNumer
     global botType
@@ -5593,7 +5576,6 @@ def initGame(heroSelect):  # функция инициации игры
     global botRasa
     global botZaklinania
     global botVozdeistvie
-    global botInventar
     global botIshZdorovie
     global botZdorovie
     global botMana
@@ -5612,7 +5594,7 @@ def initGame(heroSelect):  # функция инициации игры
     global mesiac
     global god
     pygame.draw.rect(sc, (255, 255, 255), (0, 548, 1056, 896)) 
-    bot = 1 # Очищаем информацию о ботах
+    bot = 0 # Очищаем информацию о ботах
     botNumer.clear()
     botType.clear()
     botStep.clear()
@@ -5635,14 +5617,8 @@ def initGame(heroSelect):  # функция инициации игры
     botZachita.clear()
     botHod.clear()
     botLocation.clear()
-    botZoloto.clear()
-    botSerebro.clear()
-    botBronza.clear()
     n = 0 # Создаём массивы для ботов
     for n in range(1000):
-        botZoloto.append(n)
-        botSerebro.append(n)
-        botBronza.append(n)
         botNumer.append(n)
         botType.append(n)
         botStep.append(n)
@@ -5655,7 +5631,6 @@ def initGame(heroSelect):  # функция инициации игры
         botRasa.append(n)
         botZaklinania.append(n)
         botVozdeistvie.append(n)
-        botInventar.append(n)
         botIshZdorovie.append(n)
         botZdorovie.append(n)
         botMana.append(n)
@@ -5668,9 +5643,6 @@ def initGame(heroSelect):  # функция инициации игры
         botAlgoritm.append(n)
         botVariant.append(n)
         
-        botZoloto[n] = 0
-        botSerebro[n] = 0
-        botBronza[n] = 0
         botNumer[n] = 0
         botType[n] = 0
         botStep[n] = 0
@@ -5684,7 +5656,6 @@ def initGame(heroSelect):  # функция инициации игры
         botZaklinania[n] = 0
         botVozdeistvie[n] = 0
         botIshZdorovie[n] = 0
-        botInventar[n] = 0
         botZdorovie[n] = 0
         botMana[n] = 0
         botIshMana[n] = 0
@@ -5696,313 +5667,310 @@ def initGame(heroSelect):  # функция инициации игры
         botAlgoritm[n] = 0
         botVariant[n] = 0
     n = 0  
-    botLocation[0] = 172 # Исходное положение на карте
-    xBot[0] = 400
-    yBot[0] = 256
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 120
-        botZdorovie[0] = 120
-        botMana[0] = 50
-        botIshMana[0] = 50
-        botSila[0] = 14
-        botLovkost[0] = 6
-        botYdacha[0] = 7
-        botZoloto[0] = 0
-        botSerebro[0] = 3
-        botBronza[0] = 0
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
+        zdorovie = 120
+        mana = 50
+        ishMana = 50
+        sila = 14
+        lovkost = 6
+        ydacha = 7
+        zoloto = 0
+        serebro = 3
+        bronza = 0
+        hod = lovkost
         
     elif heroSelect == 51: # Artes
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 7
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 110
-        botZdorovie[0] = 110
-        botMana[0] = 0
-        botIshMana[0] = 0
-        botSila[0] = 12
-        botLovkost[0] = 6
-        botYdacha[0] = 5
-        botZoloto[0] = 0
-        botSerebro[0] = 9
-        botBronza[0] = 50
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 7
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 110
+        zdorovie = 110
+        mana = 0
+        ishMana = 0
+        sila = 12
+        lovkost = 6
+        ydacha = 5
+        zoloto = 0
+        serebro = 9
+        bronza = 50
+        hod = lovkost
         
     elif heroSelect == 52: # Death Owner
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 7
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 90
-        botZdorovie[0] = 90
-        botMana[0] = 100
-        botIshMana[0] = 100
-        botSila[0] = 9
-        botLovkost[0] = 5
-        botYdacha[0] = 9
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 0
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 7
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 90
+        zdorovie = 90
+        mana = 100
+        ishMana = 100
+        sila = 9
+        lovkost = 5
+        ydacha = 9
+        zoloto = 0
+        serebro = 0
+        bronza = 0
+        hod = lovkost         
 
     elif heroSelect == 54: # DjePoTai
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 120
-        botZdorovie[0] = 120
-        botMana[0] = 60
-        botIshMana[0] = 60
-        botSila[0] = 15
-        botLovkost[0] = 7
-        botYdacha[0] = 5
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 150
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
+        zdorovie = 120
+        mana = 60
+        ishMana = 60
+        sila = 15
+        lovkost = 7
+        ydacha = 5
+        zoloto = 0
+        serebro = 0
+        bronza = 150
+        hod = lovkost
 
     elif heroSelect == 55: # Farion
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 6
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 110
-        botZdorovie[0] = 110
-        botMana[0] = 80
-        botIshMana[0] = 80
-        botSila[0] = 10
-        botLovkost[0] = 6
-        botYdacha[0] = 6
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 200
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 6
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 110
+        zdorovie = 110
+        mana = 80
+        ishMana = 80
+        sila = 10
+        lovkost = 6
+        ydacha = 6
+        zoloto = 0
+        serebro = 0
+        bronza = 200
+        hod = lovkost        
 
     elif heroSelect == 56: # Garitos
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 1
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 130
-        botZdorovie[0] = 130
-        botMana[0] = 0
-        botIshMana[0] = 0
-        botSila[0] = 15
-        botLovkost[0] = 7
-        botYdacha[0] = 7
-        botZoloto[0] = 0
-        botSerebro[0] = 5
-        botBronza[0] = 0
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 130
+        zdorovie = 130
+        mana = 0
+        ishMana = 0
+        sila = 15
+        lovkost = 7
+        ydacha = 7
+        zoloto = 0
+        serebro = 5
+        bronza = 0
+        hod = lovkost        
 
     elif heroSelect == 57: # Gendalf
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 1
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [8,22,6,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 85
-        botZdorovie[0] = 85
-        botMana[0] = 120
-        botIshMana[0] = 120
-        botSila[0] = 9
-        botLovkost[0] = 6
-        botYdacha[0] = 9
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 0  
-        botHod[0] = botLovkost[0]        
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [8,22,6,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 85
+        zdorovie = 85
+        mana = 120
+        ishMana = 120
+        sila = 9
+        lovkost = 6
+        ydacha = 9
+        zoloto = 0
+        serebro = 0
+        bronza = 0  
+        hod = lovkost        
 
     elif heroSelect == 58: # Illidan
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 120
-        botZdorovie[0] = 120
-        botMana[0] = 60
-        botIshMana[0] = 60
-        botSila[0] = 11
-        botLovkost[0] = 7
-        botYdacha[0] = 5
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 0  
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
+        zdorovie = 120
+        mana = 60
+        ishMana = 60
+        sila = 11
+        lovkost = 7
+        ydacha = 5
+        zoloto = 0
+        serebro = 0
+        bronza = 0  
+        hod = lovkost
 
     elif heroSelect == 59: # Jaina
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 100
-        botZdorovie[0] = 100
-        botMana[0] = 50
-        botIshMana[0] = 50
-        botSila[0] = 9
-        botLovkost[0] = 7
-        botYdacha[0] = 10
-        botZoloto[0] = 0
-        botSerebro[0] = 1
-        botBronza[0] = 120   
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 100
+        zdorovie = 100
+        mana = 50
+        ishMana = 50
+        sila = 9
+        lovkost = 7
+        ydacha = 10
+        zoloto = 0
+        serebro = 1
+        bronza = 120   
+        hod = lovkost
 
     elif heroSelect == 60: # Kell
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 7
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [10,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 120
-        botZdorovie[0] = 120
-        botMana[0] = 80
-        botIshMana[0] = 80
-        botSila[0] = 14
-        botLovkost[0] = 7
-        botYdacha[0] = 7
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 200
-        botHod[0] = botLovkost[0]        
+        expirience = 0
+        lvl = 1
+        rasa = 7
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [10,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
+        zdorovie = 120
+        mana = 80
+        ishMana = 80
+        sila = 14
+        lovkost = 7
+        ydacha = 7
+        zoloto = 0
+        serebro = 0
+        bronza = 200
+        hod = lovkost        
 
     elif heroSelect == 70: # Uter
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 1
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 150
-        botZdorovie[0] = 150
-        botMana[0] = 0
-        botIshMana[0] = 0
-        botSila[0] = 15
-        botLovkost[0] = 6
-        botYdacha[0] = 8
-        botZoloto[0] = 0
-        botSerebro[0] = 10
-        botBronza[0] = 0 
-        botHod[0] = botLovkost[0]        
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 150
+        zdorovie = 150
+        mana = 0
+        ishMana = 0
+        sila = 15
+        lovkost = 6
+        ydacha = 8
+        zoloto = 0
+        serebro = 10
+        bronza = 0 
+        hod = lovkost        
 
     elif heroSelect == 72: # Vul Djin
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 6
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [7,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 120
-        botZdorovie[0] = 120
-        botMana[0] = 100
-        botIshMana[0] = 100
-        botSila[0] = 12
-        botLovkost[0] = 6
-        botYdacha[0] = 8
-        botZoloto[0] = 0
-        botSerebro[0] = 10
-        botBbronza[0] = 0  
-        botHod[0] = botLovkost[0]         
+        expirience = 0
+        lvl = 1
+        rasa = 6
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [7,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
+        zdorovie = 120
+        mana = 100
+        ishMana = 100
+        sila = 12
+        lovkost = 6
+        ydacha = 8
+        zoloto = 0
+        serebro = 10
+        bronza = 0  
+        hod = lovkost         
     
     elif heroSelect == 68: # Silvana
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 110
-        botZdorovie[0] = 110
-        botMana[0] = 70
-        botIshMana[0] = 70
-        botSila[0] = 11
-        botLovkost[0] = 7
-        botYdacha[0] = 4
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 50  
-        botHod[0] = botLovkost[0]
+        expirience = 0
+        lvl = 1
+        rasa = 2
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 110
+        zdorovie = 110
+        mana = 70
+        ishMana = 70
+        sila = 11
+        lovkost = 7
+        ydacha = 4
+        zoloto = 0
+        serebro = 0
+        bronza = 50  
+        hod = lovkost
         
     elif heroSelect == 65: # Pradmur
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 1
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 100
-        botZdorovie[0] = 100
-        botMana[0] = 0
-        botIshMana[0] = 0
-        botSila[0] = 10
-        botLovkost[0] = 6
-        botYdacha[0] = 9
-        botZoloto[0] = 0
-        botSerebro[0] = 5
-        botBronza[0] = 0 
-        botHod[0] = botLovkost[0]        
+        expirience = 0
+        lvl = 1
+        rasa = 1
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 100
+        zdorovie = 100
+        mana = 0
+        ishMana = 0
+        sila = 10
+        lovkost = 6
+        ydacha = 9
+        zoloto = 0
+        serebro = 5
+        bronza = 0 
+        hod = lovkost        
 
     elif heroSelect == 69: # Trall
-        botExpirience[0] = 0
-        botLvl[0] = 1
-        botRasa[0] = 6
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 140
-        botZdorovie[0] = 140
-        botMana[0] = 0
-        botIshMana[0] = 0
-        botSila[0] = 17
-        botLovkost[0] = 6
-        botYdacha[0] = 5
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 0   
-        botHod[0] = botLovkost[0]        
+        expirience = 0
+        lvl = 1
+        rasa = 6
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 140
+        zdorovie = 140
+        mana = 0
+        ishMana = 0
+        sila = 17
+        lovkost = 6
+        ydacha = 5
+        zoloto = 0
+        serebro = 0
+        bronza = 0   
+        hod = lovkost        
 
     elif heroSelect == 73: # Zadira
-        botExpirience[0] = 0
-        botLlvl[0] = 1
-        botRasa[0] = 6
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 120
-        botZdorovie[0] = 120
-        botMana[0] = 0
-        botIshMana[0] = 0
-        botSila[0] = 15
-        botLovkost[0] = 6
-        botYdacha[0] = 7
-        botZoloto[0] = 0
-        botSerebro[0] = 0
-        botBronza[0] = 170 
-        botHod[0] = botLovkost[0]        
+        expirience = 0
+        lvl = 1
+        rasa = 6
+        inventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        zaklinania = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        vozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        ishZdorovie = 120
+        zdorovie = 120
+        mana = 0
+        ishMana = 0
+        sila = 15
+        lovkost = 6
+        ydacha = 7
+        zoloto = 0
+        serebro = 0
+        bronza = 170 
+        hod = lovkost        
         
     temp = 0
     step = 172
@@ -6011,7 +5979,8 @@ def initGame(heroSelect):  # функция инициации игры
     den = 1
     mesiac = 1
     god = 1
-    botVariant[0] = hero
+    
+    
     heroPanel(heroSelect)  # Вызов функции рисования панели
     for yMap in range(14): # Рисуем игровое поле
     
@@ -6085,7 +6054,7 @@ def initGame(heroSelect):  # функция инициации игры
             yMap += 32    
     print(" ")
         
-    botZachita[0] = 0 # Обнуляем защиту при новой игре
+    zachita = 0 # Обнуляем защиту при новой игре
     n = 0
     for n in range(16): # Рисуем иконки заклинаний
         #print(n)
@@ -6159,66 +6128,66 @@ while True:
         if i.type == pygame.QUIT:
             exit()
             
-        elif i.type == pygame.KEYDOWN and newGame == 1 and botHod[0] > 0:
+        elif i.type == pygame.KEYDOWN and newGame == 1 and hod > 0:
             
-            if i.key == pygame.K_LEFT and xBot[0] >= 18 and world[botLocation[0]-1] == 0:
+            if i.key == pygame.K_LEFT and xHero >= 18 and world[step-1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xBot[0],yBot[0]))
-                xBot[0] -= 32
-                world[botLocation[0]] = 0
-                world[botLocation[0]-1] = hero
-                botLocation[0] -= 1
-                botHod[0] -= 1
+                sc.blit(pix, (xHero,yHero))
+                xHero -= 32
+                world[step] = 0
+                step -= 1
+                world[step] = hero
+                hod -= 1
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
                 print(" ")    # =======
                 worldUpdate()
                 heroPanel(hero)
-            elif i.key == pygame.K_RIGHT and xBot[0] <= 990 and world[botLocation[0]+1] == 0:
+            elif i.key == pygame.K_RIGHT and xHero <= 990 and world[step+1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xBot[0],yBot[0]))
-                xBot[0] += 32
-                world[botLocation[0]] = 0
-                world[botLocation[0]+1] = hero
-                botLocation[0] += 1
-                botHod[0] -= 1
+                sc.blit(pix, (xHero,yHero))
+                xHero += 32
+                world[step] = 0
+                step += 1
+                hod -= 1
+                world[step] = hero
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
                 print(" ")   # =======
                 worldUpdate()
                 heroPanel(hero)
-            elif i.key == pygame.K_UP and yBot[0] >= 96 and world[botLocation[0]-32] == 0:
+            elif i.key == pygame.K_UP and yHero >= 96 and world[step-32] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xBot[0],yBot[0]))
-                yBot[0] -= 32
-                world[botLocation[0]] = 0
-                world[botLocation[0]-32] = hero
-                botLocation[0] -= 32
-                botHod[0] -= 1
+                sc.blit(pix, (xHero,yHero))
+                yHero -= 32
+                world[step] = 0
+                step -= 32
+                world[step] = hero
+                hod -= 1
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
                 print(" ")  # =======
                 worldUpdate()
                 heroPanel(hero)
-            elif i.key == pygame.K_DOWN and yBot[0] <= 510 and world[botLocation[0]+32] == 0: 
+            elif i.key == pygame.K_DOWN and yHero <= 510 and world[step+32] == 0: 
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xBot[0],yBot[0]))
-                yBot[0] += 32
-                world[botLocation[0]] = 0
-                world[botLocation[0]+32] = hero
-                botLocation[0] += 32
-                botHod[0] -= 1
+                sc.blit(pix, (xHero,yHero))
+                yHero += 32
+                world[step] = 0
+                step += 32
+                world[step] = hero
+                hod -= 1
                 for n in range(14): # Сотри, это отладочные строки
                     print(world[temp:temp+32]) 
                     temp += 32
@@ -10505,16 +10474,16 @@ while True:
                 if newGame == 1 and buttonNextStep == 0:
                     pygame.time.delay(300)
                     buttonNextStep = 1 # Переводим кнопу в неактивный режим
-                    botHod[0] = botLovkost[0]
+                    hod = lovkost
                     heroPanel(hero)
                     botActivity() 
-                    n = 1
-                    if botZdorovie[0]+3 < botIshZdorovie[0]: botZdorovie[0] += 2
-                    if botMana[0]+3 < botIshMana[0]: botMana[0] += 2
+                    n = 0
+                    if zdorovie+2 < ishZdorovie: zdorovie += 2
+                    if mana+2 < ishMana: mana += 2
                     for n in range(1000):
                         botHod[n] = botLovkost[n]
-                        if botZdorovie[n]+3 < botIshZdorovie[n]: botZdorovie[n] += 2
-                        if botMana[n]+3 < botIshMana[n]: botMana[n] += 2
+                        if botZdorovie[n]-1 < botIshZdorovie[n]: botZdorovie[n] += 2
+                        if botMana[n]-1 < botIshMana[n]: botMana[n] += 2
                         
         
     
