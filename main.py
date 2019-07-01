@@ -139,7 +139,120 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             botHod[nomerBota] -= 1
             botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
     if botZaklinania[nom][poriad] == 2:
-        pass
+        if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
+            if botLvl[vragBot] == 1 or botLvl[vragBot] == 2:
+                botVariant[vragBot] = 148
+                botLvl[vragBot] = 1
+                botZdorovie[vragBot] = 50
+                botIshZdorovie[vragBot] = 50
+                botMana[vragBot] = 0
+                botIshMana[vragBot] = 0
+                botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[vragBot] = 5
+                botLovkost[vragBot] = 3
+                botYdacha[vragBot] = 1
+                botHod[vragBot] = botLovkost[vragBot]
+                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botAlgoritm[vragBot] = botAlgoritm[nom]
+            if botLvl[vragBot] == 3:
+                botVariant[vragBot] = 149 
+                botLvl[vragBot] = 2
+                botZdorovie[vragBot] = 90
+                botIshZdorovie[vragBot] = 90
+                botMana[vragBot] = 0
+                botIshMana[vragBot] = 0
+                botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[vragBot] = 9
+                botLovkost[vragBot] = 4
+                botYdacha[vragBot] = 2
+                botHod[vragBot] = botLovkost[vragBot]
+                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botAlgoritm[vragBot] = botAlgoritm[nom]
+            if botLvl[vragBot] == 4:
+                botVariant[vragBot] = 150
+                botLvl[vragBot] = 3
+                botZdorovie[vragBot] = 145
+                botIshZdorovie[vragBot] = 145
+                botMana[vragBot] = 0
+                botIshMana[vragBot] = 0
+                botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[vragBot] = 13
+                botLovkost[vragBot] = 4
+                botYdacha[vragBot] = 3
+                botHod[vragBot] = botLovkost[vragBot]
+                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botAlgoritm[vragBot] = botAlgoritm[nom]
+            if botLvl[vragBot] == 5:
+                botVariant[vragBot] = 151
+                botLvl[vragBot] = 4
+                botZdorovie[vragBot] = 190
+                botIshZdorovie[vragBot] = 190
+                botMana[vragBot] = 60
+                botIshMana[vragBot] = 60
+                botZaklinania[vragBot]=[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[vragBot] = 18
+                botLovkost[vragBot] = 4
+                botYdacha[vragBot] = 3
+                botHod[vragBot] = botLovkost[vragBot]
+                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botAlgoritm[vragBot] = botAlgoritm[nom]
+            if botLvl[vragBot] == 6:
+                botVariant[vragBot] = 152 
+                botLvl[vragBot] = 5
+                botZdorovie[vragBot] = 245
+                botIshZdorovie[vragBot] = 245
+                botMana[vragBot] = 120
+                botIshMana[vragBot] = 120
+                botZaklinania[vragBot]=[2,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[vragBot] = 26
+                botLovkost[vragBot] = 5
+                botYdacha[vragBot] = 5
+                botHod[vragBot] = botLovkost[vragBot]
+                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botAlgoritm[vragBot] = botAlgoritm[nom]
+            if botLvl[vragBot] == 7:
+                botVariant[vragBot] = 153
+                botLvl[vragBot] = 6
+                botZdorovie[vragBot] = 315
+                botIshZdorovie[vragBot] = 315
+                botMana[vragBot] = 170
+                botIshMana[vragBot] = 170
+                botZaklinania[vragBot]=[2,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[vragBot] = 36
+                botLovkost[vragBot] = 5
+                botYdacha[vragBot] = 8
+                botHod[vragBot] = botLovkost[vragBot]
+                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botAlgoritm[vragBot] = botAlgoritm[nom]
+            if botLvl[vragBot] == 8:    
+                botVariant[vragBot] = 154
+                botLvl[vragBot] = 7
+                botZdorovie[vragBot] = 395
+                botIshZdorovie[vragBot] = 395
+                botMana[vragBot] = 240
+                botIshMana[vragBot] = 240
+                botZaklinania[vragBot]=[2,11,12,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[vragBot] = 36
+                botLovkost[vragBot] = 5
+                botYdacha[vragBot] = 8
+                botHod[vragBot] = botLovkost[vragBot]
+                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botAlgoritm[vragBot] = botAlgoritm[nom]
+            if botLvl[vragBot] >= 9:        
+                botVariant[vragBot] = 155
+                botLvl[vragBot] = 8
+                botZdorovie[vragBot] = 500
+                botIshZdorovie[vragBot] = 500
+                botMana[vragBot] = 290
+                botIshMana[vragBot] = 290
+                botZaklinania[vragBot]=[2,11,12,15,0,0,0,0,0,0,0,0,0,0,0,100]
+                botSila[vragBot] = 50
+                botLovkost[vragBot] = 5
+                botYdacha[vragBot] = 12
+                botHod[vragBot] = botLovkost[vragBot]
+                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botAlgoritm[vragBot] = botAlgoritm[nom]
+        
     if botZaklinania[nom][poriad] == 3:
         pass
     if botZaklinania[nom][poriad] == 4:
@@ -221,18 +334,18 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
     global botVariant
     global botAlgoritm
     global botLocation
-    jah = 0
+    jah = 1
     n = 1
     mag = 0
     if botRasa[nomerBota] == 1:
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я человек, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 1 or botRasa[jah]-1 == 1 or botRasa[jah]-2 == 1 or botRasa[jah]-3 == 1:
+                if botRasa[jah] == 1 or botRasa[jah]-1 == 1 or botRasa[jah]-2 == 1 or botRasa[jah]-3 == 1 and botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     #print("Это свой")
                     
-                if botRasa[jah] != 1 or botRasa[jah]-1 != 1 or botRasa[jah]-2 != 1 or botRasa[jah]-3 != 1: # Если это враг, тогда бьём в морду
+                if botRasa[jah] != 1 or botRasa[jah]-1 != 1 or botRasa[jah]-2 != 1 or botRasa[jah]-3 != 1 and botAlgoritm[jah] == 4: # Если это враг, тогда бьём в морду
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
                         botZdorovie[jah] -= botSila[jah] - botZachita[jah]
@@ -246,10 +359,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я эльф, вижу жижу номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 2 or botRasa[jah]-1 == 2 or botRasa[jah]-2 == 2 or botRasa[jah]+1 == 2:
+                if botRasa[jah] == 2 or botRasa[jah]-1 == 2 or botRasa[jah]-2 == 2 or botRasa[jah]+1 == 2 and botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")
-                if botRasa[jah] != 2 or botRasa[jah]-1 != 2 or botRasa[jah]-2 != 2 or botRasa[jah]+1 != 2:
+                if botRasa[jah] != 2 or botRasa[jah]-1 != 2 or botRasa[jah]-2 != 2 or botRasa[jah]+1 != 2 and botAlgoritm[jah] == 4:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -258,10 +371,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я гном, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 3 or botRasa[jah]-1 == 3 or botRasa[jah]+1 == 3 or botRasa[jah]+2 == 3:
+                if botRasa[jah] == 3 or botRasa[jah]-1 == 3 or botRasa[jah]+1 == 3 or botRasa[jah]+2 == 3 and botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")
-                if botRasa[jah] != 3 or botRasa[jah]-1 != 3 or botRasa[jah]+1 != 3 or botRasa[jah]+2 != 3:
+                if botRasa[jah] != 3 or botRasa[jah]-1 != 3 or botRasa[jah]+1 != 3 or botRasa[jah]+2 != 3 and botAlgoritm[jah] == 4:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -270,10 +383,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я гоблин, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 4 or botRasa[jah]+1 == 4 or botRasa[jah]+2 == 4 or botRasa[jah]+3 == 4:
+                if botRasa[jah] == 4 or botRasa[jah]+1 == 4 or botRasa[jah]+2 == 4 or botRasa[jah]+3 == 4 and botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")   
-                if botRasa[jah] != 4 or botRasa[jah]+1 != 4 or botRasa[jah]+2 != 4 or botRasa[jah]+3 != 4:
+                if botRasa[jah] != 4 or botRasa[jah]+1 != 4 or botRasa[jah]+2 != 4 or botRasa[jah]+3 != 4 and botAlgoritm[jah] == 4:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -288,10 +401,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я орк, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 6 or botRasa[jah]-1 == 6:
+                if botRasa[jah] == 6 or botRasa[jah]-1 == 6 and botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой") 
-                if botRasa[jah] != 6 or botRasa[jah]-1 != 6:   
+                if botRasa[jah] != 6 or botRasa[jah]-1 != 6 and botAlgoritm[jah] == 3:   
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -300,10 +413,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я нежить, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 7 or botRasa[jah]+1 == 7:
+                if botRasa[jah] == 7 or botRasa[jah]+1 == 7 and botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")                       
-                if botRasa[jah] != 7 or botRasa[jah]+1 != 7:
+                if botRasa[jah] != 7 or botRasa[jah]+1 != 7 and botAlgoritm[jah] == 3:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -571,6 +684,7 @@ def botGoing(): # Эта функция вызывается каждый раз
     global buttonNextStep
     
     n = 1
+        
     for n in range(1000):
         i = 0
         if botZdorovie[n] > 0 and botHod[n] > 0:             
@@ -5718,11 +5832,12 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 3
         botBronza[0] = 0
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] == 3
         
     elif heroSelect == 51: # Artes
         botExpirience[0] = 0
         botLvl[0] = 1
-        botRasa[0] = 7
+        botRasa[0] = 1
         botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -5737,6 +5852,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 9
         botBronza[0] = 50
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] == 3
         
     elif heroSelect == 52: # Death Owner
         botExpirience[0] = 0
@@ -5775,6 +5891,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 150
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] == 4
 
     elif heroSelect == 55: # Farion
         botExpirience[0] = 0
@@ -5851,6 +5968,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 0  
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] == 3
 
     elif heroSelect == 59: # Jaina
         botExpirience[0] = 0
@@ -5870,6 +5988,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 1
         botBronza[0] = 120   
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] == 3
 
     elif heroSelect == 60: # Kell
         botExpirience[0] = 0
@@ -5888,7 +6007,8 @@ def initGame(heroSelect):  # функция инициации игры
         botZoloto[0] = 0
         botSerebro[0] = 0
         botBronza[0] = 200
-        botHod[0] = botLovkost[0]        
+        botHod[0] = botLovkost[0]  
+        botAlgoritm[0] == 4      
 
     elif heroSelect == 70: # Uter
         botExpirience[0] = 0
@@ -5907,7 +6027,8 @@ def initGame(heroSelect):  # функция инициации игры
         botZoloto[0] = 0
         botSerebro[0] = 10
         botBronza[0] = 0 
-        botHod[0] = botLovkost[0]        
+        botHod[0] = botLovkost[0]    
+        botAlgoritm[0] == 3    
 
     elif heroSelect == 72: # Vul Djin
         botExpirience[0] = 0
@@ -5925,8 +6046,9 @@ def initGame(heroSelect):  # функция инициации игры
         botYdacha[0] = 8
         botZoloto[0] = 0
         botSerebro[0] = 10
-        botBbronza[0] = 0  
-        botHod[0] = botLovkost[0]         
+        botBronza[0] = 0  
+        botHod[0] = botLovkost[0]    
+        botAlgoritm[0] == 4     
     
     elif heroSelect == 68: # Silvana
         botExpirience[0] = 0
@@ -5946,6 +6068,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 50  
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] == 3
         
     elif heroSelect == 65: # Pradmur
         botExpirience[0] = 0
@@ -5964,7 +6087,8 @@ def initGame(heroSelect):  # функция инициации игры
         botZoloto[0] = 0
         botSerebro[0] = 5
         botBronza[0] = 0 
-        botHod[0] = botLovkost[0]        
+        botHod[0] = botLovkost[0] 
+        botAlgoritm[0] == 3       
 
     elif heroSelect == 69: # Trall
         botExpirience[0] = 0
@@ -5983,7 +6107,8 @@ def initGame(heroSelect):  # функция инициации игры
         botZoloto[0] = 0
         botSerebro[0] = 0
         botBronza[0] = 0   
-        botHod[0] = botLovkost[0]        
+        botHod[0] = botLovkost[0] 
+        botAlgoritm[0] == 4       
 
     elif heroSelect == 73: # Zadira
         botExpirience[0] = 0
@@ -6002,7 +6127,8 @@ def initGame(heroSelect):  # функция инициации игры
         botZoloto[0] = 0
         botSerebro[0] = 0
         botBronza[0] = 170 
-        botHod[0] = botLovkost[0]        
+        botHod[0] = botLovkost[0]  
+        botAlgoritm[0] == 4      
         
     temp = 0
     step = 172
