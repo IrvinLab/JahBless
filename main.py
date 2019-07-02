@@ -37,7 +37,7 @@ botSerebro = []
 botBronza = []
 hod = 0
 zachita = 0
-
+attack = 0
 # Переменные ботов
 bot = 1 # Количество ботов
 botNumer = [] # Порядковый номер бота в списке ботов
@@ -130,16 +130,20 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global botVariant
     global botAlgoritm
     global botLocation
+    if botZaklinania[nom][poriad] == 100:
+        botHod[nom] -= 1
+        botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
     if botZaklinania[nom][poriad] == 1:
         if botLvl[nom] == botLvl[vragBot] or botLvl[nom] < botLvl[vragBot] or botLvl[nom] == botLvl[vragBot]-1 or botLvl[nom] == botLvl[vragBot]-2 or botLvl[nom] == botLvl[vragBot]-3 or botLvl[nom] == botLvl[vragBot]-4 and botMana[nom] >= 200: # Если хватает маны, то колдуем
             botMana[nom] -= 200
             botZdorovie[vragBot] -= 200
             print("Пронзающая смерть")
         if botLvl[nom] > botLvl[vragBot] and botMana[nom] <= 200: # Если маны не хватает, то бъём оружием    
-            botHod[nomerBota] -= 1
-            botZdorovie[vragBot] -= botSila[nomerBota] - botZachita[vragBot]
+            botHod[nom] -= 1
+            botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
     if botZaklinania[nom][poriad] == 2:
         if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
+            botMana[nom] -= 100
             if botLvl[vragBot] == 1 or botLvl[vragBot] == 2:
                 botVariant[vragBot] = 148
                 botLvl[vragBot] = 1
@@ -341,11 +345,11 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я человек, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 1 or botRasa[jah]-1 == 1 or botRasa[jah]-2 == 1 or botRasa[jah]-3 == 1 and botAlgoritm[jah] == 3:
+                if botRasa[jah] == 1 or botRasa[jah] == 2 or botRasa[jah] == 3 or botRasa[jah] == 4 and botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     #print("Это свой")
                     
-                if botRasa[jah] != 1 or botRasa[jah]-1 != 1 or botRasa[jah]-2 != 1 or botRasa[jah]-3 != 1 and botAlgoritm[jah] == 4: # Если это враг, тогда бьём в морду
+                if botRasa[jah] != 1 or botRasa[jah] != 2 or botRasa[jah] != 3 or botRasa[jah] != 4 and botAlgoritm[jah] == 4: # Если это враг, тогда бьём в морду
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
                         botZdorovie[jah] -= botSila[jah] - botZachita[jah]
@@ -413,10 +417,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я нежить, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 7 or botRasa[jah]+1 == 7 and botAlgoritm[jah] == 4:
+                if botRasa[jah] == 7 or botRasa[jah] == 6 and botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")                       
-                if botRasa[jah] != 7 or botRasa[jah]+1 != 7 and botAlgoritm[jah] == 3:
+                if botRasa[jah] != 7 or botRasa[jah] != 6 and botAlgoritm[jah] == 3:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -3698,6 +3702,44 @@ def worldUpdate():   # Отправляем данные об объекте
         if world[n] == 209: markLocation(n, world[n])             
 
 def doebaca(hehmda):  #Функция отображающая информацию об объектах и позволяющая с ними взаимодействовать
+    global botType
+    global botStep
+    global xBot
+    global yBot
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botInventar
+    global botIshZdorovie
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+    global world
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botLocation
+    global attack
+    
+    if attack == 1 and botHod[0] > 0:
+        n = 1
+        for n in range(1000):
+            if botLocation[0] == botLocation[n] or botLocation[0] == botLocation[n]-1 or botLocation[0] == botLocation[n]+1 or botLocation[0] == botLocation[n]-32 or botLocation[0] == botLocation[n]+32 or botLocation[0] == botLocation[n]-31 or botLocation[0] == botLocation[n]+31 or botLocation[0] == botLocation[n]-33 or botLocation[0] == botLocation[n]+33:
+                botHod[0] -= 1
+                botZdorovie[n] -= botSila[0] - botZachita[n]
+                attack = 0
+          
+        heroPanel(hero)
+        worldUpdate()        
+        
+                     
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
     if world[hehmda] == 3:
         pix = pygame.image.load('Images/jilZelievara.png')
@@ -6112,7 +6154,7 @@ def initGame(heroSelect):  # функция инициации игры
 
     elif heroSelect == 73: # Zadira
         botExpirience[0] = 0
-        botLlvl[0] = 1
+        botLvl[0] = 1
         botRasa[0] = 6
         botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -10606,15 +10648,18 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     attack = 1                     
+                     variableName = u"Атака"
+                     nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                     sc.blit(nameObj,(440, 560))
+                 
                  if newGameButton == 1:
                      hero = 73
                      newGame = 1  
                      initGame(73) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass 
-                 
                  
                     
     pygame.display.update()
