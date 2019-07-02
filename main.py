@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import pygame, sys, random
+import pygame.freetype
  
 FPS = 60
 xGameMap = 16 
@@ -3728,7 +3729,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
     global botLocation
     global attack
     
-    
+    n = 0
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
     if world[hehmda] == 3:
         pix = pygame.image.load('Images/jilZelievara.png')
@@ -3925,7 +3926,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
-        variableName = u"Эльф 1 уровня"
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
+        variableName = u"Эльф 1 уровня "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"Рядовой боец расы эльфов. "
@@ -3942,6 +3946,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n])
         variableName = u"Эльф 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -3956,6 +3963,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n])
         variableName = u"Эльф 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -3973,6 +3983,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гнолл 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -3990,6 +4003,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гнолл 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4007,6 +4023,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гнолл 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4024,6 +4043,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гном 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4038,6 +4060,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гном 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4052,6 +4077,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гном 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4066,6 +4094,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гном 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4083,6 +4114,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гоблин"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4100,6 +4134,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гоблин 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4117,6 +4154,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гоблин 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4134,6 +4174,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Гоблин 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4151,6 +4194,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Отшельник 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4171,6 +4217,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Отшельник 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4188,6 +4237,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Отшельник 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4205,6 +4257,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Охотник за головами"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4228,6 +4283,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Человек"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4248,6 +4306,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Проклятый морлок"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4268,6 +4329,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Проклятый гнолл"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4291,6 +4355,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Проклятый носорог"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4314,6 +4381,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Дракон"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4337,6 +4407,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Морлок 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4351,6 +4424,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Морлок 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4365,6 +4441,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Морлок 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4379,6 +4458,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Наёмник 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4402,6 +4484,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Наёмник 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4425,6 +4510,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Наёмник 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4445,6 +4533,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Наёмник 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4465,6 +4556,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Некромант"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4491,6 +4585,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Непобедимый 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4508,6 +4605,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Непобедимый 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4528,6 +4628,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Огр 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4545,6 +4648,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Огр 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4562,6 +4668,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Оккультист"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4585,6 +4694,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Орк 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4605,6 +4717,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Орк 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4628,6 +4743,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Орк 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4651,6 +4769,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Орк 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4666,7 +4787,6 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"в пустошах."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660)) 
-        
         variableName = u"Не обладает магическими способностями"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))   
@@ -4675,6 +4795,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Орк 5 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4698,6 +4821,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Орк 6 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4715,6 +4841,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Орк 7 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4726,12 +4855,16 @@ def doebaca(hehmda):  #Функция отображающая информац�
         sc.blit(nameObj,(440, 600)) 
         variableName = u"Не обладает магическими способностями"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 620))    
+        sc.blit(nameObj,(440, 620))   
+                
     if world[hehmda] == 143:
         pix = pygame.image.load('Images/ork-shaman.jpg')
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Орк-шаман"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4749,6 +4882,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Оккультист"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4769,6 +4905,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Разбойник"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4789,6 +4928,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Грабитель"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4809,6 +4951,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Красный огненный голем"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4826,6 +4971,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Скелет 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4849,6 +4997,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Скелет 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4872,6 +5023,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Скелет 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4895,6 +5049,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Скелет 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4918,6 +5075,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Скелет 5 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4941,6 +5101,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Скелет 6 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4964,6 +5127,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Скелет 7 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -4987,6 +5153,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Скелет 8 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5010,6 +5179,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Душекрад"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5027,6 +5199,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Странник"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5059,6 +5234,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Тролль 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5073,6 +5251,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Тролль 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5087,6 +5268,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Тролль 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5101,6 +5285,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Тролль 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5118,6 +5305,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Тролль 5 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5135,6 +5325,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Тролль 6 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5155,6 +5348,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Вампир"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5178,6 +5374,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Колдун"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5207,6 +5406,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Женщина-эльф 1 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5224,6 +5426,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Женщина-эльф 2 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5238,6 +5443,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Женщина-эльф 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5255,6 +5463,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Женщина-эльф 4 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5272,6 +5483,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Женщина-эльф 5 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5292,6 +5506,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Женщина-эльф 6 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5312,6 +5529,9 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
+        for n in range(1000):
+            if botLocation[n] == hehmda:
+                print(botZdorovie[n]) 
         variableName = u"Женщина-эльф 7 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
@@ -5391,7 +5611,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
           
         heroPanel(hero)
         worldUpdate()        
-        
+        attack = 0
                      
         
 def visibleMagic(xMag, yMag, por): # Функция, отображающая заклинания
@@ -5529,7 +5749,7 @@ def visibleMagic(xMag, yMag, por): # Функция, отображающая з
         sc.blit(pix, (xMag,yMag))              
                                 
 
-def printMagic(numberMagic):
+def printMagic(numberMagic):                                # Отображаем магические способности
     if numberMagic == 0: visibleMagic(16,548,0)
     if numberMagic == 1: visibleMagic(84,548,1)
     if numberMagic == 2: visibleMagic(152,548,2)
