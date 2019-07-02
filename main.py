@@ -3728,18 +3728,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
     global botLocation
     global attack
     
-    if attack == 1 and botHod[0] > 0:
-        n = 1
-        for n in range(1000):
-            if botLocation[0] == botLocation[n] or botLocation[0] == botLocation[n]-1 or botLocation[0] == botLocation[n]+1 or botLocation[0] == botLocation[n]-32 or botLocation[0] == botLocation[n]+32 or botLocation[0] == botLocation[n]-31 or botLocation[0] == botLocation[n]+31 or botLocation[0] == botLocation[n]-33 or botLocation[0] == botLocation[n]+33:
-                botHod[0] -= 1
-                botZdorovie[n] -= botSila[0] - botZachita[n]
-                attack = 0
-          
-        heroPanel(hero)
-        worldUpdate()        
-        
-                     
+    
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
     if world[hehmda] == 3:
         pix = pygame.image.load('Images/jilZelievara.png')
@@ -5364,9 +5353,46 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"место в этом мире"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))    
-                  
         
+    if attack == 1 and botHod[0] > 0:  # Тут мы атакуем ботов
+        n = 1
+        for n in range(1000):
+            if botLocation[0] == botLocation[n]-1 or botLocation[0] == botLocation[n]+1 or botLocation[0] == botLocation[n]-32 or botLocation[0] == botLocation[n]+32 or botLocation[0] == botLocation[n]-31 or botLocation[0] == botLocation[n]+31 or botLocation[0] == botLocation[n]-33 or botLocation[0] == botLocation[n]+33:
+                print("Бот ",botLocation[n], " рядом со мной",botLocation[0], " и я его бью. Его здоровье: ", botZdorovie[n], " уровень: ",botLvl[n]," Тип: ",botVariant[n])
+                botHod[0] -= 1
+                botZdorovie[n] -= botSila[0] - botZachita[n]
+                attack = 0
+                if botZdorovie[n] <= 0:
+                    pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
+                    botType[n] = 0
+                    botStep[n] = 0
+                    xBot[n] = 0
+                    yBot[n] = 0
+                    botExpirience[n] = 0
+                    botLvl[n] = 0
+                    botRasa[n] = 0
+                    botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botIshZdorovie[n] = 0
+                    botZdorovie[n] = 0
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botSila[n] = 0
+                    botLovkost[n] = 0
+                    botYdacha[n] = 0
+                    botZachita[n] = 0
+                    botHod[n] = 0
+                    world[botLocation[n]] = 0
+                    botNumer[n] = 0
+                    botVariant[n] = 0
+                    botAlgoritm[n] = 0
+                    botLocation[n] = 0
+          
+        heroPanel(hero)
+        worldUpdate()        
         
+                     
         
 def visibleMagic(xMag, yMag, por): # Функция, отображающая заклинания
     global botZaklinania
@@ -10649,7 +10675,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     attack = 1                     
+                     attack = 1      
+                     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896))                      
                      variableName = u"Атака"
                      nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                      sc.blit(nameObj,(440, 560))
