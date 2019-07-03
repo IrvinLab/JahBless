@@ -106,7 +106,64 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
+def ubiraemTrup(trup):
+    global n
+    global bot 
+    global botType
+    global botStep
+    global xBot
+    global yBot
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botInventar
+    global botIshZdorovie
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+    global world
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botLocation
+    
+    
+    pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
+    botType[trup] = 0
+    botStep[trup] = 0
+    xBot[trup] = 0
+    yBot[trup] = 0
+    botExpirience[trup] = 0
+    botLvl[trup] = 0
+    botRasa[trup] = 0
+    botZaklinania[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botVozdeistvie[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botInventar[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botIshZdorovie[trup] = 0
+    botZdorovie[trup] = 0
+    botMana[trup] = 0
+    botIshMana[trup] = 0
+    botSila[trup] = 0
+    botLovkost[trup] = 0
+    botYdacha[trup] = 0
+    botZachita[trup] = 0
+    botHod[trup] = 0
+    world[botLocation[trup]] = 0
+    botNumer[trup] = 0
+    botVariant[trup] = 0
+    botAlgoritm[trup] = 0
+    botLocation[trup] = 0
+
 def botKoldun(nom, poriad, vragBot): # функция колдовства (Номер колдующего бота, порядковый номер заклинания, номер вражеского бота)
+    yaKastanul = 0
+    
     global n
     global bot 
     global botType
@@ -138,16 +195,19 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     if botZaklinania[nom][poriad] == 100: # Это удар мечом
         botHod[nom] -= 1
         botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
+    
     if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
         if botMana[nom] >= 200: # Если хватает маны, то колдуем
             botMana[nom] -= 200
             botZdorovie[vragBot] -= 200
             botHod[nom] -= 1
             print("Пронзающая смерть")
+            yaKastanul = 1
         
     if botZaklinania[nom][poriad] == 2:
         if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
             botMana[nom] -= 100
+            yaKastanul = 1
             if botLvl[vragBot] == 1 or botLvl[vragBot] == 2:
                 botVariant[vragBot] = 148
                 botLvl[vragBot] = 1
@@ -262,68 +322,71 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botAlgoritm[vragBot] = botAlgoritm[nom]
         
     if botZaklinania[nom][poriad] == 3:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 4:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 5:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 6:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 7:
-        pass  
+        yaKastanul = 1  
     if botZaklinania[nom][poriad] == 8:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 9:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 10:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 11:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 12:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 13:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 14:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 15:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 16:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 17:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 18:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 19:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 20:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 21:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 22:
         if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
            botMana[nom] -= 30
            botZdorovie[vragBot] += 30
            botHod[nom] -= 1
            print("Подлечили бота: ", vragBot)
+           yaKastanul = 1
         elif botMana[nom] >=30 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-30:
             botZdorovie[vragBot] = botIshZdorovie[vragBot] 
             print("Подлечили бота: ", vragBot, "Полное здоровье")
-            botHod[nom] -= 1            
+            botHod[nom] -= 1
+            yaKastanul = 1            
     if botZaklinania[nom][poriad] == 23:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 24:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 25:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 26:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 27:
-        pass
+        yaKastanul = 1
     if botZaklinania[nom][poriad] == 28:
-        pass  
+        yaKastanul = 1  
 
     worldUpdate()
     heroPanel(hero)
+    return yaKastanul 
     
 def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обрабатываем реакцию на присутвие персонажей и NPC
     global n
@@ -369,8 +432,9 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                         botZdorovie[jah] -= botSila[jah] - botZachita[jah]
                     if botMana[n] > 0:
                         for mag in range(16):
-                            botKoldun(n, mag , jah)
-                            botHod[nomerBota] -= 1
+                            if botZaklinania[n][mag] != 0:
+                                if botKoldun[n,mag,jah] == 1: # Если функция вернула 1 то...
+                                    print ("SAS")
                             
                                 
     if botRasa[nomerBota] == 2:
@@ -5623,31 +5687,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 attack = 0
                 if botZdorovie[n] <= 0:
                     botExpirience[0] += int(botIshZdorovie[n] / 2)
-                    pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
-                    botType[n] = 0
-                    botStep[n] = 0
-                    xBot[n] = 0
-                    yBot[n] = 0
-                    botExpirience[n] = 0
-                    botLvl[n] = 0
-                    botRasa[n] = 0
-                    botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botIshZdorovie[n] = 0
-                    botZdorovie[n] = 0
-                    botMana[n] = 0
-                    botIshMana[n] = 0
-                    botSila[n] = 0
-                    botLovkost[n] = 0
-                    botYdacha[n] = 0
-                    botZachita[n] = 0
-                    botHod[n] = 0
-                    world[botLocation[n]] = 0
-                    botNumer[n] = 0
-                    botVariant[n] = 0
-                    botAlgoritm[n] = 0
-                    botLocation[n] = 0
+                    ubiraemTrup(n)
           
         heroPanel(hero)
         worldUpdate()        
