@@ -107,6 +107,404 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
+def textMagic(numerCeil):
+    global botZaklinania 
+    global hero
+    heroPanel(hero)
+    if botZaklinania[0][numerCeil-1] == 1:
+        variableName = u"Пронзающая смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Мощное боевое заклинание 5 уровня "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"-200 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 200 маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        #variableName = u"и ещё много чего. У короля есть сокровища"
+        #nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        #sc.blit(nameObj,(440, 640))  
+        #variableName = u"которые охраняет свита отборных бойцов"
+        #nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        #sc.blit(nameObj,(440, 660)) 
+    if botZaklinania[0][numerCeil-1] == 2:
+        variableName = u"Добить и воскресить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Базовое магическое заклинание"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"начинающего некроманта. Создаёт скелета"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"из существа при условии, чтоего здоровье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"меньше или равно 30."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 30 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if botZaklinania[0][numerCeil-1] == 3:
+        variableName = u"Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Базовая магия защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"+5 к защите на 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 30 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[0][numerCeil-1] == 4:
+        variableName = u"Кража магии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Отнимает всю ману противника и половину"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"отнятой маны прибавляет заклинателю"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 20 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if botZaklinania[0][numerCeil-1] == 5:
+        variableName = u"Обман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание хаоса 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо бездействует 1 ход"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Полезно применять против сильного"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"если у него нет защиты от базовых"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"заклинаний хаоса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+        variableName = u"Требует 50 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+    if botZaklinania[0][numerCeil-1] == 6:
+        variableName = u"Огненный шар"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боевая магия Хаоса 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Создаёт огненный шар, летящий во врага"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"-30 здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Требует 15 маны"
+    if botZaklinania[0][numerCeil-1] == 7:
+        variableName = u"Отравление"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает 15 урона каждый ход"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Заклинание действует до тех пор пока"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"не будет применено заклинание лечения,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"или рассеивание чар. Также действие"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+        variableName = u"магии снимается зельями  лечения"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))             
+        variableName = u"Требует 30 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))                     
+    if botZaklinania[0][numerCeil-1] == 8:
+        variableName = u"Кровожадность"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Хаоса 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает +5 силы на 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 35 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[0][numerCeil-1] == 9:
+        variableName = u"Лунный обряд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Природы 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"+70 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 50 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[0][numerCeil-1] == 10:
+        variableName = u"Мощь природы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Природы 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Улучшающее заклинание"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"+5 Силы +5 Защиты на 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[0][numerCeil-1] == 11:
+        variableName = u"Могильный луч"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает 50 урона, а также"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"теряет защиту на 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Защита = 0 -50 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 60 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))                
+    if botZaklinania[0][numerCeil-1] == 12:
+        variableName = u"Молния"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боевая магия 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Разряд молнии отнимает 70 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 70 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[0][numerCeil-1] == 13:
+        variableName = u"Печать Хаоса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Хаоса 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Продвинутое заклинание Хаоса, "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"действует подобно заклинанию"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Отравление, более тогоотнимает всю"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"ману и защиту. Защита восстанавливается"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+        variableName = u"через 10 ходов."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))             
+        variableName = u"Требует 100 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))             
+    if botZaklinania[0][numerCeil-1] == 14:
+        variableName = u"Печать смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 7 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо умирает через 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Заклинание можно снять Рассеиванием"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"чар или артефактом подобного действия"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 230 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+    if botZaklinania[0][numerCeil-1] == 15:
+        variableName = u"Поцелуй смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает 40 урона каждый ход"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Заклинание действует до тех пор пока"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"не будет применено рассеивание чар."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 150 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+    if botZaklinania[0][numerCeil-1] == 16:
+        variableName = u"Проклятье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"На 5 ходов защита будет равна нулю"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 75 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[0][numerCeil-1] == 17:
+        variableName = u"Пронзающий крик"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боевая магия 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"-50 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 30 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[0][numerCeil-1] == 18:
+        variableName = u"Регенерация"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Природы 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает 7 здоровья до тех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"пор пока полностью не восстановит"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"исходное здоровье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 40 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+    if botZaklinania[0][numerCeil-1] == 19:
+        variableName = u"Сжигание маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Хаоса 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Сжигает всю ману противника"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 15 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+    if botZaklinania[0][numerCeil-1] == 20:
+        variableName = u"Вампиризм"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Смерти 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Половина нанесённого оружием урона"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"преобразуется в здоровье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Требует 55 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if botZaklinania[0][numerCeil-1] == 21:
+        variableName = u"Пока это восстановить скелетов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Это заклинание нужно исправить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+    if botZaklinania[0][numerCeil-1] == 22:
+        variableName = u"Лечение"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Порядка 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Преобразует ману в здоровье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"+30 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Требует 30 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+    if botZaklinania[0][numerCeil-1] == 23:
+        variableName = u"Рассеять чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Порядка 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Рассеивает чары вокруг заклинателя "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 40 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+    if botZaklinania[0][numerCeil-1] == 24:
+        variableName = u"Пленить душу"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Смерти 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо переходит в подчинение"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"заклинателя. Действует на существ"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"до 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 100 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))       
+                     
+                     
+                     
+                
+    
+                        
 def ubiraemTrup(trup):
     global n
     global bot 
@@ -5690,6 +6088,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         if zakl == 15: botKoldun(0,zakl-1,ktoZdesVrag)
                         
         zakl = 0
+        attack = 0
     
     if attack == 1 and botHod[0] > 0:  # Тут мы атакуем ботов
         n = 1
@@ -10757,6 +11156,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 1
+                     textMagic(zakl)
                      
                  
     if mos_x>84 and (mos_x<148): 
@@ -10776,7 +11176,8 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      print ("Заклинание 2")
-                     zakl = 2                
+                     zakl = 2       
+                     textMagic(zakl)         
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -10795,6 +11196,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 3     
+                     textMagic(zakl)
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -10813,6 +11215,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 4 
+                     textMagic(zakl)
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -10831,6 +11234,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 5 
+                     textMagic(zakl)
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -10848,7 +11252,8 @@ while True:
                      initGame(56)  
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 6           
+                     zakl = 6       
+                     textMagic(zakl)    
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -10866,7 +11271,8 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 7                 
+                     zakl = 7       
+                     textMagic(zakl)          
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -10885,6 +11291,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 8 
+                     textMagic(zakl)
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -10903,6 +11310,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 9 
+                     textMagic(zakl)
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -10921,6 +11329,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 10
+                     textMagic(zakl)
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -10938,7 +11347,8 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 11                
+                     zakl = 11      
+                     textMagic(zakl)          
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -10956,7 +11366,8 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 12                            
+                     zakl = 12      
+                     textMagic(zakl)                      
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -10975,6 +11386,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 13 
+                     textMagic(zakl)
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -10993,6 +11405,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 14              
+                     textMagic(zakl)
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -11010,7 +11423,8 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1:  # Нажали на заклинание 
-                     zakl = 15              
+                     zakl = 15  
+                     textMagic(zakl)            
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -11022,6 +11436,7 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 0
                      attack = 1      
                      pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896))                      
                      variableName = u"Атака"
