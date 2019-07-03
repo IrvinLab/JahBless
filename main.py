@@ -39,6 +39,7 @@ botBronza = []
 hod = 0
 zachita = 0
 attack = 0
+zakl = 0
 # Переменные ботов
 bot = 1 # Количество ботов
 botNumer = [] # Порядковый номер бота в списке ботов
@@ -132,10 +133,11 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global botVariant
     global botAlgoritm
     global botLocation
-    if botZaklinania[nom][poriad] == 100:
+    print (nom, poriad, vragBot)
+    if botZaklinania[nom][poriad] == 100: # Это удар мечом
         botHod[nom] -= 1
         botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
-    if botZaklinania[nom][poriad] == 1:
+    if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
         if botLvl[nom] == botLvl[vragBot] or botLvl[nom] < botLvl[vragBot] or botLvl[nom] == botLvl[vragBot]-1 or botLvl[nom] == botLvl[vragBot]-2 or botLvl[nom] == botLvl[vragBot]-3 or botLvl[nom] == botLvl[vragBot]-4 and botMana[nom] >= 200: # Если хватает маны, то колдуем
             botMana[nom] -= 200
             botZdorovie[vragBot] -= 200
@@ -143,6 +145,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
         if botLvl[nom] > botLvl[vragBot] and botMana[nom] <= 200: # Если маны не хватает, то бъём оружием    
             botHod[nom] -= 1
             botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
+    
     if botZaklinania[nom][poriad] == 2:
         if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
             botMana[nom] -= 100
@@ -298,7 +301,10 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     if botZaklinania[nom][poriad] == 21:
         pass
     if botZaklinania[nom][poriad] == 22:
-        pass
+        if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
+           botMana[nom] -= 30
+           botZdorovie[vragBot] += 30
+           print("Подлечили бота: ", vragBot)
     if botZaklinania[nom][poriad] == 23:
         pass
     if botZaklinania[nom][poriad] == 24:
@@ -312,6 +318,8 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     if botZaklinania[nom][poriad] == 28:
         pass  
 
+    worldUpdate()
+    heroPanel(hero)
     
 def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обрабатываем реакцию на присутвие персонажей и NPC
     global n
@@ -3729,6 +3737,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
     global botAlgoritm
     global botLocation
     global attack
+    global zakl
     
     n = 0
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
@@ -5574,7 +5583,31 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"место в этом мире"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))    
+    
+    ktoZdesVrag = 0
+    for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+        if botLocation[ktoZdesVrag] == hehmda:
+            break        
         
+    if zakl > 0 and ktoZdesVrag != 999:
+        if zakl == 1: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag); print("Лечим",0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 2: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 3: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 4: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 5: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 6: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 7: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 8: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 9: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 10: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 11: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 12: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 13: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 14: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 15: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+                        
+        zakl = 0
+    
     if attack == 1 and botHod[0] > 0:  # Тут мы атакуем ботов
         n = 1
         for n in range(1000):
@@ -6110,7 +6143,7 @@ def initGame(heroSelect):  # функция инициации игры
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
         botExpirience[0] = 0
-        botLvl[0] = 1
+        botLvl[0] = 10                                                #botLvl[0] = 1
         botRasa[0] = 2
         botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]           #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100] #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -10658,7 +10691,7 @@ while True:
                      initGame(50)                
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass
+                     zakl = 1
                      
                  
     if mos_x>84 and (mos_x<148): 
@@ -10677,7 +10710,8 @@ while True:
                      initGame(51)  
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass                
+                     print ("Заклинание 2")
+                     zakl = 2                
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -10695,7 +10729,7 @@ while True:
                      initGame(52) 
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass     
+                     zakl = 3     
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -10713,7 +10747,7 @@ while True:
                      initGame(54)  
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass 
+                     zakl = 4 
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -10731,7 +10765,7 @@ while True:
                      initGame(55)  
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass 
+                     zakl = 5 
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -10749,7 +10783,7 @@ while True:
                      initGame(56)  
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass           
+                     zakl = 6           
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -10767,7 +10801,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass                  
+                     zakl = 7                 
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -10785,7 +10819,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass 
+                     zakl = 8 
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -10803,7 +10837,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass 
+                     zakl = 9 
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -10821,7 +10855,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass 
+                     zakl = 10
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -10839,7 +10873,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass                 
+                     zakl = 11                
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
@@ -10857,7 +10891,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass                            
+                     zakl = 12                            
                  
     if mos_x>16 and (mos_x<80): 
         x_inside = True
@@ -10875,7 +10909,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass 
+                     zakl = 13 
                  
     if mos_x>84 and (mos_x<148): 
         x_inside = True
@@ -10893,7 +10927,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     pass               
+                     zakl = 14              
                  
     if mos_x>152 and (mos_x<216): 
         x_inside = True
@@ -10911,7 +10945,7 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1:  # Нажали на заклинание 
-                     pass              
+                     zakl = 15              
                                                             
     if mos_x>220 and (mos_x<284): 
         x_inside = True
