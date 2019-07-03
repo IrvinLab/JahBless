@@ -99,6 +99,7 @@ textSerebro = pygame.font.SysFont('Monospace Regular', 20)
 textBronza = pygame.font.SysFont('Monospace Regular', 20)
 textDescription = pygame.font.SysFont('Monospace Regular', 20) #Описание объекта
 textHod = pygame.font.SysFont('Monospace Regular', 20) # Отображает количество оставшегося хода
+textExpirience = pygame.font.SysFont('Monospace Regular', 20) # Отображает опыт
 
 for n in range(480): # Забиваем мир нулями
     world.append(n)
@@ -5581,8 +5582,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 print("Бот ",botLocation[n], " рядом со мной",botLocation[0], " и я его бью. Его здоровье: ", botZdorovie[n], " уровень: ",botLvl[n]," Тип: ",botVariant[n])
                 botHod[0] -= 1
                 botZdorovie[n] -= botSila[0] - botZachita[n]
+                botExpirience[0] += botSila[0] # Повышаем опыт
                 attack = 0
                 if botZdorovie[n] <= 0:
+                    botExpirience[0] += int(botIshZdorovie[n] / 2)
                     pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
                     botType[n] = 0
                     botStep[n] = 0
@@ -5929,48 +5932,51 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         variableName = u"Задира - " + str(botLvl[0]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
-       
+    
+    variableExpirience = "" + str(botExpirience[0]) + " XP"  # переменная типа String - опыт
+    healtObj = textExpirience.render(variableExpirience, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(healtObj,(290, 631)) # Отображаем Опыт    
     
     variableHealt = "" + str(botZdorovie[0]) + " / " + str(botIshZdorovie[0]) # переменная типа String отображающая здоровье как ххх/ххх
     healtObj = healt.render(variableHealt, False, (0, 255, 0)) # Создали объект типа "текст" 
-    sc.blit(healtObj,(290, 631)) # Отображаем здоровье
+    sc.blit(healtObj,(290, 644)) # Отображаем здоровье
     
     variableMana = "" + str(botMana[0]) + " / " + str(botIshMana[0]) # переменная типа String отображающая ману как ххх/ххх
     manaObj = manna.render(variableMana, False, (0, 0, 255)) # Создали объект типа "текст" 
-    sc.blit(manaObj,(290, 644)) # Отображаем ману
+    sc.blit(manaObj,(290, 657)) # Отображаем ману
     
     variableSila = u"Сила: " + str(botSila[0]) 
     silaObj = textSila.render(variableSila, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(silaObj,(290, 657)) 
+    sc.blit(silaObj,(290, 670)) 
     
     variableLovk = u"Ловкость: " + str(botLovkost[0]) 
     lovkObj = textLovk.render(variableLovk, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(lovkObj,(290, 670)) 
+    sc.blit(lovkObj,(290, 683)) 
     
     variableYdacha = u"Удача: " + str(botYdacha[0]) 
     ydachaObj = textYdacha.render(variableYdacha, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(ydachaObj,(290, 683))
+    sc.blit(ydachaObj,(290, 696))
     
     if botHod[0] >= 1:
         variableHod = u"Остаток хода: " + str(botHod[0]) 
         hodObj = textHod.render(variableHod, False, (0, 0, 0)) # Создали объект типа "текст" 
-        sc.blit(hodObj,(290, 696))
+        sc.blit(hodObj,(290, 722))
     if botHod[0] < 1:   
         variableHod = u"Остаток хода: " + str(botHod[0]) 
         hodObj = textHod.render(variableHod, False, (255, 0, 0)) # Создали объект типа "текст" 
-        sc.blit(hodObj,(290, 696))    
+        sc.blit(hodObj,(290, 722))    
     
     variableZoloto = u"Золото: " + str(botZoloto[0]) 
     zolotoObj = textZoloto.render(variableZoloto, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(zolotoObj,(290, 709))
+    sc.blit(zolotoObj,(290, 735))
     
     variableSerebro = u"Серебро: " + str(botSerebro[0]) 
     serebroObj = textSerebro.render(variableSerebro, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(serebroObj,(290, 722))
+    sc.blit(serebroObj,(290, 748))
     
     variableBronza = u"Бронза: " + str(botBronza[0]) 
     bronzaObj = textBronza.render(variableBronza, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(bronzaObj,(290, 735))
+    sc.blit(bronzaObj,(290, 761))
     
     pygame.display.update()  
     # ============================================================================================
@@ -6121,6 +6127,7 @@ def initGame(heroSelect):  # функция инициации игры
         botBronza[0] = 0
         botHod[0] = botLovkost[0]
         botAlgoritm[0] == 3
+        botVariant[0] = 50
         
     elif heroSelect == 51: # Artes
         botExpirience[0] = 0
@@ -6141,6 +6148,7 @@ def initGame(heroSelect):  # функция инициации игры
         botBronza[0] = 50
         botHod[0] = botLovkost[0]
         botAlgoritm[0] == 3
+        botVariant[0] = 51
         
     elif heroSelect == 52: # Death Owner
         botExpirience[0] = 0
@@ -6160,6 +6168,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 0
         botHod[0] = botLovkost[0]
+        botVariant[0] = 52
 
     elif heroSelect == 54: # DjePoTai
         botExpirience[0] = 0
@@ -6180,6 +6189,7 @@ def initGame(heroSelect):  # функция инициации игры
         botBronza[0] = 150
         botHod[0] = botLovkost[0]
         botAlgoritm[0] == 4
+        botVariant[0] = 54
 
     elif heroSelect == 55: # Farion
         botExpirience[0] = 0
@@ -6199,6 +6209,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 200
         botHod[0] = botLovkost[0]
+        botVariant[0] = 55
 
     elif heroSelect == 56: # Garitos
         botExpirience[0] = 0
@@ -6218,6 +6229,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 5
         botBronza[0] = 0
         botHod[0] = botLovkost[0]
+        botVariant[0] = 56
 
     elif heroSelect == 57: # Gendalf
         botExpirience[0] = 0
@@ -6236,7 +6248,8 @@ def initGame(heroSelect):  # функция инициации игры
         botZoloto[0] = 0
         botSerebro[0] = 0
         botBronza[0] = 0  
-        botHod[0] = botLovkost[0]        
+        botHod[0] = botLovkost[0]   
+        botVariant[0] = 57
 
     elif heroSelect == 58: # Illidan
         botExpirience[0] = 0
@@ -6257,6 +6270,7 @@ def initGame(heroSelect):  # функция инициации игры
         botBronza[0] = 0  
         botHod[0] = botLovkost[0]
         botAlgoritm[0] == 3
+        botVariant[0] = 58
 
     elif heroSelect == 59: # Jaina
         botExpirience[0] = 0
@@ -6277,6 +6291,7 @@ def initGame(heroSelect):  # функция инициации игры
         botBronza[0] = 120   
         botHod[0] = botLovkost[0]
         botAlgoritm[0] == 3
+        botVariant[0] = 59
 
     elif heroSelect == 60: # Kell
         botExpirience[0] = 0
@@ -6297,6 +6312,7 @@ def initGame(heroSelect):  # функция инициации игры
         botBronza[0] = 200
         botHod[0] = botLovkost[0]  
         botAlgoritm[0] == 4      
+        botVariant[0] = 60
 
     elif heroSelect == 70: # Uter
         botExpirience[0] = 0
@@ -6316,7 +6332,8 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 10
         botBronza[0] = 0 
         botHod[0] = botLovkost[0]    
-        botAlgoritm[0] == 3    
+        botAlgoritm[0] == 3  
+        botVariant[0] = 70
 
     elif heroSelect == 72: # Vul Djin
         botExpirience[0] = 0
@@ -6336,7 +6353,8 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 10
         botBronza[0] = 0  
         botHod[0] = botLovkost[0]    
-        botAlgoritm[0] == 4     
+        botAlgoritm[0] == 4    
+        botVariant[0] = 72
     
     elif heroSelect == 68: # Silvana
         botExpirience[0] = 0
@@ -6357,6 +6375,7 @@ def initGame(heroSelect):  # функция инициации игры
         botBronza[0] = 50  
         botHod[0] = botLovkost[0]
         botAlgoritm[0] == 3
+        botVariant[0] = 68
         
     elif heroSelect == 65: # Pradmur
         botExpirience[0] = 0
@@ -6376,7 +6395,8 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 5
         botBronza[0] = 0 
         botHod[0] = botLovkost[0] 
-        botAlgoritm[0] == 3       
+        botAlgoritm[0] == 3 
+        botVariant[0] = 65
 
     elif heroSelect == 69: # Trall
         botExpirience[0] = 0
@@ -6396,7 +6416,8 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 0   
         botHod[0] = botLovkost[0] 
-        botAlgoritm[0] == 4       
+        botAlgoritm[0] == 4
+        botVariant[0] = 69
 
     elif heroSelect == 73: # Zadira
         botExpirience[0] = 0
@@ -6416,7 +6437,8 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 170 
         botHod[0] = botLovkost[0]  
-        botAlgoritm[0] == 4      
+        botAlgoritm[0] == 4
+        botVariant[0] = 73
         
     temp = 0
     step = 172
@@ -6569,6 +6591,12 @@ while True:
     n = 0  # Это сотри
     temp = 0 # И это
     clock.tick(FPS) 
+    
+    # Тут мы считаем опыт всех активных объектов
+            
+    
+    n = 0
+    
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
             exit()
