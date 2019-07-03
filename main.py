@@ -6112,19 +6112,19 @@ def initGame(heroSelect):  # функция инициации игры
         botExpirience[0] = 0
         botLvl[0] = 1
         botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 120
-        botZdorovie[0] = 120
-        botMana[0] = 50
-        botIshMana[0] = 50
-        botSila[0] = 14
-        botLovkost[0] = 6
-        botYdacha[0] = 7
-        botZoloto[0] = 0
-        botSerebro[0] = 3
-        botBronza[0] = 0
+        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]           #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100] #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]        #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botIshZdorovie[0] = 1120                                     #botIshZdorovie[0] = 120
+        botZdorovie[0] = 1120                                        #botZdorovie[0] = 120
+        botMana[0] = 1000                                            #botMana[0] = 50 
+        botIshMana[0] = 1000                                         #botIshMana[0] = 50
+        botSila[0] = 50                                              #botSila[0] = 14
+        botLovkost[0] = 20                                           #botLovkost[0] = 6
+        botYdacha[0] = 7                                         
+        botZoloto[0] = 100                                           #botZoloto[0] = 0
+        botSerebro[0] = 1000                                         #botSerebro[0] = 3
+        botBronza[0] = 100000                                        #botBronza[0] = 0
         botHod[0] = botLovkost[0]
         botAlgoritm[0] == 3
         botVariant[0] = 50
