@@ -160,6 +160,7 @@ def ubiraemTrup(trup):
     botVariant[trup] = 0
     botAlgoritm[trup] = 0
     botLocation[trup] = 0
+    
 
 def botKoldun(nom, poriad, vragBot): # функция колдовства (Номер колдующего бота, порядковый номер заклинания, номер вражеского бота)
     yaKastanul = 0
@@ -208,6 +209,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
         if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
             botMana[nom] -= 100
             yaKastanul = 1
+            print("Создаём скелета")
             if botLvl[vragBot] == 1 or botLvl[vragBot] == 2:
                 botVariant[vragBot] = 148
                 botLvl[vragBot] = 1
@@ -222,6 +224,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botHod[vragBot] = botLovkost[vragBot]
                 botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botAlgoritm[vragBot] = botAlgoritm[nom]
+                world[botLocation[vragBot]] = botVariant[vragBot]
             if botLvl[vragBot] == 3:
                 botVariant[vragBot] = 149 
                 botLvl[vragBot] = 2
@@ -236,6 +239,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botHod[vragBot] = botLovkost[vragBot]
                 botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botAlgoritm[vragBot] = botAlgoritm[nom]
+                world[botLocation[vragBot]] = botVariant[vragBot]
             if botLvl[vragBot] == 4:
                 botVariant[vragBot] = 150
                 botLvl[vragBot] = 3
@@ -250,6 +254,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botHod[vragBot] = botLovkost[vragBot]
                 botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botAlgoritm[vragBot] = botAlgoritm[nom]
+                world[botLocation[vragBot]] = botVariant[vragBot]
             if botLvl[vragBot] == 5:
                 botVariant[vragBot] = 151
                 botLvl[vragBot] = 4
@@ -264,6 +269,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botHod[vragBot] = botLovkost[vragBot]
                 botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botAlgoritm[vragBot] = botAlgoritm[nom]
+                world[botLocation[vragBot]] = botVariant[vragBot]
             if botLvl[vragBot] == 6:
                 botVariant[vragBot] = 152 
                 botLvl[vragBot] = 5
@@ -278,6 +284,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botHod[vragBot] = botLovkost[vragBot]
                 botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botAlgoritm[vragBot] = botAlgoritm[nom]
+                world[botLocation[vragBot]] = botVariant[vragBot]
             if botLvl[vragBot] == 7:
                 botVariant[vragBot] = 153
                 botLvl[vragBot] = 6
@@ -292,6 +299,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botHod[vragBot] = botLovkost[vragBot]
                 botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botAlgoritm[vragBot] = botAlgoritm[nom]
+                world[botLocation[vragBot]] = botVariant[vragBot]
             if botLvl[vragBot] == 8:    
                 botVariant[vragBot] = 154
                 botLvl[vragBot] = 7
@@ -306,6 +314,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botHod[vragBot] = botLovkost[vragBot]
                 botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botAlgoritm[vragBot] = botAlgoritm[nom]
+                world[botLocation[vragBot]] = botVariant[vragBot]
             if botLvl[vragBot] >= 9:        
                 botVariant[vragBot] = 155
                 botLvl[vragBot] = 8
@@ -320,6 +329,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botHod[vragBot] = botLovkost[vragBot]
                 botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 botAlgoritm[vragBot] = botAlgoritm[nom]
+                world[botLocation[vragBot]] = botVariant[vragBot]
         
     if botZaklinania[nom][poriad] == 3:
         yaKastanul = 1
@@ -4005,7 +4015,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         y_len = pix.get_height() 
         sc.blit(pix, (340,548))
         for n in range(1000):
-            if botLocation[n] == hehmda:
+            if botLocation[n] == hehmda: 
                 print(botZdorovie[n]) 
         variableName = u"Эльф 1 уровня "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -6203,7 +6213,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 1000                                         #botSerebro[0] = 3
         botBronza[0] = 100000                                        #botBronza[0] = 0
         botHod[0] = botLovkost[0]
-        botAlgoritm[0] == 3
+        botAlgoritm[0] = 3
         botVariant[0] = 50
         
     elif heroSelect == 51: # Artes
@@ -6224,7 +6234,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 9
         botBronza[0] = 50
         botHod[0] = botLovkost[0]
-        botAlgoritm[0] == 3
+        botAlgoritm[0] = 3
         botVariant[0] = 51
         
     elif heroSelect == 52: # Death Owner
@@ -6245,6 +6255,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 0
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] = 3
         botVariant[0] = 52
 
     elif heroSelect == 54: # DjePoTai
@@ -6265,7 +6276,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 150
         botHod[0] = botLovkost[0]
-        botAlgoritm[0] == 4
+        botAlgoritm[0] = 4
         botVariant[0] = 54
 
     elif heroSelect == 55: # Farion
@@ -6286,6 +6297,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 200
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] = 3
         botVariant[0] = 55
 
     elif heroSelect == 56: # Garitos
@@ -6306,6 +6318,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 5
         botBronza[0] = 0
         botHod[0] = botLovkost[0]
+        botAlgoritm[0] = 3
         botVariant[0] = 56
 
     elif heroSelect == 57: # Gendalf
@@ -6325,7 +6338,8 @@ def initGame(heroSelect):  # функция инициации игры
         botZoloto[0] = 0
         botSerebro[0] = 0
         botBronza[0] = 0  
-        botHod[0] = botLovkost[0]   
+        botHod[0] = botLovkost[0] 
+        botAlgoritm[0] = 3        
         botVariant[0] = 57
 
     elif heroSelect == 58: # Illidan
@@ -6346,7 +6360,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 0  
         botHod[0] = botLovkost[0]
-        botAlgoritm[0] == 3
+        botAlgoritm[0] = 3
         botVariant[0] = 58
 
     elif heroSelect == 59: # Jaina
@@ -6367,7 +6381,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 1
         botBronza[0] = 120   
         botHod[0] = botLovkost[0]
-        botAlgoritm[0] == 3
+        botAlgoritm[0] = 3
         botVariant[0] = 59
 
     elif heroSelect == 60: # Kell
@@ -6388,7 +6402,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 200
         botHod[0] = botLovkost[0]  
-        botAlgoritm[0] == 4      
+        botAlgoritm[0] = 4      
         botVariant[0] = 60
 
     elif heroSelect == 70: # Uter
@@ -6409,7 +6423,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 10
         botBronza[0] = 0 
         botHod[0] = botLovkost[0]    
-        botAlgoritm[0] == 3  
+        botAlgoritm[0] = 3  
         botVariant[0] = 70
 
     elif heroSelect == 72: # Vul Djin
@@ -6430,7 +6444,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 10
         botBronza[0] = 0  
         botHod[0] = botLovkost[0]    
-        botAlgoritm[0] == 4    
+        botAlgoritm[0] = 4    
         botVariant[0] = 72
     
     elif heroSelect == 68: # Silvana
@@ -6451,7 +6465,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 50  
         botHod[0] = botLovkost[0]
-        botAlgoritm[0] == 3
+        botAlgoritm[0] = 3
         botVariant[0] = 68
         
     elif heroSelect == 65: # Pradmur
@@ -6472,7 +6486,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 5
         botBronza[0] = 0 
         botHod[0] = botLovkost[0] 
-        botAlgoritm[0] == 3 
+        botAlgoritm[0] = 3 
         botVariant[0] = 65
 
     elif heroSelect == 69: # Trall
@@ -6493,7 +6507,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 0   
         botHod[0] = botLovkost[0] 
-        botAlgoritm[0] == 4
+        botAlgoritm[0] = 4
         botVariant[0] = 69
 
     elif heroSelect == 73: # Zadira
@@ -6514,7 +6528,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 170 
         botHod[0] = botLovkost[0]  
-        botAlgoritm[0] == 4
+        botAlgoritm[0] = 4
         botVariant[0] = 73
         
     temp = 0
