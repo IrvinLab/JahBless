@@ -446,10 +446,9 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     if botMana[n] > 0:
                         for mag in range(16):
                             if botZaklinania[n][mag] != 0:
-                                botKoldun[n,mag,jah]
+                                botKoldun(n,mag,jah)
                                  
-                            
-                                
+                               
     if botRasa[nomerBota] == 2:
         for jah in range(1000):
             if botLocation[jah] == local:
