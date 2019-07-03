@@ -193,7 +193,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global botAlgoritm
     global botLocation
     print ("Колдовство: ",nom, poriad, vragBot)
-    print (botZaklinania[nom][poriad])
+    print ("Заклинание: ",botZaklinania[nom][poriad])
     if botZaklinania[nom][poriad] == 100: # Это удар мечом
         botHod[nom] -= 1
         botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
@@ -394,7 +394,8 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
         yaKastanul = 1
     if botZaklinania[nom][poriad] == 28:
         yaKastanul = 1  
-
+    
+    if botZdorovie[vragBot] <= 0: ubiraemTrup(vragBot)
     worldUpdate()
     heroPanel(hero)
     return yaKastanul 
@@ -452,10 +453,10 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
     if botRasa[nomerBota] == 2:
         for jah in range(1000):
             if botLocation[jah] == local:
-                #print (vari, "Я эльф, вижу жижу номер:", jah, "Расы: ", botRasa[jah])
+                print (vari, "Я эльф, вижу жижу номер:", jah, "Расы: ", botRasa[jah])
                 if botRasa[jah] == 2 or botRasa[jah]-1 == 2 or botRasa[jah]-2 == 2 or botRasa[jah]+1 == 2 and botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
-                    #print ("Это свой")
+                    print ("Это свой")
                 if botRasa[jah] != 2 or botRasa[jah]-1 != 2 or botRasa[jah]-2 != 2 or botRasa[jah]+1 != 2 and botAlgoritm[jah] == 4:
                     if botMana[n] <= 0:
                         botHod[nomerBota] -= 1
