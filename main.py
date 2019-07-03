@@ -133,19 +133,18 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global botVariant
     global botAlgoritm
     global botLocation
-    print (nom, poriad, vragBot)
+    print ("Колдовство: ",nom, poriad, vragBot)
+    print (botZaklinania[nom][poriad])
     if botZaklinania[nom][poriad] == 100: # Это удар мечом
         botHod[nom] -= 1
         botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
     if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
-        if botLvl[nom] == botLvl[vragBot] or botLvl[nom] < botLvl[vragBot] or botLvl[nom] == botLvl[vragBot]-1 or botLvl[nom] == botLvl[vragBot]-2 or botLvl[nom] == botLvl[vragBot]-3 or botLvl[nom] == botLvl[vragBot]-4 and botMana[nom] >= 200: # Если хватает маны, то колдуем
+        if botMana[nom] >= 200: # Если хватает маны, то колдуем
             botMana[nom] -= 200
             botZdorovie[vragBot] -= 200
-            print("Пронзающая смерть")
-        if botLvl[nom] > botLvl[vragBot] and botMana[nom] <= 200: # Если маны не хватает, то бъём оружием    
             botHod[nom] -= 1
-            botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
-    
+            print("Пронзающая смерть")
+        
     if botZaklinania[nom][poriad] == 2:
         if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
             botMana[nom] -= 100
@@ -304,7 +303,12 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
         if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
            botMana[nom] -= 30
            botZdorovie[vragBot] += 30
+           botHod[nom] -= 1
            print("Подлечили бота: ", vragBot)
+        elif botMana[nom] >=30 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-30:
+            botZdorovie[vragBot] = botIshZdorovie[vragBot] 
+            print("Подлечили бота: ", vragBot, "Полное здоровье")
+            botHod[nom] -= 1            
     if botZaklinania[nom][poriad] == 23:
         pass
     if botZaklinania[nom][poriad] == 24:
@@ -5590,21 +5594,21 @@ def doebaca(hehmda):  #Функция отображающая информац�
             break        
         
     if zakl > 0 and ktoZdesVrag != 999:
-        if zakl == 1: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag); print("Лечим",0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 2: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 3: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 4: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 5: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 6: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 7: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 8: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 9: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 10: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 11: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 12: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 13: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 14: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
-        if zakl == 15: botKoldun(0,botZaklinania[0][zakl-1],ktoZdesVrag)
+        if zakl == 1: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 2: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 3: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 4: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 5: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 6: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 7: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 8: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 9: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 10: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 11: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 12: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 13: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 14: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 15: botKoldun(0,zakl-1,ktoZdesVrag)
                         
         zakl = 0
     
@@ -6122,10 +6126,10 @@ def initGame(heroSelect):  # функция инициации игры
         botExpirience[n] = 0
         botLvl[n] = 0
         botRasa[n] = 0
-        botZaklinania[n] = 0
-        botVozdeistvie[n] = 0
+        botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botIshZdorovie[n] = 0
-        botInventar[n] = 0
         botZdorovie[n] = 0
         botMana[n] = 0
         botIshMana[n] = 0
