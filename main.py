@@ -5797,7 +5797,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     pix = pygame.image.load('Images/next.png') # Кнопка "Конец хода" она нужна)
     x_len = pix.get_width()
     y_len = pix.get_height() 
-    sc.blit(pix, (286,752))
+    sc.blit(pix, (286,786))
     
     xHero = 340
     yHero = 548
@@ -6518,7 +6518,7 @@ def initGame(heroSelect):  # функция инициации игры
     pix = pygame.image.load('Images/next.png') # Рисуем кнопку "Конец хода"
     x_len = pix.get_width()
     y_len = pix.get_height() 
-    sc.blit(pix, (286,752))
+    sc.blit(pix, (286,786))
     # ==========================================================================================
 
 for yMap in range(14): # Рисуем игровое поле
@@ -10914,7 +10914,7 @@ while True:
     if mos_x>286 and (mos_x<414): 
         x_inside = True
     else: x_inside = False
-    if mos_y>752 and (mos_y<816):
+    if mos_y>786 and (mos_y<816):
         y_inside = True
     else: y_inside = False
     if x_inside and y_inside: 
