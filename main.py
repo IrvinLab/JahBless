@@ -85,7 +85,7 @@ buttonNextStep = 0 # Кнопка следующего хода
 world = [] # Это игровое поле
 tmp = 0
 temp = 0 # Отладочная переменная, нужна для отслеживания состояния поля
-
+zyxel = 0
 pygame.init()
 sc = pygame.display.set_mode((1056, 896))
 pygame.display.set_caption("Kings of New World")
@@ -443,12 +443,15 @@ def textMagic(numerCeil):
         variableName = u"Половина нанесённого оружием урона"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"преобразуется в здоровье"
+        variableName = u"преобразуется в здоровье. Действует"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = u"Требует 55 маны"
+        variableName = u"10 ходов."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 55 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
     if botZaklinania[0][numerCeil-1] == 21:
         variableName = u"Пока это восстановить скелетов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -592,6 +595,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global botAlgoritm
     global botLocation
     global botDeistvie
+    global zyxel
     
     print ("Колдовство: ",nom, poriad, vragBot)
     if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:
@@ -608,7 +612,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 print("Пронзающая смерть")
                 yaKastanul = 1
         
-        if botZaklinania[nom][poriad] == 2:
+        if botZaklinania[nom][poriad] == 2: # Добить и воскресить
             if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
                 botMana[nom] -= 100
                 yaKastanul = 1
@@ -743,7 +747,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                     world[botLocation[vragBot]] = botVariant[vragBot]
                     botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
-        if botZaklinania[nom][poriad] == 3:
+        if botZaklinania[nom][poriad] == 3: # Доспехи Феникса
             if botMana[nom] >= 30:
                 botHod[nom] -= 1
                 n = 0
@@ -761,7 +765,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             break        
                 n = 0
                 yaKastanul = 1
-        if botZaklinania[nom][poriad] == 4:
+        if botZaklinania[nom][poriad] == 4: # Кража магии
             botHod[nom] -= 1
             if botMana[nom] >= 20:
                 botMana[nom] -= 20
@@ -770,19 +774,19 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 else:
                     botManap[vragBot] = 0                
                 yaKastanul = 1
-        if botZaklinania[nom][poriad] == 5:
+        if botZaklinania[nom][poriad] == 5: # Обман
             if botMana[nom] >= 50:
                 botHod[nom] -= 1
                 botMana[nom] -= 50
                 botAlgoritm[vragBot] = 0
                 yaKastanul = 1
-        if botZaklinania[nom][poriad] == 6:
+        if botZaklinania[nom][poriad] == 6: # Огненная сфера
             if botMana[nom] >= 15:
                 botMana[nom] -= 25
                 botZdorovie[vragBot] -= 30
                 botHod[nom] -= 1
                 yaKastanul = 1
-        if botZaklinania[nom][poriad] == 7:
+        if botZaklinania[nom][poriad] == 7: # Яд 
             if botMana[nom] >= 15:
                 botHod[nom] -= 1
                 n = 0
@@ -800,7 +804,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             break        
                 n = 0
                 yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 8:
+        if botZaklinania[nom][poriad] == 8: # Кровожадность
             if botMana[nom] >= 35:
                 botHod[nom] -= 1
                 n = 0
@@ -818,7 +822,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             break        
                 n = 0
                 yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 9:
+        if botZaklinania[nom][poriad] == 9: # Лунный обряд
             if botMana[nom] >=50 and botZdorovie[vragBot]+70 <= botIshZdorovie[vragBot]:
                 botMana[nom] -= 50
                 botZdorovie[vragBot] += 70
@@ -830,7 +834,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 print("Исцелили: ", vragBot, "Полное здоровье")
                 botHod[nom] -= 1
                 yaKastanul = 1 
-        if botZaklinania[nom][poriad] == 10:
+        if botZaklinania[nom][poriad] == 10: # Мощь природы
             if botMana[nom] >= 60:
                 botHod[nom] -= 1
                 n = 0
@@ -848,7 +852,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             break        
                 n = 0
                 yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 11:
+        if botZaklinania[nom][poriad] == 11: # Могильный луч
             if botMana[nom] >= 60:
                 botHod[nom] -= 1
                 n = 0
@@ -867,27 +871,135 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             break        
                 n = 0
                 yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 12:
+        if botZaklinania[nom][poriad] == 12: # Молния
+            if botMana[nom] >= 70:
+                botMana[nom] -= 70
+                botZdorovie[vragBot] -= 70
+                botHod[nom] -= 1
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 13: # Печать Хаоса
+            if botMana[nom] >= 100:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 13:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 13
+                            botDeistvie[vragBot][n] = 10
+                            botMana[nom] -= 100
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 14: # Печать Смерти
+            if botMana[nom] >= 230:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 14:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 14
+                            botDeistvie[vragBot][n] = 5
+                            botMana[nom] -= 230
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 15: # Поцелуй Смерти
+            if botMana[nom] >= 150:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 15:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 15
+                            botDeistvie[vragBot][n] = 1000
+                            botMana[nom] -= 150
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 16: # Проклятье
+            if botMana[nom] >= 75:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 16:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 16
+                            botDeistvie[vragBot][n] = 1000
+                            botMana[nom] -= 75
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 17: # Пронзающий крик
+            if botMana[nom] >= 30:
+                botMana[nom] -= 30
+                botZdorovie[vragBot] -= 50
+                botHod[nom] -= 1
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 18: # Регенерация
+            if botMana[nom] >= 40:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 18:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 18
+                            botDeistvie[vragBot][n] = 1000
+                            botMana[nom] -= 40
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 19: # Сжигание маны
+            if botMana[nom] >= 15:
+                botMana[nom] -= 15
+                botMana[vragBot] = 0
+                botHod[nom] -= 1
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 20: # Вампиризм
+            if botMana[nom] >= 55:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 20:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 20
+                            botDeistvie[vragBot][n] = 10
+                            botMana[nom] -= 55
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 21: # Хрен знает что за заклинание
             yaKastanul = 1
-        if botZaklinania[nom][poriad] == 13:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 14:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 15:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 16:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 17:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 18:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 19:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 20:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 21:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 22:
+        if botZaklinania[nom][poriad] == 22: # Лечение
             if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
                 botMana[nom] -= 30
                 botZdorovie[vragBot] += 30
@@ -899,8 +1011,21 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 print("Подлечили бота: ", vragBot, "Полное здоровье")
                 botHod[nom] -= 1
                 yaKastanul = 1            
-        if botZaklinania[nom][poriad] == 23:
-            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 23: # Рассеять чары
+            botVozdeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            botDeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            n = 0
+            for n in range(1000):
+                if botLocation[n] == botLocation[nom]-1 or botLocation[n] == botLocation[nom]+1 or botLocation[n] == botLocation[nom]-31 or botLocation[n] == botLocation[nom]-32 or botLocation[n] == botLocation[nom]-33 or botLocation[n] == botLocation[nom]+31 or botLocation[n] == botLocation[nom]+32 or botLocation[n] == botLocation[nom]+33:
+                    botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botDeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    zyxel = 1
+                    
+                if zyxel == 1:
+                    botMana[nom] -= 40
+                    zyxel = 0   
+                    botHod[nom] -= 1 
+            n = 0
         if botZaklinania[nom][poriad] == 24:
             yaKastanul = 1
         if botZaklinania[nom][poriad] == 25:
