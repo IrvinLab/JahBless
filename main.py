@@ -159,7 +159,7 @@ def textMagic(numerCeil):
         variableName = u"Базовая магия защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"+5 к защите на 5 ходов"
+        variableName = u"+5 к защите на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
         variableName = u"Требует 30 маны"
@@ -213,7 +213,9 @@ def textMagic(numerCeil):
         variableName = u"-30 здоровья"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = u"Требует 15 маны"
+        variableName = u"Требует 25 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
     if botZaklinania[0][numerCeil-1] == 7:
         variableName = u"Отравление"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -595,7 +597,8 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:
         if botZaklinania[nom][poriad] == 100: # Это удар мечом
             botHod[nom] -= 1
-            botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
+            if botSila[nom] > botZachita[vragBot]:
+                botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
     
         if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
             if botMana[nom] >= 200: # Если хватает маны, то колдуем
@@ -609,6 +612,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
                 botMana[nom] -= 100
                 yaKastanul = 1
+                botHod[nom] -= 1
                 print("Создаём скелета")
                 if botLvl[vragBot] == 1 or botLvl[vragBot] == 2:
                     botVariant[vragBot] = 148
@@ -740,23 +744,129 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                     botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
         if botZaklinania[nom][poriad] == 3:
-            yaKastanul = 1
+            if botMana[nom] >= 30:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 3:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 3
+                            botDeistvie[vragBot][n] = 10
+                            botMana[nom] -= 30
+                            break        
+                n = 0
+                yaKastanul = 1
         if botZaklinania[nom][poriad] == 4:
-            yaKastanul = 1
+            botHod[nom] -= 1
+            if botMana[nom] >= 20:
+                botMana[nom] -= 20
+                if botMana[vragBot] > 100:
+                    botMana[vragBot] -= 100
+                else:
+                    botManap[vragBot] = 0                
+                yaKastanul = 1
         if botZaklinania[nom][poriad] == 5:
-            yaKastanul = 1
+            if botMana[nom] >= 50:
+                botHod[nom] -= 1
+                botMana[nom] -= 50
+                botAlgoritm[vragBot] = 0
+                yaKastanul = 1
         if botZaklinania[nom][poriad] == 6:
-            yaKastanul = 1
+            if botMana[nom] >= 15:
+                botMana[nom] -= 25
+                botZdorovie[vragBot] -= 30
+                botHod[nom] -= 1
+                yaKastanul = 1
         if botZaklinania[nom][poriad] == 7:
-            yaKastanul = 1  
+            if botMana[nom] >= 15:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 7:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 7
+                            botDeistvie[vragBot][n] = 1000
+                            botMana[nom] -= 15
+                            break        
+                n = 0
+                yaKastanul = 1  
         if botZaklinania[nom][poriad] == 8:
-            yaKastanul = 1
+            if botMana[nom] >= 35:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 8:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 8
+                            botDeistvie[vragBot][n] = 5
+                            botMana[nom] -= 35
+                            break        
+                n = 0
+                yaKastanul = 1  
         if botZaklinania[nom][poriad] == 9:
-            yaKastanul = 1
+            if botMana[nom] >=50 and botZdorovie[vragBot]+70 <= botIshZdorovie[vragBot]:
+                botMana[nom] -= 50
+                botZdorovie[vragBot] += 70
+                botHod[nom] -= 1
+                print("Исцелили: ", vragBot)
+                yaKastanul = 1
+            elif botMana[nom] >=50 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-70:
+                botZdorovie[vragBot] = botIshZdorovie[vragBot] 
+                print("Исцелили: ", vragBot, "Полное здоровье")
+                botHod[nom] -= 1
+                yaKastanul = 1 
         if botZaklinania[nom][poriad] == 10:
-            yaKastanul = 1
+            if botMana[nom] >= 60:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 10:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 10
+                            botDeistvie[vragBot][n] = 10
+                            botMana[nom] -= 60
+                            break        
+                n = 0
+                yaKastanul = 1  
         if botZaklinania[nom][poriad] == 11:
-            yaKastanul = 1
+            if botMana[nom] >= 60:
+                botHod[nom] -= 1
+                n = 0
+                botZdorovie[vragBot] -= 50
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 11:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 11
+                            botDeistvie[vragBot][n] = 5
+                            botMana[nom] -= 60
+                            break        
+                n = 0
+                yaKastanul = 1  
         if botZaklinania[nom][poriad] == 12:
             yaKastanul = 1
         if botZaklinania[nom][poriad] == 13:
@@ -837,21 +947,23 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
     global botLocation
     global zakl
     global botDeistvie
-    jah = 1
+    jah = 0
     n = 1
     mag = 0
     if botRasa[nomerBota] == 1:
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я человек, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 1 or botRasa[jah] == 2 or botRasa[jah] == 3 or botRasa[jah] == 4 and botAlgoritm[jah] == 3:
+                if botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     #print("Это свой")
                     
-                if botRasa[jah] != 1 or botRasa[jah] != 2 or botRasa[jah] != 3 or botRasa[jah] != 4 and botAlgoritm[jah] == 4: # Если это враг, тогда бьём в морду
+                if botAlgoritm[jah] != 3: # Если это враг, тогда бьём в морду
                     if botMana[n] <= 0:
-                        botHod[nomerBota] -= 1
-                        botZdorovie[jah] -= botSila[jah] - botZachita[jah]
+                        if botSila[nomerBota] > botZachita[jah]:
+                            botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                            botHod[nomerBota] -= 1
+                        
                     if botMana[n] > 0:
                         for mag in range(16):
                             if botZaklinania[n][mag] != 0:
@@ -862,67 +974,68 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
         for jah in range(1000):
             if botLocation[jah] == local:
                 print (vari, "Я эльф, вижу жижу номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 2 or botRasa[jah]-1 == 2 or botRasa[jah]-2 == 2 or botRasa[jah]+1 == 2 and botAlgoritm[jah] == 3:
+                if botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     print ("Это свой")
-                if botRasa[jah] != 2 or botRasa[jah]-1 != 2 or botRasa[jah]-2 != 2 or botRasa[jah]+1 != 2 and botAlgoritm[jah] == 4:
-                    if botMana[n] <= 0:
-                        botHod[nomerBota] -= 1
+                if botAlgoritm[jah] != 3:
+                    if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                        botHod[nomerBota] -= 1
                 
     if botRasa[nomerBota] == 3:
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я гном, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 3 or botRasa[jah]-1 == 3 or botRasa[jah]+1 == 3 or botRasa[jah]+2 == 3 and botAlgoritm[jah] == 3:
+                if botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")
-                if botRasa[jah] != 3 or botRasa[jah]-1 != 3 or botRasa[jah]+1 != 3 or botRasa[jah]+2 != 3 and botAlgoritm[jah] == 4:
-                    if botMana[n] <= 0:
-                        botHod[nomerBota] -= 1
+                if botAlgoritm[jah] != 3:
+                    if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                        botHod[nomerBota] -= 1
                     
     if botRasa[nomerBota] == 4:
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я гоблин, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 4 or botRasa[jah]+1 == 4 or botRasa[jah]+2 == 4 or botRasa[jah]+3 == 4 and botAlgoritm[jah] == 3:
+                if botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")   
-                if botRasa[jah] != 4 or botRasa[jah]+1 != 4 or botRasa[jah]+2 != 4 or botRasa[jah]+3 != 4 and botAlgoritm[jah] == 4:
-                    if botMana[n] <= 0:
-                        botHod[nomerBota] -= 1
+                if botAlgoritm[jah] != 3:
+                    if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                        botHod[nomerBota] -= 1
 
     if botRasa[nomerBota] == 5: # Это монстр
         for jah in range(1000):
             if botLocation[jah] == local:
-                botHod[nomerBota] -= 1
-                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]                
+                if botSila[nomerBota] > botZachita[jah]:
+                    botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                    botHod[nomerBota] -= 1               
     
     if botRasa[nomerBota] == 6:
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я орк, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 6 or botRasa[jah]-1 == 6 and botAlgoritm[jah] == 4:
+                if botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой") 
-                if botRasa[jah] != 6 or botRasa[jah]-1 != 6 and botAlgoritm[jah] == 3:   
-                    if botMana[n] <= 0:
-                        botHod[nomerBota] -= 1
+                if botAlgoritm[jah] != 4:   
+                    if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                        botHod[nomerBota] -= 1
 
     if botRasa[nomerBota] == 7:
         for jah in range(1000):
             if botLocation[jah] == local:
                 #print (vari, "Я нежить, вижу бота номер:", jah, "Расы: ", botRasa[jah])
-                if botRasa[jah] == 7 or botRasa[jah] == 6 and botAlgoritm[jah] == 4:
+                if botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")                       
-                if botRasa[jah] != 7 or botRasa[jah] != 6 and botAlgoritm[jah] == 3:
-                    if botMana[n] <= 0:
-                        botHod[nomerBota] -= 1
+                if botAlgoritm[jah] != 4:
+                    if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                        botHod[nomerBota] -= 1
     
     zakl = 0
     
@@ -7136,10 +7249,6 @@ def initGame(heroSelect):  # функция инициации игры
     world[298] = 5
     world[416] = 10
     world[31] = 15
-    # "Кладбище"
-    world[420] = 1
-    world[422] = 1
-    world[389] = 1
     
     worldUpdate()
     pix = pygame.image.load('Images/next.png') # Рисуем кнопку "Конец хода"
@@ -11572,8 +11681,6 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  
-                    
-    pygame.display.update()
     
     if mos_x>286 and (mos_x<414): 
         x_inside = True
@@ -11599,8 +11706,7 @@ while True:
                         if botZdorovie[n]+3 < botIshZdorovie[n]: botZdorovie[n] += 2
                         if botMana[n]+3 < botIshMana[n]: botMana[n] += 2
                         
-        
-    
+    pygame.display.update()    
     
 # Объекты которые могут быть на карте и их номера
 # 0 - Трава, 1 - Горы, 2 - Вода, 3 - жилище зельевара, 4 - лачуга шамана, 5 - хижина мага, 6 - кузница,
