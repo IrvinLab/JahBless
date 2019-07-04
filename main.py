@@ -67,6 +67,9 @@ botLovkost = []
 botYdacha = []
 botZachita = []
 botHod = []
+botDeistvie = [] # Сколько времени действует заклинание. Пример: botVozdeistvie[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                 #                                                  botDeistvie[n] = [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                 #                                             Это значит, что защита Заклинание Феникса действует 10 ходов
    
 # Время мира
 den = 1
@@ -499,12 +502,7 @@ def textMagic(numerCeil):
         variableName = u"Требует 100 маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))       
-                     
-                     
-                     
-                
-    
-                        
+                                      
 def ubiraemTrup(trup):
     global n
     global bot 
@@ -532,6 +530,7 @@ def ubiraemTrup(trup):
     global botVariant
     global botAlgoritm
     global botLocation
+    global botDeistvie
     
     
     pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
@@ -590,209 +589,220 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global botVariant
     global botAlgoritm
     global botLocation
+    global botDeistvie
+    
     print ("Колдовство: ",nom, poriad, vragBot)
-    print ("Заклинание: ",botZaklinania[nom][poriad])
-    if botZaklinania[nom][poriad] == 100: # Это удар мечом
-        botHod[nom] -= 1
-        botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
-    
-    if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
-        if botMana[nom] >= 200: # Если хватает маны, то колдуем
-            botMana[nom] -= 200
-            botZdorovie[vragBot] -= 200
+    if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:
+        if botZaklinania[nom][poriad] == 100: # Это удар мечом
             botHod[nom] -= 1
-            print("Пронзающая смерть")
-            yaKastanul = 1
-        
-    if botZaklinania[nom][poriad] == 2:
-        if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
-            botMana[nom] -= 100
-            yaKastanul = 1
-            print("Создаём скелета")
-            if botLvl[vragBot] == 1 or botLvl[vragBot] == 2:
-                botVariant[vragBot] = 148
-                botLvl[vragBot] = 1
-                botZdorovie[vragBot] = 50
-                botIshZdorovie[vragBot] = 50
-                botMana[vragBot] = 0
-                botIshMana[vragBot] = 0
-                botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-                botSila[vragBot] = 5
-                botLovkost[vragBot] = 3
-                botYdacha[vragBot] = 1
-                botHod[vragBot] = botLovkost[vragBot]
-                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botAlgoritm[vragBot] = botAlgoritm[nom]
-                world[botLocation[vragBot]] = botVariant[vragBot]
-            if botLvl[vragBot] == 3:
-                botVariant[vragBot] = 149 
-                botLvl[vragBot] = 2
-                botZdorovie[vragBot] = 90
-                botIshZdorovie[vragBot] = 90
-                botMana[vragBot] = 0
-                botIshMana[vragBot] = 0
-                botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-                botSila[vragBot] = 9
-                botLovkost[vragBot] = 4
-                botYdacha[vragBot] = 2
-                botHod[vragBot] = botLovkost[vragBot]
-                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botAlgoritm[vragBot] = botAlgoritm[nom]
-                world[botLocation[vragBot]] = botVariant[vragBot]
-            if botLvl[vragBot] == 4:
-                botVariant[vragBot] = 150
-                botLvl[vragBot] = 3
-                botZdorovie[vragBot] = 145
-                botIshZdorovie[vragBot] = 145
-                botMana[vragBot] = 0
-                botIshMana[vragBot] = 0
-                botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-                botSila[vragBot] = 13
-                botLovkost[vragBot] = 4
-                botYdacha[vragBot] = 3
-                botHod[vragBot] = botLovkost[vragBot]
-                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botAlgoritm[vragBot] = botAlgoritm[nom]
-                world[botLocation[vragBot]] = botVariant[vragBot]
-            if botLvl[vragBot] == 5:
-                botVariant[vragBot] = 151
-                botLvl[vragBot] = 4
-                botZdorovie[vragBot] = 190
-                botIshZdorovie[vragBot] = 190
-                botMana[vragBot] = 60
-                botIshMana[vragBot] = 60
-                botZaklinania[vragBot]=[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-                botSila[vragBot] = 18
-                botLovkost[vragBot] = 4
-                botYdacha[vragBot] = 3
-                botHod[vragBot] = botLovkost[vragBot]
-                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botAlgoritm[vragBot] = botAlgoritm[nom]
-                world[botLocation[vragBot]] = botVariant[vragBot]
-            if botLvl[vragBot] == 6:
-                botVariant[vragBot] = 152 
-                botLvl[vragBot] = 5
-                botZdorovie[vragBot] = 245
-                botIshZdorovie[vragBot] = 245
-                botMana[vragBot] = 120
-                botIshMana[vragBot] = 120
-                botZaklinania[vragBot]=[2,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-                botSila[vragBot] = 26
-                botLovkost[vragBot] = 5
-                botYdacha[vragBot] = 5
-                botHod[vragBot] = botLovkost[vragBot]
-                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botAlgoritm[vragBot] = botAlgoritm[nom]
-                world[botLocation[vragBot]] = botVariant[vragBot]
-            if botLvl[vragBot] == 7:
-                botVariant[vragBot] = 153
-                botLvl[vragBot] = 6
-                botZdorovie[vragBot] = 315
-                botIshZdorovie[vragBot] = 315
-                botMana[vragBot] = 170
-                botIshMana[vragBot] = 170
-                botZaklinania[vragBot]=[2,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-                botSila[vragBot] = 36
-                botLovkost[vragBot] = 5
-                botYdacha[vragBot] = 8
-                botHod[vragBot] = botLovkost[vragBot]
-                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botAlgoritm[vragBot] = botAlgoritm[nom]
-                world[botLocation[vragBot]] = botVariant[vragBot]
-            if botLvl[vragBot] == 8:    
-                botVariant[vragBot] = 154
-                botLvl[vragBot] = 7
-                botZdorovie[vragBot] = 395
-                botIshZdorovie[vragBot] = 395
-                botMana[vragBot] = 240
-                botIshMana[vragBot] = 240
-                botZaklinania[vragBot]=[2,11,12,0,0,0,0,0,0,0,0,0,0,0,0,100]
-                botSila[vragBot] = 36
-                botLovkost[vragBot] = 5
-                botYdacha[vragBot] = 8
-                botHod[vragBot] = botLovkost[vragBot]
-                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botAlgoritm[vragBot] = botAlgoritm[nom]
-                world[botLocation[vragBot]] = botVariant[vragBot]
-            if botLvl[vragBot] >= 9:        
-                botVariant[vragBot] = 155
-                botLvl[vragBot] = 8
-                botZdorovie[vragBot] = 500
-                botIshZdorovie[vragBot] = 500
-                botMana[vragBot] = 290
-                botIshMana[vragBot] = 290
-                botZaklinania[vragBot]=[2,11,12,15,0,0,0,0,0,0,0,0,0,0,0,100]
-                botSila[vragBot] = 50
-                botLovkost[vragBot] = 5
-                botYdacha[vragBot] = 12
-                botHod[vragBot] = botLovkost[vragBot]
-                botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                botAlgoritm[vragBot] = botAlgoritm[nom]
-                world[botLocation[vragBot]] = botVariant[vragBot]
-        
-    if botZaklinania[nom][poriad] == 3:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 4:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 5:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 6:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 7:
-        yaKastanul = 1  
-    if botZaklinania[nom][poriad] == 8:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 9:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 10:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 11:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 12:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 13:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 14:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 15:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 16:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 17:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 18:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 19:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 20:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 21:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 22:
-        if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
-           botMana[nom] -= 30
-           botZdorovie[vragBot] += 30
-           botHod[nom] -= 1
-           print("Подлечили бота: ", vragBot)
-           yaKastanul = 1
-        elif botMana[nom] >=30 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-30:
-            botZdorovie[vragBot] = botIshZdorovie[vragBot] 
-            print("Подлечили бота: ", vragBot, "Полное здоровье")
-            botHod[nom] -= 1
-            yaKastanul = 1            
-    if botZaklinania[nom][poriad] == 23:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 24:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 25:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 26:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 27:
-        yaKastanul = 1
-    if botZaklinania[nom][poriad] == 28:
-        yaKastanul = 1  
+            botZdorovie[vragBot] -= botSila[nom] - botZachita[vragBot]
     
+        if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
+            if botMana[nom] >= 200: # Если хватает маны, то колдуем
+                botMana[nom] -= 200
+                botZdorovie[vragBot] -= 200
+                botHod[nom] -= 1
+                print("Пронзающая смерть")
+                yaKastanul = 1
+        
+        if botZaklinania[nom][poriad] == 2:
+            if botMana[nom] >= 100 and botZdorovie[vragBot] <= 30:
+                botMana[nom] -= 100
+                yaKastanul = 1
+                print("Создаём скелета")
+                if botLvl[vragBot] == 1 or botLvl[vragBot] == 2:
+                    botVariant[vragBot] = 148
+                    botLvl[vragBot] = 1
+                    botZdorovie[vragBot] = 50
+                    botIshZdorovie[vragBot] = 50
+                    botMana[vragBot] = 0
+                    botIshMana[vragBot] = 0
+                    botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[vragBot] = 5
+                    botLovkost[vragBot] = 3
+                    botYdacha[vragBot] = 1
+                    botHod[vragBot] = botLovkost[vragBot]
+                    botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[vragBot] = botAlgoritm[nom]
+                    world[botLocation[vragBot]] = botVariant[vragBot]
+                    botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if botLvl[vragBot] == 3:
+                    botVariant[vragBot] = 149 
+                    botLvl[vragBot] = 2
+                    botZdorovie[vragBot] = 90
+                    botIshZdorovie[vragBot] = 90
+                    botMana[vragBot] = 0
+                    botIshMana[vragBot] = 0
+                    botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[vragBot] = 9
+                    botLovkost[vragBot] = 4
+                    botYdacha[vragBot] = 2
+                    botHod[vragBot] = botLovkost[vragBot]
+                    botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[vragBot] = botAlgoritm[nom]
+                    world[botLocation[vragBot]] = botVariant[vragBot]
+                    botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if botLvl[vragBot] == 4:
+                    botVariant[vragBot] = 150
+                    botLvl[vragBot] = 3
+                    botZdorovie[vragBot] = 145
+                    botIshZdorovie[vragBot] = 145
+                    botMana[vragBot] = 0
+                    botIshMana[vragBot] = 0
+                    botZaklinania[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[vragBot] = 13
+                    botLovkost[vragBot] = 4
+                    botYdacha[vragBot] = 3
+                    botHod[vragBot] = botLovkost[vragBot]
+                    botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[vragBot] = botAlgoritm[nom]
+                    world[botLocation[vragBot]] = botVariant[vragBot]
+                    botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if botLvl[vragBot] == 5:
+                    botVariant[vragBot] = 151
+                    botLvl[vragBot] = 4
+                    botZdorovie[vragBot] = 190
+                    botIshZdorovie[vragBot] = 190
+                    botMana[vragBot] = 60
+                    botIshMana[vragBot] = 60
+                    botZaklinania[vragBot]=[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[vragBot] = 18
+                    botLovkost[vragBot] = 4
+                    botYdacha[vragBot] = 3
+                    botHod[vragBot] = botLovkost[vragBot]
+                    botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[vragBot] = botAlgoritm[nom]
+                    world[botLocation[vragBot]] = botVariant[vragBot]
+                    botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if botLvl[vragBot] == 6:
+                    botVariant[vragBot] = 152 
+                    botLvl[vragBot] = 5
+                    botZdorovie[vragBot] = 245
+                    botIshZdorovie[vragBot] = 245
+                    botMana[vragBot] = 120
+                    botIshMana[vragBot] = 120
+                    botZaklinania[vragBot]=[2,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[vragBot] = 26
+                    botLovkost[vragBot] = 5
+                    botYdacha[vragBot] = 5
+                    botHod[vragBot] = botLovkost[vragBot]
+                    botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[vragBot] = botAlgoritm[nom]
+                    world[botLocation[vragBot]] = botVariant[vragBot]
+                    botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if botLvl[vragBot] == 7:
+                    botVariant[vragBot] = 153
+                    botLvl[vragBot] = 6
+                    botZdorovie[vragBot] = 315
+                    botIshZdorovie[vragBot] = 315
+                    botMana[vragBot] = 170
+                    botIshMana[vragBot] = 170
+                    botZaklinania[vragBot]=[2,11,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[vragBot] = 36
+                    botLovkost[vragBot] = 5
+                    botYdacha[vragBot] = 8
+                    botHod[vragBot] = botLovkost[vragBot]
+                    botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[vragBot] = botAlgoritm[nom]
+                    world[botLocation[vragBot]] = botVariant[vragBot]
+                    botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if botLvl[vragBot] == 8:    
+                    botVariant[vragBot] = 154
+                    botLvl[vragBot] = 7
+                    botZdorovie[vragBot] = 395
+                    botIshZdorovie[vragBot] = 395
+                    botMana[vragBot] = 240
+                    botIshMana[vragBot] = 240
+                    botZaklinania[vragBot]=[2,11,12,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[vragBot] = 36
+                    botLovkost[vragBot] = 5
+                    botYdacha[vragBot] = 8
+                    botHod[vragBot] = botLovkost[vragBot]
+                    botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[vragBot] = botAlgoritm[nom]
+                    world[botLocation[vragBot]] = botVariant[vragBot]
+                    botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                if botLvl[vragBot] >= 9:        
+                    botVariant[vragBot] = 155
+                    botLvl[vragBot] = 8
+                    botZdorovie[vragBot] = 500
+                    botIshZdorovie[vragBot] = 500
+                    botMana[vragBot] = 290
+                    botIshMana[vragBot] = 290
+                    botZaklinania[vragBot]=[2,11,12,15,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[vragBot] = 50
+                    botLovkost[vragBot] = 5
+                    botYdacha[vragBot] = 12
+                    botHod[vragBot] = botLovkost[vragBot]
+                    botVozdeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[vragBot] = botAlgoritm[nom]
+                    world[botLocation[vragBot]] = botVariant[vragBot]
+                    botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            
+        if botZaklinania[nom][poriad] == 3:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 4:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 5:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 6:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 7:
+            yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 8:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 9:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 10:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 11:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 12:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 13:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 14:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 15:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 16:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 17:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 18:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 19:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 20:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 21:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 22:
+            if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
+                botMana[nom] -= 30
+                botZdorovie[vragBot] += 30
+                botHod[nom] -= 1
+                print("Подлечили бота: ", vragBot)
+                yaKastanul = 1
+            elif botMana[nom] >=30 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-30:
+                botZdorovie[vragBot] = botIshZdorovie[vragBot] 
+                print("Подлечили бота: ", vragBot, "Полное здоровье")
+                botHod[nom] -= 1
+                yaKastanul = 1            
+        if botZaklinania[nom][poriad] == 23:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 24:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 25:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 26:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 27:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 28:
+            yaKastanul = 1  
+    
+        
     if botZdorovie[vragBot] <= 0: ubiraemTrup(vragBot)
     worldUpdate()
     heroPanel(hero)
@@ -826,6 +836,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
     global botAlgoritm
     global botLocation
     global zakl
+    global botDeistvie
     jah = 1
     n = 1
     mag = 0
@@ -940,6 +951,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
     global botVariant
     global botAlgoritm
     global botLocation
+    global botDeistvie
     if botAlgoritm[yaBot] == 3: # =================================================== Алгоритм добра =======================================
         if botAlgoritm[yaBot] == 3: # Идём вниз 
             if botStep[yaBot] == 0:  # and world[botLocation[yaBot]+32] == 0
@@ -1176,6 +1188,7 @@ def botGoing(): # Эта функция вызывается каждый раз
     global botAlgoritm
     global botLocation
     global buttonNextStep
+    global botDeistvie
     
     n = 0
         
@@ -1295,6 +1308,7 @@ def botActivity():  # Создание и управление ботами
     global botNumer
     global botVariant
     global botAlgoritm
+    global botDeistvie
     global n
      
     botLoad = 0    
@@ -1329,6 +1343,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1364,6 +1379,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1399,6 +1415,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1434,6 +1451,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1469,6 +1487,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1501,6 +1520,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1536,6 +1556,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1571,6 +1592,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1606,6 +1628,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1641,6 +1664,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1673,6 +1697,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1705,6 +1730,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1737,6 +1763,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1772,6 +1799,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1813,6 +1841,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1848,6 +1877,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1883,6 +1913,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1918,6 +1949,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1953,6 +1985,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -1988,6 +2021,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2022,6 +2056,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2057,6 +2092,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2092,6 +2128,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2127,6 +2164,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2167,6 +2205,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2202,6 +2241,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2237,6 +2277,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2272,6 +2313,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2308,6 +2350,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2340,6 +2383,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2372,6 +2416,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2404,6 +2449,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2440,6 +2486,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2472,6 +2519,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2504,6 +2552,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2536,6 +2585,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2568,6 +2618,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2600,6 +2651,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2632,6 +2684,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2664,6 +2717,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2696,6 +2750,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2728,6 +2783,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2763,6 +2819,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2798,6 +2855,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2830,6 +2888,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2862,6 +2921,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2894,6 +2954,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2934,6 +2995,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -2969,6 +3031,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3004,6 +3067,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3039,6 +3103,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3074,6 +3139,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3109,6 +3175,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3144,6 +3211,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3179,6 +3247,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3214,6 +3283,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3249,6 +3319,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3284,6 +3355,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3319,6 +3391,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3354,6 +3427,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3389,6 +3463,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3428,6 +3503,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3463,6 +3539,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3498,6 +3575,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3533,6 +3611,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3568,6 +3647,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3603,6 +3683,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3638,6 +3719,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3673,6 +3755,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3708,6 +3791,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3743,6 +3827,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3778,6 +3863,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -3813,6 +3899,7 @@ def botActivity():  # Создание и управление ботами
                     botHod[bot] = botLovkost[bot]
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
+                    botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[384] == 0:
                         xBot[bot] = 16
                         yBot[bot] = 480
@@ -4219,6 +4306,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
     global botLocation
     global attack
     global zakl
+    global botDeistvie
     
     n = 0
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
@@ -6110,7 +6198,6 @@ def doebaca(hehmda):  #Функция отображающая информац�
         
 def visibleMagic(xMag, yMag, por): # Функция, отображающая заклинания
     global botZaklinania
-    print(botZaklinania[0][por])
     if botZaklinania[0][por] == 0:
         pix = pygame.image.load('Images/zero.jpg') 
         x_len = pix.get_width()
@@ -6281,6 +6368,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     global botSerebro
     global botBronza
     global botZachita
+    global botDeistvie
     
     global den
     global mesiac
@@ -6507,6 +6595,7 @@ def initGame(heroSelect):  # функция инициации игры
     global botVariant
     global botAlgoritm
     global botLocation
+    global botDeistvie
     
     global den
     global mesiac
@@ -6539,6 +6628,7 @@ def initGame(heroSelect):  # функция инициации игры
     botZoloto.clear()
     botSerebro.clear()
     botBronza.clear()
+    botDeistvie.clear()
     n = 0 # Создаём массивы для ботов
     for n in range(1000):
         botZoloto.append(n)
@@ -6568,6 +6658,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod.append(n)
         botAlgoritm.append(n)
         botVariant.append(n)
+        botDeistvie.append(n)
         
         botZoloto[n] = 0
         botSerebro[n] = 0
@@ -6596,6 +6687,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[n] = 0
         botAlgoritm[n] = 0
         botVariant[n] = 0
+        botDeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     n = 0  
     botLocation[0] = 172 # Исходное положение на карте
     xBot[0] = 400
@@ -6621,6 +6713,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 50
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
     elif heroSelect == 51: # Artes
         botExpirience[0] = 0
@@ -6642,6 +6735,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 51
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
     elif heroSelect == 52: # Death Owner
         botExpirience[0] = 0
@@ -6663,6 +6757,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 52
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 54: # DjePoTai
         botExpirience[0] = 0
@@ -6684,6 +6779,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 4
         botVariant[0] = 54
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 55: # Farion
         botExpirience[0] = 0
@@ -6705,6 +6801,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 55
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 56: # Garitos
         botExpirience[0] = 0
@@ -6726,6 +6823,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 56
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 57: # Gendalf
         botExpirience[0] = 0
@@ -6747,6 +6845,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0] 
         botAlgoritm[0] = 3        
         botVariant[0] = 57
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 58: # Illidan
         botExpirience[0] = 0
@@ -6768,6 +6867,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 58
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 59: # Jaina
         botExpirience[0] = 0
@@ -6789,6 +6889,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 59
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 60: # Kell
         botExpirience[0] = 0
@@ -6810,6 +6911,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]  
         botAlgoritm[0] = 4      
         botVariant[0] = 60
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 70: # Uter
         botExpirience[0] = 0
@@ -6831,6 +6933,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]    
         botAlgoritm[0] = 3  
         botVariant[0] = 70
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 72: # Vul Djin
         botExpirience[0] = 0
@@ -6852,6 +6955,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]    
         botAlgoritm[0] = 4    
         botVariant[0] = 72
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     
     elif heroSelect == 68: # Silvana
         botExpirience[0] = 0
@@ -6873,6 +6977,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 68
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
     elif heroSelect == 65: # Pradmur
         botExpirience[0] = 0
@@ -6894,6 +6999,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0] 
         botAlgoritm[0] = 3 
         botVariant[0] = 65
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 69: # Trall
         botExpirience[0] = 0
@@ -6915,6 +7021,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0] 
         botAlgoritm[0] = 4
         botVariant[0] = 69
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
     elif heroSelect == 73: # Zadira
         botExpirience[0] = 0
@@ -6936,6 +7043,7 @@ def initGame(heroSelect):  # функция инициации игры
         botHod[0] = botLovkost[0]  
         botAlgoritm[0] = 4
         botVariant[0] = 73
+        botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
     temp = 0
     step = 172
@@ -11156,6 +11264,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 1
+                     attack = 0
                      textMagic(zakl)
                      
                  
@@ -11175,8 +11284,8 @@ while True:
                      initGame(51)  
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     print ("Заклинание 2")
-                     zakl = 2       
+                     zakl = 2 
+                     attack = 0
                      textMagic(zakl)         
                  
     if mos_x>152 and (mos_x<216): 
@@ -11195,7 +11304,8 @@ while True:
                      initGame(52) 
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 3     
+                     zakl = 3 
+                     attack = 0
                      textMagic(zakl)
                                                             
     if mos_x>220 and (mos_x<284): 
@@ -11215,6 +11325,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 4 
+                     attack = 0
                      textMagic(zakl)
                  
     if mos_x>16 and (mos_x<80): 
@@ -11234,6 +11345,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 5 
+                     attack = 0
                      textMagic(zakl)
                  
     if mos_x>84 and (mos_x<148): 
@@ -11252,7 +11364,8 @@ while True:
                      initGame(56)  
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 6       
+                     zakl = 6
+                     attack = 0
                      textMagic(zakl)    
                  
     if mos_x>152 and (mos_x<216): 
@@ -11271,7 +11384,8 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 7       
+                     zakl = 7
+                     attack = 0
                      textMagic(zakl)          
                                                             
     if mos_x>220 and (mos_x<284): 
@@ -11291,6 +11405,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 8 
+                     attack = 0
                      textMagic(zakl)
                  
     if mos_x>16 and (mos_x<80): 
@@ -11310,6 +11425,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 9 
+                     attack = 0
                      textMagic(zakl)
                  
     if mos_x>84 and (mos_x<148): 
@@ -11329,6 +11445,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 10
+                     attack = 0
                      textMagic(zakl)
                  
     if mos_x>152 and (mos_x<216): 
@@ -11347,7 +11464,8 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 11      
+                     zakl = 11     
+                     attack = 0
                      textMagic(zakl)          
                                                             
     if mos_x>220 and (mos_x<284): 
@@ -11366,7 +11484,8 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 12      
+                     zakl = 12   
+                     attack = 0
                      textMagic(zakl)                      
                  
     if mos_x>16 and (mos_x<80): 
@@ -11386,6 +11505,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
                      zakl = 13 
+                     attack = 0
                      textMagic(zakl)
                  
     if mos_x>84 and (mos_x<148): 
@@ -11404,7 +11524,8 @@ while True:
                      newGameButton = 0
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
-                     zakl = 14              
+                     zakl = 14 
+                     attack = 0
                      textMagic(zakl)
                  
     if mos_x>152 and (mos_x<216): 
@@ -11424,6 +11545,7 @@ while True:
                  pygame.time.delay(500)
                  if newGameButton == 0 and newGame == 1:  # Нажали на заклинание 
                      zakl = 15  
+                     attack = 0
                      textMagic(zakl)            
                                                             
     if mos_x>220 and (mos_x<284): 
