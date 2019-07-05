@@ -111,6 +111,7 @@ for n in range(480): # Забиваем мир нулями
     world[n] = 0
 
 def textInventar():
+    pass
 
 def textMagic(numerCeil):
     global botZaklinania 
@@ -1147,7 +1148,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой") 
-                if botAlgoritm[jah] != 4:   
+                if botAlgoritm[jah] != 4 or botRasa[jah] = 5:   
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
@@ -1159,7 +1160,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")                       
-                if botAlgoritm[jah] != 4:
+                if botAlgoritm[jah] != 4 or botRasa[jah] = 5:
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
