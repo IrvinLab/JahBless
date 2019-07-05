@@ -110,6 +110,8 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
+def textInventar():
+
 def textMagic(numerCeil):
     global botZaklinania 
     global hero
@@ -6567,7 +6569,259 @@ def visibleMagic(xMag, yMag, por): # Функция, отображающая з
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))              
                                 
-
+def visibleInventar(xInv, yInv, porNom): # Функция, отображающая заклинания
+    global botInventar
+    if botInventar[0][porNom] == 0:
+        pix = pygame.image.load('Images/zero.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 1:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))        
+    if botInventar[0][porNom] == 6:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 11:
+        pix = pygame.image.load('Images/zelieVostanovlenia.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 12:
+        pix = pygame.image.load('Images/zelieRasseivania.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))   
+    if botInventar[0][porNom] == 13:
+        pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 17:
+        pix = pygame.image.load('Images/zelieZaciti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 20:
+        pix = pygame.image.load('Images/zelieLovkosti.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 23:
+        pix = pygame.image.load('Images/zelieUdachi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 26:
+        pix = pygame.image.load('Images/axe.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))   
+    if botInventar[0][porNom] == 27:
+        pix = pygame.image.load('Images/axe1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 28:
+        pix = pygame.image.load('Images/axe2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[0][porNom] == 29:
+        pix = pygame.image.load('Images/axe3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 30:
+        pix = pygame.image.load('Images/axe4.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 31:
+        pix = pygame.image.load('Images/axe5.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 32:
+        pix = pygame.image.load('Images/axe6.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 33:
+        pix = pygame.image.load('Images/book.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 34:
+        pix = pygame.image.load('Images/book1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 35:
+        pix = pygame.image.load('Images/book2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 36:
+        pix = pygame.image.load('Images/book3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 37:
+        pix = pygame.image.load('Images/book4.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 38:
+        pix = pygame.image.load('Images/book5.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 39:
+        pix = pygame.image.load('Images/book6.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 40:
+        pix = pygame.image.load('Images/book7.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 41:
+        pix = pygame.image.load('Images/book8.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 42:
+        pix = pygame.image.load('Images/book9.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 43:
+        pix = pygame.image.load('Images/bot1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 44:
+        pix = pygame.image.load('Images/bot2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 45:
+        pix = pygame.image.load('Images/bot3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 46:
+        pix = pygame.image.load('Images/helmet.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 47:
+        pix = pygame.image.load('Images/helmet1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 48:
+        pix = pygame.image.load('Images/helmet2.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 49:
+        pix = pygame.image.load('Images/helmet3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 50:
+        pix = pygame.image.load('Images/helmet4.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 51:
+        pix = pygame.image.load('Images/helmet5.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 52:
+        pix = pygame.image.load('Images/jar.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 53:
+        pix = pygame.image.load('Images/ojerelie.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 54:
+        pix = pygame.image.load('Images/posohProzrenia.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 55:
+        pix = pygame.image.load('Images/posohSmerti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))        
+    if botInventar[0][porNom] == 56:
+        pix = pygame.image.load('Images/posohSveta.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))        
+    if botInventar[0][porNom] == 57:
+        pix = pygame.image.load('Images/posohVechnoiJizni.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[0][porNom] == 58:
+        pix = pygame.image.load('Images/posohVoli.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))      
+    if botInventar[0][porNom] == 59:
+        pix = pygame.image.load('Images/runesBraslet.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 60:
+        pix = pygame.image.load('Images/sword.jpeg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 61:
+        pix = pygame.image.load('Images/sword1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[0][porNom] == 62:
+        pix = pygame.image.load('Images/sword2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[0][porNom] == 63:
+        pix = pygame.image.load('Images/sword3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[0][porNom] == 64:
+        pix = pygame.image.load('Images/sword4.gif') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[0][porNom] == 65:
+        pix = pygame.image.load('Images/sword5.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[0][porNom] == 66:
+        pix = pygame.image.load('Images/usilenniiPosohVechnoiJizni.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+        
 def printMagic(numberMagic):                                # Отображаем магические способности
     if numberMagic == 0: visibleMagic(16,548,0)
     if numberMagic == 1: visibleMagic(84,548,1)
@@ -6586,7 +6840,23 @@ def printMagic(numberMagic):                                # Отображае
     if numberMagic == 14: visibleMagic(152,752,14)
     if numberMagic == 15: visibleMagic(220,752,15)
          
-    
+def printInventar(numberInventar):                                # Отображаем инвентарь
+    if numberInventar == 0: visibleInventar(772,548,0)
+    if numberInventar == 1: visibleInventar(840,548,1)
+    if numberInventar == 2: visibleInventar(908,548,2)
+    if numberInventar == 3: visibleInventar(976,548,3)
+    if numberInventar == 4: visibleInventar(772,616,4)
+    if numberInventar == 5: visibleInventar(840,616,5)
+    if numberInventar == 6: visibleInventar(908,616,6)
+    if numberInventar == 7: visibleInventar(976,616,7)
+    if numberInventar == 8: visibleInventar(772,684,8)
+    if numberInventar == 9: visibleInventar(840,684,9)
+    if numberInventar == 10: visibleInventar(908,684,10)
+    if numberInventar == 11: visibleInventar(976,684,11)
+    if numberInventar == 12: visibleInventar(772,752,12)
+    if numberInventar == 13: visibleInventar(840,752,13)
+    if numberInventar == 14: visibleInventar(908,752,14)
+    if numberInventar == 15: visibleInventar(976,752,15)    
     
 def heroPanel(myHero): # Рисуем панель героя с его картинкой и параметрами
     global botExpirience
@@ -6933,21 +7203,21 @@ def initGame(heroSelect):  # функция инициации игры
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
         botExpirience[0] = 0
-        botLvl[0] = 10                                                #botLvl[0] = 1
+        botLvl[0] = 10                                                         #botLvl[0] = 1
         botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]           #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100] #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]        #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botIshZdorovie[0] = 1120                                     #botIshZdorovie[0] = 120
-        botZdorovie[0] = 1120                                        #botZdorovie[0] = 120
-        botMana[0] = 1000                                            #botMana[0] = 50 
-        botIshMana[0] = 1000                                         #botIshMana[0] = 50
-        botSila[0] = 50                                              #botSila[0] = 14
-        botLovkost[0] = 20                                           #botLovkost[0] = 6
+        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100]           #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+        botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                  #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botIshZdorovie[0] = 1120                                               #botIshZdorovie[0] = 120
+        botZdorovie[0] = 1120                                                  #botZdorovie[0] = 120
+        botMana[0] = 1000                                                      #botMana[0] = 50 
+        botIshMana[0] = 1000                                                   #botIshMana[0] = 50
+        botSila[0] = 50                                                        #botSila[0] = 14
+        botLovkost[0] = 20                                                     #botLovkost[0] = 6
         botYdacha[0] = 7                                         
-        botZoloto[0] = 100                                           #botZoloto[0] = 0
-        botSerebro[0] = 1000                                         #botSerebro[0] = 3
-        botBronza[0] = 100000                                        #botBronza[0] = 0
+        botZoloto[0] = 100                                                     #botZoloto[0] = 0
+        botSerebro[0] = 1000                                                   #botSerebro[0] = 3
+        botBronza[0] = 100000                                                  #botBronza[0] = 0
         botHod[0] = botLovkost[0]
         botAlgoritm[0] = 3
         botVariant[0] = 50
@@ -7367,9 +7637,11 @@ def initGame(heroSelect):  # функция инициации игры
     botZachita[0] = 0 # Обнуляем защиту при новой игре
     n = 0
     for n in range(16): # Рисуем иконки заклинаний
-        #print(n)
         printMagic(n)
-    
+    n = 0
+    for n in range(16): # Рисуем иконки инвентаря
+        printInventar(n)
+    n = 0    
     world[145] = 8  
     world[298] = 5
     world[416] = 10
@@ -11805,9 +12077,221 @@ while True:
                      initGame(73) 
                      newGameButton = 0
                  pygame.time.delay(500)
-                 
     
-    if mos_x>286 and (mos_x<414): 
+#============================================================================================================================================
+#==========================================================ОБРАБОТКА СОБЫТИЙ КНОПОК ИНВЕНТАРЯ================================================ 
+#============================================================================================================================================
+    
+
+    if mos_x>772 and (mos_x<836): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0
+                 
+    if mos_x>840 and (mos_x<904): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0 
+                     attack = 0  
+                 
+    if mos_x>908 and (mos_x<972): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0 
+                     attack = 0
+                                                            
+    if mos_x>976 and (mos_x<1040): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0
+                 
+    if mos_x>772 and (mos_x<836):  
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0
+                 
+    if mos_x>840 and (mos_x<904): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0 
+                 
+    if mos_x>908 and (mos_x<972): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0         
+                                                            
+    if mos_x>976 and (mos_x<1040): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0
+                     attack = 0
+                 
+    if mos_x>772 and (mos_x<836): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:
+                     zakl = 0
+                     attack = 0
+                 
+    if mos_x>840 and (mos_x<904): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:
+                     zakl = 0
+                     attack = 0
+                 
+    if mos_x>908 and (mos_x<972): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:
+                     zakl = 0
+                     attack = 0          
+                                                            
+    if mos_x>976 and (mos_x<1040):  
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0                    
+                 
+    if mos_x>772 and (mos_x<836):  
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0
+                     attack = 0
+                 
+    if mos_x>840 and (mos_x<904): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0
+                     attack = 0
+                 
+    if mos_x>908 and (mos_x<972): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:
+                     zakl = 0
+                     attack = 0            
+                                                            
+    if mos_x>976 and (mos_x<1040): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0
+                     attack = 0
+    
+    if mos_x>286 and (mos_x<414):  # Следующий ход
         x_inside = True
     else: x_inside = False
     if mos_y>786 and (mos_y<816):
@@ -11823,7 +12307,13 @@ while True:
                     heroPanel(hero)
                     botActivity() 
                     zakl = 0
-                    n = 1
+                    n = 0
+                    for n in range(16): # Рисуем иконки заклинаний
+                        printMagic(n)
+                    n = 0    
+                    for n in range(16): # Рисуем иконки инвентаря
+                        printInventar(n)    
+                    n = 1    
                     if botZdorovie[0]+3 < botIshZdorovie[0]: botZdorovie[0] += 2
                     if botMana[0]+3 < botIshMana[0]: botMana[0] += 2
                     for n in range(1000):
