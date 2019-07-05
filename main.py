@@ -1148,7 +1148,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой") 
-                if botAlgoritm[jah] != 4 or botRasa[jah] = 5:   
+                if botAlgoritm[jah] != 4 or botRasa[jah] == 5:   
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
@@ -1160,7 +1160,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] == 4:
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")                       
-                if botAlgoritm[jah] != 4 or botRasa[jah] = 5:
+                if botAlgoritm[jah] != 4 or botRasa[jah] == 5:
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
@@ -6392,8 +6392,81 @@ def doebaca(hehmda):  #Функция отображающая информац�
         sc.blit(nameObj,(440, 640))  
         variableName = u"место в этом мире"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))    
-    
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 51:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Артес"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Рыцарь смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Некогда подававший надежды паладин"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"решил прибегнуть к помощи тёмной"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"магии, дабы обрести силу и власть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"После такого его изгнали из Ордена"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+        variableName = u"Света и Артес стал называть себя"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))   
+        variableName = u"Рыцарем Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 790))  
+    if world[hehmda] == 52:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Владыка Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Некромант, решивший поторопить судьбу."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Он решил умерщвить своё тело раньше"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"чем ему было положено. И вместе с"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"положенным некроманту бессмертием "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"обрёл новое тело состоящее только"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+        variableName = u"из костей."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))  
+    if world[hehmda] == 53:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Детерок"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот эльф выбрал судьбу скитальца."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Уже более десяти лет он бродит по"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"миру в поисках новых приключений"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))     
+        
+        
     ktoZdesVrag = 0
     for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
         if botLocation[ktoZdesVrag] == hehmda:
