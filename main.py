@@ -41,6 +41,7 @@ hod = 0
 zachita = 0
 attack = 0
 zakl = 0
+invent = 0
 # Переменные ботов
 bot = 1 # Количество ботов
 botNumer = [] # Порядковый номер бота в списке ботов
@@ -110,8 +111,78 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
-def textInventar():
-    pass
+def textInventar(nomInv):
+    global botInventar
+    if botZaklinania[0][nomInv-1] == 1:
+        variableName = u"Зелье здоровья 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+30 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+    if botZaklinania[0][nomInv-1] == 2:
+        variableName = u"Зелье здоровья 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+65 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))    
+    if botZaklinania[0][nomInv-1] == 3:
+        variableName = u"Зелье здоровья 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+150 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))    
+    if botZaklinania[0][nomInv-1] == 4:
+        variableName = u"Зелье здоровья 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+320 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+    if botZaklinania[0][nomInv-1] == 5:
+        variableName = u"Зелье здоровья 5 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+675 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))        
+    if botZaklinania[0][nomInv-1] == 6:
+        variableName = u"Зелье маны 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+60 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+    if botZaklinania[0][nomInv-1] == 7:
+        variableName = u"Зелье маны 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+130 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))        
+    if botZaklinania[0][nomInv-1] == 8:
+        variableName = u"Зелье маны 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+260 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))        
+    if botZaklinania[0][nomInv-1] == 9:
+        variableName = u"Зелье маны 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+520 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+    if botZaklinania[0][nomInv-1] == 10:
+        variableName = u"Зелье маны 5 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+1100 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))                
 
 def textMagic(numerCeil):
     global botZaklinania 
@@ -613,6 +684,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botZdorovie[vragBot] -= 200
                 botHod[nom] -= 1
                 print("Пронзающая смерть")
+                botExpirience[nom] += 100
                 yaKastanul = 1
         
         if botZaklinania[nom][poriad] == 2: # Добить и воскресить
@@ -749,6 +821,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                     botAlgoritm[vragBot] = botAlgoritm[nom]
                     world[botLocation[vragBot]] = botVariant[vragBot]
                     botDeistvie[vragBot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                botExpirience[nom] += 50    
             
         if botZaklinania[nom][poriad] == 3: # Доспехи Феникса
             if botMana[nom] >= 30:
@@ -765,6 +838,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             botVozdeistvie[vragBot][n] = 3
                             botDeistvie[vragBot][n] = 10
                             botMana[nom] -= 30
+                            botExpirience[nom] += 10
                             break        
                 n = 0
                 yaKastanul = 1
@@ -774,19 +848,23 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botMana[nom] -= 20
                 if botMana[vragBot] > 100:
                     botMana[vragBot] -= 100
+                    botExpirience[nom] += 30
                 else:
-                    botManap[vragBot] = 0                
+                    botMana[vragBot] = 0    
+                    botExpirience[nom] += 30            
                 yaKastanul = 1
         if botZaklinania[nom][poriad] == 5: # Обман
             if botMana[nom] >= 50:
                 botHod[nom] -= 1
                 botMana[nom] -= 50
+                botExpirience[nom] += 10
                 botAlgoritm[vragBot] = 0
                 yaKastanul = 1
         if botZaklinania[nom][poriad] == 6: # Огненная сфера
             if botMana[nom] >= 15:
                 botMana[nom] -= 25
                 botZdorovie[vragBot] -= 30
+                botExpirience[nom] += 15
                 botHod[nom] -= 1
                 yaKastanul = 1
         if botZaklinania[nom][poriad] == 7: # Яд 
@@ -804,6 +882,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             botVozdeistvie[vragBot][n] = 7
                             botDeistvie[vragBot][n] = 1000
                             botMana[nom] -= 15
+                            botExpirience[nom] += 10
                             break        
                 n = 0
                 yaKastanul = 1  
@@ -822,6 +901,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             botVozdeistvie[vragBot][n] = 8
                             botDeistvie[vragBot][n] = 5
                             botMana[nom] -= 35
+                            botExpirience[nom] += 10
                             break        
                 n = 0
                 yaKastanul = 1  
@@ -830,12 +910,14 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botMana[nom] -= 50
                 botZdorovie[vragBot] += 70
                 botHod[nom] -= 1
+                botExpirience[nom] += 10
                 print("Исцелили: ", vragBot)
                 yaKastanul = 1
             elif botMana[nom] >=50 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-70:
                 botZdorovie[vragBot] = botIshZdorovie[vragBot] 
                 print("Исцелили: ", vragBot, "Полное здоровье")
                 botHod[nom] -= 1
+                botExpirience[nom] += 10
                 yaKastanul = 1 
         if botZaklinania[nom][poriad] == 10: # Мощь природы
             if botMana[nom] >= 60:
@@ -852,6 +934,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             botVozdeistvie[vragBot][n] = 10
                             botDeistvie[vragBot][n] = 10
                             botMana[nom] -= 60
+                            botExpirience[nom] += 15
                             break        
                 n = 0
                 yaKastanul = 1  
@@ -870,6 +953,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                         if botVozdeistvie[vragBot][n] == 0:
                             botVozdeistvie[vragBot][n] = 11
                             botDeistvie[vragBot][n] = 5
+                            botExpirience[nom] += 30
                             botMana[nom] -= 60
                             break        
                 n = 0
@@ -878,6 +962,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             if botMana[nom] >= 70:
                 botMana[nom] -= 70
                 botZdorovie[vragBot] -= 70
+                botExpirience[nom] += 40
                 botHod[nom] -= 1
                 yaKastanul = 1
         if botZaklinania[nom][poriad] == 13: # Печать Хаоса
@@ -895,6 +980,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             botVozdeistvie[vragBot][n] = 13
                             botDeistvie[vragBot][n] = 10
                             botMana[nom] -= 100
+                            botExpirience[nom] += 40
                             break        
                 n = 0
                 yaKastanul = 1  
@@ -912,6 +998,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                         if botVozdeistvie[vragBot][n] == 0:
                             botVozdeistvie[vragBot][n] = 14
                             botDeistvie[vragBot][n] = 5
+                            botExpirience[nom] += 70
                             botMana[nom] -= 230
                             break        
                 n = 0
@@ -930,6 +1017,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                         if botVozdeistvie[vragBot][n] == 0:
                             botVozdeistvie[vragBot][n] = 15
                             botDeistvie[vragBot][n] = 1000
+                            botExpirience[nom] += 50
                             botMana[nom] -= 150
                             break        
                 n = 0
@@ -947,6 +1035,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                     for n in range(15):
                         if botVozdeistvie[vragBot][n] == 0:
                             botVozdeistvie[vragBot][n] = 16
+                            botExpirience[nom] += 20
                             botDeistvie[vragBot][n] = 1000
                             botMana[nom] -= 75
                             break        
@@ -956,6 +1045,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             if botMana[nom] >= 30:
                 botMana[nom] -= 30
                 botZdorovie[vragBot] -= 50
+                botExpirience[nom] += 20
                 botHod[nom] -= 1
                 yaKastanul = 1
         if botZaklinania[nom][poriad] == 18: # Регенерация
@@ -973,12 +1063,14 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             botVozdeistvie[vragBot][n] = 18
                             botDeistvie[vragBot][n] = 1000
                             botMana[nom] -= 40
+                            botExpirience[nom] += 10
                             break        
                 n = 0
                 yaKastanul = 1  
         if botZaklinania[nom][poriad] == 19: # Сжигание маны
             if botMana[nom] >= 15:
                 botMana[nom] -= 15
+                botExpirience[nom] += 10
                 botMana[vragBot] = 0
                 botHod[nom] -= 1
                 yaKastanul = 1
@@ -997,6 +1089,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             botVozdeistvie[vragBot][n] = 20
                             botDeistvie[vragBot][n] = 10
                             botMana[nom] -= 55
+                            botExpirience[nom] += 10
                             break        
                 n = 0
                 yaKastanul = 1  
@@ -1007,13 +1100,15 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botMana[nom] -= 30
                 botZdorovie[vragBot] += 30
                 botHod[nom] -= 1
+                botExpirience[nom] += 10
                 print("Подлечили бота: ", vragBot)
                 yaKastanul = 1
             elif botMana[nom] >=30 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-30:
                 botZdorovie[vragBot] = botIshZdorovie[vragBot] 
                 print("Подлечили бота: ", vragBot, "Полное здоровье")
                 botHod[nom] -= 1
-                yaKastanul = 1            
+                yaKastanul = 1
+                botExpirience[nom] += 10            
         if botZaklinania[nom][poriad] == 23: # Рассеять чары
             botVozdeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             botDeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -1026,6 +1121,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                     
                 if zyxel == 1:
                     botMana[nom] -= 40
+                    botExpirience[nom] += 10
                     zyxel = 0   
                     botHod[nom] -= 1 
             n = 0
@@ -1041,7 +1137,11 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             yaKastanul = 1  
     
         
-    if botZdorovie[vragBot] <= 0: ubiraemTrup(vragBot)
+    if botZdorovie[vragBot] <= 0: 
+        ubiraemTrup(vragBot)
+        botExpirience[nom] += int(botIshZdorovie[vragBot] / 2)
+        
+    
     worldUpdate()
     heroPanel(hero)
     return yaKastanul 
@@ -7279,7 +7379,7 @@ def initGame(heroSelect):  # функция инициации игры
         botExpirience[0] = 0
         botLvl[0] = 10                                                         #botLvl[0] = 1
         botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[0] = [1,6,26,34,42,58,61,48,37,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100]           #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                  #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botIshZdorovie[0] = 1120                                               #botIshZdorovie[0] = 120
@@ -12169,6 +12269,8 @@ while True:
                  if newGameButton == 0 and newGame == 1: 
                      zakl = 0
                      attack = 0
+                     invent = 1
+                     textInventar(invent)
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -12181,7 +12283,9 @@ while True:
             if i.button == 1:
                  if newGameButton == 0 and newGame == 1: 
                      zakl = 0 
-                     attack = 0  
+                     attack = 0
+                     invent = 2  
+                     textInventar(invent)
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -12195,6 +12299,8 @@ while True:
                  if newGameButton == 0 and newGame == 1:  
                      zakl = 0 
                      attack = 0
+                     invent = 3
+                     textInventar(invent)
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
@@ -12208,6 +12314,8 @@ while True:
                  if newGameButton == 0 and newGame == 1: 
                      zakl = 0
                      attack = 0
+                     invent = 4
+                     textInventar(invent)
                  
     if mos_x>772 and (mos_x<836):  
         x_inside = True
@@ -12221,6 +12329,8 @@ while True:
                  if newGameButton == 0 and newGame == 1: 
                      zakl = 0
                      attack = 0
+                     invent = 5
+                     textInventar(invent)
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -12233,7 +12343,9 @@ while True:
             if i.button == 1:
                  if newGameButton == 0 and newGame == 1: 
                      zakl = 0
-                     attack = 0 
+                     attack = 0
+                     invent = 6 
+                     textInventar(invent)
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -12246,7 +12358,9 @@ while True:
             if i.button == 1:
                  if newGameButton == 0 and newGame == 1: 
                      zakl = 0
-                     attack = 0         
+                     attack = 0
+                     invent = 7         
+                     textInventar(invent)
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
@@ -12260,6 +12374,8 @@ while True:
                  if newGameButton == 0 and newGame == 1:  
                      zakl = 0
                      attack = 0
+                     invent = 8
+                     textInventar(invent)
                  
     if mos_x>772 and (mos_x<836): 
         x_inside = True
@@ -12273,6 +12389,8 @@ while True:
                  if newGameButton == 0 and newGame == 1:
                      zakl = 0
                      attack = 0
+                     invent = 9
+                     textInventar(invent)
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -12286,6 +12404,8 @@ while True:
                  if newGameButton == 0 and newGame == 1:
                      zakl = 0
                      attack = 0
+                     invent = 10
+                     textInventar(invent)
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -12298,7 +12418,9 @@ while True:
             if i.button == 1:
                  if newGameButton == 0 and newGame == 1:
                      zakl = 0
-                     attack = 0          
+                     attack = 0 
+                     invent = 11         
+                     textInventar(invent)
                                                             
     if mos_x>976 and (mos_x<1040):  
         x_inside = True
@@ -12311,7 +12433,9 @@ while True:
             if i.button == 1:
                  if newGameButton == 0 and newGame == 1: 
                      zakl = 0
-                     attack = 0                    
+                     attack = 0 
+                     invent = 12         
+                     textInventar(invent)          
                  
     if mos_x>772 and (mos_x<836):  
         x_inside = True
@@ -12325,6 +12449,8 @@ while True:
                  if newGameButton == 0 and newGame == 1:  
                      zakl = 0
                      attack = 0
+                     invent = 13
+                     textInventar(invent)
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -12338,6 +12464,8 @@ while True:
                  if newGameButton == 0 and newGame == 1:  
                      zakl = 0
                      attack = 0
+                     invent = 14
+                     textInventar(invent)
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -12351,6 +12479,8 @@ while True:
                  if newGameButton == 0 and newGame == 1:
                      zakl = 0
                      attack = 0            
+                     invent = 15
+                     textInventar(invent)
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
@@ -12364,6 +12494,8 @@ while True:
                  if newGameButton == 0 and newGame == 1:  
                      zakl = 0
                      attack = 0
+                     invent = 16
+                     textInventar(invent)
     
     if mos_x>286 and (mos_x<414):  # Следующий ход
         x_inside = True
@@ -12375,12 +12507,13 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                 if newGame == 1 and buttonNextStep == 0:
-                    pygame.time.delay(300)
+                    pygame.time.delay(200)
                     buttonNextStep = 1 # Переводим кнопу в неактивный режим
                     botHod[0] = botLovkost[0]
                     heroPanel(hero)
                     botActivity() 
                     zakl = 0
+                    invent = 0
                     n = 0
                     for n in range(16): # Рисуем иконки заклинаний
                         printMagic(n)
@@ -12395,6 +12528,17 @@ while True:
                         if botZdorovie[n]+3 < botIshZdorovie[n]: botZdorovie[n] += 2
                         if botMana[n]+3 < botIshMana[n]: botMana[n] += 2
                         
+    if mos_x>294 and (mos_x<414):  # Кнопка "Да"
+        x_inside = True
+    else: x_inside = False
+    if mos_y>786 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                if newGame == 1 and buttonNextStep == 0 and invent > 0:
+                    useInventar(invent)
     pygame.display.update()    
     
 # Объекты которые могут быть на карте и их номера
