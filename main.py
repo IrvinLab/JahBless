@@ -113,6 +113,8 @@ for n in range(480): # Забиваем мир нулями
 
 def textInventar(nomInv):
     global botInventar
+    global hero
+    heroPanel(hero)
     if botInventar[0][nomInv-1] == 1:
         variableName = u"Зелье здоровья 1 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -2350,7 +2352,8 @@ def botActivity():  # Создание и управление ботами
     global botAlgoritm
     global botDeistvie
     global n
-     
+    botRandom = 0
+    botRandom = int(random.random()*100) # Переменная для случайного распределения артефактов
     botLoad = 0    
     temp = int(random.random()*3) # Вероятность появления нового бота 1/4
     print(bot)
@@ -2384,6 +2387,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[bot] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[bot] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2420,6 +2432,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[bot] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[bot] = [60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2456,6 +2477,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[bot] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[bot] = [13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2492,6 +2522,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[bot] = [3,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[bot] = [21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2528,6 +2567,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 60:
+                        botInventar[bot] = [27,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 28:
+                        botInventar[bot] = [27,16,3,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [27,4,48,53,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [28,4,7,48,18,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2561,6 +2609,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 60:
+                        botInventar[bot] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[bot] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 12:
+                        botInventar[bot] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2597,6 +2654,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [60,46,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [60,46,1,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [60,46,3,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [60,46,3,13,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2633,6 +2699,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [60,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [60,47,1,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [60,47,2,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [60,47,3,13,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2669,6 +2744,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [61,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [61,47,2,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [61,48,3,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [61,48,3,3,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [61,48,3,13,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2705,6 +2789,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [62,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [62,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [62,48,3,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [62,48,4,3,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [62,48,53,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2738,6 +2831,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 60:
+                        botInventar[bot] = [8,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [11,7,55,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [11,19,54,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2771,6 +2873,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [61,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [61,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [61,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [61,3,3,59,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2804,6 +2915,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [61,46,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [60,47,2,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [60,47,3,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [60,47,4,59,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2840,6 +2960,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [8,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [9,44,3,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [10,11,45,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [10,11,45,15,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2882,6 +3011,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -2918,6 +3056,15 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 3
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 30 and botRandom <= 70:
+                        botInventar[bot] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 29:
+                        botInventar[bot] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 10 and botRandom <= 13:
+                        botInventar[bot] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 5:
+                        botInventar[bot] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -7453,12 +7600,52 @@ def visibleInventar(xInv, yInv, porNom): # Функция, отображающ�
         pix = pygame.image.load('Images/healtPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
-        sc.blit(pix, (xInv,yInv))        
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 2:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 3:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 4:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 5:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))                       
     if botInventar[0][porNom] == 6:
         pix = pygame.image.load('Images/manaPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 7:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 8:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 9:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 10:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))                
     if botInventar[0][porNom] == 11:
         pix = pygame.image.load('Images/zelieVostanovlenia.jpg') 
         x_len = pix.get_width()
@@ -7474,21 +7661,61 @@ def visibleInventar(xInv, yInv, porNom): # Функция, отображающ�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 14:
+        pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 15:
+        pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 16:
+        pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))           
     if botInventar[0][porNom] == 17:
         pix = pygame.image.load('Images/zelieZaciti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
-        sc.blit(pix, (xInv,yInv))  
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 19:
+        pix = pygame.image.load('Images/zelieZaciti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))            
     if botInventar[0][porNom] == 20:
         pix = pygame.image.load('Images/zelieLovkosti.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
-        sc.blit(pix, (xInv,yInv))    
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 21:
+        pix = pygame.image.load('Images/zelieLovkosti.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 22:
+        pix = pygame.image.load('Images/zelieLovkosti.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))          
     if botInventar[0][porNom] == 23:
         pix = pygame.image.load('Images/zelieUdachi.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
+    if botInventar[0][porNom] == 24:
+        pix = pygame.image.load('Images/zelieUdachi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[0][porNom] == 25:
+        pix = pygame.image.load('Images/zelieUdachi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))        
     if botInventar[0][porNom] == 26:
         pix = pygame.image.load('Images/axe.jpg') 
         x_len = pix.get_width()
@@ -8098,7 +8325,7 @@ def initGame(heroSelect):  # функция инициации игры
         botExpirience[0] = 0
         botLvl[0] = 10                                                         #botLvl[0] = 1
         botRasa[0] = 2
-        botInventar[0] = [1,6,26,34,42,58,61,48,37,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[0] = [1,6,26,31,45,56,64,48,70,2,52,54,22,24,15,11]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100]           #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                  #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botIshZdorovie[0] = 1120                                               #botIshZdorovie[0] = 120
