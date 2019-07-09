@@ -71,7 +71,12 @@ botHod = []
 botDeistvie = [] # Сколько времени действует заклинание. Пример: botVozdeistvie[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                  #                                                  botDeistvie[n] = [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                  #                                             Это значит, что защита Заклинание Феникса действует 10 ходов
-   
+posohSmerti = 0  
+posohSveta = 0
+posohProzrenia = 0
+posohVoli = 0
+posohVechnoiJizni = 0 # Посохи
+  
 # Время мира
 den = 1
 mesiac = 1
@@ -111,6 +116,73 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
+def useInventar(dasLut):
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botIshZdorovie
+    global botInventar
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+    global botLocation
+    global world
+    global botStep
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botDeistvie
+    global hero
+    global attack
+    global invent
+    
+    if botInventar[imHero][dasLut-1] == 1:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 30: botZdorovie[imHero] += 30
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 2:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 65: botZdorovie[imHero] += 65
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 3:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 150: botZdorovie[imHero] += 150
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 4:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 320: botZdorovie[imHero] += 320
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 5:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 675: botZdorovie[imHero] += 675
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 6:
+        if botMana[imHero] < botIshMana[imHero] - 60: botMana[imHero] += 60
+        else: botMana[imHero] = botIshMana[imHero]
+    if botInventar[imHero][dasLut-1] == 7:
+        if botMana[imHero] < botIshMana[imHero] - 130: botMana[imHero] += 130
+        else: botMana[imHero] = botIshMana[imHero]
+    if botInventar[imHero][dasLut-1] == 8:
+        if botMana[imHero] < botIshMana[imHero] - 260: botMana[imHero] += 260
+        else: botMana[imHero] = botIshMana[imHero]
+    if botInventar[imHero][dasLut-1] == 9:
+        if botMana[imHero] < botIshMana[imHero] - 520: botMana[imHero] += 520
+        else: botMana[imHero] = botIshMana[imHero]
+    if botInventar[imHero][dasLut-1] == 10:
+        if botMana[imHero] < botIshMana[imHero] - 1100: botMana[imHero] += 1100
+        else: botMana[imHero] = botIshMana[imHero]   
+    if botInventar[imHero][dasLut-1] == 55:        
+        if botMana[imHero] >= 100:
+            posohSmerti = 1
+    
+    if botInventar[imHero][dasLut-1] > 0 and botInventar[imHero][dasLut-1] <= 25:
+        invent = 0
+        attack = 0
+        botInventar[imHero][dasLut-1] = 0
+        printInventar(dasLut-1)
+    heroPanel(hero)
 def textInventar(nomInv):
     global botInventar
     global hero
@@ -122,20 +194,29 @@ def textInventar(nomInv):
         variableName = u"+30 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 2:
         variableName = u"Зелье здоровья 2 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+65 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))    
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 3:
         variableName = u"Зелье здоровья 3 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+150 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))    
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 4:
         variableName = u"Зелье здоровья 4 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -143,13 +224,19 @@ def textInventar(nomInv):
         variableName = u"+320 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 5:
         variableName = u"Зелье здоровья 5 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+675 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))        
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 6:
         variableName = u"Зелье маны 1 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -157,20 +244,29 @@ def textInventar(nomInv):
         variableName = u"+60 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 7:
         variableName = u"Зелье маны 2 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+130 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))        
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 8:
         variableName = u"Зелье маны 3 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+260 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))        
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 9:
         variableName = u"Зелье маны 4 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -178,13 +274,19 @@ def textInventar(nomInv):
         variableName = u"+520 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 10:
         variableName = u"Зелье маны 5 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+1100 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))    
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 11:
         variableName = u"Зелье восстановления"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -197,7 +299,10 @@ def textInventar(nomInv):
         sc.blit(nameObj,(440, 600)) 
         variableName = u"Рассеять Чары "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 620)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 12:
         variableName = u"Зелье рассеивания"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -207,14 +312,20 @@ def textInventar(nomInv):
         sc.blit(nameObj,(440, 580))  
         variableName = u"Рассеять Чары"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 600)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 13:
         variableName = u"Зелье Кипящей крови 1 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+5 силы на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 14:
         variableName = u"Зелье Кипящей крови 2 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -222,13 +333,19 @@ def textInventar(nomInv):
         variableName = u"+8 силы на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 15:
         variableName = u"Зелье Кипящей крови 3 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+12 силы на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))    
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 16:
         variableName = u"Зелье Кипящей крови 4 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -236,20 +353,29 @@ def textInventar(nomInv):
         variableName = u"+20 силы на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 17:
         variableName = u"Зелье Деревянной кожи"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+5 защиты на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))        
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 18:
         variableName = u"Зелье Каменной кожи"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+8 защиты на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))            
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 19:
         variableName = u"Зелье Обсидиановой кожи"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -257,27 +383,39 @@ def textInventar(nomInv):
         variableName = u"+12 защиты на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 20:
         variableName = u"Зелье Паука"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+2 Ловкости на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 21:
         variableName = u"Зелье Ящерицы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+3 Ловкости на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 22:
         variableName = u"Зелье Пантеры"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"+5 Ловкости на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 23:
         variableName = u"Зелье Леприкона 1 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -285,6 +423,9 @@ def textInventar(nomInv):
         variableName = u"+5 Удачи на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 24:
         variableName = u"Зелье Леприкона 2 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -292,6 +433,9 @@ def textInventar(nomInv):
         variableName = u"+8 Удачи на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 25:
         variableName = u"Зелье Леприкона 3 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -299,6 +443,9 @@ def textInventar(nomInv):
         variableName = u"+12 Удачи на 10 ходов"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 26:
         variableName = u"Топор Палача (1ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -315,6 +462,9 @@ def textInventar(nomInv):
         variableName = u"+3 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
     if botInventar[0][nomInv-1] == 27:
         variableName = u"Топор Королвской стражи (2ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -334,6 +484,9 @@ def textInventar(nomInv):
         variableName = u"+6 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
     if botInventar[0][nomInv-1] == 28:
         variableName = u"Топор Гнева (3ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -353,6 +506,9 @@ def textInventar(nomInv):
         variableName = u"+12 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
     if botInventar[0][nomInv-1] == 29:
         variableName = u"Топор Алчности (4ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -369,6 +525,9 @@ def textInventar(nomInv):
         variableName = u"+25 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 30:
         variableName = u"Топор Ярости (5ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -390,7 +549,10 @@ def textInventar(nomInv):
         sc.blit(nameObj,(440, 660))    
         variableName = u"+35 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 680))        
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))        
     if botInventar[0][nomInv-1] == 31:
         variableName = u"Топор Скорбящих вдов (6ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -413,6 +575,9 @@ def textInventar(nomInv):
         variableName = u"+55 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
     if botInventar[0][nomInv-1] == 32:
         variableName = u"Топор Божественной Воли (7ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -432,6 +597,9 @@ def textInventar(nomInv):
         variableName = u"+75 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
     if botInventar[0][nomInv-1] == 33:
         variableName = u"Книга 1"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -439,6 +607,9 @@ def textInventar(nomInv):
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 34:
         variableName = u"Книга 2"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -446,6 +617,9 @@ def textInventar(nomInv):
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 35:
         variableName = u"Книга 3"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -453,6 +627,9 @@ def textInventar(nomInv):
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 36:
         variableName = u"Книга 4"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -460,13 +637,19 @@ def textInventar(nomInv):
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 37:
         variableName = u"Книга 5"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580))                            
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 38:
         variableName = u"Книга 6"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -474,6 +657,9 @@ def textInventar(nomInv):
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 39:
         variableName = u"Книга 7"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -481,13 +667,19 @@ def textInventar(nomInv):
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))       
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 40:
         variableName = u"Книга 8"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 580)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 41:
         variableName = u"Книга 9"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -495,6 +687,9 @@ def textInventar(nomInv):
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 42:
         variableName = u"Книга 10"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -502,6 +697,9 @@ def textInventar(nomInv):
         variableName = u"Где описание?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 43:
         variableName = u"Ботинки Гонца (1ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -512,6 +710,9 @@ def textInventar(nomInv):
         variableName = u"+2 ловкости"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 44:
         variableName = u"Ботинки Путешественника (2ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -525,6 +726,9 @@ def textInventar(nomInv):
         variableName = u"+4 ловкости"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 45:
         variableName = u"Ботинки Скитальца (3ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -535,6 +739,9 @@ def textInventar(nomInv):
         variableName = u"+6 Ловкости"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 45:
         variableName = u"Ботинки Скитальца (3ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -545,6 +752,9 @@ def textInventar(nomInv):
         variableName = u"+6 Ловкости"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 46:
         variableName = u"Шлем пехотинца (1ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -561,6 +771,9 @@ def textInventar(nomInv):
         variableName = u"+3 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))    
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 47:
         variableName = u"Офицерский шлем (2ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -577,6 +790,9 @@ def textInventar(nomInv):
         variableName = u"+5 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 48:
         variableName = u"Шлем Паладинов (3ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -590,6 +806,9 @@ def textInventar(nomInv):
         variableName = u"+8 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 49:
         variableName = u"Шлем Похитителя Душ (4ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -606,6 +825,9 @@ def textInventar(nomInv):
         variableName = u"+14 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 50:
         variableName = u"Шлем Божественной Миссии"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -619,6 +841,9 @@ def textInventar(nomInv):
         variableName = u"+21 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 51:
         variableName = u"Шлем Бессмертия (6ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -635,6 +860,9 @@ def textInventar(nomInv):
         variableName = u"+30 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 52:
         variableName = u"Банка"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -642,6 +870,9 @@ def textInventar(nomInv):
         variableName = u"Отнесите эту банку зельевару"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
+        variableName = u"Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 53:
         variableName = u"Ожерелье духов Войны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -655,6 +886,9 @@ def textInventar(nomInv):
         variableName = u"+7 Защиты +3 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u" Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 54:
         variableName = u"Посох Прозрения"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -668,6 +902,9 @@ def textInventar(nomInv):
         variableName = u"заклинаниями он обладает"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 55:
         variableName = u"Посох Смерти"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -681,6 +918,9 @@ def textInventar(nomInv):
         variableName = u"Требует 100 маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 56:
         variableName = u"Посох Света"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -691,7 +931,7 @@ def textInventar(nomInv):
         variableName = u"Рассеять чары, а также даёт"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
-        variableName = u"+70 Здоровья при использовании"
+        variableName = u"+100 Здоровья при использовании"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
         variableName = u"Требует 50 Маны"
@@ -710,6 +950,9 @@ def textInventar(nomInv):
         variableName = u"Требует 40/60/85/115/150 Маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 58:
         variableName = u"Посох Воли"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -725,7 +968,10 @@ def textInventar(nomInv):
         sc.blit(nameObj,(440, 620))
         variableName = u"Требует 50/70/95/130/170 Маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 640))    
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 59:
         variableName = u"Рунный браслет"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -736,6 +982,9 @@ def textInventar(nomInv):
         variableName = u"+3 Защиты +5 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
+        variableName = u"Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 60:
         variableName = u"Меч 1 ур"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -746,6 +995,9 @@ def textInventar(nomInv):
         variableName = u"+3 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 61:
         variableName = u"Меч Офицера гвардии (2ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -759,6 +1011,9 @@ def textInventar(nomInv):
         variableName = u"+5 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 62:
         variableName = u"Меч Паладинов (3 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -772,6 +1027,9 @@ def textInventar(nomInv):
         variableName = u"+8 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 63:
         variableName = u"Меч Ледяной Мощи (4 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -790,7 +1048,10 @@ def textInventar(nomInv):
         sc.blit(nameObj,(440, 640))
         variableName = u"+14 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))    
+        sc.blit(nameObj,(440, 660))   
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 64:
         variableName = u"Меч Смирения (5 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -804,6 +1065,9 @@ def textInventar(nomInv):
         variableName = u"+21 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 65:
         variableName = u"Меч Великого Смирения (6 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -820,6 +1084,9 @@ def textInventar(nomInv):
         variableName = u"+30 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 66:
         variableName = u"Усиленный посох Вечной Жизни"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -833,6 +1100,9 @@ def textInventar(nomInv):
         variableName = u"Требует 140/180/240 Маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 67:
         variableName = u"Молот кузнеца (1 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -846,6 +1116,9 @@ def textInventar(nomInv):
         variableName = u"+4 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 68:
         variableName = u"Палица (2 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -857,6 +1130,11 @@ def textInventar(nomInv):
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
         variableName = u"+6 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
     if botInventar[0][nomInv-1] == 69:
         variableName = u"Молот Славы (3 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -869,7 +1147,10 @@ def textInventar(nomInv):
         sc.blit(nameObj,(440, 600))
         variableName = u"+9 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 620))            
+        sc.blit(nameObj,(440, 620))      
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
     if botInventar[0][nomInv-1] == 70:
         variableName = u"Молот Паладинов (4 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -883,6 +1164,20 @@ def textInventar(nomInv):
         variableName = u"+13 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+        
+    if botInventar[0][nomInv-1] > 0:
+        pix = pygame.image.load('Images/yes.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (462,786))    
+    
+        pix = pygame.image.load('Images/no.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (530,786))    
                 
             
 def textMagic(numerCeil):
@@ -6048,6 +6343,11 @@ def doebaca(hehmda):  #Функция отображающая информац�
     global attack
     global zakl
     global botDeistvie
+    global posohSmerti
+    global posohProzrenia
+    global posohSveta
+    global posohVoli
+    global posohVechnoiJizni
     
     n = 0
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
@@ -7992,6 +8292,18 @@ def doebaca(hehmda):  #Функция отображающая информац�
         zakl = 0
         attack = 0
     
+    ktoZdesVrag = 0    
+    if posohSmerti == 1:
+        for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+            if botLocation[ktoZdesVrag] == hehmda:
+                break  
+        
+        botMana[imHero] -= 200
+        botZdorovie[ktoZdesVrag] -= 200
+        botHod[imHero] -= 1
+        botExpirience[imHero] += 100
+        posohSmerti == 1
+        
     if attack == 1 and botHod[0] > 0:  # Тут мы атакуем ботов
         n = 1
         for n in range(1000):
@@ -8236,6 +8548,11 @@ def visibleInventar(xInv, yInv, porNom): # Функция, отображающ�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 18:
+        pix = pygame.image.load('Images/zelieZaciti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
     if botInventar[0][porNom] == 19:
         pix = pygame.image.load('Images/zelieZaciti.jpg') 
         x_len = pix.get_width()
@@ -8886,7 +9203,7 @@ def initGame(heroSelect):  # функция инициации игры
         botExpirience[0] = 0
         botLvl[0] = 10                                                         #botLvl[0] = 1
         botRasa[0] = 2
-        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[0] = [55,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100]           #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                  #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botIshZdorovie[0] = 1120                                               #botIshZdorovie[0] = 120
@@ -14035,7 +14352,7 @@ while True:
                         if botZdorovie[n]+3 < botIshZdorovie[n]: botZdorovie[n] += 2
                         if botMana[n]+3 < botIshMana[n]: botMana[n] += 2
                         
-    if mos_x>294 and (mos_x<414):  # Кнопка "Да"
+    if mos_x>462 and (mos_x<526):  # Кнопка "Да"
         x_inside = True
     else: x_inside = False
     if mos_y>786 and (mos_y<816):
@@ -14046,6 +14363,19 @@ while True:
             if i.button == 1:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
                     useInventar(invent)
+                    
+    if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
+        x_inside = True
+    else: x_inside = False
+    if mos_y>786 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                if newGame == 1 and buttonNextStep == 0 and invent > 0:
+                    botInventar[imHero][invent-1] = 0
+                    heroPanel(hero)                    
     pygame.display.update()    
     
 # Объекты которые могут быть на карте и их номера
