@@ -76,7 +76,9 @@ posohSveta = 0
 posohProzrenia = 0
 posohVoli = 0
 posohVechnoiJizni = 0 # Посохи
-  
+
+yes = 0
+no = 0  
 # Время мира
 den = 1
 mesiac = 1
@@ -147,6 +149,7 @@ def useInventar(dasLut):
     global posohProzrenia
     global posohVoli
     global posohVechnoiJizni
+    global yes
     
     
     if botInventar[imHero][dasLut-1] == 1:
@@ -179,9 +182,10 @@ def useInventar(dasLut):
     if botInventar[imHero][dasLut-1] == 10:
         if botMana[imHero] < botIshMana[imHero] - 1100: botMana[imHero] += 1100
         else: botMana[imHero] = botIshMana[imHero]   
-    if botInventar[imHero][dasLut-1] == 55:        
+    if botInventar[imHero][dasLut-1] == 55 and yes == 1:        
         if botMana[imHero] >= 100:
             posohSmerti = 1
+            yes = 0
     
     if botInventar[imHero][dasLut-1] > 0 and botInventar[imHero][dasLut-1] <= 25:
         invent = 0
@@ -8305,12 +8309,12 @@ def doebaca(hehmda):  #Функция отображающая информац�
             if botLocation[ktoZdesVrag] == hehmda:
                 break  
         
-        botMana[imHero] -= 200
+        botMana[imHero] -= 100
         botZdorovie[ktoZdesVrag] -= 200
         botHod[imHero] -= 1
         botExpirience[imHero] += 50
         posohSmerti = 0
-        ubiraemTrup(ktoZdesVrag)
+        if botZdorovie[ktoZdesVrag] <= 0: ubiraemTrup(ktoZdesVrag)
         heroPanel(hero)
         
     if attack == 1 and botHod[0] > 0:  # Тут мы атакуем ботов
@@ -8324,7 +8328,6 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 attack = 0
                 if botZdorovie[n] <= 0:
                     botExpirience[0] += int(botIshZdorovie[n] / 2)
-                    otdaiLut(imHero, n)
                     ubiraemTrup(n)
           
         heroPanel(hero)
@@ -14372,6 +14375,7 @@ while True:
             if i.button == 1:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
                     useInventar(invent)
+                    yes = 1
                     
     if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
         x_inside = True
@@ -14384,7 +14388,8 @@ while True:
             if i.button == 1:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
                     botInventar[imHero][invent-1] = 0
-                    heroPanel(hero)                    
+                    heroPanel(hero) 
+                    no = 1                    
     pygame.display.update()    
     
 # Объекты которые могут быть на карте и их номера
