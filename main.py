@@ -1839,13 +1839,51 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     
         
     if botZdorovie[vragBot] <= 0: 
-        ubiraemTrup(vragBot)
-        botExpirience[nom] += int(botIshZdorovie[vragBot] / 2)
-        
+        otdaiLut(nom, vragBot)
+        ubiraemTrup(vragBot)    
     
     worldUpdate()
     heroPanel(hero)
     return yaKastanul 
+
+def otdaiLut(nom, vragBot):
+    print(botInventar[vragBot])
+    if botZdorovie[vragBot] <= 0: 
+        botExpirience[nom] += int(botIshZdorovie[vragBot] / 2)
+        tempEnum = 0
+        for tempEnum in range(16):
+            if botInventar[vragBot][tempEnum] > 0:
+                if botInventar[nom][0] == 0: botInventar[nom][0] = botInventar[vragBot][tempEnum]
+                else:
+                    if botInventar[nom][1] == 0: botInventar[nom][1] = botInventar[vragBot][tempEnum]
+                    else:
+                        if botInventar[nom][2] == 0: botInventar[nom][2] = botInventar[vragBot][tempEnum]
+                        else:
+                            if botInventar[nom][3] == 0: botInventar[nom][3] = botInventar[vragBot][tempEnum]
+                            else:
+                                if botInventar[nom][4] == 0: botInventar[nom][4] = botInventar[vragBot][tempEnum]
+                                else:
+                                    if botInventar[nom][5] == 0: botInventar[nom][5] = botInventar[vragBot][tempEnum]
+                                    else:
+                                        if botInventar[nom][6] == 0: botInventar[nom][6] = botInventar[vragBot][tempEnum]
+                                        else:
+                                            if botInventar[nom][7] == 0: botInventar[nom][7] = botInventar[vragBot][tempEnum]
+                                            else:
+                                                if botInventar[nom][8] == 0: botInventar[nom][8] = botInventar[vragBot][tempEnum]
+                                                else:
+                                                    if botInventar[nom][9] == 0: botInventar[nom][9] = botInventar[vragBot][tempEnum]
+                                                    else:
+                                                        if botInventar[nom][10] == 0: botInventar[nom][10] = botInventar[vragBot][tempEnum]
+                                                        else: 
+                                                            if botInventar[nom][11] == 0: botInventar[nom][11] = botInventar[vragBot][tempEnum]
+                                                            else:
+                                                                if botInventar[nom][12] == 0: botInventar[nom][12] = botInventar[vragBot][tempEnum]
+                                                                else:
+                                                                    if botInventar[nom][13] == 0: botInventar[nom][13] = botInventar[vragBot][tempEnum]
+                                                                    else:
+                                                                        if botInventar[nom][14] == 0: botInventar[nom][14] = botInventar[vragBot][tempEnum]
+                                                                        else:
+                                                                            if botInventar[nom][15] == 0: botInventar[nom][15] = botInventar[vragBot][tempEnum]
     
 def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обрабатываем реакцию на присутвие персонажей и NPC
     global n
@@ -1892,6 +1930,9 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                         if botSila[nomerBota] > botZachita[jah]:
                             botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                             botHod[nomerBota] -= 1
+                            if botZdorovie[jah] <= 0: 
+                                otdaiLut(nomerBota, jah)
+                                ubiraemTrup(jah) 
                         
                     if botMana[n] > 0:
                         for mag in range(16):
@@ -1910,6 +1951,9 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
+                        if botZdorovie[jah] <= 0: 
+                                otdaiLut(nomerBota, jah)
+                                ubiraemTrup(jah) 
                 
     if botRasa[nomerBota] == 3:
         for jah in range(1000):
@@ -1922,6 +1966,9 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
+                        if botZdorovie[jah] <= 0: 
+                                otdaiLut(nomerBota, jah)
+                                ubiraemTrup(jah) 
                     
     if botRasa[nomerBota] == 4:
         for jah in range(1000):
@@ -1934,13 +1981,19 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
+                        if botZdorovie[jah] <= 0: 
+                                otdaiLut(nomerBota, jah)
+                                ubiraemTrup(jah) 
 
     if botRasa[nomerBota] == 5: # Это монстр
         for jah in range(1000):
             if botLocation[jah] == local:
                 if botSila[nomerBota] > botZachita[jah]:
                     botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                    botHod[nomerBota] -= 1               
+                    botHod[nomerBota] -= 1     
+                    if botZdorovie[jah] <= 0: 
+                        otdaiLut(nomerBota, jah)
+                        ubiraemTrup(jah)                     
     
     if botRasa[nomerBota] == 6:
         for jah in range(1000):
@@ -1953,6 +2006,9 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
+                        if botZdorovie[jah] <= 0: 
+                                otdaiLut(nomerBota, jah)
+                                ubiraemTrup(jah) 
 
     if botRasa[nomerBota] == 7:
         for jah in range(1000):
@@ -1965,9 +2021,12 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     if botSila[nomerBota] > botZachita[jah]:
                         botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                         botHod[nomerBota] -= 1
+                        if botZdorovie[jah] <= 0: 
+                                otdaiLut(nomerBota, jah)
+                                ubiraemTrup(jah) 
     
     zakl = 0
-    
+        
 def botAlgoritmes(yaBot): # Тут мы обрабатываем алгоритмы ботов, их брождение по карте
     global botType
     global botStep
@@ -2292,7 +2351,7 @@ def botGoing(): # Эта функция вызывается каждый раз
                             botAlgoritmes(n); botHod[n] -= 1
                        
         else:
-            if botYdacha[n] > 0:
+            if botYdacha[n] > 0 and botZdorovie[n] <= 0:
                 pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[n],yBot[n]))
                 botType[n] = 0
                 botStep[n] = 0
@@ -7944,6 +8003,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 attack = 0
                 if botZdorovie[n] <= 0:
                     botExpirience[0] += int(botIshZdorovie[n] / 2)
+                    otdaiLut(imHero, n)
                     ubiraemTrup(n)
           
         heroPanel(hero)
@@ -8497,6 +8557,12 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     global mesiac
     global god
     
+    for n in range(16): # Рисуем иконки заклинаний
+        printMagic(n)
+    n = 0    
+    for n in range(16): # Рисуем иконки инвентаря
+        printInventar(n)  
+    
     pygame.draw.rect(sc, (255, 255, 255), (284, 558, 481, 896)) 
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896))
     pix = pygame.image.load('Images/next.png') # Кнопка "Конец хода" она нужна)
@@ -8820,7 +8886,7 @@ def initGame(heroSelect):  # функция инициации игры
         botExpirience[0] = 0
         botLvl[0] = 10                                                         #botLvl[0] = 1
         botRasa[0] = 2
-        botInventar[0] = [1,6,26,31,45,56,64,48,70,2,52,54,22,24,15,11]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100]           #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                  #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botIshZdorovie[0] = 1120                                               #botIshZdorovie[0] = 120
