@@ -142,6 +142,12 @@ def useInventar(dasLut):
     global hero
     global attack
     global invent
+    global posohSmerti
+    global posohSveta
+    global posohProzrenia
+    global posohVoli
+    global posohVechnoiJizni
+    
     
     if botInventar[imHero][dasLut-1] == 1:
         if botZdorovie[imHero] < botIshZdorovie[imHero] - 30: botZdorovie[imHero] += 30
@@ -1606,8 +1612,9 @@ def ubiraemTrup(trup):
     global botAlgoritm
     global botLocation
     global botDeistvie
+    global imHero
     
-    
+    otdaiLut(imHero, trup)
     pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
     botType[trup] = 0
     botStep[trup] = 0
@@ -8301,8 +8308,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
         botMana[imHero] -= 200
         botZdorovie[ktoZdesVrag] -= 200
         botHod[imHero] -= 1
-        botExpirience[imHero] += 100
-        posohSmerti == 1
+        botExpirience[imHero] += 50
+        posohSmerti = 0
+        ubiraemTrup(ktoZdesVrag)
+        heroPanel(hero)
         
     if attack == 1 and botHod[0] > 0:  # Тут мы атакуем ботов
         n = 1
