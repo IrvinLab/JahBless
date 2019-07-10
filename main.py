@@ -42,6 +42,7 @@ zachita = 0
 attack = 0
 zakl = 0
 invent = 0
+rinok = [1,6,13,0,60,26,0,0,46,0,0,0,0,0,0,0]
 # Переменные ботов
 bot = 1 # Количество ботов
 botNumer = [] # Порядковый номер бота в списке ботов
@@ -117,7 +118,45 @@ textExpirience = pygame.font.SysFont('Monospace Regular', 20) # Отобража
 for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
-
+    
+def levelUp(nomerBota):
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botIshZdorovie
+    global botInventar
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+    global botLocation
+    global world
+    global botStep
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botDeistvie
+    global hero
+    
+    if botExpirience[nomerBota] >= 1000*(1.3**(botLvl[nomerBota]-1)):
+        botLvl[nomerBota] += 1
+        botExpirience[nomerBota] = 0
+        botIshMana[nomerBota] += 20
+        botMana[nomerBota] = botIshMana[nomerBota]
+        botIshZdorovie[nomerBota] += 20
+        botZdorovie[nomerBota] = botIshZdorovie[nomerBota]
+        botSila[nomerBota] += 1
+        botLovkost[nomerBota] += 1
+        botYdacha[nomerBota] += 1
+        botVozdeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botDeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        
 def useInventar(dasLut):
     global botExpirience
     global botLvl
@@ -1061,7 +1100,7 @@ def textInventar(nomInv):
         sc.blit(nameObj,(440, 660))   
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))        
+        sc.blit(nameObj,(440, 680))        
     if botInventar[0][nomInv-1] == 64:
         variableName = u"Меч Смирения (5 ур.)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -1207,12 +1246,6 @@ def textMagic(numerCeil):
         variableName = u"Требует 200 маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        #variableName = u"и ещё много чего. У короля есть сокровища"
-        #nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        #sc.blit(nameObj,(440, 640))  
-        #variableName = u"которые охраняет свита отборных бойцов"
-        #nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        #sc.blit(nameObj,(440, 660)) 
     if botZaklinania[0][numerCeil-1] == 2:
         variableName = u"Добить и воскресить"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -1618,7 +1651,6 @@ def ubiraemTrup(trup):
     global botDeistvie
     global imHero
     
-    otdaiLut(imHero, trup)
     pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
     botType[trup] = 0
     botStep[trup] = 0
@@ -1677,6 +1709,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global botLocation
     global botDeistvie
     global zyxel
+    global attack
     
     print ("Колдовство: ",nom, poriad, vragBot)
     if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:
@@ -2143,8 +2176,15 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
         if botZaklinania[nom][poriad] == 28:
             yaKastanul = 1  
     
-        
-    if botZdorovie[vragBot] <= 0: 
+    
+    if botZdorovie[vragBot] <= 0 and attack == 0: 
+        randomMoney = int(random.random()*10)
+        randomBronza = int(random.random()*5) * botLvl[vragBot]
+        randomSerebro = int(random.random()*70) * botLvl[vragBot]
+        if randomMoney >= 4 and  randomMoney <= 9:
+            botBronza[nom] += randomBronza
+        if randomMoney == 2 or randomMoney == 3:
+            botSerebro[nom] += randomSerebro        
         otdaiLut(nom, vragBot)
         ubiraemTrup(vragBot)    
     
@@ -2240,11 +2280,6 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                                 otdaiLut(nomerBota, jah)
                                 ubiraemTrup(jah) 
                         
-                    if botMana[n] > 0:
-                        for mag in range(16):
-                            if botZaklinania[n][mag] != 0:
-                                botKoldun(n,mag,jah)
-                                 
                                
     if botRasa[nomerBota] == 2:
         for jah in range(1000):
@@ -8314,27 +8349,37 @@ def doebaca(hehmda):  #Функция отображающая информац�
         botHod[imHero] -= 1
         botExpirience[imHero] += 50
         posohSmerti = 0
-        if botZdorovie[ktoZdesVrag] <= 0: ubiraemTrup(ktoZdesVrag)
+        if botZdorovie[ktoZdesVrag] <= 0: 
+            otdaiLut(imHero, ktoZdesVrag)
+            ubiraemTrup(ktoZdesVrag)
         heroPanel(hero)
         
-    if attack == 1 and botHod[0] > 0:  # Тут мы атакуем ботов
-        n = 1
-        for n in range(1000):
-            if botLocation[0] == botLocation[n]-1 or botLocation[0] == botLocation[n]+1 or botLocation[0] == botLocation[n]-32 or botLocation[0] == botLocation[n]+32 or botLocation[0] == botLocation[n]-31 or botLocation[0] == botLocation[n]+31 or botLocation[0] == botLocation[n]-33 or botLocation[0] == botLocation[n]+33:
-                print("Бот ",botLocation[n], " рядом со мной",botLocation[0], " и я его бью. Его здоровье: ", botZdorovie[n], " уровень: ",botLvl[n]," Тип: ",botVariant[n])
-                botHod[0] -= 1
-                botZdorovie[n] -= botSila[0] - botZachita[n]
-                botExpirience[0] += botSila[0] # Повышаем опыт
-                attack = 0
-                if botZdorovie[n] <= 0:
-                    botExpirience[0] += int(botIshZdorovie[n] / 2)
-                    ubiraemTrup(n)
-          
+    if attack == 1 and botHod[imHero] > 0:  # Тут мы атакуем ботов
+        for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+            if botLocation[ktoZdesVrag] == hehmda:
+                break 
+        botHod[imHero] -= 1
+        botZdorovie[ktoZdesVrag] -= botSila[imHero] - botZachita[ktoZdesVrag]
+        botExpirience[imHero] += botSila[imHero] # Повышаем опыт
+        attack = 0
+        if botZdorovie[ktoZdesVrag] <= 0 and zakl == 0:
+            randomMoney = int(random.random()*10) # Вероятность выпадения ресурсов: серебра и бронзы
+            randomBronza = int(random.random()*5) * botLvl[ktoZdesVrag]
+            randomSerebro = int(random.random()*70) * botLvl[ktoZdesVrag]
+            if randomMoney >= 4 and  randomMoney <= 8:
+                botBronza[imHero] += randomBronza
+            if randomMoney == 2 or randomMoney == 3:
+                botSerebro[imHero] += randomSerebro  
+            botExpirience[0] += int(botIshZdorovie[ktoZdesVrag] / 2)
+            otdaiLut(imHero, ktoZdesVrag)
+            ubiraemTrup(ktoZdesVrag)  
         heroPanel(hero)
         worldUpdate()        
         attack = 0
                      
-        
+    if hehmda == 8 and botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 177 or botLocation[imHero] == 176 or botLocation[imHero] == 113 or botLocation[imHero] == 112 or botLocation[imHero] == 114:
+        pass    
+    
 def visibleMagic(xMag, yMag, por): # Функция, отображающая заклинания
     global botZaklinania
     if botZaklinania[0][por] == 0:
@@ -9213,7 +9258,7 @@ def initGame(heroSelect):  # функция инициации игры
      # Задаём начальные параметры персонажа
     if heroSelect == 50: # Akami
         botExpirience[0] = 0
-        botLvl[0] = 10                                                         #botLvl[0] = 1
+        botLvl[0] = 1
         botRasa[0] = 2
         botInventar[0] = [55,10,10,10,0,0,0,0,0,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [22,1,2,3,4,5,6,7,8,9,10,11,12,13,14,100]           #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -14346,7 +14391,6 @@ while True:
                     pygame.time.delay(200)
                     buttonNextStep = 1 # Переводим кнопу в неактивный режим
                     botHod[0] = botLovkost[0]
-                    heroPanel(hero)
                     botActivity() 
                     zakl = 0
                     invent = 0
@@ -14356,14 +14400,16 @@ while True:
                     n = 0    
                     for n in range(16): # Рисуем иконки инвентаря
                         printInventar(n)    
-                    n = 1    
+                    n = 1 
+                    levelUp(imHero)
                     if botZdorovie[0]+3 < botIshZdorovie[0]: botZdorovie[0] += 2
                     if botMana[0]+3 < botIshMana[0]: botMana[0] += 2
                     for n in range(1000):
                         botHod[n] = botLovkost[n]
-                        if botZdorovie[n]+3 < botIshZdorovie[n]: botZdorovie[n] += 2
-                        if botMana[n]+3 < botIshMana[n]: botMana[n] += 2
-                        
+                        if botZdorovie[n]+3 < botIshZdorovie[n]: botZdorovie[n] += 1
+                        if botMana[n]+3 < botIshMana[n]: botMana[n] += 1
+                    heroPanel(hero)
+                    
     if mos_x>462 and (mos_x<526):  # Кнопка "Да"
         x_inside = True
     else: x_inside = False
