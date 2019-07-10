@@ -2197,8 +2197,8 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     
     if botZdorovie[vragBot] <= 0 and attack == 0: 
         randomMoney = int(random.random()*10)
-        randomBronza = int(random.random()*5) * botLvl[vragBot]
-        randomSerebro = int(random.random()*70) * botLvl[vragBot]
+        randomBronza = int(random.random()*70) * botLvl[vragBot]
+        randomSerebro = int(random.random()*5) * botLvl[vragBot]
         if randomMoney >= 4 and  randomMoney <= 9:
             botBronza[nom] += randomBronza
         if randomMoney == 2 or randomMoney == 3:
@@ -8382,8 +8382,8 @@ def doebaca(hehmda):  #Функция отображающая информац�
         attack = 0
         if botZdorovie[ktoZdesVrag] <= 0 and zakl == 0:
             randomMoney = int(random.random()*10) # Вероятность выпадения ресурсов: серебра и бронзы
-            randomBronza = int(random.random()*5) * botLvl[ktoZdesVrag]
-            randomSerebro = int(random.random()*70) * botLvl[ktoZdesVrag]
+            randomBronza = int(random.random()*70) * botLvl[ktoZdesVrag]
+            randomSerebro = int(random.random()*5) * botLvl[ktoZdesVrag]
             if randomMoney == 4 or randomMoney == 5 or randomMoney == 6 or randomMoney == 7 or randomMoney == 8 or randomMoney == 9:
                 botBronza[imHero] += randomBronza
             if randomMoney == 2 or randomMoney == 3:
