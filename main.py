@@ -42,7 +42,10 @@ zachita = 0
 attack = 0
 zakl = 0
 invent = 0
-rinok = [1,6,13,0,60,26,0,0,46,0,0,0,0,0,0,0]
+
+rinok = [1,6,13,0,60,26,0,0,46,0,0,0,0,0,0,0] # В этом массиве лежит инвентарь, который доступен на рынке
+yaNaRinke = 0
+
 # Переменные ботов
 bot = 1 # Количество ботов
 botNumer = [] # Порядковый номер бота в списке ботов
@@ -118,6 +121,21 @@ textExpirience = pygame.font.SysFont('Monospace Regular', 20) # Отобража
 for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
+    
+
+def market(press):
+    global hero
+    global botInventar
+    global botZoloto
+    global botSerebro
+    global botBronza
+    
+    heroPanel(hero)
+    if press == 1: #Если на рынке нажали "ДА" т.е купить и посмотреть предложения
+        pass
+        
+    if press == 2:  # Если на рынке нажали "НЕТ" т.е. продать инвентарь
+        pass
     
 def levelUp(nomerBota):
     global botExpirience
@@ -1650,8 +1668,8 @@ def ubiraemTrup(trup):
     global botLocation
     global botDeistvie
     global imHero
-    
-    pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
+    if xBot[trup] != 0 and yBot[trup] != 0:
+        pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
     botType[trup] = 0
     botStep[trup] = 0
     xBot[trup] = 0
@@ -2820,8 +2838,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 1
-                    botZdorovie[bot] = 85
-                    botIshZdorovie[bot] = 85
+                    botZdorovie[bot] = 100
+                    botIshZdorovie[bot] = 100
                     botMana[bot] = 100
                     botIshMana[bot] = 100
                     botZaklinania[bot]=[2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -2865,8 +2883,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 2
-                    botZdorovie[bot] = 105
-                    botIshZdorovie[bot] = 105
+                    botZdorovie[bot] = 125
+                    botIshZdorovie[bot] = 125
                     botMana[bot] = 130
                     botIshMana[bot] = 130
                     botZaklinania[bot]=[2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -2910,8 +2928,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 125
-                    botIshZdorovie[bot] = 125
+                    botZdorovie[bot] = 165
+                    botIshZdorovie[bot] = 165
                     botMana[bot] = 200
                     botIshMana[bot] = 200
                     botZaklinania[bot]=[2,3,12,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -2955,8 +2973,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 155
-                    botIshZdorovie[bot] = 155
+                    botZdorovie[bot] = 165
+                    botIshZdorovie[bot] = 165
                     botMana[bot] = 60
                     botIshMana[bot] = 60
                     botZaklinania[bot]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -2997,8 +3015,8 @@ def botActivity():  # Создание и управление ботами
                     botVariant[bot] = tmp 
                     botType[bot] = 3 # Мирный    
                     botLvl[bot] = 1
-                    botZdorovie[bot] = 30
-                    botIshZdorovie[bot] = 30
+                    botZdorovie[bot] = 50
+                    botIshZdorovie[bot] = 50
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -3042,8 +3060,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 1
-                    botZdorovie[bot] = 100
-                    botIshZdorovie[bot] = 100
+                    botZdorovie[bot] = 110
+                    botIshZdorovie[bot] = 110
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -3132,8 +3150,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 170
-                    botIshZdorovie[bot] = 170
+                    botZdorovie[bot] = 180
+                    botIshZdorovie[bot] = 180
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -3177,8 +3195,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 4
-                    botZdorovie[bot] = 200
-                    botIshZdorovie[bot] = 200
+                    botZdorovie[bot] = 220
+                    botIshZdorovie[bot] = 220
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -8366,7 +8384,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
             randomMoney = int(random.random()*10) # Вероятность выпадения ресурсов: серебра и бронзы
             randomBronza = int(random.random()*5) * botLvl[ktoZdesVrag]
             randomSerebro = int(random.random()*70) * botLvl[ktoZdesVrag]
-            if randomMoney >= 4 and  randomMoney <= 8:
+            if randomMoney == 4 or randomMoney == 5 or randomMoney == 6 or randomMoney == 7 or randomMoney == 8 or randomMoney == 9:
                 botBronza[imHero] += randomBronza
             if randomMoney == 2 or randomMoney == 3:
                 botSerebro[imHero] += randomSerebro  
@@ -8377,9 +8395,26 @@ def doebaca(hehmda):  #Функция отображающая информац�
         worldUpdate()        
         attack = 0
                      
-    if hehmda == 8 and botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 177 or botLocation[imHero] == 176 or botLocation[imHero] == 113 or botLocation[imHero] == 112 or botLocation[imHero] == 114:
-        pass    
+    if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 177 or botLocation[imHero] == 176 or botLocation[imHero] == 178 or botLocation[imHero] == 113 or botLocation[imHero] == 112 or botLocation[imHero] == 114:
+        if world[hehmda] == 8:
+            yaNaRinke = 1  
+            variableName = u"Смотреть предложения - (Да)"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 660))
+            variableName = u"Продать инвентарь - (Нет)"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 680))
+            
+            pix = pygame.image.load('Images/yes.png') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (462,786))    
     
+            pix = pygame.image.load('Images/no.png') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (530,786)) 
+            
 def visibleMagic(xMag, yMag, por): # Функция, отображающая заклинания
     global botZaklinania
     if botZaklinania[0][por] == 0:
@@ -14409,6 +14444,7 @@ while True:
                         if botZdorovie[n]+3 < botIshZdorovie[n]: botZdorovie[n] += 1
                         if botMana[n]+3 < botIshMana[n]: botMana[n] += 1
                     heroPanel(hero)
+                    yaNaRinke = 0
                     
     if mos_x>462 and (mos_x<526):  # Кнопка "Да"
         x_inside = True
@@ -14422,6 +14458,8 @@ while True:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
                     useInventar(invent)
                     yes = 1
+                if yaNaRinke == 1:
+                    market(1)
                     
     if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
         x_inside = True
@@ -14435,7 +14473,10 @@ while True:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
                     botInventar[imHero][invent-1] = 0
                     heroPanel(hero) 
-                    no = 1                    
+                    no = 1 
+                if yaNaRinke == 1:
+                    market(2)   
+                    
     pygame.display.update()    
     
 # Объекты которые могут быть на карте и их номера
