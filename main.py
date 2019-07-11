@@ -162,7 +162,7 @@ def levelUp(nomerBota):
     global botDeistvie
     global hero
     
-    if botExpirience[nomerBota] >= 1000*(1.3**(botLvl[nomerBota]-1)):
+    if botExpirience[nomerBota] >= 1000*(1.35**(botLvl[nomerBota]-1)):
         botLvl[nomerBota] += 1
         botExpirience[nomerBota] = 0
         botIshMana[nomerBota] += 20
@@ -2281,23 +2281,28 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
     jah = 0
     n = 1
     mag = 0
+    atack = 0
     if botRasa[nomerBota] == 1:
         for jah in range(1000):
             if botLocation[jah] == local:
-                #print (vari, "Я человек, вижу бота номер:", jah, "Расы: ", botRasa[jah])
+                print (vari, "Я человек, вижу бота номер:", jah, "Расы: ", botRasa[jah])
                 if botAlgoritm[jah] == 3:
                     botAlgoritmes(nomerBota)
-                    #print("Это свой")
+                    print("Это свой")
                     
                 if botAlgoritm[jah] != 3: # Если это враг, тогда бьём в морду
-                    if botMana[n] <= 0:
-                        if botSila[nomerBota] > botZachita[jah]:
-                            botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                            botHod[nomerBota] -= 1
-                            if botZdorovie[jah] <= 0: 
-                                otdaiLut(nomerBota, jah)
-                                ubiraemTrup(jah) 
-                        
+                    print("Это враг")
+                    for atack in range(botHod[nomerBota]):
+                        if botMana[n] <= 0:
+                            print("Наношу удар")
+                            if botSila[nomerBota] > botZachita[jah]:
+                                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                                botHod[nomerBota] -= 1
+                                if botZdorovie[jah] <= 0: 
+                                    otdaiLut(nomerBota, jah)
+                                    ubiraemTrup(jah) 
+                    botHod[nomerBota] = 0
+                                        
                                
     if botRasa[nomerBota] == 2:
         for jah in range(1000):
@@ -2307,12 +2312,17 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     botAlgoritmes(nomerBota)
                     print ("Это свой")
                 if botAlgoritm[jah] != 3:
-                    if botSila[nomerBota] > botZachita[jah]:
-                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                        botHod[nomerBota] -= 1
-                        if botZdorovie[jah] <= 0: 
-                                otdaiLut(nomerBota, jah)
-                                ubiraemTrup(jah) 
+                    print("Это враг")
+                    for atack in range(botHod[nomerBota]):
+                        if botMana[n] <= 0:
+                            print("Наношу удар")
+                            if botSila[nomerBota] > botZachita[jah]:
+                                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                                botHod[nomerBota] -= 1
+                                if botZdorovie[jah] <= 0: 
+                                    otdaiLut(nomerBota, jah)
+                                    ubiraemTrup(jah) 
+                    botHod[nomerBota] = 0
                 
     if botRasa[nomerBota] == 3:
         for jah in range(1000):
@@ -2322,12 +2332,17 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")
                 if botAlgoritm[jah] != 3:
-                    if botSila[nomerBota] > botZachita[jah]:
-                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                        botHod[nomerBota] -= 1
-                        if botZdorovie[jah] <= 0: 
-                                otdaiLut(nomerBota, jah)
-                                ubiraemTrup(jah) 
+                    print("Это враг")
+                    for atack in range(botHod[nomerBota]):
+                        if botMana[n] <= 0:
+                            print("Наношу удар")
+                            if botSila[nomerBota] > botZachita[jah]:
+                                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                                botHod[nomerBota] -= 1
+                                if botZdorovie[jah] <= 0: 
+                                    otdaiLut(nomerBota, jah)
+                                    ubiraemTrup(jah) 
+                    botHod[nomerBota] = 0
                     
     if botRasa[nomerBota] == 4:
         for jah in range(1000):
@@ -2337,22 +2352,31 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")   
                 if botAlgoritm[jah] != 3:
-                    if botSila[nomerBota] > botZachita[jah]:
-                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                        botHod[nomerBota] -= 1
-                        if botZdorovie[jah] <= 0: 
-                                otdaiLut(nomerBota, jah)
-                                ubiraemTrup(jah) 
+                    print("Это враг")
+                    for atack in range(botHod[nomerBota]):
+                        if botMana[n] <= 0:
+                            print("Наношу удар")
+                            if botSila[nomerBota] > botZachita[jah]:
+                                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                                botHod[nomerBota] -= 1
+                                if botZdorovie[jah] <= 0: 
+                                    otdaiLut(nomerBota, jah)
+                                    ubiraemTrup(jah) 
+                    botHod[nomerBota] = 0
 
     if botRasa[nomerBota] == 5: # Это монстр
         for jah in range(1000):
             if botLocation[jah] == local:
-                if botSila[nomerBota] > botZachita[jah]:
-                    botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                    botHod[nomerBota] -= 1     
-                    if botZdorovie[jah] <= 0: 
-                        otdaiLut(nomerBota, jah)
-                        ubiraemTrup(jah)                     
+                    for atack in range(botHod[nomerBota]):
+                        if botMana[n] <= 0:
+                            print("Наношу удар")
+                            if botSila[nomerBota] > botZachita[jah]:
+                                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                                botHod[nomerBota] -= 1
+                                if botZdorovie[jah] <= 0: 
+                                    otdaiLut(nomerBota, jah)
+                                    ubiraemTrup(jah) 
+                    botHod[nomerBota] = 0                   
     
     if botRasa[nomerBota] == 6:
         for jah in range(1000):
@@ -2362,12 +2386,17 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     botAlgoritmes(nomerBota)
                     #print ("Это свой") 
                 if botAlgoritm[jah] != 4 or botRasa[jah] == 5:   
-                    if botSila[nomerBota] > botZachita[jah]:
-                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                        botHod[nomerBota] -= 1
-                        if botZdorovie[jah] <= 0: 
-                                otdaiLut(nomerBota, jah)
-                                ubiraemTrup(jah) 
+                    print("Это враг")
+                    for atack in range(botHod[nomerBota]):
+                        if botMana[n] <= 0:
+                            print("Наношу удар")
+                            if botSila[nomerBota] > botZachita[jah]:
+                                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                                botHod[nomerBota] -= 1
+                                if botZdorovie[jah] <= 0: 
+                                    otdaiLut(nomerBota, jah)
+                                    ubiraemTrup(jah) 
+                    botHod[nomerBota] = 0
 
     if botRasa[nomerBota] == 7:
         for jah in range(1000):
@@ -2377,12 +2406,17 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                     botAlgoritmes(nomerBota)
                     #print ("Это свой")                       
                 if botAlgoritm[jah] != 4 or botRasa[jah] == 5:
-                    if botSila[nomerBota] > botZachita[jah]:
-                        botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                        botHod[nomerBota] -= 1
-                        if botZdorovie[jah] <= 0: 
-                                otdaiLut(nomerBota, jah)
-                                ubiraemTrup(jah) 
+                    print("Это враг")
+                    for atack in range(botHod[nomerBota]):
+                        if botMana[n] <= 0:
+                            print("Наношу удар")
+                            if botSila[nomerBota] > botZachita[jah]:
+                                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                                botHod[nomerBota] -= 1
+                                if botZdorovie[jah] <= 0: 
+                                    otdaiLut(nomerBota, jah)
+                                    ubiraemTrup(jah) 
+                    botHod[nomerBota] = 0 
     
     zakl = 0
         
@@ -2515,7 +2549,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
         # Если дошли до второй слева клетки любого ряда то останавливаемся botStep[yaBot] = 3
         # А лучше пойти потом вправо и дойдя по крайней правой кромки повторить алгоритм
         if botLocation[yaBot] == 417 or botLocation[yaBot] == 385 or botLocation[yaBot] == 353 or botLocation[yaBot] == 321 or botLocation[yaBot] == 289 or botLocation[yaBot] == 257 or botLocation[yaBot] == 225 or botLocation[yaBot] == 193 or botLocation[yaBot] == 161 or botLocation[yaBot] == 129 or botLocation[yaBot] == 97 or botLocation[yaBot] == 65 or botLocation[yaBot] == 33 or botLocation[yaBot] == 1: botStep[yaBot] = 3
-                    
+        botHod[yaBot] -= 1            
     
     if botAlgoritm[yaBot] == 4: #  ==================================================== Алгоритм зла ====================================
         if botStep[yaBot] == 0: # and world[botLocation[yaBot]-32] == 0
@@ -2616,6 +2650,7 @@ def botAlgoritmes(yaBot): # Тут мы обрабатываем алгорит�
                 botStep[yaBot] = 0                 
         
         if botStep[yaBot] == 1 or botStep[yaBot] == 2 and botLocation[yaBot] <= 33 and botLocation[yaBot] >= 62: botStep[yaBot] = 0 
+        botHod[yaBot] -= 1
         # Если дошли до второй слева клетки любого ряда то останавливаемся botStep[yaBot] = 3
         # А лучше пойти потом вправо и дойдя по крайней правой кромки повторить алгоритм
         #if botLocation[yaBot] == 417 or botLocation[yaBot] == 385 or botLocation[yaBot] == 353 or botLocation[yaBot] == 321 or botLocation[yaBot] == 289 or botLocation[yaBot] == 257 or botLocation[yaBot] == 225 or botLocation[yaBot] == 193 or botLocation[yaBot] == 161 or botLocation[yaBot] == 129 or botLocation[yaBot] == 97 or botLocation[yaBot] == 65 or botLocation[yaBot] == 33 or botLocation[yaBot] == 1: botStep[yaBot] = 3
@@ -5858,7 +5893,7 @@ def botActivity():  # Создание и управление ботами
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[bot] = [9,9,18,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 30 and botRandom <= 70:
-                        botInventar[bot] = [11,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[bot] = [11,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[bot] = [65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
                     if botRandom >= 10 and botRandom <= 12:
@@ -5903,7 +5938,7 @@ def botActivity():  # Создание и управление ботами
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[bot] = [12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 30 and botRandom <= 70:
-                        botInventar[bot] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[bot] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 29:
                         botInventar[bot] = [4,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
                     if botRandom >= 10 and botRandom <= 13:
@@ -5948,7 +5983,7 @@ def botActivity():  # Создание и управление ботами
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[bot] = [23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 30 and botRandom <= 70:
-                        botInventar[bot] = [0,7,11,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[bot] = [6,6,11,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 29:
                         botInventar[bot] = [59,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
                     if botRandom >= 10 and botRandom <= 13:
@@ -5991,7 +6026,7 @@ def botActivity():  # Создание и управление ботами
                     botVozdeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[bot] = 4
                     botDeistvie[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[bot] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[bot] = [6,7,7,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 30 and botRandom <= 70:
                         botInventar[bot] = [59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 29:
