@@ -2293,7 +2293,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] != 3: # Если это враг, тогда бьём в морду
                     print("Это враг")
                     for atack in range(botHod[nomerBota]):
-                        if botMana[n] <= 0:
+                        if botMana[jah] <= 0:
                             print("Наношу удар")
                             if botSila[nomerBota] > botZachita[jah]:
                                 botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -2301,7 +2301,6 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                                 if botZdorovie[jah] <= 0: 
                                     otdaiLut(nomerBota, jah)
                                     ubiraemTrup(jah) 
-                    botHod[nomerBota] = 0
                                         
                                
     if botRasa[nomerBota] == 2:
@@ -2314,7 +2313,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] != 3:
                     print("Это враг")
                     for atack in range(botHod[nomerBota]):
-                        if botMana[n] <= 0:
+                        if botMana[jah] <= 0:
                             print("Наношу удар")
                             if botSila[nomerBota] > botZachita[jah]:
                                 botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -2322,7 +2321,6 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                                 if botZdorovie[jah] <= 0: 
                                     otdaiLut(nomerBota, jah)
                                     ubiraemTrup(jah) 
-                    botHod[nomerBota] = 0
                 
     if botRasa[nomerBota] == 3:
         for jah in range(1000):
@@ -2334,7 +2332,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] != 3:
                     print("Это враг")
                     for atack in range(botHod[nomerBota]):
-                        if botMana[n] <= 0:
+                        if botMana[jah] <= 0:
                             print("Наношу удар")
                             if botSila[nomerBota] > botZachita[jah]:
                                 botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -2342,7 +2340,6 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                                 if botZdorovie[jah] <= 0: 
                                     otdaiLut(nomerBota, jah)
                                     ubiraemTrup(jah) 
-                    botHod[nomerBota] = 0
                     
     if botRasa[nomerBota] == 4:
         for jah in range(1000):
@@ -2354,7 +2351,7 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] != 3:
                     print("Это враг")
                     for atack in range(botHod[nomerBota]):
-                        if botMana[n] <= 0:
+                        if botMana[jah] <= 0:
                             print("Наношу удар")
                             if botSila[nomerBota] > botZachita[jah]:
                                 botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
@@ -2362,21 +2359,19 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                                 if botZdorovie[jah] <= 0: 
                                     otdaiLut(nomerBota, jah)
                                     ubiraemTrup(jah) 
-                    botHod[nomerBota] = 0
 
     if botRasa[nomerBota] == 5: # Это монстр
         for jah in range(1000):
             if botLocation[jah] == local:
                     for atack in range(botHod[nomerBota]):
-                        if botMana[n] <= 0:
+                        if botMana[jah] <= 0:
                             print("Наношу удар")
                             if botSila[nomerBota] > botZachita[jah]:
                                 botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                                 botHod[nomerBota] -= 1
                                 if botZdorovie[jah] <= 0: 
                                     otdaiLut(nomerBota, jah)
-                                    ubiraemTrup(jah) 
-                    botHod[nomerBota] = 0                   
+                                    ubiraemTrup(jah)                  
     
     if botRasa[nomerBota] == 6:
         for jah in range(1000):
@@ -2388,15 +2383,13 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] != 4 or botRasa[jah] == 5:   
                     print("Это враг")
                     for atack in range(botHod[nomerBota]):
-                        if botMana[n] <= 0:
-                            print("Наношу удар")
-                            if botSila[nomerBota] > botZachita[jah]:
-                                botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
-                                botHod[nomerBota] -= 1
-                                if botZdorovie[jah] <= 0: 
-                                    otdaiLut(nomerBota, jah)
-                                    ubiraemTrup(jah) 
-                    botHod[nomerBota] = 0
+                        print("Наношу удар")
+                        if botSila[nomerBota] > botZachita[jah]:
+                            botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
+                            botHod[nomerBota] -= 1
+                            if botZdorovie[jah] <= 0: 
+                                otdaiLut(nomerBota, jah)
+                                ubiraemTrup(jah) 
 
     if botRasa[nomerBota] == 7:
         for jah in range(1000):
@@ -2408,15 +2401,14 @@ def botVragBlizko(nomerBota, xBota, yBota, locat, vari, vrag, local):  # Обр�
                 if botAlgoritm[jah] != 4 or botRasa[jah] == 5:
                     print("Это враг")
                     for atack in range(botHod[nomerBota]):
-                        if botMana[n] <= 0:
+                        if botMana[jah] <= 0:
                             print("Наношу удар")
                             if botSila[nomerBota] > botZachita[jah]:
                                 botZdorovie[jah] -= botSila[nomerBota] - botZachita[jah]
                                 botHod[nomerBota] -= 1
                                 if botZdorovie[jah] <= 0: 
                                     otdaiLut(nomerBota, jah)
-                                    ubiraemTrup(jah) 
-                    botHod[nomerBota] = 0 
+                                    ubiraemTrup(jah)  
     
     zakl = 0
         
@@ -8408,27 +8400,28 @@ def doebaca(hehmda):  #Функция отображающая информац�
         heroPanel(hero)
         
     if attack == 1 and botHod[imHero] > 0:  # Тут мы атакуем ботов
-        for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
-            if botLocation[ktoZdesVrag] == hehmda:
-                break 
-        botHod[imHero] -= 1
-        botZdorovie[ktoZdesVrag] -= botSila[imHero] - botZachita[ktoZdesVrag]
-        botExpirience[imHero] += botSila[imHero] # Повышаем опыт
-        attack = 0
-        if botZdorovie[ktoZdesVrag] <= 0 and zakl == 0:
-            randomMoney = int(random.random()*10) # Вероятность выпадения ресурсов: серебра и бронзы
-            randomBronza = int(random.random()*70) * botLvl[ktoZdesVrag]
-            randomSerebro = int(random.random()*5) * botLvl[ktoZdesVrag]
-            if randomMoney == 4 or randomMoney == 5 or randomMoney == 6 or randomMoney == 7 or randomMoney == 8 or randomMoney == 9:
-                botBronza[imHero] += randomBronza
-            if randomMoney == 2 or randomMoney == 3:
-                botSerebro[imHero] += randomSerebro  
-            botExpirience[0] += int(botIshZdorovie[ktoZdesVrag] / 2)
-            otdaiLut(imHero, ktoZdesVrag)
-            ubiraemTrup(ktoZdesVrag)  
-        heroPanel(hero)
-        worldUpdate()        
-        attack = 0
+            for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+                if botLocation[ktoZdesVrag] == hehmda:
+                    if botLocation[imHero] == botLocation[ktoZdesVrag]+1 or botLocation[imHero] == botLocation[ktoZdesVrag]-1 or botLocation[imHero] == botLocation[ktoZdesVrag]+31 or botLocation[imHero] == botLocation[ktoZdesVrag]+32 or botLocation[imHero] == botLocation[ktoZdesVrag]+33 or botLocation[imHero] == botLocation[ktoZdesVrag]-31 or botLocation[imHero] == botLocation[ktoZdesVrag]-32 or botLocation[imHero] == botLocation[ktoZdesVrag]-33:
+                        break 
+            botHod[imHero] -= 1
+            botZdorovie[ktoZdesVrag] -= botSila[imHero] - botZachita[ktoZdesVrag]
+            botExpirience[imHero] += botSila[imHero] # Повышаем опыт
+            attack = 0
+            if botZdorovie[ktoZdesVrag] <= 0 and zakl == 0:
+                randomMoney = int(random.random()*10) # Вероятность выпадения ресурсов: серебра и бронзы
+                randomBronza = int(random.random()*70) * botLvl[ktoZdesVrag]
+                randomSerebro = int(random.random()*5) * botLvl[ktoZdesVrag]
+                if randomMoney == 4 or randomMoney == 5 or randomMoney == 6 or randomMoney == 7 or randomMoney == 8 or randomMoney == 9:
+                    botBronza[imHero] += randomBronza
+                if randomMoney == 2 or randomMoney == 3:
+                    botSerebro[imHero] += randomSerebro  
+                botExpirience[0] += int(botIshZdorovie[ktoZdesVrag] / 2)
+                otdaiLut(imHero, ktoZdesVrag)
+                ubiraemTrup(ktoZdesVrag)  
+            heroPanel(hero)
+            worldUpdate()        
+            attack = 0
                      
     if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 177 or botLocation[imHero] == 176 or botLocation[imHero] == 178 or botLocation[imHero] == 113 or botLocation[imHero] == 112 or botLocation[imHero] == 114:
         if world[hehmda] == 8:
