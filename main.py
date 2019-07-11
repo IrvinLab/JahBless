@@ -162,7 +162,7 @@ def levelUp(nomerBota):
     global botDeistvie
     global hero
     
-    if botExpirience[nomerBota] >= 1000*(1.35**(botLvl[nomerBota]-1)):
+    if botExpirience[nomerBota] >= 1000*(1.4**(botLvl[nomerBota]-1)):
         botLvl[nomerBota] += 1
         botExpirience[nomerBota] = 0
         botIshMana[nomerBota] += 20
