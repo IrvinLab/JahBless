@@ -13812,11 +13812,48 @@ while True:
                  
                  pygame.time.delay(500)
                  print("load")
-                 pass
-                 # Какое-то событие
-                 # ===============
-                 # ===============
-                 
+                 world=[]
+                 #zyxel=0
+                 #attack=0
+                 #bot=0
+                 #imHero=0
+                 #n=0
+                 #newGame = 1
+                 #xBot=[]
+                 #yBot=[]
+                 #botType=[]
+                 #botStep=[]
+                 #botExpirience=[]
+                 #botLvl=[]
+                 #botRasa=[]
+                 #botZaklinania=[]
+                 #botVozdeistvie=[]
+                 #botInventar=[]
+                 #botIshZdorovie=[]
+                 #botZdorovie=[]
+                 #botMana=[]
+                 #botIshMana=[]
+                 #botSila=[]
+                 #botLovkost=[]
+                 #botYdacha=[]
+                 #botZachita=[]
+                 #botHod=[]
+                 #botNumer=[]
+                 #botVariant=[]
+                 #botAlgoritm=[]
+                 #botLocation=[]
+                 #botDeistvie=[]
+                 #botZoloto=[]
+                 #botSerebro=[]
+                 #botBronza=[]
+                 with open('save1.txt', 'r') as filehandle:
+                     for line in filehandle:
+                   # удалим заключительный символ перехода строки
+                         currentWorld = line[:-1]
+
+        # добавим элемент в конец списка
+                         world.append(currentWorld)
+                         
     if mos_x>424 and (mos_x<624): # Тут проверяем находтся ли мышь на кнопке Сохранить
         x_inside = True
     else: x_inside = False
@@ -13829,10 +13866,44 @@ while True:
                  
                  pygame.time.delay(500)
                  print("save")
-                 pass
-                 # Какое-то событие
-                 # ===============
-                 # ===============
+                 #global step
+                 handle = open("save.txt", "w")
+                 handle.write(str(world[0:448]) + "\n")
+                 handle.write(str(zyxel) + "\n")
+                 handle.write(str(attack) + "\n")
+                 handle.write(str(bot) + "\n")
+                 handle.write(str(imHero))
+                 n = 0
+                 for n in range(1000):
+                     handle.write(str(xBot[n]) + "\n")
+                     handle.write(str(yBot[n]) + "\n")
+                     handle.write(str(botType[n]) + "\n")
+                     handle.write(str(botStep[n]) + "\n")
+                     handle.write(str(botExpirience[n]) + "\n")
+                     handle.write(str(botLvl[n]) + "\n")
+                     handle.write(str(botRasa[n]) + "\n")
+                     handle.write(str(botZaklinania[n]) + "\n")
+                     handle.write(str(botVozdeistvie[n]) + "\n")
+                     handle.write(str(botInventar[n]) + "\n")
+                     handle.write(str(botIshZdorovie[n]) + "\n")
+                     handle.write(str(botZdorovie[n]) + "\n")
+                     handle.write(str(botMana[n]) + "\n")
+                     handle.write(str(botIshMana[n]) + "\n")
+                     handle.write(str(botSila[n]) + "\n")
+                     handle.write(str(botLovkost[n]) + "\n")
+                     handle.write(str(botYdacha[n]) + "\n")
+                     handle.write(str(botZachita[n]) + "\n")
+                     handle.write(str(botHod[n]) + "\n")
+                     handle.write(str(botNumer[n]) + "\n")
+                     handle.write(str(botVariant[n]) + "\n")
+                     handle.write(str(botAlgoritm[n]) + "\n")
+                     handle.write(str(botLocation[n]) + "\n")
+                     handle.write(str(botDeistvie[n]) + "\n")
+                     handle.write(str(botZoloto[n]) + "\n")
+                     handle.write(str(botSerebro[n]) + "\n")
+                     handle.write(str(botBronza[n]) + "\n")
+                     
+                 handle.close()
                  
     if mos_x>628 and (mos_x<828): # Тут проверяем находтся ли мышь на кнопке Сетевая игра
         x_inside = True
