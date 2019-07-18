@@ -125,7 +125,7 @@ for n in range(480): # Забиваем мир нулями
     world[n] = 0
     
 
-def market(press):
+def marketPlace(press):
     global hero
     global botInventar
     global botZoloto
@@ -135,15 +135,17 @@ def market(press):
     
     heroPanel(hero)
     
-    if tmpMarket == 2:
-        pass
-        
-    
     if press == 1: #Если на рынке нажали "ДА" т.е купить и посмотреть предложения
         pass
         
     if press == 2:  # Если на рынке нажали "НЕТ" т.е. продать инвентарь
-        tmpMarket = 2
+        variableName = u"Нажмите на предмет, который"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560))
+        variableName = u"хотите продать"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        tmpMarket = 1
     
 def levelUp(nomerBota):
     global botExpirience
@@ -339,9 +341,38 @@ def useInventar(dasLut):
              
     
 def textInventar(nomInv):
-    global botInventar
-    global hero
-    heroPanel(hero)
+    global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto
+    
+    if botInventar[0][nomInv-1] > 0:
+        pix = pygame.image.load('Images/yes.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (462,786))    
+    
+        pix = pygame.image.load('Images/no.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (530,786))    
+                
+    if tmpMarket == 1:
+        heroPanel(hero)
+        randMoney = int(random.random()*6)        
+        tmpMarket = 0 
+        yes = 0
+        no = 0
+        if botInventar[0][nomInv-1] == 1: 
+            botInventar[0][nomInv-1] == 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 35
+            else: botBronza[0] += 35
+        if botInventar[0][nomInv-1] == 2: 
+            botInventar[0][nomInv-1] == 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 55
+            else: botSerebro[0] += 1                
+                
+        heroPanel(hero)    
+        
     if botInventar[0][nomInv-1] == 1:
         variableName = u"Зелье здоровья 1 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -949,7 +980,7 @@ def textInventar(nomInv):
         variableName = u"Обучает заклинанию Пронз. крик"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 2700бр|54ср/1890бр|38ср"
+        variableName = u"Куп./прод. 2300бр|46ср/1610бр|32ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -991,7 +1022,7 @@ def textInventar(nomInv):
         variableName = u"+2 ловкости"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
-        variableName = u"Куп./прод. 750бр|15ср/525бр|19ср"
+        variableName = u"Куп./прод. 750бр|15ср/525бр|11ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1517,17 +1548,9 @@ def textInventar(nomInv):
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660)) 
         
-    if botInventar[0][nomInv-1] > 0:
-        pix = pygame.image.load('Images/yes.png') 
-        x_len = pix.get_width()
-        y_len = pix.get_height() 
-        sc.blit(pix, (462,786))    
     
-        pix = pygame.image.load('Images/no.png') 
-        x_len = pix.get_width()
-        y_len = pix.get_height() 
-        sc.blit(pix, (530,786))    
-                
+            
+            
             
 def textMagic(numerCeil):
     global botZaklinania 
@@ -6731,6 +6754,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
     global posohSveta
     global posohVoli
     global posohVechnoiJizni
+    global yaNaRinke
     
     n = 0
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
@@ -9615,7 +9639,7 @@ def initGame(heroSelect):  # функция инициации игры
         botExpirience[0] = 0
         botLvl[0] = 1
         botRasa[0] = 2
-        botInventar[0] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[0] = [1,2,1,2,1,2,1,2,1,2,1,2,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]           #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                  #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botIshZdorovie[0] = 1120                                               #botIshZdorovie[0] = 120
@@ -14831,6 +14855,7 @@ while True:
                     yes = 1
                 if yaNaRinke == 1:
                     marketPlace(1)
+                    print("yes")
                     
     if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
         x_inside = True
@@ -14847,6 +14872,7 @@ while True:
                     no = 1 
                 if yaNaRinke == 1:
                     marketPlace(2)   
+                    print("no")
                     
     pygame.display.update()    
     
