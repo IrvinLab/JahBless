@@ -43,7 +43,8 @@ zachita = 0
 attack = 0
 zakl = 0
 invent = 0
-
+imBuyThis = 0
+thisPlace = 0
 market = [2,7,0,26,0,0,17,46,60,0,0,0,0,0,0,36] # В этом массиве лежит инвентарь, который доступен на рынке
 yaNaRinke = 0
 
@@ -123,7 +124,1197 @@ textExpirience = pygame.font.SysFont('Monospace Regular', 20) # Отобража
 for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
+
+def buyInvent(imBuy): 
+    global market,yes,no,imBuyThis,thisPlace
     
+    pix = pygame.image.load('Images/yes.png') 
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (462,786))    
+    pix = pygame.image.load('Images/no.png') 
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (530,786))
+    imBuyThis = 1
+    thisPlace = imBuy
+    
+    if yes == 5:
+        
+        yes = 0
+        imBuyThis = 0
+        thisPlace = 0
+    
+    if market[imBuy-1] == 1:
+        variableName = u"Зелье здоровья 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+30 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 50бр|1ср/35бр"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if market[imBuy-1] == 2:
+        variableName = u"Зелье здоровья 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+65 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 78бр|2ср/55бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if market[imBuy-1] == 3:
+        variableName = u"Зелье здоровья 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+150 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 120бр|3ср/84бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 4:
+        variableName = u"Зелье здоровья 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+320 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 220бр|4ср/155бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 5:
+        variableName = u"Зелье здоровья 5 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+675 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 6:
+        variableName = u"Зелье маны 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+60 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 70бр|2ср/50бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 7:
+        variableName = u"Зелье маны 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+130 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 140бр|3ср/98бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if market[imBuy-1] == 8:
+        variableName = u"Зелье маны 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+260 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 9:
+        variableName = u"Зелье маны 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+520 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 370бр|7ср/250бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 10:
+        variableName = u"Зелье маны 5 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+1100 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 600бр|12ср/420бр|8ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 11:
+        variableName = u"Зелье восстановления"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+500 Здоровья +500 маны, плюс зелье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"действует подобно заклинанию"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Рассеять Чары "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 12:
+        variableName = u"Зелье рассеивания"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Рассеять Чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 550бр|12ср/385бр|8ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 13:
+        variableName = u"Зелье Кипящей крови 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 100бр|2ср/70бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 14:
+        variableName = u"Зелье Кипящей крови 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 140бр|3ср/100бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 15:
+        variableName = u"Зелье Кипящей крови 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 190бр|4ср/133бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 16:
+        variableName = u"Зелье Кипящей крови 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+20 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 320бр|6ср/224бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 17:
+        variableName = u"Зелье Деревянной кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 130бр|3ср/90бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 18:
+        variableName = u"Зелье Каменной кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 19:
+        variableName = u"Зелье Обсидиановой кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 20:
+        variableName = u"Зелье Паука"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+2 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 85бр|2ср/60бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 21:
+        variableName = u"Зелье Ящерицы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+3 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 150бр|3ср/105бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 22:
+        variableName = u"Зелье Пантеры"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 235бр|5ср/165бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 23:
+        variableName = u"Зелье Леприкона 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 100бр|3ср/70бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 24:
+        variableName = u"Зелье Леприкона 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 170бр|4ср/119бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 25:
+        variableName = u"Зелье Леприкона 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 240бр|5ср/165бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 26:
+        variableName = u"Топор Палача (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Подобные топоры обычно используют"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"палачи для выполнения своей "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"гнусной работы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if market[imBuy-1] == 27:
+        variableName = u"Топор Королвской стражи (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Подобными топорами обычно вооружены"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"королевские стражники. Видимо это"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"оружие было отнято у одного из них"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"во времена эпохи Смуты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+6 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 550бр|11ср/385бр|7ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if market[imBuy-1] == 28:
+        variableName = u"Топор Гнева (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Выкован из особо острой стали."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Он разрезает плоти и кости врага как"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"горячий нож сливочное масло. Один вид"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"этого топора внушает пронзающий ужас."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"+12 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if market[imBuy-1] == 29:
+        variableName = u"Топор Алчности (4ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот топор усилен заклинаниями боли"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"и сам тянется к твоему врагу,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"дабы вкусить его крови."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+25 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 30:
+        variableName = u"Топор Ярости (5ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Усиленный магией Хаоса, этот топор - "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"воплощение самой Смерти. Он обладает"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"настолько разрушительной силой, "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"что с ним можно в одинчку одолеть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"целый отряд противника"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+        variableName = u"+35 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Куп./прод. 5000бр|100ср/3500бр|70ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 720))         
+    if market[imBuy-1] == 31:
+        variableName = u"Топор Скорбящих вдов (6ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Название говорит само за себя."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"От гнева этого оружия нет спасиния "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"никому. Вряд ли в наше время есть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"кузнецы, способные выковать нечто "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"подобное. Это историческая реликвия"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+        variableName = u"+55 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Куп./прод. 8500бр|170ср/5950бр|118ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 720)) 
+    if market[imBuy-1] == 32:
+        variableName = u"Топор Божественной Воли (7ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Умереть от этого оружия - большая"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"честь для врага. Этот топор зачарован"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"магией Древних Богов. Никому из ныне"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"живущих не подсилу такие заклятия."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"+75 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 13500бр|270ср/9450бр|189ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if market[imBuy-1] == 33:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Пронзающая смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 4000бр|80ср/2800р|56ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 34:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию доб. и воскресить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2000бр|40ср/1400бр|28ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 35:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 36:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560))        
+        variableName = u"Обучает заклинанию Яд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2300бр|46ср/1600бр|32ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 37:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Могильный луч"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 38:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Печать Хаоса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 39:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Печать Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 4000бр|80ср/2800р|56ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 40:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Пронз. крик"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2300бр|46ср/1610бр|32ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 41:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Обман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2700бр|54ср/1890бр|38ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 42:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Рассеять чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 43:
+        variableName = u"Ботинки Гонца (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Ногам удобно - двигаешься быстро"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))       
+        variableName = u"+2 ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 750бр|15ср/525бр|11ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 44:
+        variableName = u"Ботинки Путешественника (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"С такой обувью можно обойти весь свет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"за пару недель"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))       
+        variableName = u"+4 ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1350бр|27ср/945бр|19ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 45:
+        variableName = u"Ботинки Скитальца (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Верный друг искателя приключений"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+6 Ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 2000бр|40ср/1400бр|28ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 46:
+        variableName = u"Шлем пехотинца (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Видимо кузнец, что выковал этот шлем "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"служил при королевском дворе, раз так "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"мастерски выковал этот доспех."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+3 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 47:
+        variableName = u"Офицерский шлем (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Видимо, что выковал этот шлем служил"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"при королевском дворе, раз так "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"мастерски выковал этот доспех."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+5 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 500бр|10ср/350бр|7ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 48:
+        variableName = u"Шлем Паладинов (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Это отличный доспех. С ним не страшно"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"выйти и одному на отряд противника"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+8 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 850бр|17ср/595бр|12ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 49:
+        variableName = u"Шлем Похитителя Душ (4ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Не каждый кузнец способен выковать"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"подобный доспех, не каждый боец"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"достоин его носить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+14 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 1600бр|32ср/1120бр|22ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 50:
+        variableName = u"Шлем Божественной Миссии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Доспех 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Видимо ты избран, раз носишь этот шлем"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+21 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 51:
+        variableName = u"Шлем Бессмертия (6ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот доспех - проклятье Вашего врага"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"С ним Вы выбертесь даже из самой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"страшной западни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+30 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 53:
+        variableName = u"Ожерелье духов Войны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Очень редкий артефакт, большая удача"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"найти такую ценную вещь"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+7 Защиты +3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1200бр|24ср/840бр|17ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 54:
+        variableName = u"Посох Прозрения"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Позволяет узнать количество маны,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"и здоровье противка, а также какими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"заклинаниями он обладает"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 7000бр|140ср/4900бр|98ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 55:
+        variableName = u"Посох Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Пронзающая Смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 100 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 8500бр|170ср/5950бр|119ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 56:
+        variableName = u"Посох Света"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Рассеять чары, а также даёт"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+100 Здоровья при использовании"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 8000бр|160ср/5600бр|112ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Требует 50 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 57:
+        variableName = u"Посох Вечной Жизни"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Способен сотворить скелетов до"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 40/60/85/115/150 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 10000бр|200ср/7000бр|140ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 58:
+        variableName = u"Посох Воли"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Способен подчинить существо до "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"5 уровня если оно не обладает защитой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"от средней Магии Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Требует 50/70/95/130/170 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6700бр|134ср/4690бр|94ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))         
+    if market[imBuy-1] == 59:
+        variableName = u"Рунный браслет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Зачарованный магией Порядка браслет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+3 Защиты +5 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 60:
+        variableName = u"Меч 1 ур"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Стандартное вооружение пехотинца"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 61:
+        variableName = u"Меч Офицера гвардии (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Лезвие меча выполнено из лучшей стали"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"в королевстве."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+5 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 450бр|4ср/315бр|6ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 62:
+        variableName = u"Меч Паладинов (3 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этим вооружаются лучшие войны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Короля Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+8 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 900бр|18ср/630бр|12ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 63:
+        variableName = u"Меч Ледяной Мощи (4 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Клинок этого меча испещрён магическими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"рунами, придающими ему большую"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"остроту. Не позавидуешь врагу, который"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"встретит его своей грудью."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+14 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 2400бр|48ср/1680бр|33ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))        
+    if market[imBuy-1] == 64:
+        variableName = u"Меч Смирения (5 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Глядя на этот меч, враг поймёт, что"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"он смотрит в лицо самой Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+21 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 4300бр|86ср/3000бр|60ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 65:
+        variableName = u"Меч Великого Смирения (6 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Очень редкий артефакт. Этот меч усилен"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"заклинаниями Боли, что позволяет ему"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"без проблем разрезать любой доспех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+30 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 66:
+        variableName = u"Усиленный посох Вечной Жизни"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Позволяет призывать скелетов от пятого"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"до восьмого уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 140/180/240 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 20000бр|400ср/14000бр|280ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 67:
+        variableName = u"Молот кузнеца (1 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Почему бы им не вдарить по голове"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"какого-нибудь гнолла?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+4 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 68:
+        variableName = u"Палица (2 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Суровая штука, она способна своими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"острыми зубьями перемолоть все кости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+6 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 650бр|13ср/455бр|9ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 69:
+        variableName = u"Молот Славы (3 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Такой обычно вручают выдающимся бойцам"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"королевства Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+9 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 70:
+        variableName = u"Молот Паладинов (4 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Некоторые паладины предпочитают"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"сражатся тяжёлом молотом, а не мечом"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+13 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1500бр|30ср/1050бр|21ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
 
 def marketPlace(press):
     global hero
@@ -139,6 +1330,7 @@ def marketPlace(press):
     if press == 1: #Если на рынке нажали "ДА" т.е купить и посмотреть предложения
         nMark = 0
         for nMark in range(16):
+            tmpMarket = 2
             if nMark == 0: xInv = 772; yInv = 548
             if nMark == 1: xInv = 840; yInv = 548
             if nMark == 2: xInv = 908; yInv = 548
@@ -548,9 +1740,9 @@ def levelUp(nomerBota):
     if botExpirience[nomerBota] >= 1000*(1.4**(botLvl[nomerBota]-1)):
         botLvl[nomerBota] += 1
         botExpirience[nomerBota] = 0
-        botIshMana[nomerBota] += 20
+        botIshMana[nomerBota] += 20 * botLvl[nomerBota]
         botMana[nomerBota] = botIshMana[nomerBota]
-        botIshZdorovie[nomerBota] += 20
+        botIshZdorovie[nomerBota] += 20 * botLvl[nomerBota]
         botZdorovie[nomerBota] = botIshZdorovie[nomerBota]
         botSila[nomerBota] += 1
         botLovkost[nomerBota] += 1
@@ -15312,6 +16504,8 @@ while True:
                      attack = 0
                      invent = 1
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(1)    
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -15327,6 +16521,8 @@ while True:
                      attack = 0
                      invent = 2  
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(2)      
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -15342,6 +16538,8 @@ while True:
                      attack = 0
                      invent = 3
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(3)      
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
@@ -15357,6 +16555,8 @@ while True:
                      attack = 0
                      invent = 4
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(4)      
                  
     if mos_x>772 and (mos_x<836):  
         x_inside = True
@@ -15372,6 +16572,8 @@ while True:
                      attack = 0
                      invent = 5
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(5)      
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -15387,6 +16589,8 @@ while True:
                      attack = 0
                      invent = 6 
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(6)      
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -15402,6 +16606,8 @@ while True:
                      attack = 0
                      invent = 7         
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(7)      
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
@@ -15417,6 +16623,8 @@ while True:
                      attack = 0
                      invent = 8
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(8)      
                  
     if mos_x>772 and (mos_x<836): 
         x_inside = True
@@ -15432,6 +16640,8 @@ while True:
                      attack = 0
                      invent = 9
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(9)      
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -15447,6 +16657,8 @@ while True:
                      attack = 0
                      invent = 10
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(10)      
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -15462,6 +16674,8 @@ while True:
                      attack = 0 
                      invent = 11         
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(11)      
                                                             
     if mos_x>976 and (mos_x<1040):  
         x_inside = True
@@ -15476,7 +16690,9 @@ while True:
                      zakl = 0
                      attack = 0 
                      invent = 12         
-                     textInventar(invent)          
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(12)      
                  
     if mos_x>772 and (mos_x<836):  
         x_inside = True
@@ -15492,6 +16708,8 @@ while True:
                      attack = 0
                      invent = 13
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(13)      
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -15507,6 +16725,8 @@ while True:
                      attack = 0
                      invent = 14
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(14)      
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -15522,6 +16742,8 @@ while True:
                      attack = 0            
                      invent = 15
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(15)      
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
@@ -15537,6 +16759,8 @@ while True:
                      attack = 0
                      invent = 16
                      textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(16)      
     
     if mos_x>286 and (mos_x<414):  # Следующий ход
         x_inside = True
@@ -15564,24 +16788,18 @@ while True:
                     levelUp(imHero)
                     tmp = int(random.random()*10) # Задаём вероятность изменений товара на рынке
                     if tmp == 3:
+                        tmpInventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         for n in range(16): 
                             pass
-                            if n == 0 or n == 1 or n == 2 or n == 3: # Первый ряд - это зелья
-                                tmp = int(random.random()*24)
-                                market[n] = tmp+1
-                            elif n == 4 or n == 5 or n == 6 or n == 7: # Второй ряд - топоры, книги, ботики, шлемы
-                                tmp = int(random.random()*25)
-                                market[n] = tmp+25
-                            elif n == 8 or n == 9 or n == 10 or n == 11: # Третий ряд - топоры, ботики, шлемы и зелья
-                                tmp = int(random.random()*50)
-                                if tmp != 33 or tmp != 34 or tmp != 35 or tmp != 36 or tmp != 37 or tmp != 38 or tmp != 39 or tmp != 40 or tmp != 41 or tmp != 42:
-                                    market[n] = tmp
-                            else: 
-                                tmp = int(random.random()*70)
-                                if tmp != 66 or tmp != 53 or tmp != 52 or tmp != 57 or tmp != 58 or tmp != 55 or tmp != 33 or tmp != 56:
-                                    market[n] = tmp  # В четвёртом ряду есть почти всё кроме большинства посохов и некоторых других штук
-                            pass
+                            nn = 0 
+                            tmp = int(random.random()*70)
+                            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56:
+                                market[n] = tmpInventar[n] = 0
+                            else:
+                                market[n] = tmpInventar[n] = tmp
                             
+                               
+                        print("Market change: " + str(market))    
                     if botZdorovie[0]+3 < botIshZdorovie[0]: botZdorovie[0] += 2
                     if botMana[0]+3 < botIshMana[0]: botMana[0] += 2
                     for n in range(1000):
@@ -15606,6 +16824,7 @@ while True:
                 if yaNaRinke == 1:
                     marketPlace(1)
                     print("yes")
+                if imBuyThis == 1: buyInvent(thisPlace); yes = 5    
                     
     if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
         x_inside = True
@@ -15623,6 +16842,7 @@ while True:
                 if yaNaRinke == 1:
                     marketPlace(2)   
                     print("no")
+                if imBuyThis == 1: imBuyThis = 0; thisPlace = 0    
                     
     pygame.display.update()    
     
