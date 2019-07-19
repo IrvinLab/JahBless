@@ -341,8 +341,9 @@ def useInventar(dasLut):
              
     
 def textInventar(nomInv):
-    global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto
+    global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto, yaNaRinke
     
+    heroPanel(hero)
     if botInventar[0][nomInv-1] > 0:
         pix = pygame.image.load('Images/yes.png') 
         x_len = pix.get_width()
@@ -357,20 +358,356 @@ def textInventar(nomInv):
     if tmpMarket == 1:
         heroPanel(hero)
         randMoney = int(random.random()*6)        
-        tmpMarket = 0 
+        tmpMarket = 0
+        yaNaRinke = 0        
         yes = 0
         no = 0
         if botInventar[0][nomInv-1] == 1: 
-            botInventar[0][nomInv-1] == 0
+            botInventar[0][nomInv-1] = 0
             if randMoney >= 0 and randMoney <= 3:
                 botBronza[0] += 35
             else: botBronza[0] += 35
         if botInventar[0][nomInv-1] == 2: 
-            botInventar[0][nomInv-1] == 0
+            botInventar[0][nomInv-1] = 0
             if randMoney >= 0 and randMoney <= 3:
                 botBronza[0] += 55
             else: botSerebro[0] += 1                
-                
+        if botInventar[0][nomInv-1] == 3: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 84
+            else: botSerebro[0] += 2
+        if botInventar[0][nomInv-1] == 4: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 155
+            else: botSerebro[0] += 3
+        if botInventar[0][nomInv-1] == 5: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 280
+            else: botSerebro[0] += 5
+        if botInventar[0][nomInv-1] == 6: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 50
+            else: botSerebro[0] += 1
+        if botInventar[0][nomInv-1] == 7: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 98
+            else: botSerebro[0] += 2
+        if botInventar[0][nomInv-1] == 8: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 175
+            else: botSerebro[0] += 3
+        if botInventar[0][nomInv-1] == 9: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 250
+            else: botSerebro[0] += 5
+        if botInventar[0][nomInv-1] == 10: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 420
+            else: botSerebro[0] += 8
+        if botInventar[0][nomInv-1] == 11: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 700
+            else: botSerebro[0] += 14
+        if botInventar[0][nomInv-1] == 12: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 385
+            else: botSerebro[0] += 8
+        if botInventar[0][nomInv-1] == 13: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 70
+            else: botSerebro[0] += 1
+        if botInventar[0][nomInv-1] == 14: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 100
+            else: botSerebro[0] += 2
+        if botInventar[0][nomInv-1] == 15: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 133
+            else: botSerebro[0] += 2
+        if botInventar[0][nomInv-1] == 16: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 224
+            else: botSerebro[0] += 4
+        if botInventar[0][nomInv-1] == 17: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 90
+            else: botSerebro[0] += 1
+        if botInventar[0][nomInv-1] == 18: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 175
+            else: botSerebro[0] += 3
+        if botInventar[0][nomInv-1] == 19: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 280
+            else: botSerebro[0] += 5
+        if botInventar[0][nomInv-1] == 20: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 60
+            else: botSerebro[0] += 1
+        if botInventar[0][nomInv-1] == 21: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 105
+            else: botSerebro[0] += 2
+        if botInventar[0][nomInv-1] == 22: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 165
+            else: botSerebro[0] += 3
+        if botInventar[0][nomInv-1] == 23: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 70
+            else: botSerebro[0] += 2
+        if botInventar[0][nomInv-1] == 24: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 119
+            else: botSerebro[0] += 2
+        if botInventar[0][nomInv-1] == 25: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 165
+            else: botSerebro[0] += 3
+        if botInventar[0][nomInv-1] == 26: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 210
+            else: botSerebro[0] += 4
+        if botInventar[0][nomInv-1] == 27: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 385
+            else: botSerebro[0] += 7
+        if botInventar[0][nomInv-1] == 28: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 700
+            else: botSerebro[0] += 14
+        if botInventar[0][nomInv-1] == 29: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1750
+            else: botSerebro[0] += 35
+        if botInventar[0][nomInv-1] == 30: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 3500
+            else: botSerebro[0] += 70
+        if botInventar[0][nomInv-1] == 31: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 5950
+            else: botSerebro[0] += 118
+        if botInventar[0][nomInv-1] == 32: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 9450
+            else: botSerebro[0] += 189
+        if botInventar[0][nomInv-1] == 33: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 2800
+            else: botSerebro[0] += 56
+        if botInventar[0][nomInv-1] == 34: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1400
+            else: botSerebro[0] += 28
+        if botInventar[0][nomInv-1] == 35: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 700
+            else: botSerebro[0] += 14
+        if botInventar[0][nomInv-1] == 36: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1660
+            else: botSerebro[0] += 32
+        if botInventar[0][nomInv-1] == 37: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1750
+            else: botSerebro[0] += 35
+        if botInventar[0][nomInv-1] == 38: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 2100
+            else: botSerebro[0] += 42    
+        if botInventar[0][nomInv-1] == 39: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 2800
+            else: botSerebro[0] += 56
+        if botInventar[0][nomInv-1] == 40: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1610
+            else: botSerebro[0] += 32
+        if botInventar[0][nomInv-1] == 41: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1890
+            else: botSerebro[0] += 38
+        if botInventar[0][nomInv-1] == 42: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1750
+            else: botSerebro[0] += 35
+        if botInventar[0][nomInv-1] == 43: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 525
+            else: botSerebro[0] += 11
+        if botInventar[0][nomInv-1] == 44: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 945
+            else: botSerebro[0] += 19
+        if botInventar[0][nomInv-1] == 45: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1400
+            else: botSerebro[0] += 28
+        if botInventar[0][nomInv-1] == 46: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 210
+            else: botSerebro[0] += 4
+        if botInventar[0][nomInv-1] == 47: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 350
+            else: botSerebro[0] += 7
+        if botInventar[0][nomInv-1] == 48: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 595
+            else: botSerebro[0] += 12
+        if botInventar[0][nomInv-1] == 49: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1120
+            else: botSerebro[0] += 22
+        if botInventar[0][nomInv-1] == 50: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 2100
+            else: botSerebro[0] += 42
+        if botInventar[0][nomInv-1] == 51: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 4200
+            else: botSerebro[0] += 84
+        if botInventar[0][nomInv-1] == 53: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 840
+            else: botSerebro[0] += 17
+        if botInventar[0][nomInv-1] == 54: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 4900
+            else: botSerebro[0] += 98
+        if botInventar[0][nomInv-1] == 55: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 5950
+            else: botSerebro[0] += 119
+        if botInventar[0][nomInv-1] == 56: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 5600
+            else: botSerebro[0] += 112
+        if botInventar[0][nomInv-1] == 57: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 7000
+            else: botSerebro[0] += 140
+        if botInventar[0][nomInv-1] == 58: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 4690
+            else: botSerebro[0] += 94
+        if botInventar[0][nomInv-1] == 59: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 700
+            else: botSerebro[0] += 14
+        if botInventar[0][nomInv-1] == 60: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 175
+            else: botSerebro[0] += 3
+        if botInventar[0][nomInv-1] == 61: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 315
+            else: botSerebro[0] += 6
+        if botInventar[0][nomInv-1] == 62: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 630
+            else: botSerebro[0] += 12
+        if botInventar[0][nomInv-1] == 63: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1680
+            else: botSerebro[0] += 33
+        if botInventar[0][nomInv-1] == 64: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 3000
+            else: botSerebro[0] += 60
+        if botInventar[0][nomInv-1] == 65: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 4200
+            else: botSerebro[0] += 84
+        if botInventar[0][nomInv-1] == 66: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 14000
+            else: botSerebro[0] += 280
+        if botInventar[0][nomInv-1] == 67: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 280
+            else: botSerebro[0] += 5
+        if botInventar[0][nomInv-1] == 68: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 455
+            else: botSerebro[0] += 9
+        if botInventar[0][nomInv-1] == 69: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 700
+            else: botSerebro[0] += 14              
+        if botInventar[0][nomInv-1] == 70: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1050
+            else: botSerebro[0] += 21 
+            
         heroPanel(hero)    
         
     if botInventar[0][nomInv-1] == 1:
@@ -9639,7 +9976,7 @@ def initGame(heroSelect):  # функция инициации игры
         botExpirience[0] = 0
         botLvl[0] = 1
         botRasa[0] = 2
-        botInventar[0] = [1,2,1,2,1,2,1,2,1,2,1,2,0,0,0,0]     #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[0] = [1,2,1,2,1,2,0,0,0,0,0,0,0,0,0,0]    #botInventar[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botZaklinania[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]           #botZaklinania[0] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
         botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                  #botVozdeistvie[0] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botIshZdorovie[0] = 1120                                               #botIshZdorovie[0] = 120
