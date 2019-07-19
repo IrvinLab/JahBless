@@ -125,8 +125,44 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
+def putInventar(imBuyInventar):
+    global tempEnum, botInventar, imHero
+    tempEnum = 0
+    for tempEnum in range(16):
+        if botInventar[imHero][0] == 0: botInventar[imHero][0] = imBuyInventar
+        else:
+            if botInventar[imHero][1] == 0: botInventar[imHero][1] = imBuyInventar
+            else:
+                if botInventar[imHero][2] == 0: botInventar[imHero][2] = imBuyInventar
+                else:
+                    if botInventar[imHero][3] == 0: botInventar[imHero][3] = imBuyInventar
+                    else:
+                        if botInventar[imHero][4] == 0: botInventar[imHero][4] = imBuyInventar
+                        else:
+                            if botInventar[imHero][5] == 0: botInventar[imHero][5] = imBuyInventar
+                            else:
+                                if botInventar[imHero][6] == 0: botInventar[imHero][6] = imBuyInventar
+                                else:
+                                    if botInventar[imHero][7] == 0: botInventar[imHero][7] = imBuyInventar
+                                    else:
+                                        if botInventar[imHero][8] == 0: botInventar[imHero][8] = imBuyInventar
+                                        else:
+                                            if botInventar[imHero][9] == 0: botInventar[imHero][9] = imBuyInventar
+                                            else:
+                                                if botInventar[imHero][10] == 0: botInventar[imHero][10] = imBuyInventar
+                                                else: 
+                                                    if botInventar[imHero][11] == 0: botInventar[imHero][11] = imBuyInventar
+                                                    else:
+                                                        if botInventar[imHero][12] == 0: botInventar[imHero][12] = imBuyInventar
+                                                        else:
+                                                            if botInventar[imHero][13] == 0: botInventar[imHero][13] = imBuyInventar
+                                                            else:
+                                                                if botInventar[imHero][14] == 0: botInventar[imHero][14] = imBuyInventar
+                                                                else:
+                                                                    if botInventar[imHero][15] == 0: botInventar[imHero][15] = imBuyInventar
+
 def buyInvent(imBuy): 
-    global market,yes,no,imBuyThis,thisPlace
+    global market,yes,no,imBuyThis,thisPlace,tempEnum,imHero, yaNaRinke, botBronza
     
     pix = pygame.image.load('Images/yes.png') 
     x_len = pix.get_width()
@@ -138,12 +174,20 @@ def buyInvent(imBuy):
     sc.blit(pix, (530,786))
     imBuyThis = 1
     thisPlace = imBuy
-    
+    print("Yes="+str(yes)+" thisPlace="+str(thisPlace-1)+" imBuyThis="+str(imBuyThis))
     if yes == 5:
-        
+        if market[thisPlace-1] == 1 or market[thisPlace-1] == 2 or market[thisPlace-1] == 3 or market[thisPlace-1] == 4 or market[thisPlace-1] == 5:
+            if botBronza[imHero] >= 50:
+                market[thisPlace-1] = 0
+                putInventar(1)
+                botBronza[imHero] -= 50
+                tempEnum = 0
+                
+            
         yes = 0
         imBuyThis = 0
         thisPlace = 0
+        yaNaRinke = 0
     
     if market[imBuy-1] == 1:
         variableName = u"Зелье здоровья 1 ур."
@@ -16824,7 +16868,7 @@ while True:
                 if yaNaRinke == 1:
                     marketPlace(1)
                     print("yes")
-                if imBuyThis == 1: buyInvent(thisPlace); yes = 5    
+                if imBuyThis == 1: yes = 5; buyInvent(thisPlace)    
                     
     if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
         x_inside = True
