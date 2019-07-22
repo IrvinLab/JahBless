@@ -128,6 +128,27 @@ for n in range(480): # Забиваем мир нулями
     world.append(n)
     world[n] = 0
 
+def inventControl():
+    global botInventar, botUseWeapon, tmp
+    if botUseWeapon[imHero] > 0:
+        tmp = 0
+        for a in range(16):
+            if botInventar[imHero][a] == 26 and botUseWeapon[imHero] == 3: break
+            if botInventar[imHero][a] == 27 and botUseWeapon[imHero] == 6: break
+            if botInventar[imHero][a] == 28 and botUseWeapon[imHero] == 12: break
+            if botInventar[imHero][a] == 29 and botUseWeapon[imHero] == 25: break
+            if botInventar[imHero][a] == 30 and botUseWeapon[imHero] == 35: break
+            if botInventar[imHero][a] == 31 and botUseWeapon[imHero] == 55: break
+            if botInventar[imHero][a] == 32 and botUseWeapon[imHero] == 75: break
+            if botInventar[imHero][a] == 60 and botUseWeapon[imHero] == 3: break
+            if botInventar[imHero][a] == 61 and botUseWeapon[imHero] == 5: break
+            if botInventar[imHero][a] == 62 and botUseWeapon[imHero] == 8: break            
+            if botInventar[imHero][a] == 63 and botUseWeapon[imHero] == 14: break
+            if botInventar[imHero][a] == 64 and botUseWeapon[imHero] == 21: break
+            if botInventar[imHero][a] == 65 and botUseWeapon[imHero] == 30: break
+            if a == 16: tmp = 1
+        if tmp == 1: tmp = 0; botUseWeapon[imHero] = 0; botAttack[imHero] = 0
+
 def bigZero():
     global market,yes,no,imBuyThis,thisPlace,tempEnum,imHero, yaNaRinke, tmpMarket
     pass
@@ -1988,27 +2009,27 @@ def useInventar(dasLut):
     if botInventar[imHero][dasLut-1] == 51: botZachita[imHero] = 30
     
     if botInventar[imHero][dasLut-1] == 60: 
-        botUseWeapon[imHero] = 57
+        botUseWeapon[imHero] = 60
         botAttack[imHero] = 3
         
     if botInventar[imHero][dasLut-1] == 61: 
-        botUseWeapon[imHero] = 58
+        botUseWeapon[imHero] = 61
         botAttack[imHero] = 5
         
     if botInventar[imHero][dasLut-1] == 62: 
-        botUseWeapon[imHero] = 59
+        botUseWeapon[imHero] = 62
         botAttack[imHero] = 8
         
     if botInventar[imHero][dasLut-1] == 63: 
-        botUseWeapon[imHero] = 60
+        botUseWeapon[imHero] = 63
         botAttack[imHero] = 14
         
     if botInventar[imHero][dasLut-1] == 64: 
-        botUseWeapon[imHero] = 61
+        botUseWeapon[imHero] = 64
         botAttack[imHero] = 21
        
     if botInventar[imHero][dasLut-1] == 65: 
-        botUseWeapon[imHero] = 62
+        botUseWeapon[imHero] = 65
         botAttack[imHero] = 30
 
     if botInventar[imHero][dasLut-1] == 67: 
