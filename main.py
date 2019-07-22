@@ -201,23 +201,363 @@ def buyInvent(imBuy):
     x_len = pix.get_width()
     y_len = pix.get_height() 
     sc.blit(pix, (530,786))
+                
     imBuyThis = 1
     thisPlace = imBuy
     print("Yes="+str(yes)+" thisPlace="+str(thisPlace-1)+" imBuyThis="+str(imBuyThis))
     if yes == 5:
-        if market[thisPlace-1] == 1 or market[thisPlace-1] == 2 or market[thisPlace-1] == 3 or market[thisPlace-1] == 4 or market[thisPlace-1] == 5:
+        if market[thisPlace-1] == 1:
             if botBronza[imHero] >= 50:
                 market[thisPlace-1] = 0
                 putInventar(1)
                 botBronza[imHero] -= 50
-                tempEnum = 0
+        if market[thisPlace-1] == 2:
+            if botBronza[imHero] >= 65:
+                market[thisPlace-1] = 0
+                putInventar(2)
+                botBronza[imHero] -= 65
+        if market[thisPlace-1] == 3:
+            if botBronza[imHero] >= 150:
+                market[thisPlace-1] = 0
+                putInventar(3)
+                botBronza[imHero] -= 150
+        if market[thisPlace-1] == 4:
+            if botBronza[imHero] >= 320:
+                market[thisPlace-1] = 0
+                putInventar(4)
+                botBronza[imHero] -= 320
+        if market[thisPlace-1] == 5:
+            if botBronza[imHero] >= 675:
+                market[thisPlace-1] = 0
+                putInventar(5)
+                botBronza[imHero] -= 675     
+        if market[thisPlace-1] == 6:
+            if botBronza[imHero] >= 70:
+                market[thisPlace-1] = 0
+                putInventar(6)
+                botBronza[imHero] -= 70
+        if market[thisPlace-1] == 7:
+            if botBronza[imHero] >= 140:
+                market[thisPlace-1] = 0
+                putInventar(7)
+                botBronza[imHero] -= 140
+        if market[thisPlace-1] == 8:
+            if botBronza[imHero] >= 250:
+                market[thisPlace-1] = 0
+                putInventar(8)
+                botBronza[imHero] -= 250
+        if market[thisPlace-1] == 9:
+            if botBronza[imHero] >= 370:
+                market[thisPlace-1] = 0
+                putInventar(9)
+                botBronza[imHero] -= 370
+        if market[thisPlace-1] == 10:
+            if botBronza[imHero] >= 600:
+                market[thisPlace-1] = 0
+                putInventar(10)
+                botBronza[imHero] -= 600
+        if market[thisPlace-1] == 11:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(11)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 12:
+            if botBronza[imHero] >= 550:
+                market[thisPlace-1] = 0
+                putInventar(12)
+                botBronza[imHero] -= 550
+        if market[thisPlace-1] == 13:
+            if botBronza[imHero] >= 100:
+                market[thisPlace-1] = 0
+                putInventar(13)
+                botBronza[imHero] -= 100
+        if market[thisPlace-1] == 14:
+            if botBronza[imHero] >= 140:
+                market[thisPlace-1] = 0
+                putInventar(14)
+                botBronza[imHero] -= 140
+        if market[thisPlace-1] == 15:
+            if botBronza[imHero] >= 190:
+                market[thisPlace-1] = 0
+                putInventar(15)
+                botBronza[imHero] -= 190
+        if market[thisPlace-1] == 16:
+            if botBronza[imHero] >= 320:
+                market[thisPlace-1] = 0
+                putInventar(16)
+                botBronza[imHero] -= 320
+        if market[thisPlace-1] == 17:
+            if botBronza[imHero] >= 130:
+                market[thisPlace-1] = 0
+                putInventar(17)
+                botBronza[imHero] -= 130
+        if market[thisPlace-1] == 18:
+            if botBronza[imHero] >= 250:
+                market[thisPlace-1] = 0
+                putInventar(18)
+                botBronza[imHero] -= 250
+        if market[thisPlace-1] == 19:
+            if botBronza[imHero] >= 400:
+                market[thisPlace-1] = 0
+                putInventar(19)
+                botBronza[imHero] -= 400
+        if market[thisPlace-1] == 20:
+            if botBronza[imHero] >= 85:
+                market[thisPlace-1] = 0
+                putInventar(20)
+                botBronza[imHero] -= 85
+        if market[thisPlace-1] == 21:
+            if botBronza[imHero] >= 150:
+                market[thisPlace-1] = 0
+                putInventar(21)
+                botBronza[imHero] -= 150
+        if market[thisPlace-1] == 22:
+            if botBronza[imHero] >= 250:
+                market[thisPlace-1] = 0
+                putInventar(22)
+                botBronza[imHero] -= 250
+        if market[thisPlace-1] == 23:
+            if botBronza[imHero] >= 100:
+                market[thisPlace-1] = 0
+                putInventar(23)
+                botBronza[imHero] -= 100
+        if market[thisPlace-1] == 24:
+            if botBronza[imHero] >= 170:
+                market[thisPlace-1] = 0
+                putInventar(24)
+                botBronza[imHero] -= 170
+        if market[thisPlace-1] == 25:
+            if botBronza[imHero] >= 240:
+                market[thisPlace-1] = 0
+                putInventar(25)
+                botBronza[imHero] -= 240
+        if market[thisPlace-1] == 26:
+            if botBronza[imHero] >= 300:
+                market[thisPlace-1] = 0
+                putInventar(26)
+                botBronza[imHero] -= 300
+        if market[thisPlace-1] == 27:
+            if botBronza[imHero] >= 550:
+                market[thisPlace-1] = 0
+                putInventar(27)
+                botBronza[imHero] -= 550
+        if market[thisPlace-1] == 28:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(28)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 29:
+            if botBronza[imHero] >= 2500:
+                market[thisPlace-1] = 0
+                putInventar(29)
+                botBronza[imHero] -= 2500
+        if market[thisPlace-1] == 30:
+            if botBronza[imHero] >= 5000:
+                market[thisPlace-1] = 0
+                putInventar(30)
+                botBronza[imHero] -= 5000
+        if market[thisPlace-1] == 31:
+            if botBronza[imHero] >= 8500:
+                market[thisPlace-1] = 0
+                putInventar(31)
+                botBronza[imHero] -= 8500
+        if market[thisPlace-1] == 32:
+            if botBronza[imHero] >= 13500:
+                market[thisPlace-1] = 0
+                putInventar(32)
+                botBronza[imHero] -= 13500
+        if market[thisPlace-1] == 33:
+            if botBronza[imHero] >= 4000:
+                market[thisPlace-1] = 0
+                putInventar(33)
+                botBronza[imHero] -= 4000
+        if market[thisPlace-1] == 34:
+            if botBronza[imHero] >= 2000:
+                market[thisPlace-1] = 0
+                putInventar(34)
+                botBronza[imHero] -= 2000
+        if market[thisPlace-1] == 35:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(35)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 36:
+            if botBronza[imHero] >= 2300:
+                market[thisPlace-1] = 0
+                putInventar(36)
+                botBronza[imHero] -= 2300
+        if market[thisPlace-1] == 37:
+            if botBronza[imHero] >= 2500:
+                market[thisPlace-1] = 0
+                putInventar(37)
+                botBronza[imHero] -= 2500
+        if market[thisPlace-1] == 38:
+            if botBronza[imHero] >= 3000:
+                market[thisPlace-1] = 0
+                putInventar(38)
+                botBronza[imHero] -= 3000
+        if market[thisPlace-1] == 39:
+            if botBronza[imHero] >= 4000:
+                market[thisPlace-1] = 0
+                putInventar(39)
+                botBronza[imHero] -= 4000
+        if market[thisPlace-1] == 40:
+            if botBronza[imHero] >= 2300:
+                market[thisPlace-1] = 0
+                putInventar(40)
+                botBronza[imHero] -= 2300
+        if market[thisPlace-1] == 41:
+            if botBronza[imHero] >= 2700:
+                market[thisPlace-1] = 0
+                putInventar(41)
+                botBronza[imHero] -= 2700
+        if market[thisPlace-1] == 42:
+            if botBronza[imHero] >= 2500:
+                market[thisPlace-1] = 0
+                putInventar(42)
+                botBronza[imHero] -= 2500
+        if market[thisPlace-1] == 43:
+            if botBronza[imHero] >= 750:
+                market[thisPlace-1] = 0
+                putInventar(43)
+                botBronza[imHero] -= 750
+        if market[thisPlace-1] == 44:
+            if botBronza[imHero] >= 1350:
+                market[thisPlace-1] = 0
+                putInventar(44)
+                botBronza[imHero] -= 1350
+        if market[thisPlace-1] == 45:
+            if botBronza[imHero] >= 2000:
+                market[thisPlace-1] = 0
+                putInventar(45)
+                botBronza[imHero] -= 2000
+        if market[thisPlace-1] == 46:
+            if botBronza[imHero] >= 300:
+                market[thisPlace-1] = 0
+                putInventar(46)
+                botBronza[imHero] -= 300
+        if market[thisPlace-1] == 47:
+            if botBronza[imHero] >= 500:
+                market[thisPlace-1] = 0
+                putInventar(47)
+                botBronza[imHero] -= 500
+        if market[thisPlace-1] == 48:
+            if botBronza[imHero] >= 850:
+                market[thisPlace-1] = 0
+                putInventar(48)
+                botBronza[imHero] -= 850
+        if market[thisPlace-1] == 49:
+            if botBronza[imHero] >= 1600:
+                market[thisPlace-1] = 0
+                putInventar(49)
+                botBronza[imHero] -= 1600
+        if market[thisPlace-1] == 50:
+            if botBronza[imHero] >= 3000:
+                market[thisPlace-1] = 0
+                putInventar(50)
+                botBronza[imHero] -= 3000
+        if market[thisPlace-1] == 51:
+            if botBronza[imHero] >= 6000:
+                market[thisPlace-1] = 0
+                putInventar(51)
+                botBronza[imHero] -= 6000
+        if market[thisPlace-1] == 53:
+            if botBronza[imHero] >= 1200:
+                market[thisPlace-1] = 0
+                putInventar(53)
+                botBronza[imHero] -= 1200
+        if market[thisPlace-1] == 54:
+            if botBronza[imHero] >= 7000:
+                market[thisPlace-1] = 0
+                putInventar(54)
+                botBronza[imHero] -= 7000
+        if market[thisPlace-1] == 55:
+            if botBronza[imHero] >= 8500:
+                market[thisPlace-1] = 0
+                putInventar(55)
+                botBronza[imHero] -= 8500
+        if market[thisPlace-1] == 56:
+            if botBronza[imHero] >= 8000:
+                market[thisPlace-1] = 0
+                putInventar(56)
+                botBronza[imHero] -= 8000
+        if market[thisPlace-1] == 57:
+            if botBronza[imHero] >= 10000:
+                market[thisPlace-1] = 0
+                putInventar(57)
+                botBronza[imHero] -= 10000
+        if market[thisPlace-1] == 58:
+            if botBronza[imHero] >= 6700:
+                market[thisPlace-1] = 0
+                putInventar(58)
+                botBronza[imHero] -= 6700
+        if market[thisPlace-1] == 59:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(59)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 60:
+            if botBronza[imHero] >= 250:
+                market[thisPlace-1] = 0
+                putInventar(60)
+                botBronza[imHero] -= 250
+        if market[thisPlace-1] == 61:
+            if botBronza[imHero] >= 450:
+                market[thisPlace-1] = 0
+                putInventar(61)
+                botBronza[imHero] -= 450
+        if market[thisPlace-1] == 62:
+            if botBronza[imHero] >= 900:
+                market[thisPlace-1] = 0
+                putInventar(62)
+                botBronza[imHero] -= 900
+        if market[thisPlace-1] == 63:
+            if botBronza[imHero] >= 900:
+                market[thisPlace-1] = 0
+                putInventar(900)
+                botBronza[imHero] -= 900
+        if market[thisPlace-1] == 64:
+            if botBronza[imHero] >= 2400:
+                market[thisPlace-1] = 0
+                putInventar(64)
+                botBronza[imHero] -= 2400
+        if market[thisPlace-1] == 65:
+            if botBronza[imHero] >= 6000:
+                market[thisPlace-1] = 0
+                putInventar(65)
+                botBronza[imHero] -= 6000
+        if market[thisPlace-1] == 66:
+            if botBronza[imHero] >= 20000:
+                market[thisPlace-1] = 0
+                putInventar(66)
+                botBronza[imHero] -= 20000
+        if market[thisPlace-1] == 67:
+            if botBronza[imHero] >= 400:
+                market[thisPlace-1] = 0
+                putInventar(67)
+                botBronza[imHero] -= 400
+        if market[thisPlace-1] == 68:
+            if botBronza[imHero] >= 650:
+                market[thisPlace-1] = 0
+                putInventar(68)
+                botBronza[imHero] -= 650
+        if market[thisPlace-1] == 69:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(69)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 70:
+            if botBronza[imHero] >= 1500:
+                market[thisPlace-1] = 0
+                putInventar(70)
+                botBronza[imHero] -= 1500
+
                 
-            
         yes = 0
         imBuyThis = 0
         thisPlace = 0
         yaNaRinke = 0
-    
+
     if market[imBuy-1] == 1:
         variableName = u"Зелье здоровья 1 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
