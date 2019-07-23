@@ -2388,6 +2388,20 @@ def useInventar(dasLut):
         botUseWeapon[imHero] = 70
         botAttack[imHero] = 13        
     
+    if botInventar[imHero][dasLut-1] == 71: # Это книга Лечение
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 22
+                break
+                
+    if botInventar[imHero][dasLut-1] == 72: # Это книга Лунный обряд
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 9
+                break            
+    
     if botInventar[imHero][dasLut-1] > 0 and botInventar[imHero][dasLut-1] <= 25:
         invent = 0
         attack = 0
@@ -2769,6 +2783,16 @@ def textInventar(nomInv):
             if randMoney >= 0 and randMoney <= 3:
                 botBronza[0] += 1050
             else: botSerebro[0] += 21 
+        if botInventar[0][nomInv-1] == 71: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1380
+            else: botSerebro[0] += 27 
+        if botInventar[0][nomInv-1] == 72: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 1540
+            else: botSerebro[0] += 30             
             
         heroPanel(hero)    
         
@@ -3946,6 +3970,32 @@ def textInventar(nomInv):
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660)) 
+    if botInventar[0][nomInv-1] == 71:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Лечение"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0))
+        sc.blit(nameObj,(440, 580))        
+        variableName = u"Куп./прод. 1900бр|38ср/1380бр|27ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[0][nomInv-1] == 72:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Лунный обряд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2200бр|44ср/1540бр|30ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
         
     
             
@@ -5586,6 +5636,8 @@ def botActivity():  # Создание и управление ботами
                         botInventar[bot] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[bot] = [43,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                     if botRandom >= 16 and botRandom <= 19:
+                        botInventar[bot] = [71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
@@ -5676,6 +5728,8 @@ def botActivity():  # Создание и управление ботами
                         botInventar[bot] = [3,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[bot] = [21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 16 and botRandom <= 19:
+                        botInventar[bot] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
@@ -5946,7 +6000,7 @@ def botActivity():  # Создание и управление ботами
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [62,48,4,3,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
-                        botInventar[bot] = [63,48,53,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[bot] = [63,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -6262,7 +6316,7 @@ def botActivity():  # Создание и управление ботами
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [60,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
-                        botInventar[bot] = [59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -6395,9 +6449,9 @@ def botActivity():  # Создание и управление ботами
                     if botRandom >= 20 and botRandom <= 29:
                         botInventar[bot] = [3,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
                     if botRandom >= 10 and botRandom <= 13:
-                        botInventar[bot] = [3,7,6,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [3,7,25,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
-                        botInventar[bot] = [12,7,25,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -6441,7 +6495,7 @@ def botActivity():  # Создание и управление ботами
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [45,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
-                        botInventar[bot] = [53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -6484,9 +6538,9 @@ def botActivity():  # Создание и управление ботами
                     if botRandom >= 20 and botRandom <= 29:
                         botInventar[bot] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
                     if botRandom >= 10 and botRandom <= 13:
-                        botInventar[bot] = [63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
-                        botInventar[bot] = [54,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -6531,7 +6585,7 @@ def botActivity():  # Создание и управление ботами
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
-                        botInventar[bot] = [53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
                         xBot[bot] = 976
                         yBot[bot] = 96
@@ -6572,9 +6626,9 @@ def botActivity():  # Создание и управление ботами
                     if botRandom >= 30 and botRandom <= 70:
                         botInventar[bot] = [5,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 29:
-                        botInventar[bot] = [5,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                        botInventar[bot] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
                     if botRandom >= 10 and botRandom <= 13:
-                        botInventar[bot] = [5,45,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
                         botInventar[bot] = [58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if world[30] == 0:
@@ -17309,12 +17363,13 @@ while True:
                         for n in range(16): 
                             pass
                             nn = 0 
-                            tmp = int(random.random()*70)
+                            tmp = int(random.random()*72)
                             if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56:
                                 market[n] = tmpInventar[n] = 0
                             else:
                                 market[n] = tmpInventar[n] = tmp
-                            
+                            lalsas1488 = int(random.random()*10)
+                            if lalsas1488 == 5: market[n] = tmpInventar[n] = 0
                                
                         print("Market change: " + str(market))    
                     if botZdorovie[0]+3 < botIshZdorovie[0]: botZdorovie[0] += 2
