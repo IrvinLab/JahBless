@@ -561,13 +561,18 @@ def buyInvent(imBuy):
                 market[thisPlace-1] = 0
                 putInventar(72)
                 botBronza[imHero] -= 2200                
-
+        if market[thisPlace-1] == 73:
+            if botBronza[imHero] >= 3000:
+                market[thisPlace-1] = 0
+                putInventar(73)
+                botBronza[imHero] -= 3000  
                 
         yes = 0
         imBuyThis = 0
         thisPlace = 0
         yaNaRinke = 0
-
+     
+    pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 216))
     if market[imBuy-1] == 1:
         variableName = u"Зелье здоровья 1 ур."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -1763,6 +1768,19 @@ def buyInvent(imBuy):
         sc.blit(nameObj,(440, 640)) 
         variableName = u"Купить?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if market[imBuy-1] == 73:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Кража Магии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Купить?)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))          
 
 def marketPlace(press):
@@ -2160,7 +2178,12 @@ def marketPlace(press):
                 pix = pygame.image.load('Images/book11.jpg') 
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xInv,yInv))                
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 73:
+                pix = pygame.image.load('Images/book12.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))                 
         
     if press == 2:  # Если на рынке нажали "НЕТ" т.е. продать инвентарь
         variableName = u"Нажмите на предмет, который"
@@ -2196,7 +2219,7 @@ def levelUp(nomerBota):
     global botDeistvie
     global hero
         
-    if botExpirience[nomerBota] >= 1000*(1.4**(botLvl[nomerBota]-1)):
+    if botExpirience[nomerBota] >= 1000*(1.5**(botLvl[nomerBota]-1)):
         botLvl[nomerBota] += 1
         botExpirience[nomerBota] = 0
         botIshMana[nomerBota] += 20 * botLvl[nomerBota]
@@ -2448,6 +2471,13 @@ def useInventar(dasLut):
                 botZaklinania[imHero][n] = 9
                 break            
     
+    if botInventar[imHero][dasLut-1] == 73: # Это книга Кража магии
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 4
+                break 
+    
     if botInventar[imHero][dasLut-1] > 0 and botInventar[imHero][dasLut-1] <= 25:
         invent = 0
         attack = 0
@@ -2457,7 +2487,12 @@ def useInventar(dasLut):
         invent = 0
         attack = 0
         botInventar[imHero][dasLut-1] = 0
-        printInventar(dasLut-1)    
+        printInventar(dasLut-1)
+    if botInventar[imHero][dasLut-1] >= 71 and botInventar[imHero][dasLut-1] <= 73:
+        invent = 0
+        attack = 0
+        botInventar[imHero][dasLut-1] = 0
+        printInventar(dasLut-1)        
     heroPanel(hero)
     
              
@@ -2838,7 +2873,12 @@ def textInventar(nomInv):
             botInventar[0][nomInv-1] = 0
             if randMoney >= 0 and randMoney <= 3:
                 botBronza[0] += 1540
-            else: botSerebro[0] += 30             
+            else: botSerebro[0] += 30 
+        if botInventar[0][nomInv-1] == 73: 
+            botInventar[0][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[0] += 2100
+            else: botSerebro[0] += 42             
             
         heroPanel(hero)    
         
@@ -4037,6 +4077,19 @@ def textInventar(nomInv):
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
         variableName = u"Куп./прод. 2200бр|44ср/1540бр|30ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[0][nomInv-1] == 73:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Кража Магии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))        
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -5637,6 +5690,10 @@ def botActivity():  # Создание и управление ботами
                         botInventar[bot] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[bot] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 18 and botRandom <= 20:
+                        botInventar[bot] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom >= 14 and botRandom <= 17:
+                        botInventar[bot] = [73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
@@ -5729,6 +5786,8 @@ def botActivity():  # Создание и управление ботами
                         botInventar[bot] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[bot] = [13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
+                    if botRandom >= 14 and botRandom <= 17:
+                        botInventar[bot] = [73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 5:
@@ -5777,7 +5836,9 @@ def botActivity():  # Создание и управление ботами
                     if botRandom >= 16 and botRandom <= 19:
                         botInventar[bot] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 10 and botRandom <= 13:
-                        botInventar[bot] = [35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[bot] = [35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 6 and botRandom <= 9:
+                        botInventar[bot] = [73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]                         
                     if botRandom == 5:
                         botInventar[bot] = [34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if world[30] == 0:
@@ -5804,8 +5865,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 165
-                    botIshZdorovie[bot] = 165
+                    botZdorovie[bot] = 200
+                    botIshZdorovie[bot] = 200
                     botMana[bot] = 60
                     botIshMana[bot] = 60
                     botZaklinania[bot]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -5891,8 +5952,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 1
-                    botZdorovie[bot] = 110
-                    botIshZdorovie[bot] = 110
+                    botZdorovie[bot] = 130
+                    botIshZdorovie[bot] = 130
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -5936,8 +5997,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 2
-                    botZdorovie[bot] = 140
-                    botIshZdorovie[bot] = 140
+                    botZdorovie[bot] = 160
+                    botIshZdorovie[bot] = 160
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -5981,8 +6042,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 180
-                    botIshZdorovie[bot] = 180
+                    botZdorovie[bot] = 200
+                    botIshZdorovie[bot] = 200
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6026,8 +6087,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 4
-                    botZdorovie[bot] = 220
-                    botIshZdorovie[bot] = 220
+                    botZdorovie[bot] = 250
+                    botIshZdorovie[bot] = 250
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6199,8 +6260,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 4
-                    botZdorovie[bot] = 175
-                    botIshZdorovie[bot] = 175
+                    botZdorovie[bot] = 205
+                    botIshZdorovie[bot] = 205
                     botMana[bot] = 200
                     botIshMana[bot] = 200
                     botZaklinania[bot]=[22,23,12,11,3,0,0,0,0,0,0,0,0,0,0,100]
@@ -6342,8 +6403,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 165
-                    botIshZdorovie[bot] = 165
+                    botZdorovie[bot] = 180
+                    botIshZdorovie[bot] = 180
                     botMana[bot] = 120
                     botIshMana[bot] = 120
                     botZaklinania[bot]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6387,8 +6448,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 1
-                    botZdorovie[bot] = 85
-                    botIshZdorovie[bot] = 85
+                    botZdorovie[bot] = 95
+                    botIshZdorovie[bot] = 95
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6432,8 +6493,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 2
-                    botZdorovie[bot] = 110
-                    botIshZdorovie[bot] = 110
+                    botZdorovie[bot] = 120
+                    botIshZdorovie[bot] = 120
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6477,8 +6538,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 140
-                    botIshZdorovie[bot] = 140
+                    botZdorovie[bot] = 150
+                    botIshZdorovie[bot] = 150
                     botMana[bot] = 50
                     botIshMana[bot] = 50
                     botZaklinania[bot]=[9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6521,8 +6582,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 4
-                    botZdorovie[bot] = 190
-                    botIshZdorovie[bot] = 190
+                    botZdorovie[bot] = 200
+                    botIshZdorovie[bot] = 200
                     botMana[bot] = 140
                     botIshMana[bot] = 140
                     botZaklinania[bot]=[9,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6566,8 +6627,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 5
-                    botZdorovie[bot] = 260
-                    botIshZdorovie[bot] = 260
+                    botZdorovie[bot] = 280
+                    botIshZdorovie[bot] = 280
                     botMana[bot] = 195
                     botIshMana[bot] = 195
                     botZaklinania[bot]=[9,12,23,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6611,8 +6672,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 6
-                    botZdorovie[bot] = 370
-                    botIshZdorovie[bot] = 370
+                    botZdorovie[bot] = 390
+                    botIshZdorovie[bot] = 390
                     botMana[bot] = 250
                     botIshMana[bot] = 250
                     botZaklinania[bot]=[9,12,23,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6656,8 +6717,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 7
-                    botZdorovie[bot] = 520
-                    botIshZdorovie[bot] = 520
+                    botZdorovie[bot] = 590
+                    botIshZdorovie[bot] = 590
                     botMana[bot] = 400
                     botIshMana[bot] = 400
                     botZaklinania[bot]=[9,12,23,1,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6706,8 +6767,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 1
-                    botZdorovie[bot] = 120
-                    botIshZdorovie[bot] = 120
+                    botZdorovie[bot] = 140
+                    botIshZdorovie[bot] = 140
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6751,8 +6812,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 2
-                    botZdorovie[bot] = 180
-                    botIshZdorovie[bot] = 180
+                    botZdorovie[bot] = 200
+                    botIshZdorovie[bot] = 200
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6796,8 +6857,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 260
-                    botIshZdorovie[bot] = 260
+                    botZdorovie[bot] = 270
+                    botIshZdorovie[bot] = 270
                     botMana[bot] = 90
                     botIshMana[bot] = 90
                     botZaklinania[bot]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -6841,8 +6902,8 @@ def botActivity():  # Создание и управление ботами
                     botNumer[bot] = bot
                     botVariant[bot] = tmp 
                     botLvl[bot] = 4
-                    botZdorovie[bot] = 350
-                    botIshZdorovie[bot] = 350
+                    botZdorovie[bot] = 390
+                    botIshZdorovie[bot] = 390
                     botMana[bot] = 130
                     botIshMana[bot] = 130
                     botZaklinania[bot]=[22,23,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -7013,8 +7074,8 @@ def botActivity():  # Создание и управление ботами
                     botVariant[bot] = tmp 
                     botType[bot] = 1   
                     botLvl[bot] = 3
-                    botZdorovie[bot] = 175
-                    botIshZdorovie[bot] = 175
+                    botZdorovie[bot] = 195
+                    botIshZdorovie[bot] = 195
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -7059,8 +7120,8 @@ def botActivity():  # Создание и управление ботами
                     botVariant[bot] = tmp 
                     botType[bot] = 2  
                     botLvl[bot] = 1
-                    botZdorovie[bot] = 90
-                    botIshZdorovie[bot] = 90
+                    botZdorovie[bot] = 95
+                    botIshZdorovie[bot] = 95
                     botMana[bot] = 0
                     botIshMana[bot] = 0
                     botZaklinania[bot]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -11761,7 +11822,12 @@ def visibleInventar(xInv, yInv, porNom): # Функция, отображающ�
         pix = pygame.image.load('Images/book11.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
-        sc.blit(pix, (xInv,yInv))     
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 73:
+        pix = pygame.image.load('Images/book12.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))        
         
 def printMagic(numberMagic):                                # Отображаем магические способности
     if numberMagic == 0: visibleMagic(16,548,0)
@@ -12187,7 +12253,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 1000                                                   #botSerebro[0] = 3
         botBronza[0] = 100000                                                  #botBronza[0] = 0
         botHod[0] = botLovkost[0]
-        botAlgoritm[0] = 3
+        botAlgoritm[0] = 0                                                     # botAlgoritm[0] = 0
         botVariant[0] = 50
         botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         
@@ -12231,7 +12297,7 @@ def initGame(heroSelect):  # функция инициации игры
         botSerebro[0] = 0
         botBronza[0] = 0
         botHod[0] = botLovkost[0]
-        botAlgoritm[0] = 3
+        botAlgoritm[0] = 4
         botVariant[0] = 52
         botDeistvie[0]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
@@ -17419,12 +17485,12 @@ while True:
                         for n in range(16): 
                             pass
                             nn = 0 
-                            tmp = int(random.random()*72)
+                            tmp = int(random.random()*73)
                             if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56:
                                 market[n] = tmpInventar[n] = 0
                             else:
                                 market[n] = tmpInventar[n] = tmp
-                            lalsas1488 = int(random.random()*10)
+                            lalsas1488 = int(random.random()*7)
                             if lalsas1488 == 5: market[n] = tmpInventar[n] = 0
                                
                         print("Market change: " + str(market))    
