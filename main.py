@@ -551,6 +551,16 @@ def buyInvent(imBuy):
                 market[thisPlace-1] = 0
                 putInventar(70)
                 botBronza[imHero] -= 1500
+        if market[thisPlace-1] == 71:
+            if botBronza[imHero] >= 1900:
+                market[thisPlace-1] = 0
+                putInventar(71)
+                botBronza[imHero] -= 1900
+        if market[thisPlace-1] == 72:
+            if botBronza[imHero] >= 2200:
+                market[thisPlace-1] = 0
+                putInventar(72)
+                botBronza[imHero] -= 2200                
 
                 
         yes = 0
@@ -1727,7 +1737,33 @@ def buyInvent(imBuy):
         sc.blit(nameObj,(440, 640)) 
         variableName = u"Купить?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))     
+        sc.blit(nameObj,(440, 660))
+    if market[imBuy-1] == 71:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Лечение"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580)) 
+        variableName = u"Куп./прод. 1900бр|38ср/1380бр|27ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if market[imBuy-1] == 72:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Лунный обряд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2200бр|44ср/1540бр|30ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))          
 
 def marketPlace(press):
     global hero
@@ -2114,7 +2150,17 @@ def marketPlace(press):
                 pix = pygame.image.load('Images/hammer3.jpg') 
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xInv,yInv))   
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 71:
+                pix = pygame.image.load('Images/book10.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 72:
+                pix = pygame.image.load('Images/book11.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))                
         
     if press == 2:  # Если на рынке нажали "НЕТ" т.е. продать инвентарь
         variableName = u"Нажмите на предмет, который"
@@ -5636,7 +5682,7 @@ def botActivity():  # Создание и управление ботами
                         botInventar[bot] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[bot] = [43,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]    
-                     if botRandom >= 16 and botRandom <= 19:
+                    if botRandom >= 16 and botRandom <= 19:
                         botInventar[bot] = [71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 10 and botRandom <= 13:
                         botInventar[bot] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
@@ -11705,7 +11751,17 @@ def visibleInventar(xInv, yInv, porNom): # Функция, отображающ�
         pix = pygame.image.load('Images/hammer3.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
-        sc.blit(pix, (xInv,yInv))    
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 71:
+        pix = pygame.image.load('Images/book10.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[0][porNom] == 72:
+        pix = pygame.image.load('Images/book11.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
         
 def printMagic(numberMagic):                                # Отображаем магические способности
     if numberMagic == 0: visibleMagic(16,548,0)
