@@ -9324,9 +9324,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
     ktoZdesVrag = 0
     for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
         if botLocation[ktoZdesVrag] == hehmda:
-            variableName = u"Здоровье: " + str(botZdorovie[ktoZdesVrag]) + "/" + str(botIshZdorovie[ktoZdesVrag])
-            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
-            sc.blit(nameObj,(440, 700))
+            if ktoZdesVrag != imHero:
+                variableName = u"Здоровье: " + str(botZdorovie[ktoZdesVrag]) + "/" + str(botIshZdorovie[ktoZdesVrag])
+                nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+                sc.blit(nameObj,(440, 760))
             break        
         
     if zakl > 0 and ktoZdesVrag != 999:
