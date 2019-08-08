@@ -4772,7 +4772,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 botAlgoritm[vragBot] = 0
                 yaKastanul = 1
         if botZaklinania[nom][poriad] == 6: # Огненная сфера
-            if botMana[nom] >= 15:
+            if botMana[nom] >= 25:
                 botMana[nom] -= 25
                 botZdorovie[vragBot] -= 30
                 botExpirience[nom] += 15
@@ -4953,8 +4953,8 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 n = 0
                 yaKastanul = 1  
         if botZaklinania[nom][poriad] == 17: # Пронзающий крик
-            if botMana[nom] >= 30:
-                botMana[nom] -= 30
+            if botMana[nom] >= 50:
+                botMana[nom] -= 50
                 botZdorovie[vragBot] -= 50
                 botExpirience[nom] += 20
                 botHod[nom] -= 1
