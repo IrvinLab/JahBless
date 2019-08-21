@@ -126,25 +126,117 @@ textHod = pygame.font.SysFont('Monospace Regular', 20) # Отображает к
 textExpirience = pygame.font.SysFont('Monospace Regular', 20) # Отображает опыт
 textZachita = pygame.font.SysFont('Monospace Regular', 20)  # Отображаем защиту
 
-def levelUp(nomerBota):
-    global botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botIshZdorovie, botInventar, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha, botZachita, botHod, botLocation, world, botStep, botNumer, botVariant, botAlgoritm, botDeistvie, hero
+n = 0
+for n in range(480):
+    world.append(n)
+    world[n] = 0
+
+a = 0
+if a == 0:
+    botNumer.clear()
+    botType.clear()
+    botStep.clear()
+    botVariant.clear()
+    botAlgoritm.clear()
+    xBot.clear()
+    yBot.clear()
+    botExpirience.clear()
+    botLvl.clear()
+    botRasa.clear()
+    botZaklinania.clear()
+    botVozdeistvie.clear()
+    botIshZdorovie.clear()
+    botZdorovie.clear()
+    botMana.clear()
+    botIshMana.clear()
+    botSila.clear()
+    botLovkost.clear()
+    botYdacha.clear()
+    botZachita.clear()
+    botHod.clear()
+    botLocation.clear()
+    botZoloto.clear()
+    botSerebro.clear()
+    botBronza.clear()
+    botDeistvie.clear()
+    botAttack.clear()
+    botUseWeapon.clear()
+    n = 0 # Создаём массивы для ботов
+    for n in range(1000):
+        botZoloto.append(n)
+        botSerebro.append(n)
+        botBronza.append(n)
+        botNumer.append(n)
+        botType.append(n)
+        botStep.append(n)
+        botLocation.append(n)
+        botMap.append(n)
+        xBot.append(n)
+        yBot.append(n)
+        botExpirience.append(n)
+        botLvl.append(n)
+        botRasa.append(n)
+        botZaklinania.append(n)
+        botVozdeistvie.append(n)
+        botInventar.append(n)
+        botIshZdorovie.append(n)
+        botZdorovie.append(n)
+        botMana.append(n)
+        botIshMana.append(n)
+        botSila.append(n)
+        botLovkost.append(n)
+        botYdacha.append(n)
+        botZachita.append(n)
+        botHod.append(n)
+        botAlgoritm.append(n)
+        botVariant.append(n)
+        botDeistvie.append(n)
+        botAttack.append(n)
+        botUseWeapon.append(n)
         
-    if botExpirience[nomerBota] >= 1000*(1.5**(botLvl[nomerBota]-1)):
-        botLvl[nomerBota] += 1
-        botExpirience[nomerBota] = 0
-        botIshMana[nomerBota] += 20 * botLvl[nomerBota]
-        botMana[nomerBota] = botIshMana[nomerBota]
-        botIshZdorovie[nomerBota] += 20 * botLvl[nomerBota]
-        botZdorovie[nomerBota] = botIshZdorovie[nomerBota]
-        botSila[nomerBota] += 1
-        botLovkost[nomerBota] += 1
-        botYdacha[nomerBota] += 1
-        botVozdeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        botDeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botZoloto[n] = 0
+        botSerebro[n] = 0
+        botBronza[n] = 0
+        botNumer[n] = 0
+        botType[n] = 0
+        botStep[n] = 0
+        botLocation[n] = 0
+        botMap[n] = 0
+        xBot[n] = 0
+        yBot[n] = 0
+        botExpirience[n] = 0
+        botLvl[n] = 0
+        botRasa[n] = 0
+        botZaklinania[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botIshZdorovie[n] = 0
+        botZdorovie[n] = 0
+        botMana[n] = 0
+        botIshMana[n] = 0
+        botSila[n] = 0
+        botLovkost[n] = 0
+        botYdacha[n] = 0
+        botZachita[n] = 0
+        botHod[n] = 0
+        botAlgoritm[n] = 0
+        botVariant[n] = 0
+        botDeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botAttack[n] = 0
+        botUseWeapon[n] = 0
+    n = 0  
+    botLocation[0] = 172 # Исходное положение на карте
+    xBot[0] = 400
+    yBot[0] = 256
+
+def nullPole(nunLEL):
+    global world
+    if world[nunLEL] == 0: markLocation(nunLEL, world[nunLEL])
 
 def worldLife():
+    global imHero, market, botZdorovie, botLovkost, botMana, botIshMana, hero
     levelUp(imHero)
-    tmp = int(random.random()*10) # Задаём вероятность изменений товара на рынке
+    tmp = int(random.random()*500) # Задаём вероятность изменений товара на рынке
     if tmp == 3:
         tmpInventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         for n in range(16): 
@@ -166,7 +258,6 @@ def worldLife():
         if botZdorovie[n]+3 < botIshZdorovie[n]: botZdorovie[n] += 1
         if botMana[n]+3 < botIshMana[n]: botMana[n] += 1
     heroPanel(hero)
-    yaNaRinke = 0
     botActivity()
     threading.Timer(0.5, worldLife).start()
 
@@ -202,7 +293,7 @@ def botActivity():  # Создание и управление ботами
     botRandom = 0
     botRandom = int(random.random()*100) # Переменная для случайного распределения артефактов
     botLoad = 0    
-    temp = int(random.random()*3) # Вероятность появления нового бота 1/4
+    temp = int(random.random()*100) # Вероятность появления нового бота 1/4
     print(bot)
     if temp == 2:   
         tmp = int(random.random()*72)
@@ -3479,6 +3570,63 @@ def botActivity():  # Создание и управление ботами
     
     # ===================================================================================================================
 
+def botGoing():
+    global botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botIshZdorovie, botInventar, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha, botZachita, botHod, botLocation, world, botStep, botNumer, botVariant, botAlgoritm, botDeistvie, hero
+    n = 1
+    for n in range(1000):
+        if botZdorovie[n] >= 0 and botLvl[n] > 0:
+            
+            if genom[botStep[n]] == 0:
+                if botLocation[n] > 32 and world[botLocation[n]-32] == 0:
+                    world[botLocation[n]] = 0
+                    nullPole(botLocation[n])
+                    world[botLocation[n]-32] = botVariant[n]
+                    botLocation[n] -= 32
+            
+            if genom[botStep[n]] == 1 and world[botLocation[n]+32] == 0:
+                if botLocation[n] < 415:
+                    world[botLocation[n]] = 0
+                    nullPole(botLocation[n])
+                    world[botLocation[n]+32] = botVariant[n]
+                    botLocation[n] += 32
+                
+            if genom[botStep[n]] == 2:
+                if botLocation[n] != 447 or botLocation[n] != 415 or botLocation[n] != 383 or botLocation[n] != 351 or botLocation[n] != 319 or botLocation[n] != 287 or botLocation[n] != 255 or botLocation[n] != 223 or botLocation[n] != 191 or botLocation[n] != 159 or botLocation[n] != 127 or botLocation[n] != 95 or botLocation[n] != 63 or botLocation[n] != 31:
+                    if world[botLocation[n]+1] == 0:
+                        world[botLocation[n]] = 0
+                        nullPole(botLocation[n])
+                        world[botLocation[n]+1] = botVariant[n]
+                        botLocation[n] += 1
+            
+            if genom[botStep[n]] == 3:
+                if botLocation[n] != 416 or botLocation[n] != 384 or botLocation[n] != 352 or botLocation[n] != 320 or botLocation[n] != 288 or botLocation[n] != 256 or botLocation[n] != 224 or botLocation[n] != 192 or botLocation[n] != 160 or botLocation[n] != 128 or botLocation[n] != 96 or botLocation[n] != 64 or botLocation[n] != 32 or botLocation[n] != 0:
+                    if world[botLocation[n]-1] == 0:
+                        world[botLocation[n]] = 0
+                        nullPole(botLocation[n])
+                        world[botLocation[n]-1] = botVariant[n]
+                        botLocation[n] -= 1
+            
+            botStep[n] += 1
+            if botStep[n] >= 64: botStep[n] = 0            
+    
+    worldUpdate()
+
+def levelUp(nomerBota):
+    global botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botIshZdorovie, botInventar, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha, botZachita, botHod, botLocation, world, botStep, botNumer, botVariant, botAlgoritm, botDeistvie, hero
+        
+    if botExpirience[nomerBota] >= 1000*(1.5**(botLvl[nomerBota]-1)):
+        botLvl[nomerBota] += 1
+        botExpirience[nomerBota] = 0
+        botIshMana[nomerBota] += 20 * botLvl[nomerBota]
+        botMana[nomerBota] = botIshMana[nomerBota]
+        botIshZdorovie[nomerBota] += 20 * botLvl[nomerBota]
+        botZdorovie[nomerBota] = botIshZdorovie[nomerBota]
+        botSila[nomerBota] += 1
+        botLovkost[nomerBota] += 1
+        botYdacha[nomerBota] += 1
+        botVozdeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botDeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
 def textMagic(numerCeil):
     global botZaklinania 
     global hero
@@ -4005,6 +4153,7 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
     if iconka == 172: pix = pygame.image.load('Images/womanElf7.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap)) 
 
 def worldUpdate():   # Отправляем данные об объекте
+    global n, world
     n = 0
     for n in range(448):
         if world[n] == 1: markLocation(n, world[n])
