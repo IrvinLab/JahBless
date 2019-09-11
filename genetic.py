@@ -15,6 +15,7 @@ yHeroIcon = 0
 xMagic = 0
 yMagic = 0
 n = 0
+world = []
 
 # Переменные ботов
 bot = 1 # Количество ботов
@@ -75,6 +76,44 @@ textZachita = pygame.font.SysFont('Monospace Regular', 20)  # Отображае
 
 # Создаём мир
 def worldCreate():
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto    
+    global world, xMap, yMap
+    
+    xMap = 16 
+    yMap = 96 
+    n = 0
+    for n in range(480): # Забиваем мир нулями
+        world.append(n)
+        world[n] = 0
+        
+    n = 0
+    for n in range(448):  # рандомно размещаем горы и воду
+        tmp = int(random.random()*22)
+        if n == 30 or n == 62 or n == 63 or n == 384 or n == 385 or n == 417:
+            pass
+        else:
+            if tmp == 5:
+                world[n] = 1
+                pix = pygame.image.load('Images/mount.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xMap,yMap))
+            elif tmp == 6:
+                world[n] = 2
+                pix = pygame.image.load('Images/water.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xMap,yMap)) 
+        xMap += 32    
+        if xMap >= 1040:
+            xMap = 16
+            yMap += 32  
+    
+    world[145] = 8  # А затем расставляем объекты
+    world[298] = 5
+    world[416] = 10
+    world[31] = 15        
+    
     botNumer.clear()
     botType.clear()
     botStep.clear()
@@ -166,7 +205,9 @@ def worldCreate():
         botDeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botAttack[n] = 0
         botUseWeapon[n] = 0
+    worldUpdate()    
     n = 0  
+    
 for yMap in range(14): # Рисуем игровое поле
     
     for xMap in range(32):
@@ -313,6 +354,7 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
 def worldUpdate():   # Отправляем данные об объекте
     n = 0
     for n in range(448):
+        if world[n] == 0: markLocation(n, world[n])
         if world[n] == 1: markLocation(n, world[n])
         if world[n] == 2: markLocation(n, world[n])
         if world[n] == 3: markLocation(n, world[n])
@@ -559,19 +601,21 @@ def botActivity(nomerBota):
             if world[botLocation[nomerBota]] != 31 and world[botLocation[nomerBota]] != 63 and world[botLocation[nomerBota]] != 95 and world[botLocation[nomerBota]] != 127 and world[botLocation[nomerBota]] != 159 and world[botLocation[nomerBota]] != 191 and world[botLocation[nomerBota]] != 223 and world[botLocation[nomerBota]] != 255 and world[botLocation[nomerBota]] != 287 and world[botLocation[nomerBota]] != 319 and world[botLocation[nomerBota]] != 351 and world[botLocation[nomerBota]] != 383 and world[botLocation[nomerBota]] != 415 and world[botLocation[nomerBota]] != 447:
                 if world[botLocation[nomerBota]+1] == 0:
                     botLocation[nomerBota] += 1        
-    
+        
+        worldUpdate()
+        
     botStep[nomerBota] += 1
     if botStep[nomerBota] > 64: botStep[nomerBota] = 0
-    worldUpdate()
     
     
-    
+worldCreate()    
+n = 0    
 pygame.display.update()   
 while True:
     clock.tick(FPS) 
-
-    botActivity(n)
     print(n)
+    botActivity(n)
+    
     n += 1
     
     if n >= 999: n = 0
