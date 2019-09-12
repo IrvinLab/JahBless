@@ -3,7 +3,7 @@ import pygame, sys, random
 import pygame.freetype
 import threading
 
-genom = [2,12,9,26,5,7,17,46,54,7,0,26,24,0,17,46,2,7,10,29,9,1,57,46,0,13,46,60,40,5,2,36,1,27,23,26,43,5,17,46,2,7,12,1,42,33,17,46,2,11,42,26,8,43,17,46,54,7,22,26,8,4,17,46]
+genom = [2,3,19,26,5,7,17,46,54,7,1,26,24,0,17,46,2,7,10,29,9,1,57,46,0,13,46,60,40,5,2,36,1,27,23,26,43,5,17,46,2,7,12,1,42,33,17,46,2,11,42,26,8,43,17,46,54,7,22,26,8,4,17,46]
 
 FPS = 60
 xGameMap = 16 
@@ -349,7 +349,7 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
     if iconka == 170: pix = pygame.image.load('Images/womanElf5_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 171: pix = pygame.image.load('Images/womanElf6_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))
     if iconka == 172: pix = pygame.image.load('Images/womanElf7.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))     
-    pygame.display.update()   
+    #pygame.display.update()   
 
 def worldUpdate():   # Отправляем данные об объекте
     n = 0
@@ -579,6 +579,7 @@ def botActivity(nomerBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto    
     
     # Обрабатываем геном
+    if botStep[nomerBota] > 63: botStep[nomerBota] = 0
     if botZdorovie[nomerBota] > 0: # Если бот жив
         if genom[botStep[nomerBota]] == 0: pass # Если равен нулю, то ничего не делаем
         
@@ -586,39 +587,66 @@ def botActivity(nomerBota):
             if world[botLocation[nomerBota]]>=32:
                 if world[botLocation[nomerBota]-32] == 0:
                     botLocation[nomerBota] -= 32
+                    print("up")
+                    yBot[nomerBota] -= 32
+                    world[botLocation[nomerBota]] = 0
+                    world[botLocation[nomerBota]-32] = botVariant[nomerBota]
+                    botLocation[nomerBota] -= 32
         
         elif genom[botStep[nomerBota]] == 2: # Идём вниз
             if world[botLocation[nomerBota]] <= 416:
                 if world[botLocation[nomerBota]+32] == 0:
+                    print("down")
+                    yBot[nomerBota] += 32
+                    world[botLocation[nomerBota]] = 0
+                    world[botLocation[nomerBota]+32] = botVariant[nomerBota]
                     botLocation[nomerBota] += 32
                     
         elif genom[botStep[nomerBota]] == 3: # Идём влево
             if world[botLocation[nomerBota]] != 0 and world[botLocation[nomerBota]] != 32 and world[botLocation[nomerBota]] != 64 and world[botLocation[nomerBota]] != 96 and world[botLocation[nomerBota]] != 128 and world[botLocation[nomerBota]] != 160 and world[botLocation[nomerBota]] != 192 and world[botLocation[nomerBota]] != 224 and world[botLocation[nomerBota]] != 256 and world[botLocation[nomerBota]] != 288 and world[botLocation[nomerBota]] != 320 and world[botLocation[nomerBota]] != 352 and world[botLocation[nomerBota]] != 384 and world[botLocation[nomerBota]] != 416:
                 if world[botLocation[nomerBota]-1] == 0:
-                    botLocation[nomerBota] -= 1        
+                    botLocation[nomerBota] -= 1
+                    print("left")
+                    xBot[nomerBota] -= 32
+                    world[botLocation[nomerBota]] = 0
+                    world[botLocation[nomerBota]-1] = botVariant[nomerBota]
+                    botLocation[nomerBota] -= 1                    
         
         elif genom[botStep[nomerBota]] == 4: # Идём вправо
             if world[botLocation[nomerBota]] != 31 and world[botLocation[nomerBota]] != 63 and world[botLocation[nomerBota]] != 95 and world[botLocation[nomerBota]] != 127 and world[botLocation[nomerBota]] != 159 and world[botLocation[nomerBota]] != 191 and world[botLocation[nomerBota]] != 223 and world[botLocation[nomerBota]] != 255 and world[botLocation[nomerBota]] != 287 and world[botLocation[nomerBota]] != 319 and world[botLocation[nomerBota]] != 351 and world[botLocation[nomerBota]] != 383 and world[botLocation[nomerBota]] != 415 and world[botLocation[nomerBota]] != 447:
                 if world[botLocation[nomerBota]+1] == 0:
-                    botLocation[nomerBota] += 1        
+                    botLocation[nomerBota] += 1
+                    print("right")
+                    xBot[nomerBota] += 32
+                    world[botLocation[nomerBota]] = 0
+                    world[botLocation[nomerBota]+1] = botVariant[nomerBota]
+                    botLocation[nomerBota] += 1                    
         
         worldUpdate()
+        pygame.display.update()
         
     botStep[nomerBota] += 1
-    if botStep[nomerBota] > 64: botStep[nomerBota] = 0
     
+    
+
     
 worldCreate()    
+
+xBot[0] = 400
+yBot[0] = 256
+botLocation[0] = 172
+botZdorovie[0] = 100
+botVariant[0] = 132
+world[172] = 132
 n = 0    
 pygame.display.update()   
 while True:
     clock.tick(FPS) 
-    print(n)
     botActivity(n)
-    
+    #print(n)
     n += 1
     
-    if n >= 999: n = 0
+    if n >= 10: n = 0
     
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
