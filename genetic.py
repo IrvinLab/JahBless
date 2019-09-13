@@ -3,7 +3,7 @@ import pygame, sys, random
 import pygame.freetype
 import threading
 
-genom = [4,2,19,26,5,7,17,46,54,7,1,26,24,0,17,46,3,7,10,29,9,1,57,46,4,13,46,60,1,5,2,36,1,27,23,26,43,5,17,46,2,7,12,1,42,33,17,46,0,11,42,4,8,43,17,46,54,7,22,26,8,4,17,46]
+genom = [4,2,5,5,5,5,5,5,5,5,1,26,24,0,17,46,3,7,10,29,9,1,57,46,4,13,46,60,1,5,2,36,1,27,23,26,43,5,17,46,2,7,12,1,42,33,17,46,0,11,42,4,8,43,17,46,54,7,22,26,8,4,17,46]
 
 FPS = 60
 xGameMap = 16 
@@ -654,7 +654,10 @@ def botActivity(nomerBota):
                     pygame.display.update()
         
         elif genom[botStep[nomerBota]] == 5: # Бьём врага вверх 
-            pass
+            if world[botLocation[nomerBota]-32] >= 50: # Если сверху кто-то есть, то...
+                for n in range(10):
+                    tmp = n
+                    if botLocation[nomerBota] == botLocation[n]-32: botZdorovie[n] -= botSila[nomerBota]; break; print("Im shot"); botZdorovie[nomerBota] += 2
 
         else:
             pass # Тут мы должны сделать перескакивание команд
@@ -672,55 +675,17 @@ def botActivity(nomerBota):
     
 worldCreate()    
 
-botLocation[0] = 54
-botZdorovie[0] = 100
-botVariant[0] = 166
-world[54] = 166
+locations = [139,171,204,131,30,77,388,149,120,124]
+n = 0
 
-botLocation[1] = 163
-botZdorovie[1] = 100
-botVariant[1] = 167
-world[163] = 167
-
-botLocation[2] = 282
-botZdorovie[2] = 100
-botVariant[2] = 168
-world[282] = 168
-
-botLocation[3] = 242
-botZdorovie[3] = 100
-botVariant[3] = 169
-world[242] = 169
-
-botLocation[4] = 382
-botZdorovie[4] = 100
-botVariant[4] = 170
-world[382] = 170
-
-botLocation[5] = 102
-botZdorovie[5] = 100
-botVariant[5] = 136
-world[102] = 136
-
-botLocation[6] = 59
-botZdorovie[6] = 100
-botVariant[6] = 137
-world[59] = 137
-
-botLocation[7] = 82
-botZdorovie[7] = 100
-botVariant[7] = 138
-world[82] = 138
-
-botLocation[8] = 200
-botZdorovie[8] = 100
-botVariant[8] = 139
-world[200] = 139
-
-botLocation[9] = 300
-botZdorovie[9] = 100
-botVariant[9] = 140
-world[300] = 140
+for n in range(10):
+    botLocation[n] = locations[n]
+    botZdorovie[n] = 151
+    botVariant[n] = 151+n
+    if n<5: botRasa[n] = 1
+    else: botRasa[n] = 2
+    botSila[n] = 10
+    world[locations[n]] = 151+n
 
 
 n = 0    
