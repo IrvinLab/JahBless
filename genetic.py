@@ -609,7 +609,7 @@ def botActivity(nomerBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto    
     
     # Обрабатываем геном
-    if botStep[nomerBota] > 63: botStep[nomerBota] = 0
+    if botStep[nomerBota] > 63: botStep[nomerBota] = 0; print("Zero DAY")
     if botZdorovie[nomerBota] > 0: # Если бот жив
         if genom[botStep[nomerBota]] == 0: pass # Если равен нулю, то ничего не делаем
         
@@ -651,13 +651,22 @@ def botActivity(nomerBota):
                     world[botLocation[nomerBota]+1] = botVariant[nomerBota]
                     botLocation[nomerBota] += 1
                     worldUpdate()
-                    pygame.display.update()                    
+                    pygame.display.update()
         
-    else: 
-        ubiraemTrup(nomerBota)    
+        elif genom[botStep[nomerBota]] == 5: # Бьём врага вверх 
+            pass
+
+        else:
+            pass # Тут мы должны сделать перескакивание команд
+    else:
+        if botVariant[nomerBota] > 0:    
+            ubiraemTrup(nomerBota)      
+            world[botLocation[nomerBota]] = 0
+            worldUpdate()
+            pygame.display.update()
         
     botStep[nomerBota] += 1
-    
+    botZdorovie[nomerBota] -= 1
     
 
     
