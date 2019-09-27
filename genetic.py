@@ -4,8 +4,7 @@ import pygame.freetype
 import threading
 import random
 
-genom = [3, 2, 7, 4, 5, 1, 0, 1, 3, 3, 6, 5, 7, 7, 5, 7, 1, 4, 3, 4, 7, 6, 6, 3, 4, 0, 7, 7, 3, 7, 4, 4, 6, 5, 5, 5, 1, 6, 1, 1, 4, 4, 3, 5, 5, 6, 5, 1, 6, 4, 5, 3, 7, 0, 4, 7, 7, 4, 4, 5, 6, 8, 1]
-
+genom = [2, 0, 21, 34, 4, 11, 62, 8, 5, 58, 50, 32, 2, 38, 1, 10, 1, 32, 10, 3, 6, 2, 8, 4, 42, 21, 15, 36, 0, 5, 3, 12, 11, 24, 8, 6, 10, 21, 7, 9, 7, 54, 25, 4, 60, 52, 48, 43, 7, 8, 2, 49, 48, 6, 39, 19, 0, 13, 54, 5, 11, 4, 31, 9]
 iteration = 1
 FPS = 60
 xGameMap = 16 
@@ -626,6 +625,7 @@ def mutation(): # Изменяем геном. Меняем случайный �
         botIshZdorovie[n] = 100
         botZdorovie[n] = 100
         botVariant[n] = 151+n
+        botZaklinania[n] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
         if n<5: botRasa[n] = 1
         else: botRasa[n] = 2
         botSila[n] = 10
@@ -694,7 +694,7 @@ def botActivity(nomerBota):
                     for n in range(10):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]-32 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                        print("Im - ", str(nomerBota), " shot up")
+                        print("Im - ", str(nomerBota), " shot up. Step -", botStep[nomerBota])
                         botZdorovie[nomerBota] += 2
                         break                    
                     
@@ -704,7 +704,7 @@ def botActivity(nomerBota):
                     for n in range(10):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]+32 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                        print("Im - ", str(nomerBota), " shot down")
+                        print("Im - ", str(nomerBota), " shot down. Step -", botStep[nomerBota])
                         botZdorovie[nomerBota] += 2   
                         break
         
@@ -714,7 +714,7 @@ def botActivity(nomerBota):
                     for n in range(10):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]-1 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                        print("Im - ", str(nomerBota), " shot left")
+                        print("Im - ", str(nomerBota), " shot left. Step -", botStep[nomerBota])
                         botZdorovie[nomerBota] += 2   
                         break
         
@@ -724,14 +724,230 @@ def botActivity(nomerBota):
                     for n in range(10):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]+1 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                        print("Im - ", str(nomerBota), " shot right")
+                        print("Im - ", str(nomerBota), " shot right. Step -", botStep[nomerBota])
                         botZdorovie[nomerBota] += 2   
-                        break          
+                        break
+
+        elif genom[botStep[nomerBota]] == 9: # Бьём врага сверху-справа
+            if botLocation[nomerBota]>=32:
+                if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                    if world[botLocation[nomerBota]-31] >= 50: # Если справа кто-то есть, то...
+                        for n in range(10):
+                            tmp = n
+                            if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota])
+                            botZdorovie[nomerBota] += 2   
+                            break
+        
+        elif genom[botStep[nomerBota]] == 10: # Бьём врага сверху-слева
+            if botLocation[nomerBota]>=32:
+                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                    if world[botLocation[nomerBota]-33] >= 50: # Если справа кто-то есть, то...
+                        for n in range(10):
+                            tmp = n
+                            if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota])
+                            botZdorovie[nomerBota] += 2   
+                            break
+                            
+        elif genom[botStep[nomerBota]] == 11: # Бьём врага снизу-справа
+            if botLocation[nomerBota]<=416:
+                if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                    if world[botLocation[nomerBota]+33] >= 50: # Если справа кто-то есть, то...
+                        for n in range(10):
+                            tmp = n
+                            if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota])
+                            botZdorovie[nomerBota] += 2   
+                            break
+        
+        elif genom[botStep[nomerBota]] == 12: # Бьём врага снизу-слева
+            if botLocation[nomerBota]<=416:
+                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                    if world[botLocation[nomerBota]+31] >= 50: # Если справа кто-то есть, то...
+                        for n in range(10):
+                            tmp = n
+                            if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota])
+                            botZdorovie[nomerBota] += 2   
+                            break
+                            
+        elif genom[botStep[nomerBota]] == 13:  # Применяем заклинание "Пронзающая смерть"
+            for n in range(10):
+                if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                    if botLocation[nomerBota]>=32:
+                        if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                            print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
+                            if botMana[nomerBota] >= 200:
+                                print("Excellent, bot ", str(n), "is DEATH")
+                                botMana[nomerBota] -= 200
+                                botZdorovie[n] -= 200
+                                break
+                            else: print("Less that 200 mana")
+                            
+                if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                    if botLocation[nomerBota]>=32:
+                        if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                            print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
+                            if botMana[nomerBota] >= 200:
+                                print("Excellent, bot ", str(n), "is DEATH")
+                                botMana[nomerBota] -= 200
+                                botZdorovie[n] -= 200
+                                break
+                            else: print("Less that 200 mana")
+
+                if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                    if botLocation[nomerBota]<=416:
+                        if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                            print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
+                            if botMana[nomerBota] >= 200:
+                                print("Excellent, bot ", str(n), "is DEATH")
+                                botMana[nomerBota] -= 200
+                                botZdorovie[n] -= 200
+                                break
+                            else: print("Less that 200 mana")
+                            
+                if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                    if botLocation[nomerBota]<=416:
+                        if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                            print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
+                            if botMana[nomerBota] >= 200:
+                                print("Excellent, bot ", str(n), "is DEATH")
+                                botMana[nomerBota] -= 200
+                                botZdorovie[n] -= 200
+                                break
+                            else: print("Less that 200 mana")                             
+            
+                if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+                    if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                        print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
+                        if botMana[nomerBota] >= 200:
+                            print("Excellent, bot ", str(n), "is DEATH")
+                            botMana[nomerBota] -= 200
+                            botZdorovie[n] -= 200
+                            break
+                        else: print("Less that 200 mana")
+
+                if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                    if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                        print("Bot is right, Im - ", str(nomerBota), "kast - Death Explode")
+                        if botMana[nomerBota] >= 200:
+                            print("Excellent, bot ", str(n), "is DEATH")
+                            botMana[nomerBota] -= 200
+                            botZdorovie[n] -= 200
+                            break
+                        else: print("Less that 200 mana")
+
+                if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                    if botLocation[nomerBota] >= 32:
+                        print("Bot is up, Im - ", str(nomerBota), "kast - Death Explode")
+                        if botMana[nomerBota] >= 200:
+                            print("Excellent, bot ", str(n), "is DEATH")
+                            botMana[nomerBota] -= 200
+                            botZdorovie[n] -= 200
+                            break
+                        else: print("Less that 200 mana")
+ 
+                if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                    if botLocation[nomerBota] <= 416:
+                        print("Bot is up, Im - ", str(nomerBota), "kast - Death Explode")
+                        if botMana[nomerBota] >= 200:
+                            print("Excellent, bot ", str(n), "is DEATH")
+                            botMana[nomerBota] -= 200
+                            botZdorovie[n] -= 200
+                            break
+                        else: print("Less that 200 mana")  
+                        
+        elif genom[botStep[nomerBota]] == 14:  # Применяем заклинание "Fair Ball"
+            for n in range(10):
+                if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                    if botLocation[nomerBota]>=32:
+                        if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                            print("Bot is left, Im - ", str(nomerBota), "kast - Fair Ball")
+                            if botMana[nomerBota] >= 30:
+                                print("Excellent, bot ", str(n), "took damage")
+                                botMana[nomerBota] -= 30
+                                botZdorovie[n] -= 30
+                                break
+                            else: print("Less that 200 mana")
+                            
+                if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                    if botLocation[nomerBota]>=32:
+                        if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                            print("Bot is left, Im - ", str(nomerBota), "kast - Fair Ball")
+                            if botMana[nomerBota] >= 30:
+                                print("Excellent, bot ", str(n), "took damage")
+                                botMana[nomerBota] -= 30
+                                botZdorovie[n] -= 30
+                                break
+                            else: print("Less that 200 mana")
+
+                if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                    if botLocation[nomerBota]<=416:
+                        if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                            print("Bot is left, Im - ", str(nomerBota), "kast - Fair Ball")
+                            if botMana[nomerBota] >= 30:
+                                print("Excellent, bot ", str(n), "took damage")
+                                botMana[nomerBota] -= 30
+                                botZdorovie[n] -= 30
+                                break
+                            else: print("Less that 200 mana")
+                            
+                if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                    if botLocation[nomerBota]<=416:
+                        if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                            print("Bot is left, Im - ", str(nomerBota), "kast - Fair Ball")
+                            if botMana[nomerBota] >= 30:
+                                print("Excellent, bot ", str(n), "took damage")
+                                botMana[nomerBota] -= 30
+                                botZdorovie[n] -= 30
+                                break
+                            else: print("Less that 200 mana")   
+                
+                if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+                    if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                        print("Bot is left, Im - ", str(nomerBota), "kast - Fair Ball")
+                        if botMana[nomerBota] >= 30:
+                            print("Excellent, bot ", str(n), "took damage")
+                            botMana[nomerBota] -= 30
+                            botZdorovie[n] -= 30
+                            break
+                        else: print("Less that 200 mana")
+
+                if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                    if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                        print("Bot is right, Im - ", str(nomerBota), "kast - Fair Ball")
+                        if botMana[nomerBota] >= 30:
+                            print("Excellent, bot ", str(n), "took damage")
+                            botMana[nomerBota] -= 30
+                            botZdorovie[n] -= 30
+                            break
+                        else: print("Less that 200 mana")
+
+                if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                    if botLocation[nomerBota] >= 32:
+                        print("Bot is up, Im - ", str(nomerBota), "kast - Fair Ball")
+                        if botMana[nomerBota] >= 30:
+                            print("Excellent, bot ", str(n), "took damage")
+                            botMana[nomerBota] -= 30
+                            botZdorovie[n] -= 30
+                            break
+                        else: print("Less that 200 mana")
+ 
+                if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                    if botLocation[nomerBota] <= 416:
+                        print("Bot is up, Im - ", str(nomerBota), "kast - Fair Ball")
+                        if botMana[nomerBota] >= 30:
+                            print("Excellent, bot ", str(n), "took damage")
+                            botMana[nomerBota] -= 30
+                            botZdorovie[n] -= 30
+                            break
+                        else: print("Less that 200 mana")                 
 
         else:
             pass # Тут мы должны сделать перескакивание команд
     else:
-        if botVariant[nomerBota] > 0:    
+        if botVariant[nomerBota] > 0 and botZdorovie[nomerBota] <= 0:    
             ubiraemTrup(nomerBota)      
             world[botLocation[nomerBota]] = 0
             print("Bot ", str(nomerBota), " - DEAD")
@@ -754,6 +970,7 @@ for n in range(10):
     botIshZdorovie[n] = 100
     botZdorovie[n] = 100
     botVariant[n] = 151+n
+    botZaklinania[n] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
     if n<5: botRasa[n] = 1
     else: botRasa[n] = 2
     botSila[n] = 10
