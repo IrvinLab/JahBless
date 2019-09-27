@@ -4,7 +4,23 @@ import pygame.freetype
 import threading
 import random
 
-genom = [2, 0, 21, 34, 4, 11, 62, 8, 5, 58, 50, 32, 2, 38, 1, 10, 1, 32, 10, 3, 6, 2, 8, 4, 42, 21, 15, 36, 0, 5, 3, 12, 11, 24, 8, 6, 10, 21, 7, 9, 7, 54, 25, 5, 60, 52, 48, 43, 7, 8, 2, 49, 48, 6, 39, 19, 0, 13, 54, 5, 11, 4, 17, 9]
+n = 0 
+
+myGen = 1
+
+if myGen == 1:
+    genom = [5, 50, 21, 3, 4, 1, 45, 8, 17, 5, 19, 35, 2, 38, 4, 10, 42, 12, 10, 9, 30, 2, 8, 4, 42, 26, 4, 36, 0, 5, 4, 20, 11, 24, 8, 6, 10, 21, 7, 9, 4, 54, 5, 5, 3, 52, 44, 6, 7, 8, 2, 48, 62, 6, 8, 19, 13, 11, 10, 4, 2, 4, 1, 20]
+
+elif myGen == 2:
+    genom = []
+    for n in range(64):
+        genom.append(n)
+        createGen = int(random.random() * 64)
+        genom[n] = createGen
+
+print(genom)
+
+
 iteration = 1
 FPS = 60
 xGameMap = 16 
@@ -15,7 +31,6 @@ xHeroIcon = 0
 yHeroIcon = 0
 xMagic = 0
 yMagic = 0
-n = 0
 world = []
 lifeTime = 0 # Здесь измеряем время жизни ботов
 
@@ -693,40 +708,40 @@ def botActivity(nomerBota):
                 if world[botLocation[nomerBota]-32] >= 50: # Если сверху кто-то есть, то...
                     for n in range(10):
                         tmp = n
-                        if botLocation[nomerBota] == botLocation[n]-32 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                        print("Im - ", str(nomerBota), " shot up. Step -", botStep[nomerBota])
-                        botZdorovie[nomerBota] += 2
-                        break                    
+                        if botLocation[nomerBota] == botLocation[n]+32 and botZdorovie[n] > 0: 
+                            botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot up. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                            break                    
                     
         elif genom[botStep[nomerBota]] == 6: # Бьём врага вниз 
             if botLocation[nomerBota] <= 416:
                 if world[botLocation[nomerBota]+32] >= 50: # Если снизу кто-то есть, то...
                     for n in range(10):
                         tmp = n
-                        if botLocation[nomerBota] == botLocation[n]+32 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                        print("Im - ", str(nomerBota), " shot down. Step -", botStep[nomerBota])
-                        botZdorovie[nomerBota] += 2   
-                        break
+                        if botLocation[nomerBota] == botLocation[n]-32 and botZdorovie[n] > 0: 
+                            botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot down. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])  
+                            break
         
         elif genom[botStep[nomerBota]] == 7: # Бьём врага слева
             if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
                 if world[botLocation[nomerBota]-1] >= 50: # Если слева кто-то есть, то...
                     for n in range(10):
                         tmp = n
-                        if botLocation[nomerBota] == botLocation[n]-1 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                        print("Im - ", str(nomerBota), " shot left. Step -", botStep[nomerBota])
-                        botZdorovie[nomerBota] += 2   
-                        break
+                        if botLocation[nomerBota] == botLocation[n]+1 and botZdorovie[n] > 0: 
+                            botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                            break
         
         elif genom[botStep[nomerBota]] == 8: # Бьём врага справа
             if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
                 if world[botLocation[nomerBota]+1] >= 50: # Если справа кто-то есть, то...
                     for n in range(10):
                         tmp = n
-                        if botLocation[nomerBota] == botLocation[n]+1 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                        print("Im - ", str(nomerBota), " shot right. Step -", botStep[nomerBota])
-                        botZdorovie[nomerBota] += 2   
-                        break
+                        if botLocation[nomerBota] == botLocation[n]-1 and botZdorovie[n] > 0: 
+                            botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                            break
 
         elif genom[botStep[nomerBota]] == 9: # Бьём врага сверху-справа
             if botLocation[nomerBota]>=32:
@@ -734,10 +749,10 @@ def botActivity(nomerBota):
                     if world[botLocation[nomerBota]-31] >= 50: # Если справа кто-то есть, то...
                         for n in range(10):
                             tmp = n
-                            if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                            print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota])
-                            botZdorovie[nomerBota] += 2   
-                            break
+                            if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: 
+                                botZdorovie[n] -= botSila[nomerBota]
+                                print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                                break
         
         elif genom[botStep[nomerBota]] == 10: # Бьём врага сверху-слева
             if botLocation[nomerBota]>=32:
@@ -745,10 +760,10 @@ def botActivity(nomerBota):
                     if world[botLocation[nomerBota]-33] >= 50: # Если справа кто-то есть, то...
                         for n in range(10):
                             tmp = n
-                            if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                            print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota])
-                            botZdorovie[nomerBota] += 2   
-                            break
+                            if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: 
+                                botZdorovie[n] -= botSila[nomerBota]
+                                print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])  
+                                break
                             
         elif genom[botStep[nomerBota]] == 11: # Бьём врага снизу-справа
             if botLocation[nomerBota]<=416:
@@ -756,10 +771,10 @@ def botActivity(nomerBota):
                     if world[botLocation[nomerBota]+33] >= 50: # Если справа кто-то есть, то...
                         for n in range(10):
                             tmp = n
-                            if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                            print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota])
-                            botZdorovie[nomerBota] += 2   
-                            break
+                            if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: 
+                                botZdorovie[n] -= botSila[nomerBota]
+                                print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                                break
         
         elif genom[botStep[nomerBota]] == 12: # Бьём врага снизу-слева
             if botLocation[nomerBota]<=416:
@@ -767,10 +782,10 @@ def botActivity(nomerBota):
                     if world[botLocation[nomerBota]+31] >= 50: # Если справа кто-то есть, то...
                         for n in range(10):
                             tmp = n
-                            if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: botZdorovie[n] -= botSila[nomerBota]
-                            print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota])
-                            botZdorovie[nomerBota] += 2   
-                            break
+                            if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: 
+                                botZdorovie[n] -= botSila[nomerBota]
+                                print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                                break
                             
         elif genom[botStep[nomerBota]] == 13:  # Применяем заклинание "Пронзающая смерть"
             for n in range(15):
@@ -1062,17 +1077,71 @@ def botActivity(nomerBota):
                             else: botZdorovie[nomerBota] = botIshZdorovie[nomerBota]
                             print("Bot #", str(nomerBota), " - I was healed")
                         else: print("Need a mana for heal")
-                    else: print("no Treatment needed")    
+                    else: print("no Moon Treatment needed")
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        elif genom[botStep[nomerBota]] == 18:  # Применяем заклинание "Телепортация"        
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 3:  
+                    if botMana[nomerBota] >= 150:
+                        print("Bot -", str(nomerBota)," Teleportation")
+                        botMana[nomerBota] -= 150
+                        profit = 0
+                        while profit == 0:
+                            teleport = int(random.random() * 448)
+                            if world[teleport] == 0:
+                                world[botLocation[nomerBota]] = 0
+                                botLocation[nomerBota] = teleport
+                                profit = 1
+                                
+        elif genom[botStep[nomerBota]] == 19: # Идём вверх-влево
+            if botLocation[nomerBota]>=32:
+                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                    if world[botLocation[nomerBota]-33] == 0:
+                        yBot[nomerBota] -= 32
+                        xBot[nomerBota] -= 32
+                        world[botLocation[nomerBota]] = 0
+                        world[botLocation[nomerBota]-33] = botVariant[nomerBota]
+                        botLocation[nomerBota] -= 33
+                        worldUpdate()
+                        pygame.display.update()  
+                    
+                    
+        elif genom[botStep[nomerBota]] == 20: # Идём вверх-вправо
+            if botLocation[nomerBota]>= 32:
+                if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                    if world[botLocation[nomerBota]-31] == 0:
+                        yBot[nomerBota] -= 32
+                        xBot[nomerBota] += 32
+                        world[botLocation[nomerBota]] = 0
+                        world[botLocation[nomerBota]-31] = botVariant[nomerBota]
+                        botLocation[nomerBota] -= 31
+                        worldUpdate()
+                        pygame.display.update()
+                    
+        elif genom[botStep[nomerBota]] == 21: # Идём вниз-влево
+            if botLocation[nomerBota]<=416:
+                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                    if world[botLocation[nomerBota]+31] == 0:
+                        yBot[nomerBota] += 32
+                        xBot[nomerBota] -= 32
+                        world[botLocation[nomerBota]] = 0
+                        world[botLocation[nomerBota]+31] = botVariant[nomerBota]
+                        botLocation[nomerBota] += 31
+                        worldUpdate()
+                        pygame.display.update()  
+                    
+                    
+        elif genom[botStep[nomerBota]] == 22: # Идём вниз-вправо
+            if botLocation[nomerBota]<= 416:
+                if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                    if world[botLocation[nomerBota]+33] == 0:
+                        yBot[nomerBota] += 32
+                        xBot[nomerBota] += 32
+                        world[botLocation[nomerBota]] = 0
+                        world[botLocation[nomerBota]+33] = botVariant[nomerBota]
+                        botLocation[nomerBota] += 33
+                        worldUpdate()
+                        pygame.display.update()                                           
         
         
         else:
@@ -1086,12 +1155,12 @@ def botActivity(nomerBota):
             pygame.display.update()
         
     botStep[nomerBota] += 1
-    botZdorovie[nomerBota] -= 1
+    #botZdorovie[nomerBota] -= 1
     
    
 worldCreate()    
 
-locations = [139,171,204,131,39,77,370,149,300,124]
+locations = [249,171,204,131,59,77,370,149,300,124]
 n = 0
 
 for n in range(10):
@@ -1101,7 +1170,7 @@ for n in range(10):
     botIshZdorovie[n] = 100
     botZdorovie[n] = 100
     botVariant[n] = 151+n
-    botZaklinania[n] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+    botZaklinania[n] = [1,2,0,4,5,6,7,8,9,10,11,12,13,14,15,16]
     if n<5: botRasa[n] = 1
     else: botRasa[n] = 2
     botSila[n] = 10
@@ -1124,4 +1193,5 @@ while True:
             
     
                 
-            
+# [13, 50, 21, 34, 4, 11, 45, 8, 17, 58, 19, 35, 2, 38, 1, 10, 42, 12, 10, 43, 30, 2, 8, 4, 42, 26, 15, 36, 0, 5, 58, 20, 11, 24, 8, 6, 10, 21, 7, 9, 4, 54, 5, 5, 55, 52, 44, 43, 7, 8, 2, 48, 62, 6, 8, 19, 0, 11, 54, 1, 11, 4, 17, 20]
+# Хороший геном - 235-242 время жизни            
