@@ -9,7 +9,7 @@ n = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [5, 50, 21, 3, 4, 1, 45, 8, 17, 5, 19, 35, 2, 38, 4, 10, 42, 12, 10, 9, 30, 2, 8, 4, 42, 26, 4, 36, 0, 5, 4, 20, 11, 24, 8, 6, 10, 21, 7, 9, 4, 54, 5, 5, 3, 52, 44, 6, 7, 8, 2, 48, 62, 6, 8, 19, 13, 11, 10, 4, 2, 4, 1, 20]
+    genom = [1, 50, 21, 3, 4, 2, 45, 8, 17, 5, 19, 35, 2, 38, 4, 10, 42, 12, 10, 9, 30, 2, 8, 4, 42, 26, 4, 36, 0, 5, 4, 20, 11, 24, 8, 6, 10, 21, 7, 9, 4, 54, 5, 5, 3, 52, 44, 6, 7, 8, 2, 48, 62, 6, 8, 19, 13, 11, 10, 4, 2, 4, 1, 20]
 
 elif myGen == 2:
     genom = []
@@ -33,6 +33,7 @@ xMagic = 0
 yMagic = 0
 world = []
 lifeTime = 0 # Здесь измеряем время жизни ботов
+sobitie = 0 # Здесь мы отсчитываем ходы ботов для того чтобы вызывать события
 
 # Переменные ботов
 bot = 1 # Количество ботов
@@ -628,30 +629,49 @@ def mutation(): # Изменяем геном. Меняем случайный �
     genMutant = int(random.random() * 64)
     iteration += 1
     lifeTime = 0
-    worldCreate()
+    #worldCreate()
     numerMutant = int(random.random() * 64)
     
     genom[genMutant] = numerMutant
     
-    for n in range(10):
-        botLocation[n] = locations[n]
-        botMana[n] = 200
-        botIshMana[n] = 200
-        botIshZdorovie[n] = 100
-        botZdorovie[n] = 100
-        botVariant[n] = 151+n
-        botZaklinania[n] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
-        if n<5: botRasa[n] = 1
-        else: botRasa[n] = 2
-        botSila[n] = 10
-        world[locations[n]] = 151+n
+    #for n in range(10):
+    #    botLocation[n] = locations[n]
+    #    botMana[n] = 200
+    #    botIshMana[n] = 200
+    #    botIshZdorovie[n] = 100
+    #    botZdorovie[n] = 100
+    #    botVariant[n] = 151+n
+    #    botZaklinania[n] = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+    #    if n<5: botRasa[n] = 1
+    #    else: botRasa[n] = 2
+    #    botSila[n] = 10
+    #    world[locations[n]] = 151+n
     print("===================================================================")    
-    print("Iteration #", str(iteration), "gene - ", str(genMutant), " changed - ", str(numerMutant))
+    print("Iteration #", str(iteration), "gene - ", str(genMutant), " changed - ", str(numerMutant), ". Event =",str(sobitie))
     
     
 
 def botActivity(nomerBota):
-    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto    
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
+    
+    #print("botActivity", str(sobitie))
+    if sobitie % 597 == 0: mutation()
+    
+    if sobitie % 2077 == 0:
+        for n in range(1000):
+            if botZdorovie[n] <= 0 and world[63] == 0:
+                ubiraemTrup(n)
+                botLocation[n] = locations[n]
+                botMana[n] = 200
+                botIshMana[n] = 200
+                botIshZdorovie[n] = 100
+                botZdorovie[n] = 100
+                botVariant[n] = 100+n
+                botZaklinania[n] = [1,2,0,4,5,6,7,8,9,10,11,12,13,14,15,16]
+                botSila[n] = 10
+                world[locations[n]] = 100+n
+                print("A bot was BORN #",str(n))
+                break
     
     if botZdorovie[0] <= 0 and botZdorovie[1] <= 0 and botZdorovie[2] <= 0 and botZdorovie[3]<= 0 and botZdorovie[4] <= 0 and botZdorovie[5] <= 0 and botZdorovie[6] <= 0 and botZdorovie[7] <= 0 and botZdorovie[8] <= 0 and  botZdorovie[9] <= 0:
         print(genom)
@@ -796,7 +816,7 @@ def botActivity(nomerBota):
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
                                     print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
                                     if botMana[nomerBota] >= 200:
-                                        print("Excellent, bot ", str(n), "is DEATH")
+                                        print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         botMana[nomerBota] -= 200
                                         botZdorovie[n] -= 200
                                         break
@@ -1155,15 +1175,16 @@ def botActivity(nomerBota):
             pygame.display.update()
         
     botStep[nomerBota] += 1
+    sobitie += 1
     #botZdorovie[nomerBota] -= 1
-    
+    if sobitie > 100000: sobitie = 0
    
 worldCreate()    
 
-locations = [249,171,204,131,59,77,370,149,300,124]
+locations = [249,171,204,131,59,77,370,149,300,124,63,63,63,63,63,63,63]
 n = 0
 
-for n in range(10):
+for n in range(9):
     botLocation[n] = locations[n]
     botMana[n] = 200
     botIshMana[n] = 200
@@ -1180,12 +1201,11 @@ for n in range(10):
 n = 0    
 pygame.display.update()   
 while True:
-    clock.tick(FPS) 
-    botActivity(n)
-    #print(n)
+    #clock.tick(FPS)
+    if botZdorovie[n] > 0: botActivity(n)
     n += 1
     
-    if n >= 10: n = 0; lifeTime += 1
+    if n >= 1000: n = 0; lifeTime += 1
     
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
