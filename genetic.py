@@ -9,7 +9,7 @@ n = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [1, 50, 21, 3, 4, 2, 45, 8, 17, 5, 19, 35, 2, 38, 4, 10, 42, 12, 10, 9, 30, 2, 8, 4, 42, 26, 4, 36, 0, 5, 4, 20, 11, 24, 8, 6, 10, 21, 7, 9, 4, 54, 5, 5, 3, 52, 44, 6, 7, 8, 2, 48, 62, 6, 8, 19, 13, 11, 10, 4, 2, 4, 1, 20]
+    genom = [1, 6, 21, 3, 4, 2, 5, 8, 17, 5, 19, 3, 3, 38, 4, 10, 42, 12, 10, 19, 30, 2, 8, 4, 42, 26, 4, 36, 0, 5, 3, 20, 11, 24, 8, 6, 10, 21, 7, 9, 4, 8, 5, 5, 3, 21, 44, 6, 7, 8, 2, 48, 69, 6, 8, 19, 14, 11, 10, 4, 2, 4, 3, 20]
 
 elif myGen == 2:
     genom = []
@@ -341,7 +341,7 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
     if iconka == 144: pix = pygame.image.load('Images/otstupnik_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap)) 
     if iconka == 145: pix = pygame.image.load('Images/razboinik_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 146: pix = pygame.image.load('Images/grabitel_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
-    if iconka == 147: pix = pygame.image.load('Images/redFireHolem_32.png'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))
+    if iconka == 147: pix = pygame.image.load('Images/redFireHolem_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))
     if iconka == 148: pix = pygame.image.load('Images/skelet1_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 149: pix = pygame.image.load('Images/skelet2_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 150: pix = pygame.image.load('Images/skelet3_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap)) 
@@ -648,7 +648,7 @@ def mutation(): # Изменяем геном. Меняем случайный �
     #    world[locations[n]] = 151+n
     print("===================================================================")    
     print("Iteration #", str(iteration), "gene - ", str(genMutant), " changed - ", str(numerMutant), ". Event =",str(sobitie))
-    
+    print("Genom:", str(genom))
     
 
 def botActivity(nomerBota):
@@ -657,21 +657,3376 @@ def botActivity(nomerBota):
     #print("botActivity", str(sobitie))
     if sobitie % 597 == 0: mutation()
     
-    if sobitie % 2077 == 0:
+    if sobitie % 1537 == 0: # Рожаем бота
         for n in range(1000):
-            if botZdorovie[n] <= 0 and world[63] == 0:
-                ubiraemTrup(n)
-                botLocation[n] = locations[n]
-                botMana[n] = 200
-                botIshMana[n] = 200
-                botIshZdorovie[n] = 100
-                botZdorovie[n] = 100
-                botVariant[n] = 100+n
-                botZaklinania[n] = [1,2,0,4,5,6,7,8,9,10,11,12,13,14,15,16]
-                botSila[n] = 10
-                world[locations[n]] = 100+n
-                print("A bot was BORN #",str(n))
-                break
+            if botZdorovie[n] <= 0: #Если бот номер N мёртв, то занимаем его ID
+                tmp = int(random.random()*72)+100 # Генеруем вид бота
+                botRandom = int(random.random()*100) # Переменная для случайного распределения артефактов
+                print("BORN bot #",str(n)," variant -",str(tmp))
+                if tmp == 100: # Эльф 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 110
+                    botIshZdorovie[n] = 110
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 10
+                    botLovkost[n] = 6
+                    botYdacha[n] = 5
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 60
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 100
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 150
+                    if botRandom == 10:
+                        botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 200       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                
+                if tmp == 101: # Эльф 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 125
+                    botIshZdorovie[n] = 125
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 12
+                    botLovkost[n] = 7
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 90
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 200
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 300
+                    if botRandom == 10:
+                        botInventar[n] = [3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 400       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 102: # Эльф 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 150
+                    botIshZdorovie[n] = 150
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 15
+                    botLovkost[n] = 8
+                    botYdacha[n] = 8
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 1
+                    botBronza[n] = 150
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 250
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 350 
+                    if botRandom == 10:
+                        botInventar[n] = [4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 2
+                        botBronza[n] = 450       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 103: # Гнолл 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 110
+                    botIshZdorovie[n] = 110
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 10
+                    botLovkost[n] = 5
+                    botYdacha[n] = 3
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 100
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417  
+                        
+                if tmp == 104: # Гнолл 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 125
+                    botIshZdorovie[n] = 125
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 12
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 10
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 60
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 120
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417   
+                        
+                if tmp == 105: # Гнолл 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 150
+                    botIshZdorovie[n] = 150
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 15
+                    botLovkost[n] = 7
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 40
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 100
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 180
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417    
+                        
+                if tmp == 106: # Гном 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 140
+                    botIshZdorovie[n] = 140
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 18
+                    botLovkost[n] = 7
+                    botYdacha[n] = 10
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 100
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 180
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 280
+                    if botRandom == 10:
+                        botInventar[n] = [67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1       
+                        botBronza[n] = 400
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 107: # Гном 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 195
+                    botIshZdorovie[n] = 195
+                    botMana[n] = 60
+                    botIshMana[n] = 60
+                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 21
+                    botLovkost[n] = 9
+                    botYdacha[n] = 12
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 200
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 300
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [68,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1 
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [69,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 2       
+                        botBronza[n] = 500
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 108: # Гном 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 275
+                    botIshZdorovie[n] = 275
+                    botMana[n] = 120
+                    botIshMana[n] = 120
+                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 25
+                    botLovkost[n] = 9
+                    botYdacha[n] = 15
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 300
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [68,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 400
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [69,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 2 
+                        botBronza[n] = 500
+                    if botRandom == 10:
+                        botInventar[n] = [70,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3       
+                        botBronza[n] = 650
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 109: # Гном 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 375
+                    botIshZdorovie[n] = 375
+                    botMana[n] = 180
+                    botIshMana[n] = 180
+                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 31
+                    botLovkost[n] = 12
+                    botYdacha[n] = 19
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [68,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 1
+                    botBronza[n] = 500
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [69,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 2
+                        botBronza[n] = 500
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [70,5,2,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 2 
+                        botBronza[n] = 600
+                    if botRandom == 10:
+                        botInventar[n] = [70,5,3,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3       
+                        botBronza[n] = 800
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 110: # Гоблин 0 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 0
+                    botZdorovie[n] = 50
+                    botIshZdorovie[n] = 50
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 3
+                    botLovkost[n] = 5
+                    botYdacha[n] = 10
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 10
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 30
+                    if botRandom == 10:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botBronza[n] = 90
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 111: # Гоблин 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 100
+                    botIshZdorovie[n] = 100
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 10
+                    botLovkost[n] = 8
+                    botYdacha[n] = 11
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 30
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 80
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 120
+                    if botRandom == 10:
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botBronza[n] = 150
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 112: # Гоблин 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 120
+                    botIshZdorovie[n] = 120
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 13
+                    botLovkost[n] = 8
+                    botYdacha[n] = 12
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 80
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 120
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 160
+                    if botRandom == 10:
+                        botInventar[n] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botBronza[n] = 210
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 113: # Гоблин 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 145
+                    botIshZdorovie[n] = 145
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 16
+                    botLovkost[n] = 8
+                    botYdacha[n] = 15
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 120
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 160
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 210
+                    if botRandom == 10:
+                        botInventar[n] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botSerebro[n] = 1
+                        botBronza[n] = 290
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62 
+                        
+                if tmp == 114: # Отшельник 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 125
+                    botIshZdorovie[n] = 125
+                    botMana[n] = 90
+                    botIshMana[n] = 90
+                    botZaklinania[n]=[6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 11
+                    botLovkost[n] = 6
+                    botYdacha[n] = 10
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 60
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 100
+                    if botRandom == 10:
+                        botInventar[n] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botSerebro[n] = 1
+                        botBronza[n] = 0
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 115: # Отшельник 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 165
+                    botIshZdorovie[n] = 165
+                    botMana[n] = 160
+                    botIshMana[n] = 160
+                    botZaklinania[n]=[6,22,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 14
+                    botLovkost[n] = 6
+                    botYdacha[n] = 12
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [7,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 60
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 100
+                    if botRandom == 10:
+                        botInventar[n] = [73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botSerebro[n] = 1
+                        botBronza[n] = 0
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 116: # Отшельник 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 225
+                    botIshZdorovie[n] = 225
+                    botMana[n] = 250
+                    botIshMana[n] = 250
+                    botZaklinania[n]=[6,22,7,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 18
+                    botLovkost[n] = 6
+                    botYdacha[n] = 19
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 200
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 250
+                    if botRandom == 10:
+                        botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botSerebro[n] = 1
+                        botBronza[n] = 250
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 117: # Охотник за головами 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 265
+                    botIshZdorovie[n] = 265
+                    botMana[n] = 60
+                    botIshMana[n] = 60
+                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 21
+                    botLovkost[n] = 7
+                    botYdacha[n] = 15
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 100
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [6,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 150
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [61,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 250
+                    if botRandom == 10:
+                        botInventar[n] = [62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botSerebro[n] = 1
+                        botBronza[n] = 250
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 118: # Человке 0 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 0
+                    botZdorovie[n] = 50
+                    botIshZdorovie[n] = 50
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 4
+                    botLovkost[n] = 5
+                    botYdacha[n] = 3
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 15
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 20
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 40
+                    if botRandom == 10:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botBronza[n] = 90
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 119: # Монстр 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 140
+                    botIshZdorovie[n] = 140
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 15
+                    botLovkost[n] = 7
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 20
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 40
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 80
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 180
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 120: # Монстр 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 190
+                    botIshZdorovie[n] = 190
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 18
+                    botLovkost[n] = 7
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 20
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 40
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 80
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 180
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 121: # Монстр 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 300
+                    botIshZdorovie[n] = 300
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 30
+                    botLovkost[n] = 9
+                    botYdacha[n] = 10
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 200
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [53,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 300
+                    if botRandom == 10:
+                        botInventar[n] = [59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 2       
+                        botBronza[n] = 450
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417 
+                        
+                if tmp == 122: # Монстр 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 570
+                    botIshZdorovie[n] = 570
+                    botMana[n] = 400
+                    botIshMana[n] = 400
+                    botZaklinania[n]=[12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 45
+                    botLovkost[n] = 9
+                    botYdacha[n] = 10
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 500
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 600
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 750
+                    if botRandom == 10:
+                        botInventar[n] = [51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 4       
+                        botBronza[n] = 900
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 123: # Морлок 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 125
+                    botIshZdorovie[n] = 125
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 12
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 10
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 60
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 120
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 124: # Морлок 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 165
+                    botIshZdorovie[n] = 165
+                    botMana[n] = 30
+                    botIshMana[n] = 30
+                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 15
+                    botLovkost[n] = 6
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 50
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 100
+                    if botRandom == 10:
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 150
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 125: # Морлок 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 200
+                    botIshZdorovie[n] = 200
+                    botMana[n] = 90
+                    botIshMana[n] = 90
+                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 20
+                    botLovkost[n] = 6
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 100
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 160
+                    if botRandom == 10:
+                        botInventar[n] = [4,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 250
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 126: # Наёмник 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 130
+                    botIshZdorovie[n] = 130
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 13
+                    botLovkost[n] = 7
+                    botYdacha[n] = 10
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 90
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 100
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [60,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 200
+                    if botRandom == 10:
+                        botInventar[n] = [61,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 250       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 127: # Наёмник 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 165
+                    botIshZdorovie[n] = 165
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 16
+                    botLovkost[n] = 7
+                    botYdacha[n] = 10
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 150
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [60,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 200
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [61,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 300
+                    if botRandom == 10:
+                        botInventar[n] = [62,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 450       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 128: # Наёмник 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 210
+                    botIshZdorovie[n] = 210
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 20
+                    botLovkost[n] = 7
+                    botYdacha[n] = 15
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 350
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [61,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 300
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [62,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [63,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 550       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 129: # Наёмник 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 310
+                    botIshZdorovie[n] = 310
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 29
+                    botLovkost[n] = 7
+                    botYdacha[n] = 15
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 450
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [62,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 500
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [63,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 600
+                    if botRandom == 10:
+                        botInventar[n] = [65,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 750       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 130: # Некромант 5 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 5
+                    botZdorovie[n] = 350
+                    botIshZdorovie[n] = 350
+                    botMana[n] = 400
+                    botIshMana[n] = 400
+                    botZaklinania[n]=[12,22,6,5,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 20
+                    botLovkost[n] = 7
+                    botYdacha[n] = 25
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 150
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 200
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [59,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 2
+                        botBronza[n] = 300
+                    if botRandom == 10:
+                        botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 450       
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 131: # Непобедимый 6 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 6
+                    botZdorovie[n] = 490
+                    botIshZdorovie[n] = 490
+                    botMana[n] = 350
+                    botIshMana[n] = 350
+                    botZaklinania[n]=[12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 39
+                    botLovkost[n] = 7
+                    botYdacha[n] = 25
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 400
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 2
+                        botBronza[n] = 500
+                    if botRandom == 10:
+                        botInventar[n] = [65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 650       
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 132: # Непобедимый 7 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 7
+                    botZdorovie[n] = 600
+                    botIshZdorovie[n] = 600
+                    botMana[n] = 490
+                    botIshMana[n] = 490
+                    botZaklinania[n]=[12,6,13,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 50
+                    botLovkost[n] = 7
+                    botYdacha[n] = 25
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [59,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 450
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 500
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 2
+                        botBronza[n] = 700
+                    if botRandom == 10:
+                        botInventar[n] = [51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 950       
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 133: # Огр 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 200
+                    botIshZdorovie[n] = 200
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 25
+                    botLovkost[n] = 6
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 20
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 50
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 100
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 134: # Огр 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 270
+                    botIshZdorovie[n] = 270
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 31
+                    botLovkost[n] = 6
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 5
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 50
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 50
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 100
+                    if botRandom == 10:
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 150
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 135: # Оккультист 6 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 5
+                    botZdorovie[n] = 450
+                    botIshZdorovie[n] = 450
+                    botMana[n] = 550
+                    botIshMana[n] = 550
+                    botZaklinania[n]=[12,22,6,5,4,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 25
+                    botLovkost[n] = 7
+                    botYdacha[n] = 35
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [9,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 300
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [10,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 2
+                        botBronza[n] = 400
+                    if botRandom == 12:
+                        botInventar[n] = [55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 650
+                    if botRandom == 11:
+                        botInventar[n] = [57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 650
+                    if botRandom == 10:
+                        botInventar[n] = [66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 650       
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 136: # Орк 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 135
+                    botIshZdorovie[n] = 135
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 14
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 30
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 60
+                    if botRandom == 10:
+                        botInventar[n] = [27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 120
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 137: # Орк 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 165
+                    botIshZdorovie[n] = 165
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 17
+                    botLovkost[n] = 6
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 100
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 150
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 200
+                    if botRandom == 10:
+                        botInventar[n] = [28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 300
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 138: # Орк 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 235
+                    botIshZdorovie[n] = 235
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 23
+                    botLovkost[n] = 6
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 150
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 150
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 200
+                    if botRandom == 10:
+                        botInventar[n] = [29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 300
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 139: # Орк 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 300
+                    botIshZdorovie[n] = 300
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 30
+                    botLovkost[n] = 6
+                    botYdacha[n] = 15
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 350
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 500
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 140: # Орк 5 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 5
+                    botZdorovie[n] = 475
+                    botIshZdorovie[n] = 475
+                    botMana[n] = 200
+                    botIshMana[n] = 200
+                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 40
+                    botLovkost[n] = 6
+                    botYdacha[n] = 17
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [5,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 350
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 500
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 141: # Орк 6 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 6
+                    botZdorovie[n] = 600
+                    botIshZdorovie[n] = 600
+                    botMana[n] = 300
+                    botIshMana[n] = 300
+                    botZaklinania[n]=[22,16,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 55
+                    botLovkost[n] = 6
+                    botYdacha[n] = 17
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 350
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 500
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417 
+                        
+                if tmp == 142: # Орк 7 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 7
+                    botZdorovie[n] = 870
+                    botIshZdorovie[n] = 870
+                    botMana[n] = 400
+                    botIshMana[n] = 400
+                    botZaklinania[n]=[22,16,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 75
+                    botLovkost[n] = 6
+                    botYdacha[n] = 27
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 350
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 4
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [32,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botSerebro[n] = 5
+                        botBronza[n] = 500
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 143: # Орк-шаман 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 300
+                    botIshZdorovie[n] = 300
+                    botMana[n] = 230
+                    botIshMana[n] = 230
+                    botZaklinania[n]=[12,7,4,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 30
+                    botLovkost[n] = 6
+                    botYdacha[n] = 15
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 350
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 2
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [73,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3       
+                        botBronza[n] = 500
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 144: # Оккультист 7 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 7
+                    botZdorovie[n] = 590
+                    botIshZdorovie[n] = 590
+                    botMana[n] = 750
+                    botIshMana[n] = 750
+                    botZaklinania[n]=[12,22,6,5,4,7,14,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 35
+                    botLovkost[n] = 7
+                    botYdacha[n] = 35
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [59,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 350
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [73,53,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 400
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [10,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 2
+                        botBronza[n] = 500
+                    if botRandom == 12:
+                        botInventar[n] = [56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 950
+                    if botRandom == 11:
+                        botInventar[n] = [66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 950
+                    if botRandom == 10:
+                        botInventar[n] = [55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 950       
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 145: # Разбойник 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 165
+                    botIshZdorovie[n] = 165
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 17
+                    botLovkost[n] = 6
+                    botYdacha[n] = 6
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 100
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 150
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 200
+                    if botRandom == 10:
+                        botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 300
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 146: # Разбойник 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 185
+                    botIshZdorovie[n] = 185
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 20
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 200
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 250
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 300
+                    if botRandom == 10:
+                        botInventar[n] = [49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 500
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 147: # Красный огненный голем 5 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 5
+                    botZdorovie[n] = 500
+                    botIshZdorovie[n] = 500
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 49
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 350
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 500
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 148: # Скелет 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 50
+                    botIshZdorovie[n] = 50
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 5
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 0
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 0
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 0
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 149: # Скелет 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 75
+                    botIshZdorovie[n] = 75
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 9
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 0
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 0
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 0
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417 
+                        
+                if tmp == 150: # Скелет 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 110
+                    botIshZdorovie[n] = 110
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 12
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 0
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 0
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 0
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 151: # Скелет 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 155
+                    botIshZdorovie[n] = 155
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 17
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 0
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 0
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 0
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 152: # Скелет 5 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 5
+                    botZdorovie[n] = 200
+                    botIshZdorovie[n] = 200
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 27
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 0
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 0
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 0
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 153: # Скелет 6 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 6
+                    botZdorovie[n] = 295
+                    botIshZdorovie[n] = 295
+                    botMana[n] = 170
+                    botIshMana[n] = 170
+                    botZaklinania[n]=[12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 40
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 0
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 0
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 0
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 154: # Скелет 7 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 7
+                    botZdorovie[n] = 430
+                    botIshZdorovie[n] = 430
+                    botMana[n] = 200
+                    botIshMana[n] = 200
+                    botZaklinania[n]=[12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 53
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 0
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 0
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 0
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 155: # Скелет 8 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 8
+                    botZdorovie[n] = 590
+                    botIshZdorovie[n] = 590
+                    botMana[n] = 300
+                    botIshMana[n] = 300
+                    botZaklinania[n]=[11,15,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 70
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 0
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 0
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 0
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 156: # Душекрад 10 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 10
+                    botZdorovie[n] = 1350
+                    botIshZdorovie[n] = 1350
+                    botMana[n] = 1200
+                    botIshMana[n] = 1200
+                    botZaklinania[n]=[15,16,1,19,23,13,7,4,0,0,0,0,0,0,0,100]
+                    botSila[n] = 120
+                    botLovkost[n] = 6
+                    botYdacha[n] = 47
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [10,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 350
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [31,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 4
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botSerebro[n] = 5
+                        botBronza[n] = 500
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 157: # Странник 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 240
+                    botIshZdorovie[n] = 240
+                    botMana[n] = 300
+                    botIshMana[n] = 300
+                    botZaklinania[n]=[22,6,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 20
+                    botLovkost[n] = 7
+                    botYdacha[n] = 25
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 150
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 200
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [59,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 2
+                        botBronza[n] = 300
+                    if botRandom == 10:
+                        botInventar[n] = [56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 450       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 158: # Тролль 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 115
+                    botIshZdorovie[n] = 115
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 11
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 50
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 100
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 200
+                    if botRandom == 10:
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 350
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 159: # Тролль 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 135
+                    botIshZdorovie[n] = 135
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 14
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 70
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 200
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 300
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 400
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 160: # Тролль 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 185
+                    botIshZdorovie[n] = 185
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 19
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 100
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 250
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 400
+                    if botRandom == 10:
+                        botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 600
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 161: # Тролль 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 245
+                    botIshZdorovie[n] = 245
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 27
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 130
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 230
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 380
+                    if botRandom == 10:
+                        botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 700
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 162: # Тролль 5 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 5
+                    botZdorovie[n] = 345
+                    botIshZdorovie[n] = 345
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 39
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 200
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 30
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 60
+                    if botRandom == 10:
+                        botInventar[n] = [31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 120
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 163: # Тролль 6 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 6
+                    botZdorovie[n] = 495
+                    botIshZdorovie[n] = 495
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 53
+                    botLovkost[n] = 6
+                    botYdacha[n] = 4
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 300
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [11,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 450
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [31,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 600
+                    if botRandom == 10:
+                        botInventar[n] = [31,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botBronza[n] = 900
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 164: # Вампир 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 245
+                    botIshZdorovie[n] = 245
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 30
+                    botLovkost[n] = 6
+                    botYdacha[n] = 20
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 4
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [12,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 100
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [59,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 1
+                    if botRandom == 10:
+                        botInventar[n] = [53,11,12,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botSerebro[n] = 3
+                    if world[384] == 0:
+                        xBot[n] = 16
+                        yBot[n] = 480
+                        world[384] = tmp
+                        botLocation[n] = 384 
+                    elif world[385] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 480
+                        world[385] = tmp
+                        botLocation[n] = 385 
+                    elif world[417] == 0:
+                        xBot[n] = 48
+                        yBot[n] = 512
+                        world[417] = tmp
+                        botLocation[n] = 417
+                        
+                if tmp == 165: # Колдун 5 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 5
+                    botZdorovie[n] = 350
+                    botIshZdorovie[n] = 350
+                    botMana[n] = 450
+                    botIshMana[n] = 450
+                    botZaklinania[n]=[22,6,12,1,9,19,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 20
+                    botLovkost[n] = 7
+                    botYdacha[n] = 25
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 250
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [9,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
+                        botBronza[n] = 400
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [59,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botSerebro[n] = 2
+                        botBronza[n] = 500
+                    if botRandom == 10:
+                        botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 750       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 166: # Женщина-эльф 1 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 1
+                    botZdorovie[n] = 100
+                    botIshZdorovie[n] = 100
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 9
+                    botLovkost[n] = 6
+                    botYdacha[n] = 7
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 60
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 100
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 150
+                    if botRandom == 10:
+                        botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 200       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 167: # Женщина-эльф 2 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 2
+                    botZdorovie[n] = 130
+                    botIshZdorovie[n] = 130
+                    botMana[n] = 0
+                    botIshMana[n] = 0
+                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 13
+                    botLovkost[n] = 6
+                    botYdacha[n] = 13
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 120
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 200
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 350
+                    if botRandom == 10:
+                        botInventar[n] = [5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 500       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 168: # Женщина-эльф 3 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 3
+                    botZdorovie[n] = 175
+                    botIshZdorovie[n] = 175
+                    botMana[n] = 80
+                    botIshMana[n] = 80
+                    botZaklinania[n]=[9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 19
+                    botLovkost[n] = 6
+                    botYdacha[n] = 18
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 170
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 270
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 370
+                    if botRandom == 10:
+                        botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 570       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 169: # Женщина-эльф 4 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 4
+                    botZdorovie[n] = 235
+                    botIshZdorovie[n] = 235
+                    botMana[n] = 180
+                    botIshMana[n] = 180
+                    botZaklinania[n]=[9,6,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 27
+                    botLovkost[n] = 6
+                    botYdacha[n] = 13
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 270
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 370
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [7,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 500
+                    if botRandom == 10:
+                        botInventar[n] = [59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 700       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 170: # Женщина-эльф 5 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 5
+                    botZdorovie[n] = 310
+                    botIshZdorovie[n] = 310
+                    botMana[n] = 300
+                    botIshMana[n] = 300
+                    botZaklinania[n]=[9,6,12,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 39
+                    botLovkost[n] = 6
+                    botYdacha[n] = 18
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 370
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 470
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [11,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 600
+                    if botRandom == 10:
+                        botInventar[n] = [72,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 900       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 171: # Женщина-эльф 6 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 6
+                    botZdorovie[n] = 440
+                    botIshZdorovie[n] = 440
+                    botMana[n] = 400
+                    botIshMana[n] = 400
+                    botZaklinania[n]=[9,6,12,23,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 52
+                    botLovkost[n] = 6
+                    botYdacha[n] = 18
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 480
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 580
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [11,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 800
+                    if botRandom == 10:
+                        botInventar[n] = [56,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 1000       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62
+                        
+                if tmp == 172: # Женщина-эльф 7 ур.
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 7
+                    botZdorovie[n] = 640
+                    botIshZdorovie[n] = 640
+                    botMana[n] = 550
+                    botIshMana[n] = 550
+                    botZaklinania[n]=[9,6,12,23,19,0,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 69
+                    botLovkost[n] = 6
+                    botYdacha[n] = 18
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 680
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 780
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 900
+                    if botRandom == 10:
+                        botInventar[n] = [58,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 1500       
+                    if world[30] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 96
+                        world[30] = tmp
+                        botLocation[n] = 30
+                    elif world[63] == 0:
+                        xBot[n] = 976
+                        yBot[n] = 128
+                        world[63] = tmp
+                        botLocation[n] = 63 
+                    elif world[62] == 0:
+                        xBot[n] = 1008
+                        yBot[n] = 128
+                        world[62] = tmp  
+                        botLocation[n] = 62                  
+                        
+                        
+                        
+                        
+                        
+                   
+                break   
+# 100 - Эльф 1 ур, 101 - Эльф 2 ур, 102 - Эльф 3 ур, 103 - гнолл 1 ур, 104 - гнолл 2 ур
+# 105 - Гнолл 3 ур, 106 - Гном 1 ур, 107 - Гном 2 ур, 108 - Гном 3 ур, 109 - Гном 4 ур
+# 110 - Гоблин 0 ур, 111 - Гоблин 1 ур, 112 - Гоблин 2 ур, 113 - Гоблин 3 ур
+# 114 - Отшельник 1 ур, 115 - Отшельник 2 ур, 116 - Отшельник 3 ур
+# 117 - Охотник за головами 1 ур, 118 - Человек, 119 - Монстр 1 ур, 120 - Монстр 2 ур
+# 121 - Монстр 3 ур, 122 - Монстр 4 ур, 123 - Морлок 1 ур, 124 - Морлок 2 ур, 125 - Морлок 3 ур
+# 126 - Наемник 1 ур, 127 - Наемник 2 ур, 128 - Наемник 3 ур, 129 - наемник 4 ур
+# 130 - Некромант 5 ур, 131 - Непобедимый 6 ур, 132 - Непобедимый 7 ур, 133 - Огр 1 ур, 134 - Огр 2 ур
+# 135 - Оккультист 6 ур, 136 - Орк 1 ур, 137 - Орк 2 ур, 138 - Орк 3 ур, 139 - Окр 4 ур, 140 - орк 5 ур
+# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Оккультист 7 ур., 145 - Разбойник, 146 - грабитель
+# 147 - Красный огненный голем 5 ур, 148 - Скелет 1 ур, 149 - Скелет 2 ур, 150 - Скелет 3 ур
+# 151 - Скелет 4 ур, 152 - Скелет 5 ур, 153 - Скелет 6 ур, 154 - Скелет 7 ур, 155 - Скелет 8 ур
+# 156 - Душекрад, 157 - Странник 4 ур, 158 - Тролль 1 ур, 159 - Тролль 2 ур, 160 - Тролль 3 ур
+# 161 - Тролль 4 ур, 162 - Тролль 5 ур, 163 - Тролль 6 ур, 164 - Вампир 3 ур., 165 - Колдун 5 ур
+# 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
+# 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
+# 172 - Женщина-эльф 7 ур                   
     
     if botZdorovie[0] <= 0 and botZdorovie[1] <= 0 and botZdorovie[2] <= 0 and botZdorovie[3]<= 0 and botZdorovie[4] <= 0 and botZdorovie[5] <= 0 and botZdorovie[6] <= 0 and botZdorovie[7] <= 0 and botZdorovie[8] <= 0 and  botZdorovie[9] <= 0:
         print(genom)
@@ -1089,7 +4444,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 17:  # Применяем заклинание "Лунный обряд"        
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 9:
-                    if botZdorovie[nomerBota]+30 <= botIshZdorovie[nomerBota]:
+                    if botZdorovie[nomerBota]+60 <= botIshZdorovie[nomerBota]:
                         if botMana[nomerBota] >= 70:
                             botMana[nomerBota] -= 70
                             if botZdorovie[nomerBota] +70 <= botIshZdorovie[nomerBota]:
@@ -1097,7 +4452,7 @@ def botActivity(nomerBota):
                             else: botZdorovie[nomerBota] = botIshZdorovie[nomerBota]
                             print("Bot #", str(nomerBota), " - I was healed")
                         else: print("Need a mana for heal")
-                    else: print("no Moon Treatment needed")
+                    else: print("no Moon Treatment needed")   
         
         elif genom[botStep[nomerBota]] == 18:  # Применяем заклинание "Телепортация"        
             for n in range(15):
@@ -1176,21 +4531,21 @@ def botActivity(nomerBota):
    
 worldCreate()    
 
-locations = [249,171,204,131,59,77,370,149,300,124,63,63,63,63,63,63,63]
+locations = [63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63]
 n = 0
 
-for n in range(9):
-    botLocation[n] = locations[n]
-    botMana[n] = 200
-    botIshMana[n] = 200
-    botIshZdorovie[n] = 100
-    botZdorovie[n] = 100
-    botVariant[n] = 151+n
-    botZaklinania[n] = [1,2,0,4,5,6,7,8,9,10,11,12,13,14,15,16]
-    if n<5: botRasa[n] = 1
-    else: botRasa[n] = 2
-    botSila[n] = 10
-    world[locations[n]] = 151+n
+
+botLocation[n] = locations[n]
+botMana[n] = 200
+botIshMana[n] = 200
+botIshZdorovie[n] = 100
+botZdorovie[n] = 100
+botVariant[n] = 151+n
+botZaklinania[n] = [1,2,0,4,5,6,7,8,9,10,11,12,13,14,15,16]
+if n<5: botRasa[n] = 1
+else: botRasa[n] = 2
+botSila[n] = 10
+world[locations[n]] = 151+n
 
 
 n = 0    
