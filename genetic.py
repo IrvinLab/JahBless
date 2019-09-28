@@ -5,7 +5,7 @@ import threading
 import random
 
 n = 0 
-
+m = 0
 myGen = 1
 
 if myGen == 1:
@@ -4004,29 +4004,8 @@ def botActivity(nomerBota):
                         world[62] = tmp  
                         botLocation[n] = 62                  
                         
-                        
-                        
-                        
-                        
-                   
                 break   
-# 100 - Эльф 1 ур, 101 - Эльф 2 ур, 102 - Эльф 3 ур, 103 - гнолл 1 ур, 104 - гнолл 2 ур
-# 105 - Гнолл 3 ур, 106 - Гном 1 ур, 107 - Гном 2 ур, 108 - Гном 3 ур, 109 - Гном 4 ур
-# 110 - Гоблин 0 ур, 111 - Гоблин 1 ур, 112 - Гоблин 2 ур, 113 - Гоблин 3 ур
-# 114 - Отшельник 1 ур, 115 - Отшельник 2 ур, 116 - Отшельник 3 ур
-# 117 - Охотник за головами 1 ур, 118 - Человек, 119 - Монстр 1 ур, 120 - Монстр 2 ур
-# 121 - Монстр 3 ур, 122 - Монстр 4 ур, 123 - Морлок 1 ур, 124 - Морлок 2 ур, 125 - Морлок 3 ур
-# 126 - Наемник 1 ур, 127 - Наемник 2 ур, 128 - Наемник 3 ур, 129 - наемник 4 ур
-# 130 - Некромант 5 ур, 131 - Непобедимый 6 ур, 132 - Непобедимый 7 ур, 133 - Огр 1 ур, 134 - Огр 2 ур
-# 135 - Оккультист 6 ур, 136 - Орк 1 ур, 137 - Орк 2 ур, 138 - Орк 3 ур, 139 - Окр 4 ур, 140 - орк 5 ур
-# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Оккультист 7 ур., 145 - Разбойник, 146 - грабитель
-# 147 - Красный огненный голем 5 ур, 148 - Скелет 1 ур, 149 - Скелет 2 ур, 150 - Скелет 3 ур
-# 151 - Скелет 4 ур, 152 - Скелет 5 ур, 153 - Скелет 6 ур, 154 - Скелет 7 ур, 155 - Скелет 8 ур
-# 156 - Душекрад, 157 - Странник 4 ур, 158 - Тролль 1 ур, 159 - Тролль 2 ур, 160 - Тролль 3 ур
-# 161 - Тролль 4 ур, 162 - Тролль 5 ур, 163 - Тролль 6 ур, 164 - Вампир 3 ур., 165 - Колдун 5 ур
-# 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
-# 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
-# 172 - Женщина-эльф 7 ур                   
+                 
     
     if botZdorovie[0] <= 0 and botZdorovie[1] <= 0 and botZdorovie[2] <= 0 and botZdorovie[3]<= 0 and botZdorovie[4] <= 0 and botZdorovie[5] <= 0 and botZdorovie[6] <= 0 and botZdorovie[7] <= 0 and botZdorovie[8] <= 0 and  botZdorovie[9] <= 0:
         print(genom)
@@ -4165,7 +4144,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 13:  # Применяем заклинание "Пронзающая смерть"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 1:
-                    for n in range(10):
+                    for n in range(1000):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -4256,7 +4235,7 @@ def botActivity(nomerBota):
                 if botZaklinania[nomerBota][n] == 1:
                     for n in range(15):
                         if botZaklinania[n] == 6:
-                            for n in range(10):
+                            for n in range(1000):
                                 if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                                     if botLocation[nomerBota]>=32:
                                         if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -4344,7 +4323,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 15:  # Применяем заклинание "Молния"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 12:
-                    for n in range(10):
+                    for n in range(1000):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -4516,7 +4495,979 @@ def botActivity(nomerBota):
                         world[botLocation[nomerBota]+33] = botVariant[nomerBota]
                         botLocation[nomerBota] += 33
                         worldUpdate()
-                        pygame.display.update()                                           
+                        pygame.display.update()
+                        
+        elif genom[botStep[nomerBota]] == 23:  # Применяем заклинание "Могильный луч"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 11:
+                    for n in range(1000):
+                        if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    print("Bot is up, Im - ", str(nomerBota), "kast - Grave ray")
+                                    if botMana[nomerBota] >= 60:
+                                        print("Excellent, bot ", str(n), "took damage")
+                                        botMana[nomerBota] -= 60
+                                        botZdorovie[n] -= 50
+                                        break
+                                    else: print("Less that 60 mana")
+                                    break  
+                            
+                        if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    print("Bot is up, Im - ", str(nomerBota), "kast - Grave ray")
+                                    if botMana[nomerBota] >= 60:
+                                        print("Excellent, bot ", str(n), "took damage")
+                                        botMana[nomerBota] -= 60
+                                        botZdorovie[n] -= 50
+                                        break
+                                    else: print("Less that 60 mana")  
+                                    break
+
+                        if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+
+                                    print("Bot is up, Im - ", str(nomerBota), "kast - Grave ray")
+                                    if botMana[nomerBota] >= 60:
+                                        print("Excellent, bot ", str(n), "took damage")
+                                        botMana[nomerBota] -= 60
+                                        botZdorovie[n] -= 50
+                                        break
+                                    else: print("Less that 60 mana")  
+                                    break
+                            
+                        if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    print("Bot is up, Im - ", str(nomerBota), "kast - Grave ray")
+                                    if botMana[nomerBota] >= 60:
+                                        print("Excellent, bot ", str(n), "took damage")
+                                        botMana[nomerBota] -= 60
+                                        botZdorovie[n] -= 50
+                                        break
+                                    else: print("Less that 60 mana")
+                                    break   
+                
+                        if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                print("Bot is up, Im - ", str(nomerBota), "kast - Grave ray")
+                                if botMana[nomerBota] >= 60:
+                                    print("Excellent, bot ", str(n), "took damage")
+                                    botMana[nomerBota] -= 60
+                                    botZdorovie[n] -= 50
+                                    break
+                                else: print("Less that 60 mana")
+                                break
+
+                        if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                print("Bot is up, Im - ", str(nomerBota), "kast - Grave ray")
+                                if botMana[nomerBota] >= 60:
+                                    print("Excellent, bot ", str(n), "took damage")
+                                    botMana[nomerBota] -= 60
+                                    botZdorovie[n] -= 50
+                                    break
+                                else: print("Less that 60 mana")
+                                break
+
+
+                        if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                            if botLocation[nomerBota] >= 32:
+                                print("Bot is up, Im - ", str(nomerBota), "kast - Grave ray")
+                                if botMana[nomerBota] >= 60:
+                                    print("Excellent, bot ", str(n), "took damage")
+                                    botMana[nomerBota] -= 60
+                                    botZdorovie[n] -= 50
+                                    break
+                                else: print("Less that 60 mana")
+                                break
+ 
+                        if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                            if botLocation[nomerBota] <= 416:
+                                print("Bot is up, Im - ", str(nomerBota), "kast - Grave ray")
+                                if botMana[nomerBota] >= 60:
+                                    print("Excellent, bot ", str(n), "took damage")
+                                    botMana[nomerBota] -= 60
+                                    botZdorovie[n] -= 50
+                                    break
+                                else: print("Less that 60 mana")
+                                break
+                                
+        elif genom[botStep[nomerBota]] == 24:  # Применяем заклинание "Доспехи Феникса"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 3:
+                    if botMana[nomerBota] >= 30:
+                        for n in range(15):
+                            if botVozdeistvie[nomerBota][n] != 3:
+                                botVozdeistvie[nomerBota][n] = 3
+                                botDeistvie[nomerBota][n] = sobitie + 700
+                                botMana[nomerBota] -= 30
+                                print("Conjuring Phoenix Armor")
+                                break
+                            if n == 15: print("The jam is already active")  
+                    else: print("Need a mana for Phoenix Armor")
+                    break
+                    
+        elif genom[botStep[nomerBota]] == 25:  # Применяем заклинание "Обман"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 5:
+                    for n in range(1000):
+                        if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 50:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 5:
+                                                botVozdeistvie[n][m] = 5
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 50
+                                                print("Conjuring Fraud")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break  
+                            
+                        if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 50:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 5:
+                                                botVozdeistvie[n][m] = 5
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 50
+                                                print("Conjuring Fraud")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+
+                        if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 50:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 5:
+                                                botVozdeistvie[n][m] = 5
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 50
+                                                print("Conjuring Fraud")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+                            
+                        if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 50:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 5:
+                                                botVozdeistvie[n][m] = 5
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 50
+                                                print("Conjuring Fraud")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+                
+                        if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                if botMana[nomerBota] >= 50:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 5:
+                                            botVozdeistvie[n][m] = 5
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 50
+                                            print("Conjuring Fraud")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+
+                        if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                if botMana[nomerBota] >= 50:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 5:
+                                            botVozdeistvie[n][m] = 5
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 50
+                                            print("Conjuring Fraud")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+
+                        if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                            if botLocation[nomerBota] >= 32:
+                                if botMana[nomerBota] >= 50:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 5:
+                                            botVozdeistvie[n][m] = 5
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 50
+                                            print("Conjuring Fraud")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+ 
+                        if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                            if botLocation[nomerBota] <= 416:
+                                if botMana[nomerBota] >= 50:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 5:
+                                            botVozdeistvie[n][m] = 5
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 50
+                                            print("Conjuring Fraud")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break 
+                                    
+        elif genom[botStep[nomerBota]] == 26:  # Применяем заклинание "Отравление"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 7:
+                    for n in range(1000):
+                        if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 30:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 7:
+                                                botVozdeistvie[n][m] = 7
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 30
+                                                print("Conjuring Fraud")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break  
+                            
+                        if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 30:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 7:
+                                                botVozdeistvie[n][m] = 7
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 30
+                                                print("Conjuring Fraud")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+
+                        if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 30:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 7:
+                                                botVozdeistvie[n][m] = 7
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 30
+                                                print("Conjuring Fraud")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+                            
+                        if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 30:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 7:
+                                                botVozdeistvie[n][m] = 7
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 30
+                                                print("Conjuring Fraud")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Fraud")
+                                    break
+                
+                        if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                if botMana[nomerBota] >= 30:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 7:
+                                            botVozdeistvie[n][m] = 7
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 30
+                                            print("Conjuring Fraud")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Fraud")
+                                break
+
+                        if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                if botMana[nomerBota] >= 30:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 7:
+                                            botVozdeistvie[n][m] = 7
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 30
+                                            print("Conjuring Fraud")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Fraud")
+                                break
+
+                        if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                            if botLocation[nomerBota] >= 32:
+                                if botMana[nomerBota] >= 30:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 7:
+                                            botVozdeistvie[n][m] = 7
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 30
+                                            print("Conjuring Fraud")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Fraud")
+                                break
+ 
+                        if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                            if botLocation[nomerBota] <= 416:
+                                if botMana[nomerBota] >= 30:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 7:
+                                            botVozdeistvie[n][m] = 7
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 30
+                                            print("Conjuring Fraud")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Fraud")
+                                break
+
+        elif genom[botStep[nomerBota]] == 27:  # Применяем заклинание "Кровожадность"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 8:
+                    if botMana[nomerBota] >= 35:
+                        for n in range(15):
+                            if botVozdeistvie[nomerBota][n] != 8:
+                                botVozdeistvie[nomerBota][n] = 8
+                                botDeistvie[nomerBota][n] = sobitie + 700
+                                botMana[nomerBota] -= 35
+                                print("Conjuring Bloodthirstiness")
+                                break
+                            if n == 15: print("The jam is already active")  
+                    else: print("Need a mana for Bloodthirstiness")
+                    break
+                    
+        elif genom[botStep[nomerBota]] == 28:  # Применяем заклинание "Мощь Природы"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 10:
+                    if botMana[nomerBota] >= 65:
+                        for n in range(15):
+                            if botVozdeistvie[nomerBota][n] != 10:
+                                botVozdeistvie[nomerBota][n] = 10
+                                botDeistvie[nomerBota][n] = sobitie + 700
+                                botMana[nomerBota] -= 65
+                                print("Conjuring Power of nature")
+                                break
+                            if n == 15: print("The jam is already active")  
+                    else: print("Need a mana for Power of nature")
+                    break
+                    
+        elif genom[botStep[nomerBota]] == 29:  # Применяем заклинание "Печать Хаоса"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 13:
+                    for n in range(1000):
+                        if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 170:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 13:
+                                                botVozdeistvie[n][m] = 13
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 170
+                                                print("Conjuring Seal of Chaos")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Chaos")
+                                    break  
+                            
+                        if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 170:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 13:
+                                                botVozdeistvie[n][m] = 13
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 170
+                                                print("Conjuring Seal of Chaos")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Chaos")
+                                    break 
+
+                        if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 170:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 13:
+                                                botVozdeistvie[n][m] = 13
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 170
+                                                print("Conjuring Seal of Chaos")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Chaos")
+                                    break 
+                            
+                        if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 170:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 13:
+                                                botVozdeistvie[n][m] = 13
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 170
+                                                print("Conjuring Seal of Chaos")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Chaos")
+                                    break 
+                
+                        if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                if botMana[nomerBota] >= 170:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 13:
+                                            botVozdeistvie[n][m] = 13
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 170
+                                            print("Conjuring Seal of Chaos")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Seal of Chaos")
+                                break 
+
+                        if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                if botMana[nomerBota] >= 170:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 13:
+                                            botVozdeistvie[n][m] = 13
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 170
+                                            print("Conjuring Seal of Chaos")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Seal of Chaos")
+                                break 
+
+                        if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                            if botLocation[nomerBota] >= 32:
+                                if botMana[nomerBota] >= 170:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 13:
+                                            botVozdeistvie[n][m] = 13
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 170
+                                            print("Conjuring Seal of Chaos")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Seal of Chaos")
+                                break 
+
+ 
+                        if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                            if botLocation[nomerBota] <= 416:
+                                if botMana[nomerBota] >= 170:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 13:
+                                            botVozdeistvie[n][m] = 13
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 170
+                                            print("Conjuring Seal of Chaos")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Seal of Chaos")
+                                break 
+                    
+        elif genom[botStep[nomerBota]] == 30:  # Применяем заклинание "Поцелуй Смерти"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 15:
+                    for n in range(1000):
+                        if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 100:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 15:
+                                                botVozdeistvie[n][m] = 15
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 100
+                                                print("Conjuring Kiss of death")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for The Kiss of death")
+                                    break  
+                            
+                        if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 100:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 15:
+                                                botVozdeistvie[n][m] = 15
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 100
+                                                print("Conjuring Kiss of death")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for The Kiss of death")
+                                    break
+
+                        if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 100:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 15:
+                                                botVozdeistvie[n][m] = 15
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 100
+                                                print("Conjuring Kiss of death")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for The Kiss of death")
+                                    break
+                            
+                        if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 100:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 15:
+                                                botVozdeistvie[n][m] = 15
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 100
+                                                print("Conjuring Kiss of death")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for The Kiss of death")
+                                    break 
+                
+                        if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                if botMana[nomerBota] >= 100:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 15:
+                                            botVozdeistvie[n][m] = 15
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 100
+                                            print("Conjuring Kiss of death")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for The Kiss of death")
+                                break 
+
+                        if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                if botMana[nomerBota] >= 100:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 15:
+                                            botVozdeistvie[n][m] = 15
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 100
+                                            print("Conjuring Kiss of death")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for The Kiss of death")
+                                break
+
+                        if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                            if botLocation[nomerBota] >= 32:
+                                if botMana[nomerBota] >= 100:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 15:
+                                            botVozdeistvie[n][m] = 15
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 100
+                                            print("Conjuring Kiss of death")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for The Kiss of death")
+                                    break
+
+ 
+                        if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                            if botLocation[nomerBota] <= 416:
+                                if botMana[nomerBota] >= 100:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 15:
+                                            botVozdeistvie[n][m] = 15
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 100
+                                            print("Conjuring Kiss of death")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for The Kiss of death")
+                                break
+                                
+                            
+        elif genom[botStep[nomerBota]] == 31:  # Применяем заклинание "Печать Смерти"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 14:
+                    for n in range(1000):
+                        if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 200:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 14:
+                                                botVozdeistvie[n][m] = 14
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 200
+                                                print("Conjuring Seal of Death")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Death")
+                                    break  
+                            
+                        if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 200:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 14:
+                                                botVozdeistvie[n][m] = 14
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 200
+                                                print("Conjuring Seal of Death")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Death")
+                                    break
+
+                        if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 200:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 14:
+                                                botVozdeistvie[n][m] = 14
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 200
+                                                print("Conjuring Seal of Death")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Death")
+                                    break
+                            
+                        if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 200:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 14:
+                                                botVozdeistvie[n][m] = 14
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 200
+                                                print("Conjuring Seal of Death")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Death")
+                                    break
+                
+                        if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                if botMana[nomerBota] >= 200:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 14:
+                                            botVozdeistvie[n][m] = 14
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 200
+                                            print("Conjuring Seal of Death")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Seal of Death")
+                                break
+
+                        if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                if botMana[nomerBota] >= 200:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 14:
+                                            botVozdeistvie[n][m] = 14
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 200
+                                            print("Conjuring Seal of Death")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Seal of Death")
+                                break
+
+                        if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                            if botLocation[nomerBota] >= 32:
+                                if botMana[nomerBota] >= 200:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 14:
+                                            botVozdeistvie[n][m] = 14
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 200
+                                            print("Conjuring Seal of Death")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Seal of Death")
+                                    break
+
+ 
+                        if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                            if botLocation[nomerBota] <= 416:
+                                if botMana[nomerBota] >= 200:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 14:
+                                            botVozdeistvie[n][m] = 14
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 200
+                                            print("Conjuring Seal of Death")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Seal of Death")
+                                break                   
+                    
+        elif genom[botStep[nomerBota]] == 32:  # Применяем заклинание "Проклятье"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 16:
+                    for n in range(1000):
+                        if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 75:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 16:
+                                                botVozdeistvie[n][m] = 16
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 75
+                                                print("Conjuring Curse")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Curse")
+                                    break  
+                            
+                        if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                            if botLocation[nomerBota]>=32:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 75:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 16:
+                                                botVozdeistvie[n][m] = 16
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 75
+                                                print("Conjuring Curse")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Curse")
+                                    break 
+
+                        if botLocation[nomerBota] == botLocation[n]+31: # Бот снизу-слева
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 75:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 16:
+                                                botVozdeistvie[n][m] = 16
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 75
+                                                print("Conjuring Curse")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Curse")
+                                    break 
+                            
+                        if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
+                            if botLocation[nomerBota]<=416:
+                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                    if botMana[nomerBota] >= 75:
+                                        for m in range(15):
+                                            if botVozdeistvie[n][m] != 16:
+                                                botVozdeistvie[n][m] = 16
+                                                botDeistvie[n][m] = sobitie + 700
+                                                botMana[nomerBota] -= 75
+                                                print("Conjuring Curse")
+                                                break
+                                            if m == 15: print("The jam is already active")  
+                                    else: print("Need a mana for Curse")
+                                    break 
+                
+                        if botLocation[nomerBota] == botLocation[n]-1: # Бот слева
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                if botMana[nomerBota] >= 75:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 16:
+                                            botVozdeistvie[n][m] = 16
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 75
+                                            print("Conjuring Curse")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Curse")
+                                break 
+
+                        if botLocation[nomerBota] == botLocation[n]+1: # Бот справа
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                if botMana[nomerBota] >= 75:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 16:
+                                            botVozdeistvie[n][m] = 16
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 75
+                                            print("Conjuring Curse")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Curse")
+                                break 
+
+                        if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                            if botLocation[nomerBota] >= 32:
+                                if botMana[nomerBota] >= 75:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 16:
+                                            botVozdeistvie[n][m] = 16
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 75
+                                            print("Conjuring Curse")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Curse")
+                                break 
+
+ 
+                        if botLocation[nomerBota] == botLocation[n]+32: # Бот снизу
+                            if botLocation[nomerBota] <= 416:
+                                if botMana[nomerBota] >= 75:
+                                    for m in range(15):
+                                        if botVozdeistvie[n][m] != 16:
+                                            botVozdeistvie[n][m] = 16
+                                            botDeistvie[n][m] = sobitie + 700
+                                            botMana[nomerBota] -= 75
+                                            print("Conjuring Curse")
+                                            break
+                                        if m == 15: print("The jam is already active")  
+                                else: print("Need a mana for Curse")
+                                break
+                                
+        elif genom[botStep[nomerBota]] == 33:  # Применяем заклинание "Рассеять Чары"
+            for n in range(15):
+                if botZaklinania[nomerBota][n] == 23:
+                    if botMana[nomerBota] >= 100:
+                        for n in range(15):
+                            if botVozdeistvie[nomerBota][n] != 23:
+                                botVozdeistvie[nomerBota][n] = 23
+                                botDeistvie[nomerBota][n] = sobitie + 700
+                                botMana[nomerBota] -= 100
+                                print("Conjuring Dispel spell")
+                                break
+                            if n == 15: print("The jam is already active")  
+                    else: print("Need a mana for Dispel spell")
+                    break
+                    
+        elif genom[botStep[nomerBota]] == 34: # Бьём врага вверх 
+            if botLocation[nomerBota]>=32:
+                if world[botLocation[nomerBota]-32] >= 50: # Если сверху кто-то есть, то...
+                    for n in range(10):
+                        tmp = n
+                        if botLocation[nomerBota] == botLocation[n]+32 and botZdorovie[n] > 0: 
+                            botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot up. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                            break                    
+                    
+        elif genom[botStep[nomerBota]] == 35: # Бьём врага вниз 
+            if botLocation[nomerBota] <= 416:
+                if world[botLocation[nomerBota]+32] >= 50: # Если снизу кто-то есть, то...
+                    for n in range(10):
+                        tmp = n
+                        if botLocation[nomerBota] == botLocation[n]-32 and botZdorovie[n] > 0: 
+                            botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot down. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])  
+                            break
+        
+        elif genom[botStep[nomerBota]] == 36: # Бьём врага слева
+            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+
+                if world[botLocation[nomerBota]-1] >= 50: # Если слева кто-то есть, то...
+                    for n in range(10):
+                        tmp = n
+                        if botLocation[nomerBota] == botLocation[n]+1 and botZdorovie[n] > 0: 
+                            botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                            break
+        
+        elif genom[botStep[nomerBota]] == 37: # Бьём врага справа
+            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                if world[botLocation[nomerBota]+1] >= 50: # Если справа кто-то есть, то...
+                    for n in range(10):
+                        tmp = n
+                        if botLocation[nomerBota] == botLocation[n]-1 and botZdorovie[n] > 0: 
+                            botZdorovie[n] -= botSila[nomerBota]
+                            print("Im - ", str(nomerBota), " shot right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                            break
+
+        elif genom[botStep[nomerBota]] == 38: # Бьём врага сверху-справа
+            if botLocation[nomerBota]>=32:
+                if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+
+                    if world[botLocation[nomerBota]-31] >= 50: # Если справа кто-то есть, то...
+                        for n in range(10):
+                            tmp = n
+                            if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: 
+                                botZdorovie[n] -= botSila[nomerBota]
+                                print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                                break
+        
+        elif genom[botStep[nomerBota]] == 39: # Бьём врага сверху-слева
+            if botLocation[nomerBota]>=32:
+                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                    if world[botLocation[nomerBota]-33] >= 50: # Если справа кто-то есть, то...
+                        for n in range(10):
+                            tmp = n
+                            if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: 
+                                botZdorovie[n] -= botSila[nomerBota]
+                                print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])  
+                                break
+                            
+        elif genom[botStep[nomerBota]] == 40: # Бьём врага снизу-справа
+            if botLocation[nomerBota]<=416:
+                if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+
+                    if world[botLocation[nomerBota]+33] >= 50: # Если справа кто-то есть, то...
+                        for n in range(10):
+                            tmp = n
+                            if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: 
+                                botZdorovie[n] -= botSila[nomerBota]
+                                print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                                break
+        
+        elif genom[botStep[nomerBota]] == 41: # Бьём врага снизу-слева
+            if botLocation[nomerBota]<=416:
+                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                    if world[botLocation[nomerBota]+31] >= 50: # Если справа кто-то есть, то...
+                        for n in range(10):
+                            tmp = n
+                            if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: 
+                                botZdorovie[n] -= botSila[nomerBota]
+                                print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                                break                                                     
+
         
         
         else:
@@ -4570,4 +5521,23 @@ while True:
     
                 
 # [13, 50, 21, 34, 4, 11, 45, 8, 17, 58, 19, 35, 2, 38, 1, 10, 42, 12, 10, 43, 30, 2, 8, 4, 42, 26, 15, 36, 0, 5, 58, 20, 11, 24, 8, 6, 10, 21, 7, 9, 4, 54, 5, 5, 55, 52, 44, 43, 7, 8, 2, 48, 62, 6, 8, 19, 0, 11, 54, 1, 11, 4, 17, 20]
-# Хороший геном - 235-242 время жизни            
+# Хороший геном - 235-242 время жизни     
+
+
+# 100 - Эльф 1 ур, 101 - Эльф 2 ур, 102 - Эльф 3 ур, 103 - гнолл 1 ур, 104 - гнолл 2 ур
+# 105 - Гнолл 3 ур, 106 - Гном 1 ур, 107 - Гном 2 ур, 108 - Гном 3 ур, 109 - Гном 4 ур
+# 110 - Гоблин 0 ур, 111 - Гоблин 1 ур, 112 - Гоблин 2 ур, 113 - Гоблин 3 ур
+# 114 - Отшельник 1 ур, 115 - Отшельник 2 ур, 116 - Отшельник 3 ур
+# 117 - Охотник за головами 1 ур, 118 - Человек, 119 - Монстр 1 ур, 120 - Монстр 2 ур
+# 121 - Монстр 3 ур, 122 - Монстр 4 ур, 123 - Морлок 1 ур, 124 - Морлок 2 ур, 125 - Морлок 3 ур
+# 126 - Наемник 1 ур, 127 - Наемник 2 ур, 128 - Наемник 3 ур, 129 - наемник 4 ур
+# 130 - Некромант 5 ур, 131 - Непобедимый 6 ур, 132 - Непобедимый 7 ур, 133 - Огр 1 ур, 134 - Огр 2 ур
+# 135 - Оккультист 6 ур, 136 - Орк 1 ур, 137 - Орк 2 ур, 138 - Орк 3 ур, 139 - Окр 4 ур, 140 - орк 5 ур
+# 141 - Орк 6 ур, 142 - Орк 7 ур, 143 - Орк-шаман, 144 - Оккультист 7 ур., 145 - Разбойник, 146 - грабитель
+# 147 - Красный огненный голем 5 ур, 148 - Скелет 1 ур, 149 - Скелет 2 ур, 150 - Скелет 3 ур
+# 151 - Скелет 4 ур, 152 - Скелет 5 ур, 153 - Скелет 6 ур, 154 - Скелет 7 ур, 155 - Скелет 8 ур
+# 156 - Душекрад, 157 - Странник 4 ур, 158 - Тролль 1 ур, 159 - Тролль 2 ур, 160 - Тролль 3 ур
+# 161 - Тролль 4 ур, 162 - Тролль 5 ур, 163 - Тролль 6 ур, 164 - Вампир 3 ур., 165 - Колдун 5 ур
+# 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
+# 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
+# 172 - Женщина-эльф 7 ур        
