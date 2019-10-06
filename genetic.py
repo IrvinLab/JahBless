@@ -651,7 +651,83 @@ def mutation(): # Изменяем геном. Меняем случайный �
     print("===================================================================")    
     print("Iteration #", str(iteration), "gene - ", str(genMutant), " changed - ", str(numerMutant), ". Event =",str(sobitie))
     print("Genom:", str(genom))
+def bornBot(numerBurnBota, typeBurnBota):
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world 
     
+    if typeBurnBota == 100 or typeBurnBota == 101 or typeBurnBota == 102 or typeBurnBota == 106 or typeBurnBota == 107 or typeBurnBota == 108 or typeBurnBota == 109 or typeBurnBota == 110 or typeBurnBota == 111 or typeBurnBota == 112 or typeBurnBota == 113 or typeBurnBota == 114 or typeBurnBota == 115 or typeBurnBota == 116 or typeBurnBota == 117 or typeBurnBota == 118 or typeBurnBota == 126 or typeBurnBota == 127 or typeBurnBota == 128 or typeBurnBota == 129 or typeBurnBota == 145 or typeBurnBota == 146 or typeBurnBota == 157 or typeBurnBota == 165 or typeBurnBota == 166 or typeBurnBota == 167 or typeBurnBota == 168 or typeBurnBota == 169 or typeBurnBota == 170 or typeBurnBota == 171 or typeBurnBota == 172:
+        if world[30] == 0:
+            xBot[numerBurnBota] = 976
+            yBot[numerBurnBota] = 96
+            world[30] = typeBurnBota
+            botLocation[numerBurnBota] = 30
+        elif world[63] == 0:
+            xBot[numerBurnBota] = 976
+            yBot[numerBurnBota] = 128
+            world[63] = typeBurnBota
+            botLocation[numerBurnBota] = 63 
+        elif world[62] == 0:
+            xBot[numerBurnBota] = 1008
+            yBot[numerBurnBota] = 128
+            world[62] = typeBurnBota  
+            botLocation[numerBurnBota] = 62
+        elif world[146] == 0:
+            xBot[numerBurnBota] = 592
+            yBot[numerBurnBota] = 224
+            world[146] = typeBurnBota
+            botLocation[numerBurnBota] = 146
+        elif world[144] == 0:
+            xBot[numerBurnBota] = 528
+            yBot[numerBurnBota] = 224
+            world[144] = typeBurnBota
+            botLocation[numerBurnBota] = 144
+        elif world[113] == 0:
+            xBot[numerBurnBota] = 560
+            yBot[numerBurnBota] = 192
+            world[113] = typeBurnBota
+            botLocation[numerBurnBota] = 113
+        elif world[177] == 0:
+            xBot[numerBurnBota] = 560
+            yBot[numerBurnBota] = 256
+            world[177] = typeBurnBota
+            botLocation[numerBurnBota] = 177
+            
+    else:
+        if world[384] == 0:
+            xBot[numerBurnBota] = 16
+            yBot[numerBurnBota] = 480
+            world[384] = typeBurnBota
+            botLocation[numerBurnBota] = 384 
+        elif world[385] == 0:
+            xBot[numerBurnBota] = 48
+            yBot[numerBurnBota] = 480
+            world[385] = typeBurnBota
+            botLocation[numerBurnBota] = 385 
+        elif world[417] == 0:
+            xBot[numerBurnBota] = 48
+            yBot[numerBurnBota] = 512
+            world[417] = typeBurnBota
+            botLocation[numerBurnBota] = 417
+        elif world[146] == 0:
+            xBot[numerBurnBota] = 592
+            yBot[numerBurnBota] = 224
+            world[146] = typeBurnBota
+            botLocation[numerBurnBota] = 146
+        elif world[144] == 0:
+            xBot[numerBurnBota] = 528
+            yBot[numerBurnBota] = 224
+            world[144] = typeBurnBota
+            botLocation[numerBurnBota] = 144
+        elif world[113] == 0:
+            xBot[numerBurnBota] = 560
+            yBot[numerBurnBota] = 192
+            world[113] = typeBurnBota
+            botLocation[numerBurnBota] = 113
+        elif world[177] == 0:
+            xBot[numerBurnBota] = 560
+            yBot[numerBurnBota] = 256
+            world[177] = typeBurnBota
+            botLocation[numerBurnBota] = 177     
+        
 
 def botActivity(nomerBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
@@ -693,22 +769,10 @@ def botActivity(nomerBota):
                         botBronza[n] = 150
                     if botRandom == 10:
                         botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 200       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                        botBronza[n] = 200
+                    bornBot(n, tmp)           
+                            
+                            
                 
                 if tmp == 101: # Эльф 2 ур.
                     botNumer[n] = n
@@ -739,21 +803,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 400       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 102: # Эльф 3 ур.
                     botNumer[n] = n
@@ -785,21 +835,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2
                         botBronza[n] = 450       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 103: # Гнолл 1 ур.
                     botNumer[n] = n
@@ -828,21 +864,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 100
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417  
+                    bornBot(n, tmp) 
                         
                 if tmp == 104: # Гнолл 2 ур.
                     botNumer[n] = n
@@ -872,21 +894,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 120
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417   
+                    bornBot(n, tmp)  
                         
                 if tmp == 105: # Гнолл 3 ур.
                     botNumer[n] = n
@@ -916,21 +924,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 180
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417    
+                    bornBot(n, tmp)    
                         
                 if tmp == 106: # Гном 1 ур.
                     botNumer[n] = n
@@ -962,21 +956,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1       
                         botBronza[n] = 400
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 107: # Гном 2 ур.
                     botNumer[n] = n
@@ -1009,21 +989,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [69,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2       
                         botBronza[n] = 500
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 108: # Гном 3 ур.
                     botNumer[n] = n
@@ -1057,21 +1023,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [70,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3       
                         botBronza[n] = 650
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 109: # Гном 4 ур.
                     botNumer[n] = n
@@ -1105,21 +1057,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [70,5,3,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3       
                         botBronza[n] = 800
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 110: # Гоблин 0 ур.
                     botNumer[n] = n
@@ -1150,21 +1088,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botBronza[n] = 90
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 111: # Гоблин 1 ур.
                     botNumer[n] = n
@@ -1195,21 +1119,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botBronza[n] = 150
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 112: # Гоблин 2 ур.
                     botNumer[n] = n
@@ -1240,21 +1150,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botBronza[n] = 210
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 113: # Гоблин 3 ур.
                     botNumer[n] = n
@@ -1286,21 +1182,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botSerebro[n] = 1
                         botBronza[n] = 290
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62 
+                    bornBot(n, tmp)
                         
                 if tmp == 114: # Отшельник 1 ур.
                     botNumer[n] = n
@@ -1332,21 +1214,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botSerebro[n] = 1
                         botBronza[n] = 0
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 115: # Отшельник 2 ур.
                     botNumer[n] = n
@@ -1378,21 +1246,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botSerebro[n] = 1
                         botBronza[n] = 0
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 116: # Отшельник 3 ур.
                     botNumer[n] = n
@@ -1424,21 +1278,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botSerebro[n] = 1
                         botBronza[n] = 250
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 117: # Охотник за головами 3 ур.
                     botNumer[n] = n
@@ -1470,21 +1310,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botSerebro[n] = 1
                         botBronza[n] = 250
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 118: # Человке 0 ур.
                     botNumer[n] = n
@@ -1515,21 +1341,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botBronza[n] = 90
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 119: # Монстр 1 ур.
                     botNumer[n] = n
@@ -1560,21 +1372,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 180
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 120: # Монстр 2 ур.
                     botNumer[n] = n
@@ -1605,21 +1403,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 180
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 121: # Монстр 3 ур.
                     botNumer[n] = n
@@ -1651,21 +1435,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2       
                         botBronza[n] = 450
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417 
+                    bornBot(n, tmp) 
                         
                 if tmp == 122: # Монстр 4 ур.
                     botNumer[n] = n
@@ -1697,21 +1467,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 4       
                         botBronza[n] = 900
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 123: # Морлок 1 ур.
                     botNumer[n] = n
@@ -1741,21 +1497,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 120
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 124: # Морлок 2 ур.
                     botNumer[n] = n
@@ -1785,21 +1527,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 150
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 125: # Морлок 3 ур.
                     botNumer[n] = n
@@ -1829,21 +1557,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [4,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 250
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 126: # Наёмник 1 ур.
                     botNumer[n] = n
@@ -1874,21 +1588,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [61,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 250       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 127: # Наёмник 2 ур.
                     botNumer[n] = n
@@ -1919,21 +1619,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [62,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 450       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 128: # Наёмник 3 ур.
                     botNumer[n] = n
@@ -1964,21 +1650,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [63,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 550       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 129: # Наёмник 4 ур.
                     botNumer[n] = n
@@ -2009,21 +1681,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [65,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 750       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 130: # Некромант 5 ур.
                     botNumer[n] = n
@@ -2057,21 +1715,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
                         botBronza[n] = 450       
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 131: # Непобедимый 6 ур.
                     botNumer[n] = n
@@ -2105,21 +1749,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
                         botBronza[n] = 650       
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 132: # Непобедимый 7 ур.
                     botNumer[n] = n
@@ -2153,21 +1783,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
                         botBronza[n] = 950       
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 133: # Огр 1 ур.
                     botNumer[n] = n
@@ -2198,21 +1814,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 100
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 134: # Огр 2 ур.
                     botNumer[n] = n
@@ -2243,21 +1845,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 150
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 135: # Оккультист 6 ур.
                     botNumer[n] = n
@@ -2299,21 +1887,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
                         botBronza[n] = 650       
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 136: # Орк 1 ур.
                     botNumer[n] = n
@@ -2344,21 +1918,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 120
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 137: # Орк 2 ур.
                     botNumer[n] = n
@@ -2389,21 +1949,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 300
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 138: # Орк 3 ур.
                     botNumer[n] = n
@@ -2434,21 +1980,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 300
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 139: # Орк 4 ур.
                     botNumer[n] = n
@@ -2479,21 +2011,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 500
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 140: # Орк 5 ур.
                     botNumer[n] = n
@@ -2524,21 +2042,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 500
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 141: # Орк 6 ур.
                     botNumer[n] = n
@@ -2569,21 +2073,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 500
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417 
+                    bornBot(n, tmp)
                         
                 if tmp == 142: # Орк 7 ур.
                     botNumer[n] = n
@@ -2617,21 +2107,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [32,59,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botSerebro[n] = 5
                         botBronza[n] = 500
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 143: # Орк-шаман 4 ур.
                     botNumer[n] = n
@@ -2665,21 +2141,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [73,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3       
                         botBronza[n] = 500
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 144: # Оккультист 7 ур.
                     botNumer[n] = n
@@ -2721,21 +2183,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
                         botBronza[n] = 950       
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 145: # Разбойник 1 ур.
                     botNumer[n] = n
@@ -2766,21 +2214,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 300
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 146: # Разбойник 2 ур.
                     botNumer[n] = n
@@ -2811,21 +2245,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 500
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 147: # Красный огненный голем 5 ур.
                     botNumer[n] = n
@@ -2856,21 +2276,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 500
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 148: # Скелет 1 ур.
                     botNumer[n] = n
@@ -2901,21 +2307,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 0
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 149: # Скелет 2 ур.
                     botNumer[n] = n
@@ -2946,21 +2338,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 0
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417 
+                    bornBot(n, tmp)
                         
                 if tmp == 150: # Скелет 3 ур.
                     botNumer[n] = n
@@ -2991,21 +2369,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 0
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 151: # Скелет 4 ур.
                     botNumer[n] = n
@@ -3036,21 +2400,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 0
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 152: # Скелет 5 ур.
                     botNumer[n] = n
@@ -3081,21 +2431,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 0
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 153: # Скелет 6 ур.
                     botNumer[n] = n
@@ -3126,21 +2462,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 0
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 154: # Скелет 7 ур.
                     botNumer[n] = n
@@ -3171,21 +2493,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 0
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 155: # Скелет 8 ур.
                     botNumer[n] = n
@@ -3216,21 +2524,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 0
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 156: # Душекрад 10 ур.
                     botNumer[n] = n
@@ -3264,21 +2558,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botSerebro[n] = 5
                         botBronza[n] = 500
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 157: # Странник 4 ур.
                     botNumer[n] = n
@@ -3312,21 +2592,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
                         botBronza[n] = 450       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 158: # Тролль 1 ур.
                     botNumer[n] = n
@@ -3357,21 +2623,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 350
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 159: # Тролль 2 ур.
                     botNumer[n] = n
@@ -3402,21 +2654,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 400
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 160: # Тролль 3 ур.
                     botNumer[n] = n
@@ -3447,21 +2685,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 600
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 161: # Тролль 4 ур.
                     botNumer[n] = n
@@ -3492,21 +2716,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 700
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 162: # Тролль 5 ур.
                     botNumer[n] = n
@@ -3537,21 +2747,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 120
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 163: # Тролль 6 ур.
                     botNumer[n] = n
@@ -3582,21 +2778,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [31,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 900
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 164: # Вампир 4 ур.
                     botNumer[n] = n
@@ -3627,21 +2809,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [53,11,12,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botSerebro[n] = 3
-                    if world[384] == 0:
-                        xBot[n] = 16
-                        yBot[n] = 480
-                        world[384] = tmp
-                        botLocation[n] = 384 
-                    elif world[385] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 480
-                        world[385] = tmp
-                        botLocation[n] = 385 
-                    elif world[417] == 0:
-                        xBot[n] = 48
-                        yBot[n] = 512
-                        world[417] = tmp
-                        botLocation[n] = 417
+                    bornBot(n, tmp)
                         
                 if tmp == 165: # Колдун 5 ур.
                     botNumer[n] = n
@@ -3675,21 +2843,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
                         botBronza[n] = 750       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 166: # Женщина-эльф 1 ур.
                     botNumer[n] = n
@@ -3720,21 +2874,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 200       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 167: # Женщина-эльф 2 ур.
                     botNumer[n] = n
@@ -3765,21 +2905,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 500       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 168: # Женщина-эльф 3 ур.
                     botNumer[n] = n
@@ -3810,21 +2936,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 570       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 169: # Женщина-эльф 4 ур.
                     botNumer[n] = n
@@ -3855,21 +2967,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 700       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 170: # Женщина-эльф 5 ур.
                     botNumer[n] = n
@@ -3900,21 +2998,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [72,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 900       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 171: # Женщина-эльф 6 ур.
                     botNumer[n] = n
@@ -3945,21 +3029,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [56,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 1000       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62
+                    bornBot(n, tmp)
                         
                 if tmp == 172: # Женщина-эльф 7 ур.
                     botNumer[n] = n
@@ -3990,21 +3060,7 @@ def botActivity(nomerBota):
                     if botRandom == 10:
                         botInventar[n] = [58,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 1500       
-                    if world[30] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 96
-                        world[30] = tmp
-                        botLocation[n] = 30
-                    elif world[63] == 0:
-                        xBot[n] = 976
-                        yBot[n] = 128
-                        world[63] = tmp
-                        botLocation[n] = 63 
-                    elif world[62] == 0:
-                        xBot[n] = 1008
-                        yBot[n] = 128
-                        world[62] = tmp  
-                        botLocation[n] = 62                  
+                    bornBot(n, tmp)                 
                         
                 break   
                  
@@ -5534,8 +4590,7 @@ while True:
             
     
                 
-# [13, 50, 21, 34, 4, 11, 45, 8, 17, 58, 19, 35, 2, 38, 1, 10, 42, 12, 10, 43, 30, 2, 8, 4, 42, 26, 15, 36, 0, 5, 58, 20, 11, 24, 8, 6, 10, 21, 7, 9, 4, 54, 5, 5, 55, 52, 44, 43, 7, 8, 2, 48, 62, 6, 8, 19, 0, 11, 54, 1, 11, 4, 17, 20]
-# Хороший геном - 235-242 время жизни     
+  
 
 
 # 100 - Эльф 1 ур, 101 - Эльф 2 ур, 102 - Эльф 3 ур, 103 - гнолл 1 ур, 104 - гнолл 2 ур
