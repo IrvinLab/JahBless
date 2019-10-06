@@ -9,7 +9,7 @@ m = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [52, 58, 24, 36, 4, 14, 9, 19, 32, 31, 23, 20, 11, 1, 8, 56, 39, 25, 12, 49, 14, 42, 49, 5, 1, 32, 43, 29, 42, 41, 55, 28, 44, 51, 18, 48, 15, 1, 52, 55, 35, 4, 27, 48, 12, 35, 13, 36, 25, 31, 39, 12, 57, 37, 39, 21, 9, 25, 61, 62, 54, 30, 17, 0, 30, 53, 34, 5, 10, 33, 22, 38, 29, 30, 8, 40, 19, 31, 24, 57, 20, 42, 27, 5, 16, 7, 32, 40, 37, 53, 57, 25, 16, 48, 62, 17, 53, 51, 5, 46, 59, 5, 27, 11, 42, 34, 11, 55, 0, 50, 11, 22, 21, 59, 33, 46, 14, 30, 24, 60, 17, 60, 2, 0, 3, 50, 15, 14]
+    genom = [25, 46, 52, 36, 39, 18, 57, 18, 54, 63, 54, 35, 24, 39, 43, 30, 40, 14, 47, 49, 14, 58, 4, 5, 48, 5, 6, 24, 24, 36, 2, 19, 41, 3, 6, 61, 56, 62, 54, 62, 18, 26, 45, 39, 9, 8, 31, 36, 34, 4, 31, 12, 2, 20, 3, 62, 5, 15, 55, 26, 21, 63, 60, 31, 3, 32, 34, 61, 22, 39, 8, 23, 5, 41, 28, 8, 6, 31, 3, 30, 1, 51, 42, 40, 29, 36, 16, 47, 2, 21, 20, 33, 56, 2, 43, 0, 38, 24, 33, 20, 39, 60, 4, 8, 1, 1, 13, 48, 55, 47, 25, 31, 34, 59, 33, 46, 41, 59, 24, 3, 17, 37, 30, 35, 19, 43, 40, 39]
 
 
 
@@ -4153,7 +4153,7 @@ def botActivity(nomerBota):
                                     print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
                                     if botMana[nomerBota] >= 200:
                                         botMana[nomerBota] -= 200
-                                        botZdorovie[n] -= 200
+                                        botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         break
                                     else: print("Less that 200 mana")
@@ -4164,7 +4164,7 @@ def botActivity(nomerBota):
                                     print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
                                     if botMana[nomerBota] >= 200:
                                         botMana[nomerBota] -= 200
-                                        botZdorovie[n] -= 200
+                                        botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         break
                                     else: print("Less that 200 mana")
@@ -4175,7 +4175,7 @@ def botActivity(nomerBota):
                                     print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
                                     if botMana[nomerBota] >= 200:
                                         botMana[nomerBota] -= 200
-                                        botZdorovie[n] -= 200
+                                        botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         break
                                     else: print("Less that 200 mana")
@@ -4186,7 +4186,7 @@ def botActivity(nomerBota):
                                     print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
                                     if botMana[nomerBota] >= 200:
                                         botMana[nomerBota] -= 200
-                                        botZdorovie[n] -= 200
+                                        botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         break
                                     else: print("Less that 200 mana")                             
@@ -4196,7 +4196,7 @@ def botActivity(nomerBota):
                                 print("Bot is left, Im - ", str(nomerBota), "kast - Death Explode")
                                 if botMana[nomerBota] >= 200:
                                     botMana[nomerBota] -= 200
-                                    botZdorovie[n] -= 200
+                                    botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                     break
                                 else: print("Less that 200 mana")
@@ -4206,7 +4206,7 @@ def botActivity(nomerBota):
                                 print("Bot is right, Im - ", str(nomerBota), "kast - Death Explode")
                                 if botMana[nomerBota] >= 200:
                                     botMana[nomerBota] -= 200
-                                    botZdorovie[n] -= 200
+                                    botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                     break
                                 else: print("Less that 200 mana")
@@ -4216,7 +4216,7 @@ def botActivity(nomerBota):
                                 print("Bot is up, Im - ", str(nomerBota), "kast - Death Explode")
                                 if botMana[nomerBota] >= 200:
                                     botMana[nomerBota] -= 200
-                                    botZdorovie[n] -= 200
+                                    botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                     break
                                 else: print("Less that 200 mana")
@@ -4226,7 +4226,7 @@ def botActivity(nomerBota):
                                 print("Bot is up, Im - ", str(nomerBota), "kast - Death Explode")
                                 if botMana[nomerBota] >= 200:
                                     botMana[nomerBota] -= 200
-                                    botZdorovie[n] -= 200
+                                    botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                     break
                                 else: print("Less that 200 mana")  
@@ -4413,7 +4413,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 16:  # Применяем заклинание "Лечение"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 22:
-                    if botZdorovie[nomerBota]+30 <= botIshZdorovie[nomerBota]:
+                    if botZdorovie[nomerBota]+45 <= botIshZdorovie[nomerBota]:
                         if botMana[nomerBota] >= 30:
                             botMana[nomerBota] -= 30
                             botZdorovie[nomerBota] += 30
@@ -4425,7 +4425,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 17:  # Применяем заклинание "Лунный обряд"        
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 9:
-                    if botZdorovie[nomerBota]+60 <= botIshZdorovie[nomerBota]:
+                    if botZdorovie[nomerBota]+80 <= botIshZdorovie[nomerBota]:
                         if botMana[nomerBota] >= 70:
                             botMana[nomerBota] -= 70
                             if botZdorovie[nomerBota] +70 <= botIshZdorovie[nomerBota]:
@@ -4602,14 +4602,18 @@ def botActivity(nomerBota):
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 3:
                     if botMana[nomerBota] >= 30:
-                        for n in range(15):
-                            if botVozdeistvie[nomerBota][n] != 3:
+                        for m in range(15):
+                            if botVozdeistvie[nomerBota][n] == 3:
+                                print("I'm already bewitched by the Phoenix Armor")
+                                break
+                            if m == 15 and botVozdeistvie[nomerBota][n] != 3: 
+                                print("The jam is already active")  
                                 botVozdeistvie[nomerBota][n] = 3
                                 botDeistvie[nomerBota][n] = sobitie + 700
                                 botMana[nomerBota] -= 30
                                 print("Conjuring Phoenix Armor")
                                 break
-                            if n == 15: print("The jam is already active")  
+                            
                     else: print("Need a mana for Phoenix Armor")
                     break
                     
@@ -4857,30 +4861,38 @@ def botActivity(nomerBota):
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 8:
                     if botMana[nomerBota] >= 35:
-                        for n in range(15):
-                            if botVozdeistvie[nomerBota][n] != 8:
-                                botVozdeistvie[nomerBota][n] = 8
-                                botDeistvie[nomerBota][n] = sobitie + 700
-                                botMana[nomerBota] -= 35
-                                print("Conjuring Bloodthirstiness")
+                        for m in range(15):
+                            if botVozdeistvie[nomerBota][n] == 3:
+                                print("I'm already bewitched by the Phoenix Armor")
                                 break
-                            if n == 15: print("The jam is already active")  
-                    else: print("Need a mana for Bloodthirstiness")
+                            if m == 15 and botVozdeistvie[nomerBota][n] != 3: 
+                                print("The jam is already active")  
+                                botVozdeistvie[nomerBota][n] = 3
+                                botDeistvie[nomerBota][n] = sobitie + 700
+                                botMana[nomerBota] -= 30
+                                print("Conjuring Phoenix Armor")
+                                break
+                            
+                    else: print("Need a mana for Phoenix Armor")
                     break
                     
         elif genom[botStep[nomerBota]] == 28:  # Применяем заклинание "Мощь Природы"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 10:
                     if botMana[nomerBota] >= 65:
-                        for n in range(15):
-                            if botVozdeistvie[nomerBota][n] != 10:
-                                botVozdeistvie[nomerBota][n] = 10
-                                botDeistvie[nomerBota][n] = sobitie + 700
-                                botMana[nomerBota] -= 65
-                                print("Conjuring Power of nature")
+                        for m in range(15):
+                            if botVozdeistvie[nomerBota][n] == 3:
+                                print("I'm already bewitched by the Phoenix Armor")
                                 break
-                            if n == 15: print("The jam is already active")  
-                    else: print("Need a mana for Power of nature")
+                            if m == 15 and botVozdeistvie[nomerBota][n] != 3: 
+                                print("The jam is already active")  
+                                botVozdeistvie[nomerBota][n] = 3
+                                botDeistvie[nomerBota][n] = sobitie + 700
+                                botMana[nomerBota] -= 30
+                                print("Conjuring Phoenix Armor")
+                                break
+                            
+                    else: print("Need a mana for Phoenix Armor")
                     break
                     
         elif genom[botStep[nomerBota]] == 29:  # Применяем заклинание "Печать Хаоса"
