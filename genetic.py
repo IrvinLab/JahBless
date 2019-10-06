@@ -9,7 +9,8 @@ m = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [12, 46, 52, 36, 39, 18, 57, 18, 54, 6, 54, 35, 24, 39, 43, 2, 40, 14, 47, 49, 14, 8, 4, 5, 48, 5, 6, 24, 24, 9, 2, 19, 41, 3, 6, 61, 56, 62, 54, 62, 18, 26, 45, 13, 9, 8, 31, 36, 34, 4, 31, 12, 2, 20, 3, 62, 5, 15, 55, 26, 11, 63, 10, 31, 3, 32, 34, 61, 22, 39, 8, 23, 5, 41, 28, 8, 6, 31, 3, 30, 1, 7, 42, 40, 29, 36, 16, 47, 2, 21, 20, 14, 56, 2, 43, 0, 38, 24, 33, 15, 39, 60, 4, 8, 1, 1, 13, 48, 55, 47, 25, 31, 34, 59, 33, 46, 41, 59, 24, 3, 17, 37, 30, 2, 19, 43, 40, 39]
+    genom = [36, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 4, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 34, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 50, 16, 24, 55, 34, 9, 22, 55, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 2, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 34, 51, 45]
+
 
 
 
@@ -133,7 +134,9 @@ def worldCreate():
     world[298] = 5
     world[416] = 10
     world[31] = 15
-    world[0] = 1        
+    world[1] = 1
+    world[33] = 1
+    world[32] = 1
     
     botNumer.clear()
     botType.clear()
@@ -3439,7 +3442,7 @@ def botActivity(nomerBota):
                                             botZdorovie[n] -= 30
                                             break
                                         else: print("Less that 30 mana")
-                if n==14 and botZaklinania[nomerBota][n] != 6: loviVebalo(nomerBota)
+                #if n==14 and botZaklinania[nomerBota][n] != 6: loviVebalo(nomerBota)
                                            
         elif genom[botStep[nomerBota]] == 15:  # Применяем заклинание "Молния"
             for n in range(15):
@@ -3571,7 +3574,7 @@ def botActivity(nomerBota):
                                 world[botLocation[nomerBota]] = 0
                                 botLocation[nomerBota] = teleport
                                 profit = 1
-                if n==14 and botZaklinania[nomerBota][n] != 3: loviVebalo(nomerBota)
+                #if n==14 and botZaklinania[nomerBota][n] != 3: loviVebalo(nomerBota)
                                 
         elif genom[botStep[nomerBota]] == 19: # Идём вверх-влево
             if botLocation[nomerBota]>=32:
