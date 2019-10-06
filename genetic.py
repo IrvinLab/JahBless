@@ -132,7 +132,8 @@ def worldCreate():
     world[145] = 8  # А затем расставляем объекты
     world[298] = 5
     world[416] = 10
-    world[31] = 15        
+    world[31] = 15
+    world[0] = 1        
     
     botNumer.clear()
     botType.clear()
@@ -4520,16 +4521,19 @@ def botActivity(nomerBota):
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 23:
                     if botMana[nomerBota] >= 100:
-                        for m in range(15):
-                            if m == 14: 
-                                print("The jam is already active") 
-                                if botVozdeistvie[nomerBota][n] != 23:
-                                    botVozdeistvie[nomerBota][n] = 23
-                                    botDeistvie[nomerBota][n] = sobitie + 700
-                                    botMana[nomerBota] -= 100
-                                    print("Conjuring Dispel spell")
-                                    break
+                        tempDispel = 0
+                        for m in range(15):    
+                            if botVozdeistvie[nomerBota][m] == 0: tempDispel += 1
                             
+                        if tempDispel == 14: 
+                            print("The jam is already active") 
+                            if botVozdeistvie[nomerBota][n] != 23:
+                                botVozdeistvie[nomerBota][n] = 23
+                                botDeistvie[nomerBota][n] = sobitie + 700
+                                botMana[nomerBota] -= 100
+
+                                print("Conjuring Dispel spell")
+                                break    
                     else: print("Need a mana for Dispel spell")
                     break
                 #if n==14 and botZaklinania[nomerBota][n] != 23: loviVebalo(nomerBota) 
@@ -4632,6 +4636,7 @@ def botActivity(nomerBota):
     sobitie += 1
     #botZdorovie[nomerBota] -= 1
     if sobitie > 100000: sobitie = 0
+    if botZdorovie[nomerBota] <= 0: ubiraemTrup(nomerBota)
    
 worldCreate()    
 
