@@ -23,6 +23,15 @@ elif myGen == 2:
 
 print(genom)
 
+newGame = 1
+newGameButton = 0
+imHero = 5
+zakl = 0
+posohSmerti = 0
+attack = 0
+hero = 52
+market = [2,7,0,26,0,0,17,46,60,0,0,0,0,0,0,36]
+yaNaRinke = 0
 
 iteration = 1
 FPS = 60
@@ -98,8 +107,43 @@ textZachita = pygame.font.SysFont('Monospace Regular', 20)  # Отображае
 # Создаём мир
 def worldCreate():
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto    
-    global world, xMap, yMap
+    global world, xMap, yMap, attack, zakl, invent, market, yaNaRinke, xGameMap, yGameMap
     
+    attack = 0
+    zakl = 0
+    invent = 0
+
+    market = [2,7,0,26,0,0,17,46,60,0,0,0,0,0,0,36] # В этом массиве лежит инвентарь, который доступен на рынке
+    yaNaRinke = 0
+    xGameMap = 16
+    yGameMap = 548 
+    
+    for yMap in range(4): # Помещаем поле действий и инвентаря
+        for xMap in range(4):
+            pix = pygame.image.load('Images/zero.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xGameMap,yGameMap))
+            xGameMap += 68
+
+        xGameMap = 16
+        yGameMap += 68 
+    xGameMap = 772
+    yGameMap = 548 
+    xHero = 400
+    yHero = 256
+    for yMap in range(4): 
+    
+        for xMap in range(4):
+            pix = pygame.image.load('Images/zero.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xGameMap,yGameMap))
+            xGameMap += 68
+
+        xGameMap = 772
+        yGameMap += 68
+        
     xMap = 16 
     yMap = 96 
     n = 0
@@ -246,6 +290,4336 @@ for yMap in range(14): # Рисуем игровое поле
     
 xGameMap = 16
 yGameMap = 548  
+
+def textInventar(nomInv):
+    global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto, yaNaRinke
+    
+    heroPanel(hero)
+    if botInventar[imHero][nomInv-1] > 0:
+        pix = pygame.image.load('Images/yes.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (462,786))    
+    
+        pix = pygame.image.load('Images/no.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (530,786))    
+                
+    if tmpMarket == 1:
+        heroPanel(hero)
+        randMoney = int(random.random()*6)        
+        tmpMarket = 0
+        yaNaRinke = 0        
+        yes = 0
+        no = 0
+        if botInventar[imHero][nomInv-1] == 1: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 35
+            else: botBronza[imHero] += 35
+        if botInventar[imHero][nomInv-1] == 2: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 55
+            else: botSerebro[imHero] += 1                
+        if botInventar[imHero][nomInv-1] == 3: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 84
+            else: botSerebro[imHero] += 2
+        if botInventar[imHero][nomInv-1] == 4: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 155
+            else: botSerebro[imHero] += 3
+        if botInventar[imHero][nomInv-1] == 5: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 280
+            else: botSerebro[imHero] += 5
+        if botInventar[imHero][nomInv-1] == 6: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 50
+            else: botSerebro[imHero] += 1
+        if botInventar[imHero][nomInv-1] == 7: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 98
+            else: botSerebro[imHero] += 2
+        if botInventar[imHero][nomInv-1] == 8: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 175
+            else: botSerebro[imHero] += 3
+        if botInventar[imHero][nomInv-1] == 9: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 250
+            else: botSerebro[imHero] += 5
+        if botInventar[imHero][nomInv-1] == 10: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 420
+            else: botSerebro[imHero] += 8
+        if botInventar[imHero][nomInv-1] == 11: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 700
+            else: botSerebro[imHero] += 14
+        if botInventar[imHero][nomInv-1] == 12: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 385
+            else: botSerebro[imHero] += 8
+        if botInventar[imHero][nomInv-1] == 13: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 70
+            else: botSerebro[imHero] += 1
+        if botInventar[imHero][nomInv-1] == 14: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 100
+            else: botSerebro[imHero] += 2
+        if botInventar[imHero][nomInv-1] == 15: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 133
+            else: botSerebro[imHero] += 2
+        if botInventar[imHero][nomInv-1] == 16: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 224
+            else: botSerebro[imHero] += 4
+        if botInventar[imHero][nomInv-1] == 17: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 90
+            else: botSerebro[imHero] += 1
+        if botInventar[imHero][nomInv-1] == 18: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 175
+            else: botSerebro[imHero] += 3
+        if botInventar[imHero][nomInv-1] == 19: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 280
+            else: botSerebro[imHero] += 5
+        if botInventar[imHero][nomInv-1] == 20: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 60
+            else: botSerebro[imHero] += 1
+        if botInventar[imHero][nomInv-1] == 21: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 105
+            else: botSerebro[imHero] += 2
+        if botInventar[imHero][nomInv-1] == 22: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 165
+            else: botSerebro[imHero] += 3
+        if botInventar[imHero][nomInv-1] == 23: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 70
+            else: botSerebro[imHero] += 2
+        if botInventar[imHero][nomInv-1] == 24: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 119
+            else: botSerebro[imHero] += 2
+        if botInventar[imHero][nomInv-1] == 25: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 165
+            else: botSerebro[imHero] += 3
+        if botInventar[imHero][nomInv-1] == 26: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 210
+            else: botSerebro[imHero] += 4
+        if botInventar[imHero][nomInv-1] == 27: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 385
+            else: botSerebro[imHero] += 7
+        if botInventar[imHero][nomInv-1] == 28: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 700
+            else: botSerebro[imHero] += 14
+        if botInventar[imHero][nomInv-1] == 29: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1750
+            else: botSerebro[imHero] += 35
+        if botInventar[imHero][nomInv-1] == 30: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 3500
+            else: botSerebro[imHero] += 70
+        if botInventar[imHero][nomInv-1] == 31: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 5950
+            else: botSerebro[imHero] += 118
+        if botInventar[imHero][nomInv-1] == 32: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 9450
+            else: botSerebro[imHero] += 189
+        if botInventar[imHero][nomInv-1] == 33: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 2800
+            else: botSerebro[imHero] += 56
+        if botInventar[imHero][nomInv-1] == 34: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1400
+            else: botSerebro[imHero] += 28
+        if botInventar[imHero][nomInv-1] == 35: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 700
+            else: botSerebro[imHero] += 14
+        if botInventar[imHero][nomInv-1] == 36: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1660
+            else: botSerebro[imHero] += 32
+        if botInventar[imHero][nomInv-1] == 37: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1750
+            else: botSerebro[imHero] += 35
+        if botInventar[imHero][nomInv-1] == 38: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 2100
+            else: botSerebro[imHero] += 42    
+        if botInventar[imHero][nomInv-1] == 39: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 2800
+            else: botSerebro[imHero] += 56
+        if botInventar[imHero][nomInv-1] == 40: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1610
+            else: botSerebro[imHero] += 32
+        if botInventar[imHero][nomInv-1] == 41: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1890
+            else: botSerebro[imHero] += 38
+        if botInventar[imHero][nomInv-1] == 42: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1750
+            else: botSerebro[imHero] += 35
+        if botInventar[imHero][nomInv-1] == 43: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 525
+            else: botSerebro[imHero] += 11
+        if botInventar[imHero][nomInv-1] == 44: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 945
+            else: botSerebro[imHero] += 19
+        if botInventar[imHero][nomInv-1] == 45: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1400
+            else: botSerebro[imHero] += 28
+        if botInventar[imHero][nomInv-1] == 46: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 210
+            else: botSerebro[imHero] += 4
+        if botInventar[imHero][nomInv-1] == 47: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 350
+            else: botSerebro[imHero] += 7
+        if botInventar[imHero][nomInv-1] == 48: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 595
+            else: botSerebro[imHero] += 12
+        if botInventar[imHero][nomInv-1] == 49: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1120
+            else: botSerebro[imHero] += 22
+        if botInventar[imHero][nomInv-1] == 50: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 2100
+            else: botSerebro[imHero] += 42
+        if botInventar[imHero][nomInv-1] == 51: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 4200
+            else: botSerebro[imHero] += 84
+        if botInventar[imHero][nomInv-1] == 53: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 840
+            else: botSerebro[imHero] += 17
+        if botInventar[imHero][nomInv-1] == 54: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 4900
+            else: botSerebro[imHero] += 98
+        if botInventar[imHero][nomInv-1] == 55: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 5950
+            else: botSerebro[imHero] += 119
+        if botInventar[imHero][nomInv-1] == 56: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 5600
+            else: botSerebro[imHero] += 112
+        if botInventar[imHero][nomInv-1] == 57: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 7000
+            else: botSerebro[imHero] += 140
+        if botInventar[imHero][nomInv-1] == 58: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 4690
+            else: botSerebro[imHero] += 94
+        if botInventar[imHero][nomInv-1] == 59: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 700
+            else: botSerebro[imHero] += 14
+        if botInventar[imHero][nomInv-1] == 60: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 175
+            else: botSerebro[imHero] += 3
+        if botInventar[imHero][nomInv-1] == 61: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 315
+            else: botSerebro[imHero] += 6
+        if botInventar[imHero][nomInv-1] == 62: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 630
+            else: botSerebro[imHero] += 12
+        if botInventar[imHero][nomInv-1] == 63: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1680
+            else: botSerebro[imHero] += 33
+        if botInventar[imHero][nomInv-1] == 64: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 3000
+            else: botSerebro[imHero] += 60
+        if botInventar[imHero][nomInv-1] == 65: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 4200
+            else: botSerebro[imHero] += 84
+        if botInventar[imHero][nomInv-1] == 66: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 14000
+            else: botSerebro[imHero] += 280
+        if botInventar[imHero][nomInv-1] == 67: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 280
+            else: botSerebro[imHero] += 5
+        if botInventar[imHero][nomInv-1] == 68: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 455
+            else: botSerebro[imHero] += 9
+        if botInventar[imHero][nomInv-1] == 69: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 700
+            else: botSerebro[imHero] += 14              
+        if botInventar[imHero][nomInv-1] == 70: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1050
+            else: botSerebro[imHero] += 21 
+        if botInventar[imHero][nomInv-1] == 71: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1380
+            else: botSerebro[imHero] += 27 
+        if botInventar[imHero][nomInv-1] == 72: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 1540
+            else: botSerebro[imHero] += 30 
+        if botInventar[imHero][nomInv-1] == 73: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 2100
+            else: botSerebro[imHero] += 42             
+            
+        heroPanel(hero)    
+        
+    if botInventar[imHero][nomInv-1] == 1:
+        variableName = u"Зелье здоровья 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+30 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 50бр|1ср/35бр"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 2:
+        variableName = u"Зелье здоровья 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+65 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 78бр|2ср/55бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 3:
+        variableName = u"Зелье здоровья 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+150 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 120бр|3ср/84бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 4:
+        variableName = u"Зелье здоровья 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+320 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 220бр|4ср/155бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 5:
+        variableName = u"Зелье здоровья 5 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+675 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 6:
+        variableName = u"Зелье маны 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+60 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 70бр|2ср/50бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 7:
+        variableName = u"Зелье маны 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+130 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 140бр|3ср/98бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 8:
+        variableName = u"Зелье маны 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+260 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 9:
+        variableName = u"Зелье маны 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+520 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 370бр|7ср/250бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 10:
+        variableName = u"Зелье маны 5 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+1100 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 600бр|12ср/420бр|8ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 11:
+        variableName = u"Зелье восстановления"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+500 Здоровья +500 маны, плюс зелье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"действует подобно заклинанию"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Рассеять Чары "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 12:
+        variableName = u"Зелье рассеивания"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Рассеять Чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 550бр|12ср/385бр|8ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 13:
+        variableName = u"Зелье Кипящей крови 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 100бр|2ср/70бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 14:
+        variableName = u"Зелье Кипящей крови 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 140бр|3ср/100бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 15:
+        variableName = u"Зелье Кипящей крови 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 190бр|4ср/133бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 16:
+        variableName = u"Зелье Кипящей крови 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+20 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 320бр|6ср/224бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 17:
+        variableName = u"Зелье Деревянной кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 130бр|3ср/90бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 18:
+        variableName = u"Зелье Каменной кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 19:
+        variableName = u"Зелье Обсидиановой кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 20:
+        variableName = u"Зелье Паука"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+2 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 85бр|2ср/60бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 21:
+        variableName = u"Зелье Ящерицы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+3 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 150бр|3ср/105бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 22:
+        variableName = u"Зелье Пантеры"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 235бр|5ср/165бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 23:
+        variableName = u"Зелье Леприкона 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 100бр|3ср/70бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 24:
+        variableName = u"Зелье Леприкона 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 170бр|4ср/119бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 25:
+        variableName = u"Зелье Леприкона 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 240бр|5ср/165бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 26:
+        variableName = u"Топор Палача (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Подобные топоры обычно используют"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"палачи для выполнения своей "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"гнусной работы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+    if botInventar[imHero][nomInv-1] == 27:
+        variableName = u"Топор Королвской стражи (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Подобными топорами обычно вооружены"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"королевские стражники. Видимо это"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"оружие было отнято у одного из них"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"во времена эпохи Смуты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+6 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 550бр|11ср/385бр|7ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+    if botInventar[imHero][nomInv-1] == 28:
+        variableName = u"Топор Гнева (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Выкован из особо острой стали."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Он разрезает плоти и кости врага как"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"горячий нож сливочное масло. Один вид"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"этого топора внушает пронзающий ужас."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"+12 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+    if botInventar[imHero][nomInv-1] == 29:
+        variableName = u"Топор Алчности (4ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот топор усилен заклинаниями боли"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"и сам тянется к твоему врагу,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"дабы вкусить его крови."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+25 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+    if botInventar[imHero][nomInv-1] == 30:
+        variableName = u"Топор Ярости (5ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Усиленный магией Хаоса, этот топор - "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"воплощение самой Смерти. Он обладает"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"настолько разрушительной силой, "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"что с ним можно в одинчку одолеть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"целый отряд противника"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+        variableName = u"+35 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Куп./прод. 5000бр|100ср/3500бр|70ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 720))        
+    if botInventar[imHero][nomInv-1] == 31:
+        variableName = u"Топор Скорбящих вдов (6ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Название говорит само за себя."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"От гнева этого оружия нет спасиния "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"никому. Вряд ли в наше время есть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"кузнецы, способные выковать нечто "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"подобное. Это историческая реликвия"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+        variableName = u"+55 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Куп./прод. 8500бр|170ср/5950бр|118ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 720))
+    if botInventar[imHero][nomInv-1] == 32:
+        variableName = u"Топор Божественной Воли (7ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Умереть от этого оружия - большая"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"честь для врага. Этот топор зачарован"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"магией Древних Богов. Никому из ныне"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"живущих не подсилу такие заклятия."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"+75 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 13500бр|270ср/9450бр|189ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+    if botInventar[imHero][nomInv-1] == 33:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Пронзающая смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 4000бр|80ср/2800р|56ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 34:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию доб. и воскресить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2000бр|40ср/1400бр|28ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 35:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 36:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560))        
+        variableName = u"Обучает заклинанию Яд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2300бр|46ср/1600бр|32ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 37:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Могильный луч"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 38:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Печать Хаоса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 39:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Печать Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 4000бр|80ср/2800р|56ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 40:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Пронз. крик"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2300бр|46ср/1610бр|32ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 41:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Обман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2700бр|54ср/1890бр|38ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 42:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Рассеять чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 43:
+        variableName = u"Ботинки Гонца (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Ногам удобно - двигаешься быстро"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))       
+        variableName = u"+2 ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 750бр|15ср/525бр|11ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 44:
+        variableName = u"Ботинки Путешественника (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"С такой обувью можно обойти весь свет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"за пару недель"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))       
+        variableName = u"+4 ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1350бр|27ср/945бр|19ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 45:
+        variableName = u"Ботинки Скитальца (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Верный друг искателя приключений"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+6 Ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 2000бр|40ср/1400бр|28ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 46:
+        variableName = u"Шлем пехотинца (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Видимо кузнец, что выковал этот шлем "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"служил при королевском дворе, раз так "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"мастерски выковал этот доспех."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+3 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+    if botInventar[imHero][nomInv-1] == 47:
+        variableName = u"Офицерский шлем (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Видимо, что выковал этот шлем служил"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"при королевском дворе, раз так "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"мастерски выковал этот доспех."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+5 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 500бр|10ср/350бр|7ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+    if botInventar[imHero][nomInv-1] == 48:
+        variableName = u"Шлем Паладинов (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Это отличный доспех. С ним не страшно"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"выйти и одному на отряд противника"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+8 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 850бр|17ср/595бр|12ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 49:
+        variableName = u"Шлем Похитителя Душ (4ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Не каждый кузнец способен выковать"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"подобный доспех, не каждый боец"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"достоин его носить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+14 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 1600бр|32ср/1120бр|22ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+    if botInventar[imHero][nomInv-1] == 50:
+        variableName = u"Шлем Божественной Миссии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Доспех 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Видимо ты избран, раз носишь этот шлем"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+21 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 51:
+        variableName = u"Шлем Бессмертия (6ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот доспех - проклятье Вашего врага"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"С ним Вы выбертесь даже из самой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"страшной западни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+30 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+    if botInventar[imHero][nomInv-1] == 52:
+        variableName = u"Банка"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Отнесите эту банку зельевару"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 53:
+        variableName = u"Ожерелье духов Войны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Очень редкий артефакт, большая удача"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"найти такую ценную вещь"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+7 Защиты +3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1200бр|24ср/840бр|17ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u" Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 54:
+        variableName = u"Посох Прозрения"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Позволяет узнать количество маны,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"и здоровье противка, а также какими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"заклинаниями он обладает"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 7000бр|140ср/4900бр|98ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 55:
+        variableName = u"Посох Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Пронзающая Смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 100 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 8500бр|170ср/5950бр|119ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 56:
+        variableName = u"Посох Света"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Рассеять чары, а также даёт"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+100 Здоровья при использовании"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 8000бр|160ср/5600бр|112ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Требует 50 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 57:
+        variableName = u"Посох Вечной Жизни"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Способен сотворить скелетов до"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 40/60/85/115/150 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 10000бр|200ср/7000бр|140ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 58:
+        variableName = u"Посох Воли"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Способен подчинить существо до "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"5 уровня если оно не обладает защитой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"от средней Магии Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Требует 50/70/95/130/170 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6700бр|134ср/4690бр|94ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))        
+    if botInventar[imHero][nomInv-1] == 59:
+        variableName = u"Рунный браслет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Зачарованный магией Порядка браслет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+3 Защиты +5 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 60:
+        variableName = u"Меч 1 ур"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Стандартное вооружение пехотинца"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 61:
+        variableName = u"Меч Офицера гвардии (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Лезвие меча выполнено из лучшей стали"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"в королевстве."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+5 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 450бр|4ср/315бр|6ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 62:
+        variableName = u"Меч Паладинов (3 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этим вооружаются лучшие войны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Короля Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+8 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 900бр|18ср/630бр|12ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 63:
+        variableName = u"Меч Ледяной Мощи (4 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Клинок этого меча испещрён магическими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"рунами, придающими ему большую"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"остроту. Не позавидуешь врагу, который"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"встретит его своей грудью."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+14 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 2400бр|48ср/1680бр|33ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))        
+    if botInventar[imHero][nomInv-1] == 64:
+        variableName = u"Меч Смирения (5 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Глядя на этот меч, враг поймёт, что"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"он смотрит в лицо самой Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+21 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 4300бр|86ср/3000бр|60ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 65:
+        variableName = u"Меч Великого Смирения (6 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Очень редкий артефакт. Этот меч усилен"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"заклинаниями Боли, что позволяет ему"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"без проблем разрезать любой доспех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+30 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 66:
+        variableName = u"Усиленный посох Вечной Жизни"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Позволяет призывать скелетов от пятого"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"до восьмого уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 140/180/240 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 20000бр|400ср/14000бр|280ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 67:
+        variableName = u"Молот кузнеца (1 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Почему бы им не вдарить по голове"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"какого-нибудь гнолла?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+4 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 68:
+        variableName = u"Палица (2 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Суровая штука, она способна своими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"острыми зубьями перемолоть все кости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+6 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 650бр|13ср/455бр|9ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 69:
+        variableName = u"Молот Славы (3 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Такой обычно вручают выдающимся бойцам"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"королевства Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+9 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if botInventar[imHero][nomInv-1] == 70:
+        variableName = u"Молот Паладинов (4 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Некоторые паладины предпочитают"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"сражатся тяжёлом молотом, а не мечом"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+13 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1500бр|30ср/1050бр|21ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if botInventar[imHero][nomInv-1] == 71:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Лечение"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0))
+        sc.blit(nameObj,(440, 580))        
+        variableName = u"Куп./прод. 1900бр|38ср/1380бр|27ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 72:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Лунный обряд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2200бр|44ср/1540бр|30ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 73:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Кража Магии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+        
+    
+            
+            
+            
+def textMagic(numerCeil):
+    global botZaklinania 
+    global hero
+    heroPanel(hero)
+    if botZaklinania[imHero][numerCeil-1] == 1:
+        variableName = u"Пронзающая смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Мощное боевое заклинание 5 уровня "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"-200 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 200 маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[imHero][numerCeil-1] == 2:
+        variableName = u"Добить и воскресить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Базовое магическое заклинание"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"начинающего некроманта. Создаёт скелета"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"из существа при условии, чтоего здоровье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"меньше или равно 30."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 30 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if botZaklinania[imHero][numerCeil-1] == 3:
+        variableName = u"Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Базовая магия защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"+5 к защите на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 30 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[imHero][numerCeil-1] == 4:
+        variableName = u"Кража магии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Отнимает всю ману противника и половину"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"отнятой маны прибавляет заклинателю"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 20 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if botZaklinania[imHero][numerCeil-1] == 5:
+        variableName = u"Обман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание хаоса 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо бездействует 1 ход"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Полезно применять против сильного"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"если у него нет защиты от базовых"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"заклинаний хаоса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+        variableName = u"Требует 50 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+    if botZaklinania[imHero][numerCeil-1] == 6:
+        variableName = u"Огненный шар"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боевая магия Хаоса 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Создаёт огненный шар, летящий во врага"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"-30 здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Требует 25 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+    if botZaklinania[imHero][numerCeil-1] == 7:
+        variableName = u"Отравление"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает 15 урона каждый ход"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Заклинание действует до тех пор пока"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"не будет применено заклинание лечения,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"или рассеивание чар. Также действие"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+        variableName = u"магии снимается зельями  лечения"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))             
+        variableName = u"Требует 30 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))                     
+    if botZaklinania[imHero][numerCeil-1] == 8:
+        variableName = u"Кровожадность"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Хаоса 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает +5 силы на 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 35 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[imHero][numerCeil-1] == 9:
+        variableName = u"Лунный обряд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Природы 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"+70 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 50 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[imHero][numerCeil-1] == 10:
+        variableName = u"Мощь природы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Природы 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Улучшающее заклинание"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"+5 Силы +5 Защиты на 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[imHero][numerCeil-1] == 11:
+        variableName = u"Могильный луч"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает 50 урона, а также"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"теряет защиту на 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Защита = 0 -50 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 60 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))                
+    if botZaklinania[imHero][numerCeil-1] == 12:
+        variableName = u"Молния"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боевая магия 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Разряд молнии отнимает 70 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 70 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[imHero][numerCeil-1] == 13:
+        variableName = u"Печать Хаоса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Хаоса 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Продвинутое заклинание Хаоса, "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"действует подобно заклинанию"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Отравление, более тогоотнимает всю"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"ману и защиту. Защита восстанавливается"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+        variableName = u"через 10 ходов."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))             
+        variableName = u"Требует 100 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))             
+    if botZaklinania[imHero][numerCeil-1] == 14:
+        variableName = u"Печать смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 7 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо умирает через 5 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Заклинание можно снять Рассеиванием"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"чар или артефактом подобного действия"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 230 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+    if botZaklinania[imHero][numerCeil-1] == 15:
+        variableName = u"Поцелуй смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает 40 урона каждый ход"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Заклинание действует до тех пор пока"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"не будет применено рассеивание чар."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 150 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+    if botZaklinania[imHero][numerCeil-1] == 16:
+        variableName = u"Проклятье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Заклинание Смерти 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"На 5 ходов защита будет равна нулю"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 75 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[imHero][numerCeil-1] == 17:
+        variableName = u"Пронзающий крик"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боевая магия 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"-50 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 30 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if botZaklinania[imHero][numerCeil-1] == 18:
+        variableName = u"Регенерация"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Природы 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо получает 7 здоровья до тех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"пор пока полностью не восстановит"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"исходное здоровье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 40 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+    if botZaklinania[imHero][numerCeil-1] == 19:
+        variableName = u"Сжигание маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Хаоса 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Сжигает всю ману противника"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 15 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+    if botZaklinania[imHero][numerCeil-1] == 20:
+        variableName = u"Вампиризм"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Смерти 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Половина нанесённого оружием урона"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"преобразуется в здоровье. Действует"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"10 ходов."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 55 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+    if botZaklinania[imHero][numerCeil-1] == 21:
+        variableName = u"Пока это восстановить скелетов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Это заклинание нужно исправить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+    if botZaklinania[imHero][numerCeil-1] == 22:
+        variableName = u"Лечение"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Порядка 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Преобразует ману в здоровье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"+30 Здоровья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"Требует 30 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+    if botZaklinania[imHero][numerCeil-1] == 23:
+        variableName = u"Рассеять чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Порядка 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Рассеивает чары вокруг заклинателя "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Требует 40 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+    if botZaklinania[imHero][numerCeil-1] == 24:
+        variableName = u"Пленить душу"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Магия Смерти 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Существо переходит в подчинение"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"заклинателя. Действует на существ"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"до 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Требует 100 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))       
+
+def visibleMagic(xMag, yMag, por): # Функция, отображающая заклинания
+    global botZaklinania
+    if botZaklinania[imHero][por] == 0:
+        pix = pygame.image.load('Images/zero.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if botZaklinania[imHero][por] == 100:
+        pix = pygame.image.load('Images/attack.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if botZaklinania[imHero][por] == 1:
+        pix = pygame.image.load('Images/pronzauchaiaSmert.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if botZaklinania[imHero][por] == 2:
+        pix = pygame.image.load('Images/dobitIvoskresit.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if botZaklinania[imHero][por] == 3:
+        pix = pygame.image.load('Images/dospechiFenicha.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if botZaklinania[imHero][por] == 4:
+        pix = pygame.image.load('Images/krajaMagii.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if botZaklinania[imHero][por] == 5:
+        pix = pygame.image.load('Images/obman.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))    
+    if botZaklinania[imHero][por] == 6:
+        pix = pygame.image.load('Images/ognennaiaSfera.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if botZaklinania[imHero][por] == 7:
+        pix = pygame.image.load('Images/jad.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))
+    if botZaklinania[imHero][por] == 8:
+        pix = pygame.image.load('Images/krovojadnost.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))        
+    if botZaklinania[imHero][por] == 9:
+        pix = pygame.image.load('Images/lunniiObriad.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if botZaklinania[imHero][por] == 10:
+        pix = pygame.image.load('Images/mochLda.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if botZaklinania[imHero][por] == 11:
+        pix = pygame.image.load('Images/mogilniiLuch.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag)) 
+    if botZaklinania[imHero][por] == 12:
+        pix = pygame.image.load('Images/molnia.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))    
+    if botZaklinania[imHero][por] == 13:
+        pix = pygame.image.load('Images/pechatChaosa.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))    
+    if botZaklinania[imHero][por] == 14:
+        pix = pygame.image.load('Images/pechatSmerti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))   
+    if botZaklinania[imHero][por] == 15:
+        pix = pygame.image.load('Images/poceluiSmerti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))      
+    if botZaklinania[imHero][por] == 16:
+        pix = pygame.image.load('Images/prokliatie.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))   
+    if botZaklinania[imHero][por] == 17:
+        pix = pygame.image.load('Images/pronzauchiiKrik.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))         
+    if botZaklinania[imHero][por] == 18:
+        pix = pygame.image.load('Images/reincarnation.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag)) 
+    if botZaklinania[imHero][por] == 19:
+        pix = pygame.image.load('Images/sjiganieMani.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag)) 
+    if botZaklinania[imHero][por] == 20:
+        pix = pygame.image.load('Images/vampirizm.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag)) 
+    if botZaklinania[imHero][por] == 21:
+        pix = pygame.image.load('Images/vosstanovitSkeletov.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if botZaklinania[imHero][por] == 22:
+        pix = pygame.image.load('Images/lechenie.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))   
+    if botZaklinania[imHero][por] == 23:
+        pix = pygame.image.load('Images/rasseiatChari.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))  
+    if botZaklinania[imHero][por] == 24:
+        pix = pygame.image.load('Images/plenitDuchu.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xMag,yMag))              
+                                
+def visibleInventar(xInv, yInv, porNom): # Функция, отображающая заклинания
+    global botInventar
+    if botInventar[imHero][porNom] == 0:
+        pix = pygame.image.load('Images/zero.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 1:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 2:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 3:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 4:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 5:
+        pix = pygame.image.load('Images/healtPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))                       
+    if botInventar[imHero][porNom] == 6:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 7:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 8:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 9:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 10:
+        pix = pygame.image.load('Images/manaPoison.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))                
+    if botInventar[imHero][porNom] == 11:
+        pix = pygame.image.load('Images/zelieVostanovlenia.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 12:
+        pix = pygame.image.load('Images/zelieRasseivania.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))   
+    if botInventar[imHero][porNom] == 13:
+        pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 14:
+        pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 15:
+        pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 16:
+        pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))           
+    if botInventar[imHero][porNom] == 17:
+        pix = pygame.image.load('Images/zelieZaciti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 18:
+        pix = pygame.image.load('Images/zelieZaciti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 19:
+        pix = pygame.image.load('Images/zelieZaciti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))            
+    if botInventar[imHero][porNom] == 20:
+        pix = pygame.image.load('Images/zelieLovkosti.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 21:
+        pix = pygame.image.load('Images/zelieLovkosti.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 22:
+        pix = pygame.image.load('Images/zelieLovkosti.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))          
+    if botInventar[imHero][porNom] == 23:
+        pix = pygame.image.load('Images/zelieUdachi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 24:
+        pix = pygame.image.load('Images/zelieUdachi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 25:
+        pix = pygame.image.load('Images/zelieUdachi.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))        
+    if botInventar[imHero][porNom] == 26:
+        pix = pygame.image.load('Images/axe.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))   
+    if botInventar[imHero][porNom] == 27:
+        pix = pygame.image.load('Images/axe1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 28:
+        pix = pygame.image.load('Images/axe2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[imHero][porNom] == 29:
+        pix = pygame.image.load('Images/axe3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 30:
+        pix = pygame.image.load('Images/axe4.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 31:
+        pix = pygame.image.load('Images/axe5.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 32:
+        pix = pygame.image.load('Images/axe6.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 33:
+        pix = pygame.image.load('Images/book.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 34:
+        pix = pygame.image.load('Images/book1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 35:
+        pix = pygame.image.load('Images/book2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 36:
+        pix = pygame.image.load('Images/book3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 37:
+        pix = pygame.image.load('Images/book4.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 38:
+        pix = pygame.image.load('Images/book5.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 39:
+        pix = pygame.image.load('Images/book6.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 40:
+        pix = pygame.image.load('Images/book7.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 41:
+        pix = pygame.image.load('Images/book8.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 42:
+        pix = pygame.image.load('Images/book9.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))  
+    if botInventar[imHero][porNom] == 43:
+        pix = pygame.image.load('Images/bot1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 44:
+        pix = pygame.image.load('Images/bot2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 45:
+        pix = pygame.image.load('Images/bot3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 46:
+        pix = pygame.image.load('Images/helmet.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 47:
+        pix = pygame.image.load('Images/helmet1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 48:
+        pix = pygame.image.load('Images/helmet2.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 49:
+        pix = pygame.image.load('Images/helmet3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 50:
+        pix = pygame.image.load('Images/helmet4.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 51:
+        pix = pygame.image.load('Images/helmet5.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 52:
+        pix = pygame.image.load('Images/jar.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 53:
+        pix = pygame.image.load('Images/ojerelie.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 54:
+        pix = pygame.image.load('Images/posohProzrenia.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 55:
+        pix = pygame.image.load('Images/posohSmerti.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))        
+    if botInventar[imHero][porNom] == 56:
+        pix = pygame.image.load('Images/posohSveta.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))        
+    if botInventar[imHero][porNom] == 57:
+        pix = pygame.image.load('Images/posohVechnoiJizni.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 58:
+        pix = pygame.image.load('Images/posohVoli.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))      
+    if botInventar[imHero][porNom] == 59:
+        pix = pygame.image.load('Images/runesBraslet.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv)) 
+    if botInventar[imHero][porNom] == 60:
+        pix = pygame.image.load('Images/sword.jpeg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 61:
+        pix = pygame.image.load('Images/sword1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))     
+    if botInventar[imHero][porNom] == 62:
+        pix = pygame.image.load('Images/sword2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[imHero][porNom] == 63:
+        pix = pygame.image.load('Images/sword3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[imHero][porNom] == 64:
+        pix = pygame.image.load('Images/sword4.gif') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[imHero][porNom] == 65:
+        pix = pygame.image.load('Images/sword5.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[imHero][porNom] == 66:
+        pix = pygame.image.load('Images/usilenniiPosohVechnoiJizni.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))   
+    if botInventar[imHero][porNom] == 67:
+        pix = pygame.image.load('Images/hammer.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
+    if botInventar[imHero][porNom] == 68:
+        pix = pygame.image.load('Images/hammer1.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 69:
+        pix = pygame.image.load('Images/hammer2.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
+    if botInventar[imHero][porNom] == 70:
+        pix = pygame.image.load('Images/hammer3.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 71:
+        pix = pygame.image.load('Images/book10.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 72:
+        pix = pygame.image.load('Images/book11.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[imHero][porNom] == 73:
+        pix = pygame.image.load('Images/book12.png') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))
+
+def printMagic(numberMagic):                                # Отображаем магические способности
+    if numberMagic == 0: visibleMagic(16,548,0)
+    if numberMagic == 1: visibleMagic(84,548,1)
+    if numberMagic == 2: visibleMagic(152,548,2)
+    if numberMagic == 3: visibleMagic(220,548,3)
+    if numberMagic == 4: visibleMagic(16,616,4)
+    if numberMagic == 5: visibleMagic(84,616,5)
+    if numberMagic == 6: visibleMagic(152,616,6)
+    if numberMagic == 7: visibleMagic(220,616,7)
+    if numberMagic == 8: visibleMagic(16,684,8)
+    if numberMagic == 9: visibleMagic(84,684,9)
+    if numberMagic == 10: visibleMagic(152,684,10)
+    if numberMagic == 11: visibleMagic(220,684,11)
+    if numberMagic == 12: visibleMagic(16,752,12)
+    if numberMagic == 13: visibleMagic(84,752,13)
+    if numberMagic == 14: visibleMagic(152,752,14)
+    if numberMagic == 15: visibleMagic(220,752,15)
+         
+def printInventar(numberInventar):                                # Отображаем инвентарь
+    if numberInventar == 0: visibleInventar(772,548,0)
+    if numberInventar == 1: visibleInventar(840,548,1)
+    if numberInventar == 2: visibleInventar(908,548,2)
+    if numberInventar == 3: visibleInventar(976,548,3)
+    if numberInventar == 4: visibleInventar(772,616,4)
+    if numberInventar == 5: visibleInventar(840,616,5)
+    if numberInventar == 6: visibleInventar(908,616,6)
+    if numberInventar == 7: visibleInventar(976,616,7)
+    if numberInventar == 8: visibleInventar(772,684,8)
+    if numberInventar == 9: visibleInventar(840,684,9)
+    if numberInventar == 10: visibleInventar(908,684,10)
+    if numberInventar == 11: visibleInventar(976,684,11)
+    if numberInventar == 12: visibleInventar(772,752,12)
+    if numberInventar == 13: visibleInventar(840,752,13)
+    if numberInventar == 14: visibleInventar(908,752,14)
+    if numberInventar == 15: visibleInventar(976,752,15) 
+
+def doebaca(hehmda):  #Функция отображающая информацию об объектах и позволяющая с ними взаимодействовать
+    global botType, botStep, xBot, yBot, botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botInventar, botIshZdorovie, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha
+    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent
+    
+    n = 0
+    yes = no = invent = 0
+    pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
+    
+    ktoZdesVrag = 0
+    for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+        if botLocation[ktoZdesVrag] == hehmda:
+            if ktoZdesVrag != imHero:
+                variableName = u"Здоровье: " + str(botZdorovie[ktoZdesVrag]) + "/" + str(botIshZdorovie[ktoZdesVrag])
+                nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+                sc.blit(nameObj,(440, 760))
+            break        
+        
+    if zakl > 0 and ktoZdesVrag != 999:
+        if zakl == 1: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 2: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 3: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 4: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 5: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 6: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 7: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 8: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 9: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 10: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 11: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 12: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 13: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 14: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 15: botKoldun(0,zakl-1,ktoZdesVrag)
+                        
+        zakl = 0
+        attack = 0
+    
+    ktoZdesVrag = 0    
+    if posohSmerti == 1:
+        for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+            if botLocation[ktoZdesVrag] == hehmda:
+                break  
+        
+        botMana[imHero] -= 100
+        botZdorovie[ktoZdesVrag] -= 200
+        botHod[imHero] -= 1
+        botExpirience[imHero] += 50
+        posohSmerti = 0
+        if botZdorovie[ktoZdesVrag] <= 0: 
+            otdaiLut(imHero, ktoZdesVrag)
+            ubiraemTrup(ktoZdesVrag)
+        heroPanel(hero)
+        
+    if attack == 1 and botHod[imHero] > 0:  # Тут мы атакуем ботов
+            for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+                if botLocation[ktoZdesVrag] == hehmda:
+                    if botLocation[imHero] == botLocation[ktoZdesVrag]+1 or botLocation[imHero] == botLocation[ktoZdesVrag]-1 or botLocation[imHero] == botLocation[ktoZdesVrag]+31 or botLocation[imHero] == botLocation[ktoZdesVrag]+32 or botLocation[imHero] == botLocation[ktoZdesVrag]+33 or botLocation[imHero] == botLocation[ktoZdesVrag]-31 or botLocation[imHero] == botLocation[ktoZdesVrag]-32 or botLocation[imHero] == botLocation[ktoZdesVrag]-33:
+                        break 
+            botHod[imHero] -= 1
+            botZdorovie[ktoZdesVrag] -= botSila[imHero] + botAttack[imHero] - botZachita[ktoZdesVrag]
+            botExpirience[imHero] += botSila[imHero] # Повышаем опыт
+            attack = 0
+            if botZdorovie[ktoZdesVrag] <= 0 and zakl == 0:
+                randomMoney = int(random.random()*10) # Вероятность выпадения ресурсов: серебра и бронзы
+                randomBronza = int(random.random()*70) * botLvl[ktoZdesVrag]
+                randomSerebro = int(random.random()*5) * botLvl[ktoZdesVrag]
+                if randomMoney == 4 or randomMoney == 5 or randomMoney == 6 or randomMoney == 7 or randomMoney == 8 or randomMoney == 9:
+                    botBronza[imHero] += randomBronza
+                if randomMoney == 2 or randomMoney == 3:
+                    botSerebro[imHero] += randomSerebro  
+                botExpirience[imHero] += int(botIshZdorovie[ktoZdesVrag] / 2)
+                otdaiLut(imHero, ktoZdesVrag)
+                ubiraemTrup(ktoZdesVrag)  
+            heroPanel(hero)
+            worldUpdate()        
+            attack = 0
+                     
+    if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 177 or botLocation[imHero] == 176 or botLocation[imHero] == 178 or botLocation[imHero] == 113 or botLocation[imHero] == 112 or botLocation[imHero] == 114:
+        if world[hehmda] == 8:
+            yaNaRinke = 1  
+            variableName = u"Смотреть предложения - (Да)"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 660))
+            variableName = u"Продать инвентарь - (Нет)"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 680))
+            
+            pix = pygame.image.load('Images/yes.png') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (462,786))    
+    
+            pix = pygame.image.load('Images/no.png') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (530,786))
+            
+    if world[hehmda] == 3:
+        pix = pygame.image.load('Images/jilZelievara.png')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Жилище зельевара"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"В этом доме живёт потомственный мастер зелья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580)) 
+        variableName = u"У него можно приобрести магические зелья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"под различные нужны."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"Ты можешь взять задание у зельевара,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"выполнив которые ты получишь золотые монеты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if world[hehmda] == 4:
+        pix = pygame.image.load('Images/lachugaShamana.png')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Лачуга шамана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"В этой хижине живёт шаман племени Яки."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"За символическую сумму он обучит основам"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"магии и некоторым заклинаниям. Здесь "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"также приобрести магические артефакты."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Шаман может предложить тебе работу,если"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+        variableName = u"ты справишься он отплатит тебе серебром"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if world[hehmda] == 5:
+        pix = pygame.image.load('Images/hijinaMaga.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Хижина мага"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"В этой хижине живёт старый маг, который"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"способен обучить вас основам магии, также"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"у него можно купить и продать некоторые"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"магические артефакты и зелья."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"У мага можно получить задание."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+        variableName = u"Платит маг обычно бронзой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if world[hehmda] == 6:
+        pix = pygame.image.load('Images/kuznica.png')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Кузница"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"В этой кузнице трудятся мастера своего"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"дела. Здесь ты найдёшь доспехи и оружие"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"У кузнецов можно получить задание и"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"выполнив его получить редкие артефакты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))   
+    if world[hehmda] == 8:
+        pix = pygame.image.load('Images/market.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Рынок"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сюда ведут все дороги - на рынок."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Тут найдутся абсолютно все вещи первой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"необходимости. На рынке ты можешь "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"получить деньги подрабатывая у торговцев"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))     
+    if world[hehmda] == 10:
+        pix = pygame.image.load('Images/portal.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Портал"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Зайдя в него можно телепортироваться"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"в долину проклятых земель. Там ты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"найдёшь гробницу с несметными "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"сокровищами. Но она хорошо охраняется"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"нежитью. Живые в тех землях находят"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+        variableName = u"только смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))    
+    if world[hehmda] == 15:
+        pix = pygame.image.load('Images/city.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Городские врата"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"По ту сторону стен находится город "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"короля Альбрехта. В нём иожно нанять"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"рекрутов, потожить деньги в банк "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"и ещё много чего. У короля есть сокровища"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"которые охраняет свита отборных бойцов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 16:
+        pix = pygame.image.load('Images/taverna.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Таверна"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Это находка, оазис по среди холодных гор"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Тут ты можешь нанять пару бойцов для"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"похода, получить задание, купить редкие "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+        variableName = u"предметы и сыграть в кости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Так же здесь ты можешь создать задание"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+        variableName = u"Возможно кто-то за него возмётся"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))  
+    if world[hehmda] == 100:
+        pix = pygame.image.load('Images/elf1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Эльф 1 уровня "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Рядовой боец расы эльфов. "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"В одиночку почти не представляет угрозы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Не обладает магическими навыками. "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+    if world[hehmda] == 101:
+        pix = pygame.image.load('Images/elf2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Эльф 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Рядовой боец расы эльфов."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Обладает магией лечения 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if world[hehmda] == 102:
+        pix = pygame.image.load('Images/elf3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Эльф 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Хороший пехотинец. "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Обладает магией лечения 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Достаточно сильная боевая единица "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))          
+    if world[hehmda] == 103:
+        pix = pygame.image.load('Images/gnoll1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Гнолл 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабый монстр. Нападает на всех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"кого видит не раздумывая."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Существо не обладает магией "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if world[hehmda] == 104:
+        pix = pygame.image.load('Images/gnoll2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Гнолл 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабый монстр. Нападает на всех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"кого видит без раздумий."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Существо не обладает магией "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if world[hehmda] == 105:
+        pix = pygame.image.load('Images/gnoll3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Гнолл 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Относительно сильное существо"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Агрессивный и опасный монстр"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if world[hehmda] == 106:
+        pix = pygame.image.load('Images/gnom1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Гном 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Крепкий боец расы гномов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+    if world[hehmda] == 107:
+        pix = pygame.image.load('Images/gnom2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Гном 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Крепкий боец расы гномов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))     
+    if world[hehmda] == 108:
+        pix = pygame.image.load('Images/gnom3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Гном 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильный воин расы гномов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Обладает магией лечения 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))      
+    if world[hehmda] == 109:
+        pix = pygame.image.load('Images/gnom4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Гном 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильный воин расы гномов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Обладает магией лечения 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))            
+        variableName = u"И заклинанием Рассеять чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if world[hehmda] == 110:
+        pix = pygame.image.load('Images/goblin.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Гоблин"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Мирное существо, торговец-алхимик"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"У гоблина можно купить различные зелья"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))            
+        variableName = u"Не обладает магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if world[hehmda] == 111:
+        pix = pygame.image.load('Images/goblin1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Гоблин 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабый воин расы гоблинов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))            
+        variableName = u"Иногда у него можно купить артефакты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))     
+    if world[hehmda] == 112:
+        pix = pygame.image.load('Images/goblin2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Гоблин 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабый воин расы гоблинов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))            
+        variableName = u"Иногда у него можно купить артефакты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))          
+    if world[hehmda] == 113:
+        pix = pygame.image.load('Images/goblin3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Гоблин 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Самый сильный представитель расы гоблинов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))            
+        variableName = u"Но шутки с ним плохи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))    
+    if world[hehmda] == 114:
+        pix = pygame.image.load('Images/hermit1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Отшельник 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Демонопоклонник расы людей"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Владеет навыками некромантии и способен"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))            
+        variableName = u"из почти мёртвого существа сделать "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"скелета, подчиняющегося его воле "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))       
+    if world[hehmda] == 115:
+        pix = pygame.image.load('Images/hermit2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Отшельник 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Ученик некроманта"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Способен создавать скелетов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))            
+        variableName = u"А также владеет магией защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if world[hehmda] == 116:
+        pix = pygame.image.load('Images/hermit3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Отшельник 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Один из лучших учеников некроманта"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Владеет боевой и защитной магиями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))            
+        variableName = u"А также способен создавать скелетов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))     
+    if world[hehmda] == 117:
+        pix = pygame.image.load('Images/headHunter.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Охотник за головами"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боец-одиночка 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Живёт за счёт своих жертв, принося их"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"головы своим заказчикам."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))            
+        variableName = u"Лучше не стоять у этого человека на пути"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u" Владеет магией лечения 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if world[hehmda] == 118:
+        pix = pygame.image.load('Images/human.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Человек"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Мирный торговец и строитель"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Его можно нанять для постройки своей "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"крепости. Также иногда у него можно"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))            
+        variableName = u"купить оружие или доспехи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))   
+    if world[hehmda] == 119:
+        pix = pygame.image.load('Images/monster1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Проклятый морлок"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Говорят, что эти морлоки - неудачный"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"эксперимент тёмных колдунов. Слабое"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"существо, нападающее на всех без разбора"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Не владеет магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))     
+    if world[hehmda] == 120:
+        pix = pygame.image.load('Images/monster2.png')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Проклятый гнолл"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Тёмные колдуны пытались из него сделать"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"послушного бойца своей армии, но всё"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"было напрасно. Существо как и раньше"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"вымещает свою агрессию на всех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+    if world[hehmda] == 121:
+        pix = pygame.image.load('Images/monster3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Проклятый носорог"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Порождение тёмных колдунов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Опасное существо, которому чужды расовые"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"предрассудки, жестоко убивает всех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"однаково яростно."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+    if world[hehmda] == 122:
+        pix = pygame.image.load('Images/monster4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Дракон"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Опасное существо 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Редкая удача встретить такого дракона"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Но лучше наблюдать за его полётом"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"из далека и не приближаться. Одолеть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"такого монстра не каждому под силу"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if world[hehmda] == 123:
+        pix = pygame.image.load('Images/morlok1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Морлок 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Гадкая, болтная тварь"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Не обладает магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+    if world[hehmda] == 124:
+        pix = pygame.image.load('Images/morlok2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Морлок 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Гадкая, болтная тварь"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Слабое существо не обладающее магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))      
+    if world[hehmda] == 125:
+        pix = pygame.image.load('Images/morlok3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Морлок 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Гадкая, болтная тварь"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Слабое существо не обладающее магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+    if world[hehmda] == 126:
+        pix = pygame.image.load('Images/naemnik1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Наёмник 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Солдат армии Короля Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"В одиночку почти беззащитен, однако"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"группой из 3-5 таких бойцов можно идти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"на серьёзных монстров. Его можно нанять"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"в городе или таверне если он там будет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+    if world[hehmda] == 127:
+        pix = pygame.image.load('Images/naemnik2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Наёмник 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сержант армии Короля Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Допускается Королём к охране стен замка"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"но может и патрулировать город вместе с"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"остальными солдатами. Его можно нанять в"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"городе или таверне."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if world[hehmda] == 128:
+        pix = pygame.image.load('Images/naemnik3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Наёмник 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Лейтенант армии Короля Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Допускается к охране Короля и замка его"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"величества. Сильный пехотинец, которого"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"можно нанять только в городе"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+    if world[hehmda] == 129:
+        pix = pygame.image.load('Images/naemnik4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Наёмник 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Капитан армии Короля Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Гордость королевской пехоты и серьёзный"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"боец. В одиночку способен одолеть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"десяток скелетов."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+    if world[hehmda] == 130:
+        pix = pygame.image.load('Images/nekromant.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Некромант"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Тёмный колдун 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Верный слуга демонов, обладающий"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"опасной магией. Таким волшебникам"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"позволено иметь при себе очень ценные"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))   
+        variableName = u"магические предметы. Но не вздумайте"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+        variableName = u"пытаться у него их отнять"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if world[hehmda] == 131:
+        pix = pygame.image.load('Images/nepobedimii.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Непобедимый 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Грозный страж гробницы проклятых земель"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Опасное и свирепое существо"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 132:
+        pix = pygame.image.load('Images/nepobedimii1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Непобедимый 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Страж гробницы проклятых земель"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Не каждому такой монстр по плечу"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Принадлежит к классу потомков проклятых"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))   
+    if world[hehmda] == 133:
+        pix = pygame.image.load('Images/ogr1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Огр 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Злобный великан-людоед"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Отностиельно слабое существо не обладающее"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 134:
+        pix = pygame.image.load('Images/ogr2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Огр 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Злобный великан-людоед"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Отностиельно слабое существо"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"не обладающее магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 135:
+        pix = pygame.image.load('Images/okylt.png')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Оккультист"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Тёмный маг 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Человек, достаточно хорошо обладевший"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"магией мёртвых. Знает множество"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+        variableName = u"опасных заклинаний, на такого колдуна"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"лучше идти группой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 136:
+        pix = pygame.image.load('Images/ork1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Орк 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Относительно слабый воин расы орков"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Орков можно нанять в таверне или "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"в пустошах."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))        
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))   
+    if world[hehmda] == 137:
+        pix = pygame.image.load('Images/ork2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Орк 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Относительно слабый воин расы орков"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Пехотинец клана Кровавых Топоров"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Орков можно нанять в таверне или "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"в пустошах."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Не обладает магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+    if world[hehmda] == 138:
+        pix = pygame.image.load('Images/ork3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Орк 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боец расы орков. Пехотинец клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Кровавых Топоров. Достойный противник"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Орков можно нанять в таверне или "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"в пустошах."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+    if world[hehmda] == 139:
+        pix = pygame.image.load('Images/ork4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Орк 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Боец расы орков. Пехотинец клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580)) 
+        variableName = u"Кровавых Топоров. Достойный противник"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Орков можно нанять в таверне или "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"в пустошах."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+    if world[hehmda] == 140:
+        pix = pygame.image.load('Images/ork5.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Орк 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Грозный боец расы орков из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Кровавых Топоров. Он свиреп и безпощаден."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Орков можно нанять в таверне или "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"в пустошах."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if world[hehmda] == 141:
+        pix = pygame.image.load('Images/ork6.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Орк 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Грозный боец расы орков из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Кровавых Топоров. Не обладает "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))      
+    if world[hehmda] == 142:
+        pix = pygame.image.load('Images/ork7.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Орк 7 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Грозный боец расы орков из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Кровавых Топоров. Ему нет равных."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+                
+    if world[hehmda] == 143:
+        pix = pygame.image.load('Images/ork-shaman.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Орк-шаман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Колдун клана Кровавых Топоров"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Опасный маг 3 уровня, владеющий"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"боевыми и защитными заклинаниями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 144:
+        pix = pygame.image.load('Images/otstupnik.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Оккультист"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Грозный волшебник 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Такие маги часто носят при себе"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"различные книги тёмных заклинаний."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"Однако забрать их у него не просто"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 145:
+        pix = pygame.image.load('Images/razboinik.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Разбойник"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Принадлежит к классу хаотичных"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Обычно за его голову в Королевстве"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"дают вознаграждение. Существо не "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 146:
+        pix = pygame.image.load('Images/grabitel.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Грабитель"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Принадлежит к классу хаотичных"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Обычно за его голову в Королевстве"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"можно получить вознаграждение."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))   
+    if world[hehmda] == 147:
+        pix = pygame.image.load('Images/redFireHolem.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Красный огненный голем"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильное существо 4 уровня, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии посоха вечной жизни"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))    
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))      
+    if world[hehmda] == 148:
+        pix = pygame.image.load('Images/skelet1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Скелет 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабое существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии. Покуда колдовские"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"чары связывают его кости, этот скелет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"подчиняются своему хозяину"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 149:
+        pix = pygame.image.load('Images/skelet2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабое существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии. Покуда колдовские"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"чары связывают его кости, этот скелет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"подчиняются своему хозяину"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+    if world[hehmda] == 150:
+        pix = pygame.image.load('Images/skelet3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Бессмертное существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии. Покуда колдовские"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"чары связывают его кости, этот скелет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"подчиняется воле своего хозяина"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 151:
+        pix = pygame.image.load('Images/skelet4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Бессмертное существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии. Покуда колдовские"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"чары связывают его кости, этот скелет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"подчиняется воле своего хозяина"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+    if world[hehmda] == 152:
+        pix = pygame.image.load('Images/skelet5.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Верный боец некроманта, созданный"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии посоха Вечной Жизни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Нужно быть достаточно сильным колдуном"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"чтобы создать такое существо"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 153:
+        pix = pygame.image.load('Images/skelet6.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Скелет 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Верный боец некроманта, созданный"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии посоха Вечной Жизни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Опасное существо, не каждый сможет ему"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"противостоять"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 154:
+        pix = pygame.image.load('Images/skelet7.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Скелет 7 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильное существо, созданное"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"с помощью магии посоха Вечной Жизни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Этот скелет способен в одиночку"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"разделаться с пятью наёмниками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))  
+    if world[hehmda] == 155:
+        pix = pygame.image.load('Images/skelet8.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Скелет 8 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Самое опасное существо, которое может"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"быть создано посохом Вечной Жизни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Этот скелет способен в одиночку"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"разделаться с десятком наёмников"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"Не обладает магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+    if world[hehmda] == 156:
+        pix = pygame.image.load('Images/soulCatcher.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Душекрад"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Нежить 10 уровня, правая рука демонов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Этот мертвец чудовищно силён"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"и владеет множеством темных заклинаний"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+    if world[hehmda] == 157:
+        pix = pygame.image.load('Images/strannik.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Странник"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Не один десяток лет этот старик"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"блуждает по мирам. Не совсем ясно что"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"им движет, говорят что он раньше"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"был шаманом, пока духи не овладели"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"уго разумом и не свели с ума."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Относительно сильный человек 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+        variableName = u"Владеет заклинанием Обман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+        variableName = u"У этого старца можно купить артефакты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 720))  
+    if world[hehmda] == 158:
+        pix = pygame.image.load('Images/troll1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Тролль 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Относительно слабый воин из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Острого Копья. Не владеет магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+    if world[hehmda] == 159:
+        pix = pygame.image.load('Images/troll2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Тролль 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Относительно слабый воин из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Острого Копья. Не владеет магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+    if world[hehmda] == 160:
+        pix = pygame.image.load('Images/troll3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Тролль 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Бесстрашный боец из клана Острого"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Копья. Воин не обладает магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+    if world[hehmda] == 161:
+        pix = pygame.image.load('Images/troll4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Тролль 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Бесстрашный боец из клана Острого"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Копья. Сильный и опасный воин."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Не владеет магическими способностями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+    if world[hehmda] == 162:
+        pix = pygame.image.load('Images/troll5.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Тролль 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильный воин и колдун из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Острого Копья. Владеет заклинаниями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Кража магии, Молния и Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 163:
+        pix = pygame.image.load('Images/troll6.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Тролль 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Сильный воин и колдун из клана"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Острого Копья. Владеет заклинаниями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Кража магии, Молния и Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"Весьма опасный противник."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 164:
+        pix = pygame.image.load('Images/vampir.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Вампир"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Нежить 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"В одиночку он представляет серьёзную"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"угрозу из-за способности Вампиризм"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"которым он восстанавливает своё"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"здоровье. "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if world[hehmda] == 165:
+        pix = pygame.image.load('Images/wizard.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Колдун"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Белый Маг 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Отголосок славных лет, когда Гильдия"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Белых Магов имела серьёзный вес в"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"Королевстве. Теперь маги скитаются"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"по миру в поисках магического"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+        variableName = u"артефакта, способного сплотить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))   
+        variableName = u"Гильдию и снова подчинить Королевство"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if world[hehmda] == 166:
+        pix = pygame.image.load('Images/womanElf1.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Женщина-эльф 1 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабый воин расы эльфов."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Страж магического леса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Не владеет магическими навыками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+    if world[hehmda] == 167:
+        pix = pygame.image.load('Images/womanElf2.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 2 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Слабый воин расы эльфов. Страж "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Магического леса. Не обладает магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+    if world[hehmda] == 168:
+        pix = pygame.image.load('Images/womanElf3.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 3 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Целительница"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Относительно сильный воин. Владеет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"заклинанием Лунный обряд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+    if world[hehmda] == 169:
+        pix = pygame.image.load('Images/womanElf4.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Женщина-эльф 4 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Ученик жрицы Древа Мудрости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))     
+        variableName = u"Сильный воин владеющий боевой и"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"лечебной магией"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
+    if world[hehmda] == 170:
+        pix = pygame.image.load('Images/womanElf5.jpeg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Женщина-эльф 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Адепт жрицы Древа Мудрости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Она является сильным бойцом магом."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"Владеет заклинаниями боевой и защитной"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"магии."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 171:
+        pix = pygame.image.load('Images/womanElf6.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548)) 
+        variableName = u"Женщина-эльф 6 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Адепт жрицы Древа Мудрости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Она является сильным бойцом и опасным"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"магом. Владеет заклинаниями боевой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"и защитной магии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+    if world[hehmda] == 172:
+        pix = pygame.image.load('Images/womanElf7.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Женщина-эльф 7 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Жрица Древа Мудрости."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Боевой маг расы эльфов. в мире нет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"женщин опаснее этих эльфиек"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"Владеет заклинанием Пронзающая смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"а также защитной и лечебной магиями"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))     
+    if world[hehmda] == 50:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Аками"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Эльф магического леса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"В прошлом был жрецом Древа Мудрости,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"но был лишён своих регалий. Теперь он"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"вольный странник, ищущий своё"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"место в этом мире"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))   
+    if world[hehmda] == 51:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Артес"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Рыцарь смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Некогда подававший надежды паладин"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"решил прибегнуть к помощи тёмной"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"магии, дабы обрести силу и власть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"После такого его изгнали из Ордена"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+        variableName = u"Света и Артес стал называть себя"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))   
+        variableName = u"Рыцарем Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 790))  
+    if world[hehmda] == 52:
+        pix = pygame.image.load('Images/deathOwner.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Владыка Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Некромант, решивший поторопить судьбу."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Он решил умерщвить своё тело раньше"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"чем ему было положено. И вместе с"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"положенным некроманту бессмертием "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"обрёл новое тело состоящее только"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+        variableName = u"из костей."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))  
+    if world[hehmda] == 53:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Детерок"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот эльф выбрал судьбу скитальца."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Уже более десяти лет он бродит по"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"миру в поисках новых приключений"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))  
 
 def markLocation(numberMark, iconka): # Определяем кординаты пиктограммы 32х32
     if numberMark <= 31 and numberMark >= 0: yMap = 96; xMap = 16 + (32*numberMark)
@@ -599,6 +4973,222 @@ def worldUpdate():   # Отправляем данные об объекте
         if world[n] == 208: markLocation(n, world[n])              
         if world[n] == 209: markLocation(n, world[n])         
 
+def heroPanel(myHero): # Рисуем панель героя с его картинкой и параметрами
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania
+    global botVozdeistvie
+    global botIshZdorovie
+    global botZdorovie
+    global botIshMana
+    global botInventar
+    global botMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZoloto
+    global botSerebro
+    global botBronza
+    global botZachita
+    global botDeistvie
+    
+    global den
+    global mesiac
+    global god
+    
+    for n in range(16): # Рисуем иконки заклинаний
+        printMagic(n)
+    n = 0    
+    for n in range(16): # Рисуем иконки инвентаря
+        printInventar(n)  
+    
+    pygame.draw.rect(sc, (255, 255, 255), (284, 548, 481, 896)) 
+    pygame.draw.rect(sc, (255, 255, 255), (405, 550, 365, 896))
+    pix = pygame.image.load('Images/next.png') # Кнопка "Конец хода" она нужна)
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (286,786))
+    
+    xHero = 340
+    yHero = 548
+    if myHero == 50:
+        pix = pygame.image.load('Images/akami.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Аками - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 51:
+        pix = pygame.image.load('Images/artes.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Артес - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 52:
+        pix = pygame.image.load('Images/deathOwner.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Мефистофор - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 54:
+        pix = pygame.image.load('Images/djepotai.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Джепотай - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 55:
+        pix = pygame.image.load('Images/farion.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Фарион - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 56:
+        pix = pygame.image.load('Images/garitos.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Гаритос - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 57:
+        pix = pygame.image.load('Images/gendalf.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Гендальф - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 58:
+        pix = pygame.image.load('Images/illidan.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Иллидан - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 59:
+        pix = pygame.image.load('Images/jaina.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Джайна - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 60:
+        pix = pygame.image.load('Images/kell.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Келл - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 70:
+        pix = pygame.image.load('Images/uter.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Утер - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 72:
+        pix = pygame.image.load('Images/vulDjin.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Вул Джин - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 68:
+        pix = pygame.image.load('Images/silvana.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Сильвана - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 65:
+        pix = pygame.image.load('Images/pradmur.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Прадмур - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 69:
+        pix = pygame.image.load('Images/trall.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Тралл - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    if myHero == 73:
+        pix = pygame.image.load('Images/zadira.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xHero,yHero))
+        variableName = u"Задира - " + str(botLvl[imHero]) + " lvl"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(290, 617)) 
+    
+    variableExpirience = "" + str(botExpirience[imHero]) + " XP"  # переменная типа String - опыт
+    healtObj = textExpirience.render(variableExpirience, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(healtObj,(290, 631)) # Отображаем Опыт    
+    
+    variableHealt = "" + str(botZdorovie[imHero]) + " / " + str(botIshZdorovie[imHero]) # переменная типа String отображающая здоровье как ххх/ххх
+    healtObj = healt.render(variableHealt, False, (0, 255, 0)) # Создали объект типа "текст" 
+    sc.blit(healtObj,(290, 644)) # Отображаем здоровье
+    
+    variableMana = "" + str(botMana[imHero]) + " / " + str(botIshMana[imHero]) # переменная типа String отображающая ману как ххх/ххх
+    manaObj = manna.render(variableMana, False, (0, 0, 255)) # Создали объект типа "текст" 
+    sc.blit(manaObj,(290, 657)) # Отображаем ману
+    
+    if botAttack[imHero] == 0:
+        variableSila = u"Сила: " + str(botSila[imHero]) 
+        silaObj = textSila.render(variableSila, False, (0, 0, 0)) # Создали объект типа "текст" 
+        sc.blit(silaObj,(290, 670)) 
+    else:
+        variableSila = u"Сила: " + str(botSila[imHero]) + u"+" + str(botAttack[imHero])
+        silaObj = textSila.render(variableSila, False, (0, 255, 0)) # Создали объект типа "текст" 
+        sc.blit(silaObj,(290, 670))
+        
+    variableLovk = u"Ловкость: " + str(botLovkost[imHero]) 
+    lovkObj = textLovk.render(variableLovk, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(lovkObj,(290, 683)) 
+    
+    variableYdacha = u"Удача: " + str(botYdacha[imHero]) 
+    ydachaObj = textYdacha.render(variableYdacha, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(ydachaObj,(290, 696))
+    
+    if botZachita[imHero] > 0:
+        variableZachita = u"Защита: " + str(botZachita[imHero])
+        zachObj = textZachita.render(variableZachita, False, (0, 255, 0)) # Создали объект типа "текст" 
+        sc.blit(zachObj,(290, 709)) 
+    
+    variableZoloto = u"Золото: " + str(botZoloto[imHero]) 
+    zolotoObj = textZoloto.render(variableZoloto, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(zolotoObj,(290, 735))
+    
+    variableSerebro = u"Серебро: " + str(botSerebro[imHero]) 
+    serebroObj = textSerebro.render(variableSerebro, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(serebroObj,(290, 748))
+    
+    variableBronza = u"Бронза: " + str(botBronza[imHero]) 
+    bronzaObj = textBronza.render(variableBronza, False, (0, 0, 0)) # Создали объект типа "текст" 
+    sc.blit(bronzaObj,(290, 761))
+    
+    pygame.display.update()  
+
 def ubiraemTrup(trup):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto    
     
@@ -712,6 +5302,7 @@ def loviVebalo(nomBota): # Используется если у бота нет 
                 botZdorovie[n] -= botSila[nomBota]
                 print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                 break
+        
                 
         if botZdorovie[n] <= 0: ubiraemTrup(n)        
     
@@ -798,7 +5389,7 @@ def botActivity(nomerBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
     
     #print("botActivity", str(sobitie))
-    if sobitie % 597 == 0: mutation()
+    if sobitie % 1097 == 0: mutation()
     
     if sobitie % 1537 == 0: # Рожаем бота
         for n in range(1000):
@@ -3130,14 +7721,14 @@ def botActivity(nomerBota):
                 break   
                  
     
-    if botZdorovie[0] <= 0 and botZdorovie[1] <= 0 and botZdorovie[2] <= 0 and botZdorovie[3]<= 0 and botZdorovie[4] <= 0 and botZdorovie[5] <= 0 and botZdorovie[6] <= 0 and botZdorovie[7] <= 0 and botZdorovie[8] <= 0 and  botZdorovie[9] <= 0:
+    if botZdorovie[0] <= 0 and botZdorovie[1] <= 0 and botZdorovie[2] <= 0 and botZdorovie[3]<= 0 and botZdorovie[4] <= 0 and botZdorovie[5] <= 0 and botZdorovie[6] <= 0 and botZdorovie[7] <= 0 and botZdorovie[8] <= 0 and  botZdorovie[9] <= 0 and botZdorovie[10] <= 0 and botZdorovie[7] <= 0 and botZdorovie[11] <= 0 and  botZdorovie[12] <= 0 and botZdorovie[13]<= 0 and botZdorovie[14] <= 0 and botZdorovie[15] <= 0 and botZdorovie[16] <= 0 and botZdorovie[17] <= 0:
         print(genom)
         print("Life time: ", lifeTime)
         mutation()        
     
     # Обрабатываем геном
     if botStep[nomerBota] > 127: botStep[nomerBota] = 0
-    if botZdorovie[nomerBota] > 0: # Если бот жив
+    if botZdorovie[nomerBota] > 0 and nomerBota != imHero: # Если бот жив
         if genom[botStep[nomerBota]] == 0: pass # Если равен нулю, то ничего не делаем
         
         elif genom[botStep[nomerBota]] == 1: # Идём вверх
@@ -4646,24 +9237,67 @@ worldCreate()
 locations = [63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63]
 n = 0
 
+botExpirience[imHero] = 0   # Главный герой
+botLvl[imHero] = 1
+botRasa[imHero] = 7
+botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+botZaklinania[imHero] = [5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+botIshZdorovie[imHero] = 90
+botZdorovie[imHero] = 90
+botMana[imHero] = 100
+botIshMana[imHero] = 100
+botSila[imHero] = 9
+botLovkost[imHero] = 5
+botYdacha[imHero] = 9
+botZoloto[imHero] = 0
+botSerebro[imHero] = 0
+botBronza[imHero] = 0
+botHod[imHero] = botLovkost[imHero]
+botAlgoritm[imHero] = 4
+botVariant[imHero] = 52
+botDeistvie[imHero]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+world[172] = 52
+botLocation[imHero] = 172 # Исходное положение на карте
+xBot[imHero] = 400
+yBot[imHero] = 256
 
-botLocation[n] = locations[n]
-botMana[n] = 200
-botIshMana[n] = 200
-botIshZdorovie[n] = 100
-botZdorovie[n] = 100
-botVariant[n] = 151+n
-botZaklinania[n] = [1,2,0,4,5,6,7,8,9,10,11,12,13,14,15,16]
-if n<5: botRasa[n] = 1
-else: botRasa[n] = 2
-botSila[n] = 10
-world[locations[n]] = 151+n
+
+botNumer[1] = 1
+botVariant[1] = 114        
+botLvl[1] = 1
+botZdorovie[1] = 125
+botIshZdorovie[1] = 125
+botMana[1] = 90
+botIshMana[1] = 90
+botZaklinania[1]=[6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+botSila[1] = 11
+botLovkost[1] = 6
+botYdacha[1] = 10
+botHod[1] = botLovkost[1]
+botVozdeistvie[1]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+botAlgoritm[1] = 3
+botDeistvie[1]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+botInventar[1] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+botZoloto[1] = 0
+botSerebro[1] = 0
+botBronza[1] = 200
+bornBot(0, 114)
 
 
-n = 0    
+n = 0
+
+for n in range(16): # Рисуем иконки заклинаний
+    printMagic(n)
+n = 0
+for n in range(16): # Рисуем иконки инвентаря
+    printInventar(n)
+n = 0  
+
+heroPanel(52)    
 pygame.display.update()   
 while True:
-    #clock.tick(1500)
+    clock.tick(1500)
     if botZdorovie[n] > 0: botActivity(n)
     if botVariant[n] > 0 and botZdorovie[n] <= 0:    
             ubiraemTrup(n)      
@@ -4677,7 +9311,4502 @@ while True:
     
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
-            exit()    
+            exit()
+            
+        elif i.type == pygame.KEYDOWN and newGame == 1:
+            
+            if i.key == pygame.K_LEFT and xBot[imHero] >= 18 and world[botLocation[imHero]-1] == 0:
+                pix = pygame.image.load('Images/weed.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xBot[imHero],yBot[imHero]))
+                xBot[imHero] -= 32
+                world[botLocation[imHero]] = 0
+                world[botLocation[imHero]-1] = botVariant[imHero]
+                botLocation[imHero] -= 1
+                worldUpdate()
+                heroPanel(botVariant[imHero])
+                
+            elif i.key == pygame.K_RIGHT and xBot[imHero] <= 990 and world[botLocation[imHero]+1] == 0:
+                pix = pygame.image.load('Images/weed.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xBot[imHero],yBot[imHero]))
+                xBot[imHero] += 32
+                world[botLocation[imHero]] = 0
+                world[botLocation[imHero]+1] = botVariant[imHero]
+                botLocation[imHero] += 1
+                worldUpdate()
+                heroPanel(botVariant[imHero])
+                
+            elif i.key == pygame.K_UP and yBot[imHero] >= 96 and world[botLocation[imHero]-32] == 0:
+                pix = pygame.image.load('Images/weed.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xBot[imHero],yBot[imHero]))
+                yBot[imHero] -= 32
+                world[botLocation[imHero]] = 0
+                world[botLocation[imHero]-32] = botVariant[imHero]
+                botLocation[imHero] -= 32
+                worldUpdate()
+                heroPanel(botVariant[imHero])
+                
+            elif i.key == pygame.K_DOWN and yBot[imHero] <= 510 and world[botLocation[imHero]+32] == 0: 
+                pix = pygame.image.load('Images/weed.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xBot[imHero],yBot[imHero]))
+                yBot[imHero] += 32
+                world[botLocation[imHero]] = 0
+                world[botLocation[imHero]+32] = botVariant[imHero]
+                botLocation[imHero] += 32
+                worldUpdate()
+                heroPanel(botVariant[imHero])
+
+    mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
+#============================================================================================================================================    
+#==================================================ОБРАБОТКА НАЖАТИЙ КНОПОК ИГРОВОГО ПОЛЯ====================================================
+#============================================================================================================================================
+
+    #===================================================1 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(0)
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(1)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(2)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(3)
+                
+    if mos_x>145 and (mos_x<175):  x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(4) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(5)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(6)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(7)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(8)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(9) 
+                
+    if mos_x>337 and (mos_x<367):  x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(10)
+    
+    if mos_x>369 and (mos_x<399):  x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:  doebaca(11)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(12)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(13)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(14) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(15)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(16)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(17)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(18)
+                
+    if mos_x>625 and (mos_x<655):  x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(19)
+                
+    if mos_x>657 and (mos_x<687):  x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(20)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(21)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(22)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(23)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:doebaca(24) 
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(25)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(26)
+    
+    if mos_x>881 and (mos_x<911): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(27)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(28)
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(29)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(30)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>97 and (mos_y<127): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(31)
+                
+    #===================================================2 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(32)
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(33)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(34)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(35)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(36) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(37)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(38)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(39)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(40)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(41) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(42)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(43)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(44)          
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(45)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(46) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(47)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(48)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(49)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(50)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(51)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(52)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(53)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(54)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(55)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(56) 
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(57)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(58)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(59)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(60)  
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(61)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(62)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>129 and (mos_y<159): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(63)
+                
+    #===================================================3 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(64)
+
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(65)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(66)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(67)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(68) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(69)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(70)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(71)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(72)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(73) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(74)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(75)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(76)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(77)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(78) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(79)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(80)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(81)
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(82)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(83)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(84)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(85)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(86)
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(87)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(88)
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(89)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(90)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(91)
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(92)
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(93)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(94)
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>161 and (mos_y<191): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(95)
+    
+    #===================================================4 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(96)
+    
+    if mos_x>49 and (mos_x<79):  x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(97)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(98)
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(99)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(100) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(101)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(102)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(103)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(104)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(105) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(106)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(107)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(108)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(109)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(110) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(111)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(112) 
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(113)             
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(114) 
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(115) 
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(116) 
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(117) 
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(118)             
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(119) 
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(120)  
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(121) 
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(122) 
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(123)             
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(124)   
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(125) 
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(126)     
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>193 and (mos_y<223): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(127)    
+                
+    #===================================================5 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(128) 
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(129) 
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(130)             
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(131)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(132) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(133)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(134)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(135)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(136)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(137) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(138)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(139)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(140)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(141)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(142) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(143)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(144)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(145)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(146)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(147)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(148)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(149)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(150)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(151)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(152)  
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(153) 
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(154) 
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(155)             
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(156)   
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(157) 
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(158)     
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>225 and (mos_y<255): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(159)  
+                
+    #===================================================6 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(160) 
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(161)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(162)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(163)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(164) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(165)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(166)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(167)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(168)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(169) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(170)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(171)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(172)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(173)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(174) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(175)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(176)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(177)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(178)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(179)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(180)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(181)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(182)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(183)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(184) 
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(185)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(186)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(187)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(188)  
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(189)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(190)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>257 and (mos_y<287): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(191)     
+                
+    #===================================================7 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(192) 
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(193) 
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(194)             
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(195) 
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(196)  
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(197) 
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(198) 
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(199)             
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(200) 
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(201) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(202)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(203)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(204)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(205)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(206) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(207)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(208)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(209)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(210)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(211)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(212)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(213)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(214)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(215)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(216) 
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(217)
+    
+    if mos_x>849 and (mos_x<879):  x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(218)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(219)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(220)  
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(221)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(222)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>289 and (mos_y<319): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(223)
+            
+    #===================================================8 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(224)
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(225)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(226)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(227)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(228) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(229)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(230)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(231)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(232)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(233) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(234)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(235)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(236)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(237)
+                
+    if mos_x>465 and (mos_x<495): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(238) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(239)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(240)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(241)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(242)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(243)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(244)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(245)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(246)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(247)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(248) 
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(249)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(250)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(251)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(252)  
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(253)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(254)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>321 and (mos_y<351): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(255)  
+            
+    #===================================================9 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(256)
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(257)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(258)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(259)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(260) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(261) 
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(262) 
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(263)             
+    
+    if mos_x>273 and (mos_x<303):  x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(264) 
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(265)  
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(266) 
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(267) 
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(268)             
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(269) 
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(270)  
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(271) 
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(272) 
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(273)             
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(274) 
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(275) 
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(276) 
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(277) 
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(278)             
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(279) 
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(280)  
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(281)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(282)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(283)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(284)  
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(285)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(286)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>353 and (mos_y<383): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(287)    
+            
+    #===================================================10 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(288)
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(289)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(290)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(291)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(292) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(293)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(294)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(295)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(296)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(297) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN: 
+            if i.button == 1: doebaca(298)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(299)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(300)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(301)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(302) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(303)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(304)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(305)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(306)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(307)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(308)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(309)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(310)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(311)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(312) 
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(313)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(314)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(315)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(316)  
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(317)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(318)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>385 and (mos_y<415): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(319)    
+            
+    #===================================================11 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(320)
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(321)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(322)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(323)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(324) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(325)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(326)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(327)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(328)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(329) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(330)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(331)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(332)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(333)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(334) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(335)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(336)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(337)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(338)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(339)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(340)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(341)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(342)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(343)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(344) 
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(345)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(346)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(347)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(348)  
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(349)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(350)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>417 and (mos_y<447): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(351)  
+            
+    #===================================================12 ряд===============================================
+    if mos_x>17 and (mos_x<47): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(352)
+    
+    if mos_x>49 and (mos_x<79): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(353)
+    
+    if mos_x>81 and (mos_x<111): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(354)            
+    
+    if mos_x>113 and (mos_x<143): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(355)
+                
+    if mos_x>145 and (mos_x<175): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(356) 
+               
+    if mos_x>176 and (mos_x<207): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(357)
+    
+    if mos_x>209 and (mos_x<239): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(358)
+    
+    if mos_x>241 and (mos_x<271): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(359)            
+    
+    if mos_x>273 and (mos_x<303): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(360)
+                
+    if mos_x>305 and (mos_x<335): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(361) 
+                
+    if mos_x>337 and (mos_x<367): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(362)
+    
+    if mos_x>369 and (mos_x<399): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(363)
+    
+    if mos_x>401 and (mos_x<431): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(364)            
+    
+    if mos_x>433 and (mos_x<463): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(365)
+                
+    if mos_x>465 and (mos_x<495): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(366) 
+               
+    if mos_x>497 and (mos_x<527): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(367)
+    
+    if mos_x>529 and (mos_x<559): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(368)
+    
+    if mos_x>561 and (mos_x<591): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(369)            
+    
+    if mos_x>593 and (mos_x<623): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(370)
+                
+    if mos_x>625 and (mos_x<655): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(371)
+                
+    if mos_x>657 and (mos_x<687): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(372)
+    
+    if mos_x>689 and (mos_x<719): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(373)
+    
+    if mos_x>721 and (mos_x<751): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(374)            
+    
+    if mos_x>753 and (mos_x<783): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(375)
+                
+    if mos_x>785 and (mos_x<815): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(376) 
+               
+    if mos_x>817 and (mos_x<847): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(377)
+    
+    if mos_x>849 and (mos_x<879): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(378)
+    
+    if mos_x>881 and (mos_x<911): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(379)            
+    
+    if mos_x>913 and (mos_x<943): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(380)  
+                
+    if mos_x>945 and (mos_x<975): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(381)
+                
+    if mos_x>977 and (mos_x<1007): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(382)    
+                
+    if mos_x>1009 and (mos_x<1040): x_inside = True
+    else: x_inside = False
+    if mos_y>449 and (mos_y<479): y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1: doebaca(383) 
+            
+    #===================================================13 ряд===============================================
+    if mos_x>17 and (mos_x<47): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(384)
+    
+    if mos_x>49 and (mos_x<79): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(385)
+    
+    if mos_x>81 and (mos_x<111): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(386)            
+    
+    if mos_x>113 and (mos_x<143):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(387)
+                
+    if mos_x>145 and (mos_x<175): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(388) 
+               
+    if mos_x>176 and (mos_x<207): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(389)
+    
+    if mos_x>209 and (mos_x<239): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(390)
+    
+    if mos_x>241 and (mos_x<271): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(391)            
+    
+    if mos_x>273 and (mos_x<303): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(392)
+                
+    if mos_x>305 and (mos_x<335):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(393) 
+                
+    if mos_x>337 and (mos_x<367): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(394)
+    
+    if mos_x>369 and (mos_x<399): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(395)
+    
+    if mos_x>401 and (mos_x<431):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(396)            
+    
+    if mos_x>433 and (mos_x<463):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(397)
+                
+    if mos_x>465 and (mos_x<495): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(398) 
+               
+    if mos_x>497 and (mos_x<527): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(399)
+    
+    if mos_x>529 and (mos_x<559): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(400)
+    
+    if mos_x>561 and (mos_x<591):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(401)            
+    
+    if mos_x>593 and (mos_x<623): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(402)
+                
+    if mos_x>625 and (mos_x<655): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(403)
+                
+    if mos_x>657 and (mos_x<687): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(404)
+    
+    if mos_x>689 and (mos_x<719):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(405)
+    
+    if mos_x>721 and (mos_x<751): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(406)            
+    
+    if mos_x>753 and (mos_x<783): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(407)
+                
+    if mos_x>785 and (mos_x<815): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(408) 
+               
+    if mos_x>817 and (mos_x<847): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(409)
+    
+    if mos_x>849 and (mos_x<879): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(410)
+    
+    if mos_x>881 and (mos_x<911): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(411)            
+    
+    if mos_x>913 and (mos_x<943):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(412)  
+                
+    if mos_x>945 and (mos_x<975):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(413)
+                
+    if mos_x>977 and (mos_x<1007): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(414)    
+                
+    if mos_x>1009 and (mos_x<1040): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>481 and (mos_y<511):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(415)     
+            
+    #===================================================14 ряд===============================================
+    if mos_x>17 and (mos_x<47): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(416)
+    
+    if mos_x>49 and (mos_x<79): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(417)
+    
+    if mos_x>81 and (mos_x<111): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(418)            
+    
+    if mos_x>113 and (mos_x<143):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(419)
+                
+    if mos_x>145 and (mos_x<175): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(420) 
+               
+    if mos_x>176 and (mos_x<207): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(421)
+    
+    if mos_x>209 and (mos_x<239): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(422)
+    
+    if mos_x>241 and (mos_x<271): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(423)            
+    
+    if mos_x>273 and (mos_x<303): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(424)
+                
+    if mos_x>305 and (mos_x<335):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(425) 
+                
+    if mos_x>337 and (mos_x<367): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(426)
+    
+    if mos_x>369 and (mos_x<399):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(427)
+    
+    if mos_x>401 and (mos_x<431):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(428)            
+    
+    if mos_x>433 and (mos_x<463):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(429)
+                
+    if mos_x>465 and (mos_x<495): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(430) 
+               
+    if mos_x>497 and (mos_x<527): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(431)
+    
+    if mos_x>529 and (mos_x<559): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(432)
+    
+    if mos_x>561 and (mos_x<591):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(433)            
+    
+    if mos_x>593 and (mos_x<623): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(434)
+                
+    if mos_x>625 and (mos_x<655): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(435)
+                
+    if mos_x>657 and (mos_x<687): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(436)
+    
+    if mos_x>689 and (mos_x<719):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(437)
+    
+    if mos_x>721 and (mos_x<751): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(438)            
+    
+    if mos_x>753 and (mos_x<783): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(439)
+                
+    if mos_x>785 and (mos_x<815): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(440) 
+               
+    if mos_x>817 and (mos_x<847): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(441)
+    
+    if mos_x>849 and (mos_x<879): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside:
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(442)
+    
+    if mos_x>881 and (mos_x<911): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(443)            
+    
+    if mos_x>913 and (mos_x<943):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(444)  
+                
+    if mos_x>945 and (mos_x<975):
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(445)
+                
+    if mos_x>977 and (mos_x<1007): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(446)    
+                
+    if mos_x>1009 and (mos_x<1040): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>513 and (mos_y<543):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                doebaca(447)
+
+#============================================================================================================================================
+#==========================================================ОБРАБОТКА СОБЫТИЙ КНОПОК ЗАКЛИНАНИЙ=============================================== 
+#============================================================================================================================================
+    
+
+    if mos_x>16 and (mos_x<80): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     newGameButton = 0 
+                     hero = 50 
+                     newGame = 1
+                     initGame(50)                
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 1
+                     attack = 0
+                     textMagic(zakl)
+                     
+                 
+    if mos_x>84 and (mos_x<148): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     newGameButton = 0
+                     hero = 51
+                     newGame = 1 
+                     initGame(51)  
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 2 
+                     attack = 0
+                     textMagic(zakl)         
+                 
+    if mos_x>152 and (mos_x<216): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     newGameButton = 0
+                     hero = 52
+                     newGame = 1  
+                     initGame(52) 
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 3 
+                     attack = 0
+                     textMagic(zakl)
+                                                            
+    if mos_x>220 and (mos_x<284): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     newGameButton = 0
+                     hero = 54
+                     newGame = 1 
+                     initGame(54)  
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 4 
+                     attack = 0
+                     textMagic(zakl)
+                 
+    if mos_x>16 and (mos_x<80): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     newGameButton = 0
+                     hero = 55
+                     newGame = 1 
+                     initGame(55)  
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 5 
+                     attack = 0
+                     textMagic(zakl)
+                 
+    if mos_x>84 and (mos_x<148): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     newGameButton = 0
+                     hero = 56
+                     newGame = 1 
+                     initGame(56)  
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 6
+                     attack = 0
+                     textMagic(zakl)    
+                 
+    if mos_x>152 and (mos_x<216): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 57
+                     newGame = 1 
+                     initGame(57)  
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 7
+                     attack = 0
+                     textMagic(zakl)          
+                                                            
+    if mos_x>220 and (mos_x<284): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 58
+                     newGame = 1  
+                     initGame(58) 
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 8 
+                     attack = 0
+                     textMagic(zakl)
+                 
+    if mos_x>16 and (mos_x<80): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 59
+                     newGame = 1 
+                     initGame(59)  
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 9 
+                     attack = 0
+                     textMagic(zakl)
+                 
+    if mos_x>84 and (mos_x<148): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 60
+                     newGame = 1   
+                     initGame(60)
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 10
+                     attack = 0
+                     textMagic(zakl)
+                 
+    if mos_x>152 and (mos_x<216): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 70
+                     newGame = 1 
+                     initGame(70)  
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 11     
+                     attack = 0
+                     textMagic(zakl)          
+                                                            
+    if mos_x>220 and (mos_x<284): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 72
+                     newGame = 1 
+                     initGame(72)  
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 12   
+                     attack = 0
+                     textMagic(zakl)                      
+                 
+    if mos_x>16 and (mos_x<80): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 68
+                     newGame = 1  
+                     initGame(68) 
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 13 
+                     attack = 0
+                     textMagic(zakl)
+                 
+    if mos_x>84 and (mos_x<148): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 65
+                     newGame = 1  
+                     initGame(65) 
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 14 
+                     attack = 0
+                     textMagic(zakl)
+                 
+    if mos_x>152 and (mos_x<216): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 1:
+                     hero = 69
+                     newGame = 1 
+                     initGame(69)  
+                     newGameButton = 0
+                 pygame.time.delay(500)
+                 if newGameButton == 0 and newGame == 1:  # Нажали на заклинание 
+                     zakl = 15  
+                     attack = 0
+                     textMagic(zakl)            
+                                                            
+    if mos_x>220 and (mos_x<284): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: # Нажали на заклинание 
+                     zakl = 0
+                     attack = 1      
+                     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896))                      
+                     variableName = u"Атака"
+                     nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                     sc.blit(nameObj,(440, 560))
+                 
+                 if newGameButton == 1:
+                     hero = 73
+                     newGame = 1  
+                     initGame(73) 
+                     newGameButton = 0
+                 pygame.time.delay(500)
+    
+#============================================================================================================================================
+#==========================================================ОБРАБОТКА СОБЫТИЙ КНОПОК ИНВЕНТАРЯ================================================ 
+#============================================================================================================================================
+    
+
+    if mos_x>772 and (mos_x<836): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0
+                     invent = 1
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(1)    
+                 
+    if mos_x>840 and (mos_x<904): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0 
+                     attack = 0
+                     invent = 2  
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(2)      
+                 
+    if mos_x>908 and (mos_x<972): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0 
+                     attack = 0
+                     invent = 3
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(3)      
+                                                            
+    if mos_x>976 and (mos_x<1040): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>548 and (mos_y<612):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0
+                     invent = 4
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(4)      
+                 
+    if mos_x>772 and (mos_x<836):  
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0
+                     invent = 5
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(5)      
+                 
+    if mos_x>840 and (mos_x<904): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0
+                     invent = 6 
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(6)      
+                 
+    if mos_x>908 and (mos_x<972): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0
+                     invent = 7         
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(7)      
+                                                            
+    if mos_x>976 and (mos_x<1040): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>616 and (mos_y<680):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0
+                     attack = 0
+                     invent = 8
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(8)      
+                 
+    if mos_x>772 and (mos_x<836): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:
+                     zakl = 0
+                     attack = 0
+                     invent = 9
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(9)      
+                 
+    if mos_x>840 and (mos_x<904): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:
+                     zakl = 0
+                     attack = 0
+                     invent = 10
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(10)      
+                 
+    if mos_x>908 and (mos_x<972): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:
+                     zakl = 0
+                     attack = 0 
+                     invent = 11         
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(11)      
+                                                            
+    if mos_x>976 and (mos_x<1040):  
+        x_inside = True
+    else: x_inside = False
+    if mos_y>684 and (mos_y<748):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1: 
+                     zakl = 0
+                     attack = 0 
+                     invent = 12         
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(12)      
+                 
+    if mos_x>772 and (mos_x<836):  
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0
+                     attack = 0
+                     invent = 13
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(13)      
+                 
+    if mos_x>840 and (mos_x<904): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0
+                     attack = 0
+                     invent = 14
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(14)      
+                 
+    if mos_x>908 and (mos_x<972): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:
+                     zakl = 0
+                     attack = 0            
+                     invent = 15
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(15)      
+                                                            
+    if mos_x>976 and (mos_x<1040): 
+        x_inside = True
+    else: x_inside = False
+    if mos_y>752 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                 if newGameButton == 0 and newGame == 1:  
+                     zakl = 0
+                     attack = 0
+                     invent = 16
+                     textInventar(invent)
+                 if yaNaRinke == 1:
+                     buyInvent(16)      
+    
+    
+                    
+    if mos_x>462 and (mos_x<526):  # Кнопка "Да"
+        x_inside = True
+    else: x_inside = False
+    if mos_y>786 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                if newGame == 1 and buttonNextStep == 0 and invent > 0:
+                    useInventar(invent)
+                    yes = 1
+                if yaNaRinke == 1:
+                    marketPlace(1)
+                    print("yes")
+                if imBuyThis == 1: yes = 5; buyInvent(thisPlace)    
+                    
+    if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
+        x_inside = True
+    else: x_inside = False
+    if mos_y>786 and (mos_y<816):
+        y_inside = True
+    else: y_inside = False
+    if x_inside and y_inside: 
+        if i.type == pygame.MOUSEBUTTONDOWN:
+            if i.button == 1:
+                if newGame == 1 and buttonNextStep == 0 and invent > 0:
+                    botInventar[imHero][invent-1] = 0
+                    heroPanel(hero) 
+                    no = 1 
+                if yaNaRinke == 1:
+                    marketPlace(2)   
+                    print("no")
+                if imBuyThis == 1: imBuyThis = 0; thisPlace = 0            
             
     
                 
