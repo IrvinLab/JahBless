@@ -379,6 +379,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     if botZaklinania[nom][poriad] == 2:  # Телепортация
         print("2ch")
         if botMana[nom] >= 350:
+            
             if world[vragBot] == 0:
                 botMana[nom] -= 350
                 world[botLocation[nom]] = 0
@@ -631,7 +632,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             botExpirience[nom] += 10            
     
     
-    if botZdorovie[vragBot] <= 0 and attack == 0 and yaKastanul == 1: 
+    if botZdorovie[vragBot] <= 0 and attack == 0: 
         randomMoney = int(random.random()*10)
         randomBronza = int(random.random()*70) * botLvl[vragBot]
         randomSerebro = int(random.random()*5) * botLvl[vragBot]
@@ -5534,7 +5535,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 sc.blit(nameObj,(440, 760))
             break        
         
-    if zakl > 0:
+    if zakl > 0 and ktoZdesVrag != 49:
         if zakl == 1: botKoldun(imHero,zakl-1,ktoZdesVrag)
         if zakl == 2: botKoldun(imHero,zakl-1,ktoZdesVrag)
         if zakl == 3: botKoldun(imHero,zakl-1,ktoZdesVrag)
