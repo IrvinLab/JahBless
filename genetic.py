@@ -31,7 +31,12 @@ posohSmerti = 0
 attack = 0
 hero = 52
 market = [2,7,0,26,0,0,17,46,60,0,0,0,0,0,0,36]
+tmpMarket = 0
 yaNaRinke = 0
+buttonNextStep = 0
+imBuyThis = 0
+yes = 0
+no = 0
 
 iteration = 1
 FPS = 60
@@ -290,6 +295,720 @@ for yMap in range(14): # Рисуем игровое поле
     
 xGameMap = 16
 yGameMap = 548  
+
+def levelUp(nomerBota):
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
+    
+    if botExpirience[nomerBota] >= 1000*(1.5**(botLvl[nomerBota]-1)):
+        botLvl[nomerBota] += 1
+        botExpirience[nomerBota] = 0
+        botIshMana[nomerBota] += 20 * botLvl[nomerBota]
+        botMana[nomerBota] = botIshMana[nomerBota]
+        botIshZdorovie[nomerBota] += 20 * botLvl[nomerBota]
+        botZdorovie[nomerBota] = botIshZdorovie[nomerBota]
+        botSila[nomerBota] += 1
+        botLovkost[nomerBota] += 1
+        botYdacha[nomerBota] += 1
+        botVozdeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botDeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+def myAttack(kletka):
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
+    
+    n = 0
+    for n in range(20):
+        if botLocation[n] == kletka and n != imHero:
+            if botSila[imHero] > botZachita[n]:
+                botZdorovie[n] -= botSila[imHero] + botZachita[n]
+                botExpirience[imHero] += botSila[imHero]
+                if botZdorovie[n] <= 0: otdaiLut(imHero, n); ubiraemTrup(n)
+                botVariant[imHero]
+                worldUpdate()
+                heroPanel(hero)
+                levelUp(imHero)
+                print("SAS")
+                
+
+def botKoldun(nom, poriad, vragBot): # функция колдовства (Номер колдующего бота, порядковый номер заклинания, номер вражеского бота)
+    yaKastanul = 0
+    
+    global n
+    global bot 
+    global botType
+    global botStep
+    global xBot
+    global yBot
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botInventar
+    global botIshZdorovie
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+    global world
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botLocation
+    global botDeistvie
+    global zyxel
+    global attack
+    
+    print ("Колдовство: ",nom, poriad, vragBot)
+    if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:
+        if botZaklinania[nom][poriad] == 100: # Это удар мечом
+            botHod[nom] -= 1
+            if botSila[nom] + botAttack[nom] > botZachita[vragBot]:
+                botZdorovie[vragBot] -= botSila[nom] + botAttack[nom] - botZachita[vragBot]
+    
+        if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
+            if botMana[nom] >= 200: # Если хватает маны, то колдуем
+                botMana[nom] -= 200
+                botZdorovie[vragBot] -= 200
+                botHod[nom] -= 1
+                print("Пронзающая смерть")
+                botExpirience[nom] += 100
+                yaKastanul = 1
+        
+        
+        if botZaklinania[nom][poriad] == 3: # Доспехи Феникса
+            if botMana[nom] >= 30:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 3:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 3
+                            botDeistvie[vragBot][n] = 10
+                            botMana[nom] -= 30
+                            botExpirience[nom] += 10
+                            break        
+                n = 0
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 4: # Кража магии
+            botHod[nom] -= 1
+            if botMana[nom] >= 20:
+                botMana[nom] -= 20
+                if botMana[vragBot] > 100:
+                    botMana[vragBot] -= 100
+                    botExpirience[nom] += 30
+                else:
+                    botMana[vragBot] = 0    
+                    botExpirience[nom] += 30            
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 5: # Обман
+            if botMana[nom] >= 50:
+                botHod[nom] -= 1
+                botMana[nom] -= 50
+                botExpirience[nom] += 10
+                botAlgoritm[vragBot] = 0
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 6: # Огненная сфера
+            if botMana[nom] >= 25:
+                botMana[nom] -= 25
+                botZdorovie[vragBot] -= 30
+                botExpirience[nom] += 15
+                botHod[nom] -= 1
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 7: # Яд 
+            if botMana[nom] >= 15:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 7:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 7
+                            botDeistvie[vragBot][n] = 1000
+                            botMana[nom] -= 15
+                            botExpirience[nom] += 10
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 8: # Кровожадность
+            if botMana[nom] >= 35:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 8:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 8
+                            botDeistvie[vragBot][n] = 5
+                            botMana[nom] -= 35
+                            botExpirience[nom] += 10
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 9: # Лунный обряд
+            if botMana[nom] >=50 and botZdorovie[vragBot]+70 <= botIshZdorovie[vragBot]:
+                botMana[nom] -= 50
+                botZdorovie[vragBot] += 70
+                botHod[nom] -= 1
+                botExpirience[nom] += 10
+                print("Исцелили: ", vragBot)
+                yaKastanul = 1
+            elif botMana[nom] >=50 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-70:
+                botZdorovie[vragBot] = botIshZdorovie[vragBot] 
+                print("Исцелили: ", vragBot, "Полное здоровье")
+                botHod[nom] -= 1
+                botExpirience[nom] += 10
+                yaKastanul = 1 
+        if botZaklinania[nom][poriad] == 10: # Мощь природы
+            if botMana[nom] >= 60:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 10:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 10
+                            botDeistvie[vragBot][n] = 10
+                            botMana[nom] -= 60
+                            botExpirience[nom] += 15
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 11: # Могильный луч
+            if botMana[nom] >= 60:
+                botHod[nom] -= 1
+                n = 0
+                botZdorovie[vragBot] -= 50
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 11:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 11
+                            botDeistvie[vragBot][n] = 5
+                            botExpirience[nom] += 30
+                            botMana[nom] -= 60
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 12: # Молния
+            if botMana[nom] >= 70:
+                botMana[nom] -= 70
+                botZdorovie[vragBot] -= 70
+                botExpirience[nom] += 40
+                botHod[nom] -= 1
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 13: # Печать Хаоса
+            if botMana[nom] >= 100:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 13:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 13
+                            botDeistvie[vragBot][n] = 10
+                            botMana[nom] -= 100
+                            botExpirience[nom] += 40
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 14: # Печать Смерти
+            if botMana[nom] >= 230:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 14:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 14
+                            botDeistvie[vragBot][n] = 5
+                            botExpirience[nom] += 70
+                            botMana[nom] -= 230
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 15: # Поцелуй Смерти
+            if botMana[nom] >= 150:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 15:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 15
+                            botDeistvie[vragBot][n] = 1000
+                            botExpirience[nom] += 50
+                            botMana[nom] -= 150
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 16: # Проклятье
+            if botMana[nom] >= 75:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 16:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 16
+                            botExpirience[nom] += 20
+                            botDeistvie[vragBot][n] = 1000
+                            botMana[nom] -= 75
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 17: # Пронзающий крик
+            if botMana[nom] >= 50:
+                botMana[nom] -= 50
+                botZdorovie[vragBot] -= 50
+                botExpirience[nom] += 20
+                botHod[nom] -= 1
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 18: # Регенерация
+            if botMana[nom] >= 40:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 18:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 18
+                            botDeistvie[vragBot][n] = 1000
+                            botMana[nom] -= 40
+                            botExpirience[nom] += 10
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 19: # Сжигание маны
+            if botMana[nom] >= 15:
+                botMana[nom] -= 15
+                botExpirience[nom] += 10
+                botMana[vragBot] = 0
+                botHod[nom] -= 1
+                yaKastanul = 1
+        if botZaklinania[nom][poriad] == 20: # Вампиризм
+            if botMana[nom] >= 55:
+                botHod[nom] -= 1
+                n = 0
+                disable = 0
+                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                    if botVozdeistvie[vragBot][n] == 20:
+                        dissable = 1
+                        break
+                if disable == 0:        
+                    for n in range(15):
+                        if botVozdeistvie[vragBot][n] == 0:
+                            botVozdeistvie[vragBot][n] = 20
+                            botDeistvie[vragBot][n] = 10
+                            botMana[nom] -= 55
+                            botExpirience[nom] += 10
+                            break        
+                n = 0
+                yaKastanul = 1  
+        if botZaklinania[nom][poriad] == 21: # Хрен знает что за заклинание
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 22: # Лечение
+            if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
+                botMana[nom] -= 30
+                botZdorovie[vragBot] += 30
+                botHod[nom] -= 1
+                botExpirience[nom] += 10
+                print("Подлечили бота: ", vragBot)
+                yaKastanul = 1
+            elif botMana[nom] >=30 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-30:
+                botZdorovie[vragBot] = botIshZdorovie[vragBot] 
+                print("Подлечили бота: ", vragBot, "Полное здоровье")
+                botHod[nom] -= 1
+                yaKastanul = 1
+                botExpirience[nom] += 10            
+        if botZaklinania[nom][poriad] == 23: # Рассеять чары
+            botVozdeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            botDeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            n = 0
+            for n in range(1000):
+                if botLocation[n] == botLocation[nom]-1 or botLocation[n] == botLocation[nom]+1 or botLocation[n] == botLocation[nom]-31 or botLocation[n] == botLocation[nom]-32 or botLocation[n] == botLocation[nom]-33 or botLocation[n] == botLocation[nom]+31 or botLocation[n] == botLocation[nom]+32 or botLocation[n] == botLocation[nom]+33:
+                    botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botDeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    zyxel = 1
+                    
+                if zyxel == 1:
+                    botMana[nom] -= 40
+                    botExpirience[nom] += 10
+                    zyxel = 0   
+                    botHod[nom] -= 1 
+            n = 0
+        if botZaklinania[nom][poriad] == 24:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 25:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 26:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 27:
+            yaKastanul = 1
+        if botZaklinania[nom][poriad] == 28:
+            yaKastanul = 1  
+    
+    
+    if botZdorovie[vragBot] <= 0 and attack == 0: 
+        randomMoney = int(random.random()*10)
+        randomBronza = int(random.random()*70) * botLvl[vragBot]
+        randomSerebro = int(random.random()*5) * botLvl[vragBot]
+        if randomMoney >= 4 and  randomMoney <= 9:
+            botBronza[nom] += randomBronza
+        if randomMoney == 2 or randomMoney == 3:
+            botSerebro[nom] += randomSerebro        
+        otdaiLut(nom, vragBot)
+        ubiraemTrup(vragBot)    
+    
+    worldUpdate()
+    heroPanel(hero)
+    return yaKastanul 
+
+def useInventar(dasLut):
+    global botExpirience
+    global botLvl
+    global botRasa
+    global botZaklinania 
+    global botVozdeistvie
+    global botIshZdorovie
+    global botInventar
+    global botZdorovie
+    global botMana
+    global botIshMana
+    global botSila
+    global botLovkost
+    global botYdacha
+    global botZachita
+    global botHod
+    global botLocation
+    global world
+    global botStep
+    global botNumer
+    global botVariant
+    global botAlgoritm
+    global botDeistvie
+    global hero
+    global attack
+    global invent
+    global posohSmerti
+    global posohSveta
+    global posohProzrenia
+    global posohVoli
+    global posohVechnoiJizni
+    global yes
+    
+    
+    if botInventar[imHero][dasLut-1] == 1:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 30: botZdorovie[imHero] += 30
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 2:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 65: botZdorovie[imHero] += 65
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 3:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 150: botZdorovie[imHero] += 150
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 4:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 320: botZdorovie[imHero] += 320
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 5:
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 675: botZdorovie[imHero] += 675
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    if botInventar[imHero][dasLut-1] == 6:
+        if botMana[imHero] < botIshMana[imHero] - 60: botMana[imHero] += 60
+        else: botMana[imHero] = botIshMana[imHero]
+    if botInventar[imHero][dasLut-1] == 7:
+        if botMana[imHero] < botIshMana[imHero] - 130: botMana[imHero] += 130
+        else: botMana[imHero] = botIshMana[imHero]
+    if botInventar[imHero][dasLut-1] == 8:
+        if botMana[imHero] < botIshMana[imHero] - 260: botMana[imHero] += 260
+        else: botMana[imHero] = botIshMana[imHero]
+    if botInventar[imHero][dasLut-1] == 9:
+        if botMana[imHero] < botIshMana[imHero] - 520: botMana[imHero] += 520
+        else: botMana[imHero] = botIshMana[imHero]
+    if botInventar[imHero][dasLut-1] == 10:
+        if botMana[imHero] < botIshMana[imHero] - 1100: botMana[imHero] += 1100
+        else: botMana[imHero] = botIshMana[imHero]   
+
+    if botInventar[imHero][dasLut-1] == 11: 
+        botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        if botMana[imHero] < botIshMana[imHero] - 500: botMana[imHero] += 500
+        else: botMana[imHero] = botIshMana[imHero]
+        if botZdorovie[imHero] < botIshZdorovie[imHero] - 500: botZdorovie[imHero] += 500
+        else: botZdorovie[imHero] = botIshZdorovie[imHero]
+    
+    if botInventar[imHero][dasLut-1] == 12: 
+        botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    
+    if botInventar[imHero][dasLut-1] == 26: # Используем топор
+        botUseWeapon[imHero] = 26
+        botAttack[imHero] = 3
+    
+    if botInventar[imHero][dasLut-1] == 27: 
+        botUseWeapon[imHero] = 27
+        botAttack[imHero] = 6
+    
+    if botInventar[imHero][dasLut-1] == 28: 
+        botUseWeapon[imHero] = 28
+        botAttack[imHero] = 12
+    
+    if botInventar[imHero][dasLut-1] == 29: 
+        botUseWeapon[imHero] = 29
+        botAttack[imHero] = 25
+ 
+    if botInventar[imHero][dasLut-1] == 30: 
+        botUseWeapon[imHero] = 29
+        botAttack[imHero] = 35
+
+    if botInventar[imHero][dasLut-1] == 31: 
+        botUseWeapon[imHero] = 30
+        botAttack[imHero] = 55
+
+    if botInventar[imHero][dasLut-1] == 32: 
+        botUseWeapon[imHero] = 31
+        botAttack[imHero] = 75        
+    
+    if botInventar[imHero][dasLut-1] == 33: # Это книга Пронзающая Смерть
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 1
+                break
+    if botInventar[imHero][dasLut-1] == 34: # Это книга Добить и воскресить
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 2
+                break
+    
+    if botInventar[imHero][dasLut-1] == 35: # Это книга Доспехи феникса
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 3
+                break
+    
+    if botInventar[imHero][dasLut-1] == 36: # Это книга Яд
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 7
+                break
+                
+    if botInventar[imHero][dasLut-1] == 37: # Это книга Могильный луч
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 11
+                break
+
+    if botInventar[imHero][dasLut-1] == 38: # Это книга печать хаоса
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 13
+                break
+                
+    if botInventar[imHero][dasLut-1] == 39: # Это книга печать смерти
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 14
+                break            
+
+    if botInventar[imHero][dasLut-1] == 40: # Это книга пронзающий крик
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 17
+                break
+
+    if botInventar[imHero][dasLut-1] == 41: # Это книга обман
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 5
+                break
+                
+    if botInventar[imHero][dasLut-1] == 42: # Это книга рассеять чары
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 23
+                break            
+
+                
+    if botInventar[imHero][dasLut-1] == 55 and yes == 1:   # Это посох Смерти      
+        if botMana[imHero] >= 100:
+            posohSmerti = 1
+            yes = 0
+    
+    if botInventar[imHero][dasLut-1] == 46: botZachita[imHero] = 3
+    if botInventar[imHero][dasLut-1] == 47: botZachita[imHero] = 5
+    if botInventar[imHero][dasLut-1] == 48: botZachita[imHero] = 8
+    if botInventar[imHero][dasLut-1] == 49: botZachita[imHero] = 14
+    if botInventar[imHero][dasLut-1] == 50: botZachita[imHero] = 21
+    if botInventar[imHero][dasLut-1] == 51: botZachita[imHero] = 30
+    
+    if botInventar[imHero][dasLut-1] == 60: 
+        botUseWeapon[imHero] = 60
+        botAttack[imHero] = 3
+        
+    if botInventar[imHero][dasLut-1] == 61: 
+        botUseWeapon[imHero] = 61
+        botAttack[imHero] = 5
+        
+    if botInventar[imHero][dasLut-1] == 62: 
+        botUseWeapon[imHero] = 62
+        botAttack[imHero] = 8
+        
+    if botInventar[imHero][dasLut-1] == 63: 
+        botUseWeapon[imHero] = 63
+        botAttack[imHero] = 14
+        
+    if botInventar[imHero][dasLut-1] == 64: 
+        botUseWeapon[imHero] = 64
+        botAttack[imHero] = 21
+       
+    if botInventar[imHero][dasLut-1] == 65: 
+        botUseWeapon[imHero] = 65
+        botAttack[imHero] = 30
+
+    if botInventar[imHero][dasLut-1] == 67: 
+        botUseWeapon[imHero] = 67
+        botAttack[imHero] = 4
+
+    if botInventar[imHero][dasLut-1] == 68: 
+        botUseWeapon[imHero] = 68
+        botAttack[imHero] = 6   
+
+    if botInventar[imHero][dasLut-1] == 69: 
+        botUseWeapon[imHero] = 69
+        botAttack[imHero] = 9
+
+    if botInventar[imHero][dasLut-1] == 70: 
+        botUseWeapon[imHero] = 70
+        botAttack[imHero] = 13        
+    
+    if botInventar[imHero][dasLut-1] == 71: # Это книга Лечение
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 22
+                break
+                
+    if botInventar[imHero][dasLut-1] == 72: # Это книга Лунный обряд
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 9
+                break            
+    
+    if botInventar[imHero][dasLut-1] == 73: # Это книга Кража магии
+        n = 0
+        for n in range(15):
+            if botZaklinania[imHero][n] == 0:
+                botZaklinania[imHero][n] = 4
+                break 
+    
+    if botInventar[imHero][dasLut-1] > 0 and botInventar[imHero][dasLut-1] <= 25:
+        invent = 0
+        attack = 0
+        botInventar[imHero][dasLut-1] = 0
+        printInventar(dasLut-1)
+    if botInventar[imHero][dasLut-1] >= 33 and botInventar[imHero][dasLut-1] <= 42:
+        invent = 0
+        attack = 0
+        botInventar[imHero][dasLut-1] = 0
+        printInventar(dasLut-1)
+    if botInventar[imHero][dasLut-1] >= 71 and botInventar[imHero][dasLut-1] <= 73:
+        invent = 0
+        attack = 0
+        botInventar[imHero][dasLut-1] = 0
+        printInventar(dasLut-1)        
+    heroPanel(hero)
+
+def otdaiLut(nom, vragBot):
+    print(botInventar[vragBot])
+    if botZdorovie[vragBot] <= 0: 
+        botExpirience[nom] += int(botIshZdorovie[vragBot] / 2)
+        tempEnum = 0
+        for tempEnum in range(16):
+            if botInventar[vragBot][tempEnum] > 0:
+                if botInventar[nom][0] == 0: botInventar[nom][0] = botInventar[vragBot][tempEnum]
+                else:
+                    if botInventar[nom][1] == 0: botInventar[nom][1] = botInventar[vragBot][tempEnum]
+                    else:
+                        if botInventar[nom][2] == 0: botInventar[nom][2] = botInventar[vragBot][tempEnum]
+                        else:
+                            if botInventar[nom][3] == 0: botInventar[nom][3] = botInventar[vragBot][tempEnum]
+                            else:
+                                if botInventar[nom][4] == 0: botInventar[nom][4] = botInventar[vragBot][tempEnum]
+                                else:
+                                    if botInventar[nom][5] == 0: botInventar[nom][5] = botInventar[vragBot][tempEnum]
+                                    else:
+                                        if botInventar[nom][6] == 0: botInventar[nom][6] = botInventar[vragBot][tempEnum]
+                                        else:
+                                            if botInventar[nom][7] == 0: botInventar[nom][7] = botInventar[vragBot][tempEnum]
+                                            else:
+                                                if botInventar[nom][8] == 0: botInventar[nom][8] = botInventar[vragBot][tempEnum]
+                                                else:
+                                                    if botInventar[nom][9] == 0: botInventar[nom][9] = botInventar[vragBot][tempEnum]
+                                                    else:
+                                                        if botInventar[nom][10] == 0: botInventar[nom][10] = botInventar[vragBot][tempEnum]
+                                                        else: 
+                                                            if botInventar[nom][11] == 0: botInventar[nom][11] = botInventar[vragBot][tempEnum]
+                                                            else:
+                                                                if botInventar[nom][12] == 0: botInventar[nom][12] = botInventar[vragBot][tempEnum]
+                                                                else:
+                                                                    if botInventar[nom][13] == 0: botInventar[nom][13] = botInventar[vragBot][tempEnum]
+                                                                    else:
+                                                                        if botInventar[nom][14] == 0: botInventar[nom][14] = botInventar[vragBot][tempEnum]
+                                                                        else:
+                                                                            if botInventar[nom][15] == 0: botInventar[nom][15] = botInventar[vragBot][tempEnum]
 
 def textInventar(nomInv):
     global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto, yaNaRinke
@@ -1889,8 +2608,2046 @@ def textInventar(nomInv):
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))         
-        
+
+def marketPlace(press):
+    global hero
+    global botInventar
+    global botZoloto
+    global botSerebro
+    global botBronza
+    global tmpMarket
+    global market
     
+    heroPanel(hero)
+    
+    if press == 1: #Если на рынке нажали "ДА" т.е купить и посмотреть предложения
+        nMark = 0
+        for nMark in range(16):
+            tmpMarket = 2
+            if nMark == 0: xInv = 772; yInv = 548
+            if nMark == 1: xInv = 840; yInv = 548
+            if nMark == 2: xInv = 908; yInv = 548
+            if nMark == 3: xInv = 976; yInv = 548
+            if nMark == 4: xInv = 772; yInv = 616
+            if nMark == 5: xInv = 840; yInv = 616
+            if nMark == 6: xInv = 908; yInv = 616
+            if nMark == 7: xInv = 976; yInv = 616
+            if nMark == 8: xInv = 772; yInv = 684
+            if nMark == 9: xInv = 840; yInv = 684
+            if nMark == 10: xInv = 908; yInv = 684
+            if nMark == 11: xInv = 976; yInv = 684
+            if nMark == 12: xInv = 772; yInv = 752
+            if nMark == 13: xInv = 840; yInv = 752
+            if nMark == 14: xInv = 908; yInv = 752
+            if nMark == 15: xInv = 976; yInv = 752
+            if market[nMark] == 0:
+                pix = pygame.image.load('Images/zero.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 1:
+                pix = pygame.image.load('Images/healtPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 2:
+                pix = pygame.image.load('Images/healtPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 3:
+                pix = pygame.image.load('Images/healtPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 4:
+                pix = pygame.image.load('Images/healtPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 5:
+                pix = pygame.image.load('Images/healtPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))                       
+            if market[nMark] == 6:
+                pix = pygame.image.load('Images/manaPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 7:
+                pix = pygame.image.load('Images/manaPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 8:
+                pix = pygame.image.load('Images/manaPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 9:
+                pix = pygame.image.load('Images/manaPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 10:
+                pix = pygame.image.load('Images/manaPoison.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))                
+            if market[nMark] == 11:
+                pix = pygame.image.load('Images/zelieVostanovlenia.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 12:
+                pix = pygame.image.load('Images/zelieRasseivania.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))   
+            if market[nMark] == 13:
+                pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 14:
+                pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 15:
+                pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 16:
+                pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))           
+            if market[nMark] == 17:
+                pix = pygame.image.load('Images/zelieZaciti.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 18:
+                pix = pygame.image.load('Images/zelieZaciti.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 19:
+                pix = pygame.image.load('Images/zelieZaciti.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))            
+            if market[nMark] == 20:
+                pix = pygame.image.load('Images/zelieLovkosti.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 21:
+                pix = pygame.image.load('Images/zelieLovkosti.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 22:
+                pix = pygame.image.load('Images/zelieLovkosti.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))          
+            if market[nMark] == 23:
+                pix = pygame.image.load('Images/zelieUdachi.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 24:
+                pix = pygame.image.load('Images/zelieUdachi.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 25:
+                pix = pygame.image.load('Images/zelieUdachi.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))        
+            if market[nMark] == 26:
+                pix = pygame.image.load('Images/axe.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))   
+            if market[nMark] == 27:
+                pix = pygame.image.load('Images/axe1.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 28:
+                pix = pygame.image.load('Images/axe2.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))         
+            if market[nMark] == 29:
+                pix = pygame.image.load('Images/axe3.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 30:
+                pix = pygame.image.load('Images/axe4.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 31:
+                pix = pygame.image.load('Images/axe5.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 32:
+                pix = pygame.image.load('Images/axe6.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 33:
+                pix = pygame.image.load('Images/book.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 34:
+                pix = pygame.image.load('Images/book1.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 35:
+                pix = pygame.image.load('Images/book2.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 36:
+                pix = pygame.image.load('Images/book3.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 37:
+                pix = pygame.image.load('Images/book4.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 38:
+                pix = pygame.image.load('Images/book5.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 39:
+                pix = pygame.image.load('Images/book6.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 40:
+                pix = pygame.image.load('Images/book7.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 41:
+                pix = pygame.image.load('Images/book8.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 42:
+                pix = pygame.image.load('Images/book9.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))  
+            if market[nMark] == 43:
+                pix = pygame.image.load('Images/bot1.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 44:
+                pix = pygame.image.load('Images/bot2.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 45:
+                pix = pygame.image.load('Images/bot3.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 46:
+                pix = pygame.image.load('Images/helmet.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 47:
+                pix = pygame.image.load('Images/helmet1.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 48:
+                pix = pygame.image.load('Images/helmet2.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 49:
+                pix = pygame.image.load('Images/helmet3.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 50:
+                pix = pygame.image.load('Images/helmet4.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 51:
+                pix = pygame.image.load('Images/helmet5.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 52:
+                pix = pygame.image.load('Images/jar.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 53:
+                pix = pygame.image.load('Images/ojerelie.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 54:
+                pix = pygame.image.load('Images/posohProzrenia.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 55:
+                pix = pygame.image.load('Images/posohSmerti.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))        
+            if market[nMark] == 56:
+                pix = pygame.image.load('Images/posohSveta.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))        
+            if market[nMark] == 57:
+                pix = pygame.image.load('Images/posohVechnoiJizni.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 58:
+                pix = pygame.image.load('Images/posohVoli.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))      
+            if market[nMark] == 59:
+                pix = pygame.image.load('Images/runesBraslet.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv)) 
+            if market[nMark] == 60:
+                pix = pygame.image.load('Images/sword.jpeg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 61:
+                pix = pygame.image.load('Images/sword1.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))     
+            if market[nMark] == 62:
+                pix = pygame.image.load('Images/sword2.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))         
+            if market[nMark] == 63:
+                pix = pygame.image.load('Images/sword3.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))         
+            if market[nMark] == 64:
+                pix = pygame.image.load('Images/sword4.gif') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))         
+            if market[nMark] == 65:
+                pix = pygame.image.load('Images/sword5.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))         
+            if market[nMark] == 66:
+                pix = pygame.image.load('Images/usilenniiPosohVechnoiJizni.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))   
+            if market[nMark] == 67:
+                pix = pygame.image.load('Images/hammer.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))         
+            if market[nMark] == 68:
+                pix = pygame.image.load('Images/hammer1.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 69:
+                pix = pygame.image.load('Images/hammer2.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))    
+            if market[nMark] == 70:
+                pix = pygame.image.load('Images/hammer3.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 71:
+                pix = pygame.image.load('Images/book10.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 72:
+                pix = pygame.image.load('Images/book11.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 73:
+                pix = pygame.image.load('Images/book12.png') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))                 
+        
+    if press == 2:  # Если на рынке нажали "НЕТ" т.е. продать инвентарь
+        variableName = u"Нажмите на предмет, который"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560))
+        variableName = u"хотите продать"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        tmpMarket = 1
+
+def putInventar(imBuyInventar):
+    global tempEnum, botInventar, imHero
+    tempEnum = 0
+    for tempEnum in range(16):
+        if botInventar[imHero][0] == 0: botInventar[imHero][0] = imBuyInventar; break
+        else:
+            if botInventar[imHero][1] == 0: botInventar[imHero][1] = imBuyInventar; break
+            else:
+                if botInventar[imHero][2] == 0: botInventar[imHero][2] = imBuyInventar; break
+                else:
+                    if botInventar[imHero][3] == 0: botInventar[imHero][3] = imBuyInventar; break
+                    else:
+                        if botInventar[imHero][4] == 0: botInventar[imHero][4] = imBuyInventar; break
+                        else:
+                            if botInventar[imHero][5] == 0: botInventar[imHero][5] = imBuyInventar; break
+                            else:
+                                if botInventar[imHero][6] == 0: botInventar[imHero][6] = imBuyInventar; break
+                                else:
+                                    if botInventar[imHero][7] == 0: botInventar[imHero][7] = imBuyInventar; break
+                                    else:
+                                        if botInventar[imHero][8] == 0: botInventar[imHero][8] = imBuyInventar; break
+                                        else:
+                                            if botInventar[imHero][9] == 0: botInventar[imHero][9] = imBuyInventar; break
+                                            else:
+                                                if botInventar[imHero][10] == 0: botInventar[imHero][10] = imBuyInventar; break
+                                                else: 
+                                                    if botInventar[imHero][11] == 0: botInventar[imHero][11] = imBuyInventar; break
+                                                    else:
+                                                        if botInventar[imHero][12] == 0: botInventar[imHero][12] = imBuyInventar; break
+                                                        else:
+                                                            if botInventar[imHero][13] == 0: botInventar[imHero][13] = imBuyInventar; break
+                                                            else:
+                                                                if botInventar[imHero][14] == 0: botInventar[imHero][14] = imBuyInventar; break
+                                                                else:
+                                                                    if botInventar[imHero][15] == 0: botInventar[imHero][15] = imBuyInventar; break
+        
+def buyInvent(imBuy): 
+    global market,yes,no,imBuyThis,thisPlace,tempEnum,imHero, yaNaRinke, botBronza
+    
+    pix = pygame.image.load('Images/yes.png') 
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (462,786))    
+    pix = pygame.image.load('Images/no.png') 
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (530,786))
+                
+    imBuyThis = 1
+    thisPlace = imBuy
+    print("Yes="+str(yes)+" thisPlace="+str(thisPlace-1)+" imBuyThis="+str(imBuyThis))
+    if yes == 5:
+        if market[thisPlace-1] == 1:
+            if botBronza[imHero] >= 50:
+                market[thisPlace-1] = 0
+                putInventar(1)
+                botBronza[imHero] -= 50
+        if market[thisPlace-1] == 2:
+            if botBronza[imHero] >= 65:
+                market[thisPlace-1] = 0
+                putInventar(2)
+                botBronza[imHero] -= 65
+        if market[thisPlace-1] == 3:
+            if botBronza[imHero] >= 150:
+                market[thisPlace-1] = 0
+                putInventar(3)
+                botBronza[imHero] -= 150
+        if market[thisPlace-1] == 4:
+            if botBronza[imHero] >= 320:
+                market[thisPlace-1] = 0
+                putInventar(4)
+                botBronza[imHero] -= 320
+        if market[thisPlace-1] == 5:
+            if botBronza[imHero] >= 675:
+                market[thisPlace-1] = 0
+                putInventar(5)
+                botBronza[imHero] -= 675     
+        if market[thisPlace-1] == 6:
+            if botBronza[imHero] >= 70:
+                market[thisPlace-1] = 0
+                putInventar(6)
+                botBronza[imHero] -= 70
+        if market[thisPlace-1] == 7:
+            if botBronza[imHero] >= 140:
+                market[thisPlace-1] = 0
+                putInventar(7)
+                botBronza[imHero] -= 140
+        if market[thisPlace-1] == 8:
+            if botBronza[imHero] >= 250:
+                market[thisPlace-1] = 0
+                putInventar(8)
+                botBronza[imHero] -= 250
+        if market[thisPlace-1] == 9:
+            if botBronza[imHero] >= 370:
+                market[thisPlace-1] = 0
+                putInventar(9)
+                botBronza[imHero] -= 370
+        if market[thisPlace-1] == 10:
+            if botBronza[imHero] >= 600:
+                market[thisPlace-1] = 0
+                putInventar(10)
+                botBronza[imHero] -= 600
+        if market[thisPlace-1] == 11:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(11)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 12:
+            if botBronza[imHero] >= 550:
+                market[thisPlace-1] = 0
+                putInventar(12)
+                botBronza[imHero] -= 550
+        if market[thisPlace-1] == 13:
+            if botBronza[imHero] >= 100:
+                market[thisPlace-1] = 0
+                putInventar(13)
+                botBronza[imHero] -= 100
+        if market[thisPlace-1] == 14:
+            if botBronza[imHero] >= 140:
+                market[thisPlace-1] = 0
+                putInventar(14)
+                botBronza[imHero] -= 140
+        if market[thisPlace-1] == 15:
+            if botBronza[imHero] >= 190:
+                market[thisPlace-1] = 0
+                putInventar(15)
+                botBronza[imHero] -= 190
+        if market[thisPlace-1] == 16:
+            if botBronza[imHero] >= 320:
+                market[thisPlace-1] = 0
+                putInventar(16)
+                botBronza[imHero] -= 320
+        if market[thisPlace-1] == 17:
+            if botBronza[imHero] >= 130:
+                market[thisPlace-1] = 0
+                putInventar(17)
+                botBronza[imHero] -= 130
+        if market[thisPlace-1] == 18:
+            if botBronza[imHero] >= 250:
+                market[thisPlace-1] = 0
+                putInventar(18)
+                botBronza[imHero] -= 250
+        if market[thisPlace-1] == 19:
+            if botBronza[imHero] >= 400:
+                market[thisPlace-1] = 0
+                putInventar(19)
+                botBronza[imHero] -= 400
+        if market[thisPlace-1] == 20:
+            if botBronza[imHero] >= 85:
+                market[thisPlace-1] = 0
+                putInventar(20)
+                botBronza[imHero] -= 85
+        if market[thisPlace-1] == 21:
+            if botBronza[imHero] >= 150:
+                market[thisPlace-1] = 0
+                putInventar(21)
+                botBronza[imHero] -= 150
+        if market[thisPlace-1] == 22:
+            if botBronza[imHero] >= 250:
+                market[thisPlace-1] = 0
+                putInventar(22)
+                botBronza[imHero] -= 250
+        if market[thisPlace-1] == 23:
+            if botBronza[imHero] >= 100:
+                market[thisPlace-1] = 0
+                putInventar(23)
+                botBronza[imHero] -= 100
+        if market[thisPlace-1] == 24:
+            if botBronza[imHero] >= 170:
+                market[thisPlace-1] = 0
+                putInventar(24)
+                botBronza[imHero] -= 170
+        if market[thisPlace-1] == 25:
+            if botBronza[imHero] >= 240:
+                market[thisPlace-1] = 0
+                putInventar(25)
+                botBronza[imHero] -= 240
+        if market[thisPlace-1] == 26:
+            if botBronza[imHero] >= 300:
+                market[thisPlace-1] = 0
+                putInventar(26)
+                botBronza[imHero] -= 300
+        if market[thisPlace-1] == 27:
+            if botBronza[imHero] >= 550:
+                market[thisPlace-1] = 0
+                putInventar(27)
+                botBronza[imHero] -= 550
+        if market[thisPlace-1] == 28:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(28)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 29:
+            if botBronza[imHero] >= 2500:
+                market[thisPlace-1] = 0
+                putInventar(29)
+                botBronza[imHero] -= 2500
+        if market[thisPlace-1] == 30:
+            if botBronza[imHero] >= 5000:
+                market[thisPlace-1] = 0
+                putInventar(30)
+                botBronza[imHero] -= 5000
+        if market[thisPlace-1] == 31:
+            if botBronza[imHero] >= 8500:
+                market[thisPlace-1] = 0
+                putInventar(31)
+                botBronza[imHero] -= 8500
+        if market[thisPlace-1] == 32:
+            if botBronza[imHero] >= 13500:
+                market[thisPlace-1] = 0
+                putInventar(32)
+                botBronza[imHero] -= 13500
+        if market[thisPlace-1] == 33:
+            if botBronza[imHero] >= 4000:
+                market[thisPlace-1] = 0
+                putInventar(33)
+                botBronza[imHero] -= 4000
+        if market[thisPlace-1] == 34:
+            if botBronza[imHero] >= 2000:
+                market[thisPlace-1] = 0
+                putInventar(34)
+                botBronza[imHero] -= 2000
+        if market[thisPlace-1] == 35:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(35)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 36:
+            if botBronza[imHero] >= 2300:
+                market[thisPlace-1] = 0
+                putInventar(36)
+                botBronza[imHero] -= 2300
+        if market[thisPlace-1] == 37:
+            if botBronza[imHero] >= 2500:
+                market[thisPlace-1] = 0
+                putInventar(37)
+                botBronza[imHero] -= 2500
+        if market[thisPlace-1] == 38:
+            if botBronza[imHero] >= 3000:
+                market[thisPlace-1] = 0
+                putInventar(38)
+                botBronza[imHero] -= 3000
+        if market[thisPlace-1] == 39:
+            if botBronza[imHero] >= 4000:
+                market[thisPlace-1] = 0
+                putInventar(39)
+                botBronza[imHero] -= 4000
+        if market[thisPlace-1] == 40:
+            if botBronza[imHero] >= 2300:
+                market[thisPlace-1] = 0
+                putInventar(40)
+                botBronza[imHero] -= 2300
+        if market[thisPlace-1] == 41:
+            if botBronza[imHero] >= 2700:
+                market[thisPlace-1] = 0
+                putInventar(41)
+                botBronza[imHero] -= 2700
+        if market[thisPlace-1] == 42:
+            if botBronza[imHero] >= 2500:
+                market[thisPlace-1] = 0
+                putInventar(42)
+                botBronza[imHero] -= 2500
+        if market[thisPlace-1] == 43:
+            if botBronza[imHero] >= 750:
+                market[thisPlace-1] = 0
+                putInventar(43)
+                botBronza[imHero] -= 750
+        if market[thisPlace-1] == 44:
+            if botBronza[imHero] >= 1350:
+                market[thisPlace-1] = 0
+                putInventar(44)
+                botBronza[imHero] -= 1350
+        if market[thisPlace-1] == 45:
+            if botBronza[imHero] >= 2000:
+                market[thisPlace-1] = 0
+                putInventar(45)
+                botBronza[imHero] -= 2000
+        if market[thisPlace-1] == 46:
+            if botBronza[imHero] >= 300:
+                market[thisPlace-1] = 0
+                putInventar(46)
+                botBronza[imHero] -= 300
+        if market[thisPlace-1] == 47:
+            if botBronza[imHero] >= 500:
+                market[thisPlace-1] = 0
+                putInventar(47)
+                botBronza[imHero] -= 500
+        if market[thisPlace-1] == 48:
+            if botBronza[imHero] >= 850:
+                market[thisPlace-1] = 0
+                putInventar(48)
+                botBronza[imHero] -= 850
+        if market[thisPlace-1] == 49:
+            if botBronza[imHero] >= 1600:
+                market[thisPlace-1] = 0
+                putInventar(49)
+                botBronza[imHero] -= 1600
+        if market[thisPlace-1] == 50:
+            if botBronza[imHero] >= 3000:
+                market[thisPlace-1] = 0
+                putInventar(50)
+                botBronza[imHero] -= 3000
+        if market[thisPlace-1] == 51:
+            if botBronza[imHero] >= 6000:
+                market[thisPlace-1] = 0
+                putInventar(51)
+                botBronza[imHero] -= 6000
+        if market[thisPlace-1] == 53:
+            if botBronza[imHero] >= 1200:
+                market[thisPlace-1] = 0
+                putInventar(53)
+                botBronza[imHero] -= 1200
+        if market[thisPlace-1] == 54:
+            if botBronza[imHero] >= 7000:
+                market[thisPlace-1] = 0
+                putInventar(54)
+                botBronza[imHero] -= 7000
+        if market[thisPlace-1] == 55:
+            if botBronza[imHero] >= 8500:
+                market[thisPlace-1] = 0
+                putInventar(55)
+                botBronza[imHero] -= 8500
+        if market[thisPlace-1] == 56:
+            if botBronza[imHero] >= 8000:
+                market[thisPlace-1] = 0
+                putInventar(56)
+                botBronza[imHero] -= 8000
+        if market[thisPlace-1] == 57:
+            if botBronza[imHero] >= 10000:
+                market[thisPlace-1] = 0
+                putInventar(57)
+                botBronza[imHero] -= 10000
+        if market[thisPlace-1] == 58:
+            if botBronza[imHero] >= 6700:
+                market[thisPlace-1] = 0
+                putInventar(58)
+                botBronza[imHero] -= 6700
+        if market[thisPlace-1] == 59:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(59)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 60:
+            if botBronza[imHero] >= 250:
+                market[thisPlace-1] = 0
+                putInventar(60)
+                botBronza[imHero] -= 250
+        if market[thisPlace-1] == 61:
+            if botBronza[imHero] >= 450:
+                market[thisPlace-1] = 0
+                putInventar(61)
+                botBronza[imHero] -= 450
+        if market[thisPlace-1] == 62:
+            if botBronza[imHero] >= 900:
+                market[thisPlace-1] = 0
+                putInventar(62)
+                botBronza[imHero] -= 900
+        if market[thisPlace-1] == 63:
+            if botBronza[imHero] >= 900:
+                market[thisPlace-1] = 0
+                putInventar(900)
+                botBronza[imHero] -= 900
+        if market[thisPlace-1] == 64:
+            if botBronza[imHero] >= 2400:
+                market[thisPlace-1] = 0
+                putInventar(64)
+                botBronza[imHero] -= 2400
+        if market[thisPlace-1] == 65:
+            if botBronza[imHero] >= 6000:
+                market[thisPlace-1] = 0
+                putInventar(65)
+                botBronza[imHero] -= 6000
+        if market[thisPlace-1] == 66:
+            if botBronza[imHero] >= 20000:
+                market[thisPlace-1] = 0
+                putInventar(66)
+                botBronza[imHero] -= 20000
+        if market[thisPlace-1] == 67:
+            if botBronza[imHero] >= 400:
+                market[thisPlace-1] = 0
+                putInventar(67)
+                botBronza[imHero] -= 400
+        if market[thisPlace-1] == 68:
+            if botBronza[imHero] >= 650:
+                market[thisPlace-1] = 0
+                putInventar(68)
+                botBronza[imHero] -= 650
+        if market[thisPlace-1] == 69:
+            if botBronza[imHero] >= 1000:
+                market[thisPlace-1] = 0
+                putInventar(69)
+                botBronza[imHero] -= 1000
+        if market[thisPlace-1] == 70:
+            if botBronza[imHero] >= 1500:
+                market[thisPlace-1] = 0
+                putInventar(70)
+                botBronza[imHero] -= 1500
+        if market[thisPlace-1] == 71:
+            if botBronza[imHero] >= 1900:
+                market[thisPlace-1] = 0
+                putInventar(71)
+                botBronza[imHero] -= 1900
+        if market[thisPlace-1] == 72:
+            if botBronza[imHero] >= 2200:
+                market[thisPlace-1] = 0
+                putInventar(72)
+                botBronza[imHero] -= 2200                
+        if market[thisPlace-1] == 73:
+            if botBronza[imHero] >= 3000:
+                market[thisPlace-1] = 0
+                putInventar(73)
+                botBronza[imHero] -= 3000  
+                
+        yes = 0
+        imBuyThis = 0
+        thisPlace = 0
+        yaNaRinke = 0
+     
+    pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 216))
+    if market[imBuy-1] == 1:
+        variableName = u"Зелье здоровья 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+30 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 50бр|1ср/35бр"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if market[imBuy-1] == 2:
+        variableName = u"Зелье здоровья 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+65 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 78бр|2ср/55бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if market[imBuy-1] == 3:
+        variableName = u"Зелье здоровья 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+150 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 120бр|3ср/84бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 4:
+        variableName = u"Зелье здоровья 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+320 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 220бр|4ср/155бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 5:
+        variableName = u"Зелье здоровья 5 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+675 Здоровья "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 6:
+        variableName = u"Зелье маны 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+60 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 70бр|2ср/50бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 7:
+        variableName = u"Зелье маны 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+130 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 140бр|3ср/98бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))        
+    if market[imBuy-1] == 8:
+        variableName = u"Зелье маны 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+260 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 9:
+        variableName = u"Зелье маны 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+520 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 370бр|7ср/250бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 10:
+        variableName = u"Зелье маны 5 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+1100 Маны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 600бр|12ср/420бр|8ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 11:
+        variableName = u"Зелье восстановления"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+500 Здоровья +500 маны, плюс зелье"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"действует подобно заклинанию"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"Рассеять Чары "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 12:
+        variableName = u"Зелье рассеивания"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"Рассеять Чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 550бр|12ср/385бр|8ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 13:
+        variableName = u"Зелье Кипящей крови 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 100бр|2ср/70бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 14:
+        variableName = u"Зелье Кипящей крови 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 140бр|3ср/100бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 15:
+        variableName = u"Зелье Кипящей крови 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 190бр|4ср/133бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 16:
+        variableName = u"Зелье Кипящей крови 4 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+20 силы на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 320бр|6ср/224бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 17:
+        variableName = u"Зелье Деревянной кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 130бр|3ср/90бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 18:
+        variableName = u"Зелье Каменной кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 19:
+        variableName = u"Зелье Обсидиановой кожи"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 защиты на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 20:
+        variableName = u"Зелье Паука"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+2 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 85бр|2ср/60бр|1ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 21:
+        variableName = u"Зелье Ящерицы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+3 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 150бр|3ср/105бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 22:
+        variableName = u"Зелье Пантеры"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 Ловкости на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 235бр|5ср/165бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 23:
+        variableName = u"Зелье Леприкона 1 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+5 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 100бр|3ср/70бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 24:
+        variableName = u"Зелье Леприкона 2 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+8 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 170бр|4ср/119бр|2ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 25:
+        variableName = u"Зелье Леприкона 3 ур."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"+12 Удачи на 10 ходов"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 240бр|5ср/165бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 26:
+        variableName = u"Топор Палача (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Подобные топоры обычно используют"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"палачи для выполнения своей "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"гнусной работы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if market[imBuy-1] == 27:
+        variableName = u"Топор Королвской стражи (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Подобными топорами обычно вооружены"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"королевские стражники. Видимо это"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"оружие было отнято у одного из них"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"во времена эпохи Смуты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+6 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 550бр|11ср/385бр|7ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if market[imBuy-1] == 28:
+        variableName = u"Топор Гнева (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Выкован из особо острой стали."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Он разрезает плоти и кости врага как"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"горячий нож сливочное масло. Один вид"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"этого топора внушает пронзающий ужас."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"+12 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if market[imBuy-1] == 29:
+        variableName = u"Топор Алчности (4ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот топор усилен заклинаниями боли"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"и сам тянется к твоему врагу,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"дабы вкусить его крови."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+25 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 30:
+        variableName = u"Топор Ярости (5ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Усиленный магией Хаоса, этот топор - "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"воплощение самой Смерти. Он обладает"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"настолько разрушительной силой, "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"что с ним можно в одинчку одолеть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"целый отряд противника"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+        variableName = u"+35 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Куп./прод. 5000бр|100ср/3500бр|70ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 720))         
+    if market[imBuy-1] == 31:
+        variableName = u"Топор Скорбящих вдов (6ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Название говорит само за себя."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"От гнева этого оружия нет спасиния "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"никому. Вряд ли в наше время есть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"кузнецы, способные выковать нечто "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"подобное. Это историческая реликвия"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))    
+        variableName = u"+55 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Куп./прод. 8500бр|170ср/5950бр|118ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 720)) 
+    if market[imBuy-1] == 32:
+        variableName = u"Топор Божественной Воли (7ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Умереть от этого оружия - большая"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"честь для врага. Этот топор зачарован"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"магией Древних Богов. Никому из ныне"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"живущих не подсилу такие заклятия."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"+75 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 13500бр|270ср/9450бр|189ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700)) 
+    if market[imBuy-1] == 33:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Пронзающая смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 4000бр|80ср/2800р|56ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 34:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию доб. и воскресить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2000бр|40ср/1400бр|28ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 35:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Доспехи Феникса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 36:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560))        
+        variableName = u"Обучает заклинанию Яд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2300бр|46ср/1600бр|32ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 37:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Могильный луч"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 38:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Печать Хаоса"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 39:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Печать Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 4000бр|80ср/2800р|56ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 40:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Пронз. крик"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2300бр|46ср/1610бр|32ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 41:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Обман"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2700бр|54ср/1890бр|38ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 42:
+        variableName = u"Книга "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Рассеять чары"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 43:
+        variableName = u"Ботинки Гонца (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Ногам удобно - двигаешься быстро"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))       
+        variableName = u"+2 ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 750бр|15ср/525бр|11ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 44:
+        variableName = u"Ботинки Путешественника (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"С такой обувью можно обойти весь свет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"за пару недель"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))       
+        variableName = u"+4 ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1350бр|27ср/945бр|19ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 45:
+        variableName = u"Ботинки Скитальца (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Верный друг искателя приключений"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+6 Ловкости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 2000бр|40ср/1400бр|28ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 46:
+        variableName = u"Шлем пехотинца (1ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Видимо кузнец, что выковал этот шлем "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"служил при королевском дворе, раз так "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"мастерски выковал этот доспех."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+3 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 47:
+        variableName = u"Офицерский шлем (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Видимо, что выковал этот шлем служил"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"при королевском дворе, раз так "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"мастерски выковал этот доспех."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+5 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 500бр|10ср/350бр|7ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 48:
+        variableName = u"Шлем Паладинов (3ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Это отличный доспех. С ним не страшно"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"выйти и одному на отряд противника"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+8 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 850бр|17ср/595бр|12ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 49:
+        variableName = u"Шлем Похитителя Душ (4ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Не каждый кузнец способен выковать"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"подобный доспех, не каждый боец"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"достоин его носить"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+14 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 1600бр|32ср/1120бр|22ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 50:
+        variableName = u"Шлем Божественной Миссии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Доспех 5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Видимо ты избран, раз носишь этот шлем"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+21 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 51:
+        variableName = u"Шлем Бессмертия (6ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот доспех - проклятье Вашего врага"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"С ним Вы выбертесь даже из самой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"страшной западни."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+30 Защиты"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 53:
+        variableName = u"Ожерелье духов Войны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Очень редкий артефакт, большая удача"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"найти такую ценную вещь"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+7 Защиты +3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1200бр|24ср/840бр|17ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 54:
+        variableName = u"Посох Прозрения"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Позволяет узнать количество маны,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"и здоровье противка, а также какими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"заклинаниями он обладает"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 7000бр|140ср/4900бр|98ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 55:
+        variableName = u"Посох Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Пронзающая Смерть"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 100 маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 8500бр|170ср/5950бр|119ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 56:
+        variableName = u"Посох Света"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Действует подобно заклинанию "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Рассеять чары, а также даёт"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+100 Здоровья при использовании"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 8000бр|160ср/5600бр|112ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Требует 50 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 57:
+        variableName = u"Посох Вечной Жизни"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Способен сотворить скелетов до"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"5 уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 40/60/85/115/150 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 10000бр|200ср/7000бр|140ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+    if market[imBuy-1] == 58:
+        variableName = u"Посох Воли"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Способен подчинить существо до "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"5 уровня если оно не обладает защитой"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"от средней Магии Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Требует 50/70/95/130/170 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6700бр|134ср/4690бр|94ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))         
+    if market[imBuy-1] == 59:
+        variableName = u"Рунный браслет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Зачарованный магией Порядка браслет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+3 Защиты +5 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 60:
+        variableName = u"Меч 1 ур"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Стандартное вооружение пехотинца"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"+3 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 61:
+        variableName = u"Меч Офицера гвардии (2ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Лезвие меча выполнено из лучшей стали"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"в королевстве."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+5 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 450бр|4ср/315бр|6ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 62:
+        variableName = u"Меч Паладинов (3 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этим вооружаются лучшие войны "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Короля Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+8 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 900бр|18ср/630бр|12ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 63:
+        variableName = u"Меч Ледяной Мощи (4 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Клинок этого меча испещрён магическими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"рунами, придающими ему большую"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"остроту. Не позавидуешь врагу, который"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"встретит его своей грудью."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"+14 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+        variableName = u"Куп./прод. 2400бр|48ср/1680бр|33ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 700))        
+    if market[imBuy-1] == 64:
+        variableName = u"Меч Смирения (5 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Глядя на этот меч, враг поймёт, что"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"он смотрит в лицо самой Смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+21 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 4300бр|86ср/3000бр|60ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 65:
+        variableName = u"Меч Великого Смирения (6 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Очень редкий артефакт. Этот меч усилен"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"заклинаниями Боли, что позволяет ему"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"без проблем разрезать любой доспех"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"+30 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 66:
+        variableName = u"Усиленный посох Вечной Жизни"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Позволяет призывать скелетов от пятого"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"до восьмого уровня"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"Требует 140/180/240 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 20000бр|400ср/14000бр|280ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 67:
+        variableName = u"Молот кузнеца (1 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Почему бы им не вдарить по голове"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"какого-нибудь гнолла?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+4 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 68:
+        variableName = u"Палица (2 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Суровая штука, она способна своими"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"острыми зубьями перемолоть все кости"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+6 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 650бр|13ср/455бр|9ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 69:
+        variableName = u"Молот Славы (3 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Такой обычно вручают выдающимся бойцам"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"королевства Альбрехта."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+9 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+    if market[imBuy-1] == 70:
+        variableName = u"Молот Паладинов (4 ур.)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Некоторые паладины предпочитают"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"сражатся тяжёлом молотом, а не мечом"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))
+        variableName = u"+13 Силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))
+        variableName = u"Куп./прод. 1500бр|30ср/1050бр|21ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if market[imBuy-1] == 71:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Лечение"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580)) 
+        variableName = u"Куп./прод. 1900бр|38ср/1380бр|27ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if market[imBuy-1] == 72:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Лунный обряд"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 2200бр|44ср/1540бр|30ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640)) 
+        variableName = u"Купить?"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if market[imBuy-1] == 73:
+        variableName = u"Книга"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Обучает заклинанию Кража Магии"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Купить?)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))           
             
             
             
@@ -5005,10 +7762,10 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     
     pygame.draw.rect(sc, (255, 255, 255), (284, 548, 481, 896)) 
     pygame.draw.rect(sc, (255, 255, 255), (405, 550, 365, 896))
-    pix = pygame.image.load('Images/next.png') # Кнопка "Конец хода" она нужна)
-    x_len = pix.get_width()
-    y_len = pix.get_height() 
-    sc.blit(pix, (286,786))
+    #pix = pygame.image.load('Images/next.png') # Кнопка "Конец хода" она нужна)
+    #x_len = pix.get_width()
+    #y_len = pix.get_height() 
+    #sc.blit(pix, (286,786))
     
     xHero = 340
     yHero = 548
@@ -5249,12 +8006,13 @@ def mutation(): # Изменяем геном. Меняем случайный �
 def loviVebalo(nomBota): # Используется если у бота нет заклинания, но бить кого-то надо
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world 
     
-    for n in range(1000):
+    for n in range(100):
         if botLocation[nomBota] == botLocation[n]-33: # Бот сверху-слева
             if botLocation[nomBota]>=32:
                 if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
                     botZdorovie[n] -= botSila[nomBota]
                     print("BOT #", str(nomBota), " shot up-left. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                    if n == imHero: heroPanel(imHero)
                     break
                             
         if botLocation[nomBota] == botLocation[n]-31: # Бот сверху-справа
@@ -5262,6 +8020,7 @@ def loviVebalo(nomBota): # Используется если у бота нет 
                 if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
                     botZdorovie[n] -= botSila[nomBota]
                     print("BOT #", str(nomBota), " shot up-right. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                    if n == imHero: heroPanel(imHero)
                     break
 
         if botLocation[nomBota] == botLocation[n]+31: # Бот снизу-слева
@@ -5270,6 +8029,7 @@ def loviVebalo(nomBota): # Используется если у бота нет 
                 if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
                     botZdorovie[n] -= botSila[nomBota]
                     print("BOT #", str(nomBota), " shot down-left. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                    if n == imHero: heroPanel(imHero)
                     break
                             
         if botLocation[nomBota] == botLocation[n]+33: # Бот снизу-справа
@@ -5277,30 +8037,35 @@ def loviVebalo(nomBota): # Используется если у бота нет 
                 if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
                     botZdorovie[n] -= botSila[nomBota]
                     print("BOT #", str(nomBota), " shot down-right. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                    if n == imHero: heroPanel(imHero)
                     break
                 
         if botLocation[nomBota] == botLocation[n]-1: # Бот слева
             if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
                 botZdorovie[n] -= botSila[nomBota]
                 print("BOT #", str(nomBota), " shot left. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                if n == imHero: heroPanel(imHero)
                 break
 
         if botLocation[nomBota] == botLocation[n]+1: # Бот справа
             if botLocation[nomBota] != 31 and botLocation[nomBota] != 63 and botLocation[nomBota] != 95 and botLocation[nomBota] != 127 and botLocation[nomBota] != 159 and botLocation[nomBota] != 191 and botLocation[nomBota] != 223 and botLocation[nomBota] != 255 and botLocation[nomBota] != 287 and botLocation[nomBota] != 319 and botLocation[nomBota] != 351 and botLocation[nomBota] != 383 and botLocation[nomBota] != 415 and botLocation[nomBota] != 447:
                 botZdorovie[n] -= botSila[nomBota]
                 print("BOT #", str(nomBota), " shot right. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                if n == imHero: heroPanel(imHero)
                 break
 
         if botLocation[nomBota] == botLocation[n]-32: # Бот сверху
             if botLocation[nomBota] >= 32:
                 botZdorovie[n] -= botSila[nomBota]
                 print("BOT #", str(nomBota), " shot up. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                if n == imHero: heroPanel(imHero)
                 break
  
         if botLocation[nomBota] == botLocation[n]+32: # Бот снизу
             if botLocation[nomBota] <= 416:
                 botZdorovie[n] -= botSila[nomBota]
                 print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                if n == imHero: heroPanel(imHero)
                 break
         
                 
@@ -5389,10 +8154,25 @@ def botActivity(nomerBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
     
     #print("botActivity", str(sobitie))
+    
+    if sobitie % 2397 == 0:
+        tmpInventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        for n in range(16): 
+            pass
+            nn = 0 
+            tmp = int(random.random()*73)
+            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56:
+                market[n] = tmpInventar[n] = 0
+            else:
+                market[n] = tmpInventar[n] = tmp
+            lalsas1488 = int(random.random()*7)
+            if lalsas1488 == 5: market[n] = tmpInventar[n] = 0
+        print("Market change: " + str(market))
+    
     if sobitie % 1097 == 0: mutation()
     
-    if sobitie % 1537 == 0: # Рожаем бота
-        for n in range(1000):
+    if sobitie % 537 == 0: # Рожаем бота
+        for n in range(20):
             if botZdorovie[n] <= 0: #Если бот номер N мёртв, то занимаем его ID
                 tmp = int(random.random()*72)+100 # Генеруем вид бота
                 botRandom = int(random.random()*100) # Переменная для случайного распределения артефактов
@@ -7729,6 +10509,7 @@ def botActivity(nomerBota):
     # Обрабатываем геном
     if botStep[nomerBota] > 127: botStep[nomerBota] = 0
     if botZdorovie[nomerBota] > 0 and nomerBota != imHero: # Если бот жив
+        
         if genom[botStep[nomerBota]] == 0: pass # Если равен нулю, то ничего не делаем
         
         elif genom[botStep[nomerBota]] == 1: # Идём вверх
@@ -7779,6 +10560,7 @@ def botActivity(nomerBota):
                         if botLocation[nomerBota] == botLocation[n]+32 and botZdorovie[n] > 0: 
                             botZdorovie[n] -= botSila[nomerBota]
                             print("Im - ", str(nomerBota), " shot up. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                            if n == imHero: heroPanel(imHero)
                             break                    
                     
         elif genom[botStep[nomerBota]] == 6: # Бьём врага вниз 
@@ -7788,7 +10570,8 @@ def botActivity(nomerBota):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]-32 and botZdorovie[n] > 0: 
                             botZdorovie[n] -= botSila[nomerBota]
-                            print("Im - ", str(nomerBota), " shot down. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])  
+                            print("Im - ", str(nomerBota), " shot down. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                            if n == imHero: heroPanel(imHero)
                             break
         
         elif genom[botStep[nomerBota]] == 7: # Бьём врага слева
@@ -7799,6 +10582,7 @@ def botActivity(nomerBota):
                         if botLocation[nomerBota] == botLocation[n]+1 and botZdorovie[n] > 0: 
                             botZdorovie[n] -= botSila[nomerBota]
                             print("Im - ", str(nomerBota), " shot left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                            if n == imHero: heroPanel(imHero)
                             break
         
         elif genom[botStep[nomerBota]] == 8: # Бьём врага справа
@@ -7809,6 +10593,7 @@ def botActivity(nomerBota):
                         if botLocation[nomerBota] == botLocation[n]-1 and botZdorovie[n] > 0: 
                             botZdorovie[n] -= botSila[nomerBota]
                             print("Im - ", str(nomerBota), " shot right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                            if n == imHero: heroPanel(imHero)
                             break
 
         elif genom[botStep[nomerBota]] == 9: # Бьём врага сверху-справа
@@ -7819,7 +10604,8 @@ def botActivity(nomerBota):
                             tmp = n
                             if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: 
                                 botZdorovie[n] -= botSila[nomerBota]
-                                print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
+                                print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                                if n == imHero: heroPanel(imHero)                                
                                 break
         
         elif genom[botStep[nomerBota]] == 10: # Бьём врага сверху-слева
@@ -7830,7 +10616,8 @@ def botActivity(nomerBota):
                             tmp = n
                             if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: 
                                 botZdorovie[n] -= botSila[nomerBota]
-                                print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])  
+                                print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                                if n == imHero: heroPanel(imHero)                                
                                 break
                             
         elif genom[botStep[nomerBota]] == 11: # Бьём врага снизу-справа
@@ -7842,6 +10629,7 @@ def botActivity(nomerBota):
                             if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: 
                                 botZdorovie[n] -= botSila[nomerBota]
                                 print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                                if n == imHero: heroPanel(imHero)
                                 break
         
         elif genom[botStep[nomerBota]] == 12: # Бьём врага снизу-слева
@@ -7853,6 +10641,7 @@ def botActivity(nomerBota):
                             if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: 
                                 botZdorovie[n] -= botSila[nomerBota]
                                 print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
+                                if n == imHero: heroPanel(imHero)
                                 break
                             
         elif genom[botStep[nomerBota]] == 13:  # Применяем заклинание "Пронзающая смерть"
@@ -7867,6 +10656,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 200
                                         botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 200 mana")
                             
@@ -7878,6 +10668,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 200
                                         botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 200 mana")
     
@@ -7889,6 +10680,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 200
                                         botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 200 mana")
                             
@@ -7900,6 +10692,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 200
                                         botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 200 mana")                             
                 
@@ -7910,6 +10703,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 200
                                     botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 200 mana")
 
@@ -7920,6 +10714,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 200
                                     botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 200 mana")
 
@@ -7930,6 +10725,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 200
                                     botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 200 mana")
      
@@ -7940,6 +10736,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 200
                                     botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 200 mana")  
                 #if n==14 and botZaklinania[nomerBota][n] != 1: loviVebalo(nomerBota)
@@ -7958,6 +10755,7 @@ def botActivity(nomerBota):
                                                 print("Excellent, bot ", str(n), "took damage")
                                                 botMana[nomerBota] -= 30
                                                 botZdorovie[n] -= 30
+                                                if n == imHero: heroPanel(imHero)
                                                 break
                                             else: print("Less that 30 mana")
                             
@@ -7969,6 +10767,7 @@ def botActivity(nomerBota):
                                                 print("Excellent, bot ", str(n), "took damage")
                                                 botMana[nomerBota] -= 30
                                                 botZdorovie[n] -= 30
+                                                if n == imHero: heroPanel(imHero)
                                                 break
                                             else: print("Less that 30 mana")
 
@@ -7980,6 +10779,7 @@ def botActivity(nomerBota):
                                                 print("Excellent, bot ", str(n), "took damage")
                                                 botMana[nomerBota] -= 30
                                                 botZdorovie[n] -= 30
+                                                if n == imHero: heroPanel(imHero)
                                                 break
                                             else: print("Less that 30 mana")
                             
@@ -7991,6 +10791,7 @@ def botActivity(nomerBota):
                                                 print("Excellent, bot ", str(n), "took damage")
                                                 botMana[nomerBota] -= 30
                                                 botZdorovie[n] -= 30
+                                                if n == imHero: heroPanel(imHero)
                                                 break
                                             else: print("Less that 30 mana")   
                 
@@ -8001,6 +10802,7 @@ def botActivity(nomerBota):
                                             print("Excellent, bot ", str(n), "took damage")
                                             botMana[nomerBota] -= 30
                                             botZdorovie[n] -= 30
+                                            if n == imHero: heroPanel(imHero)
                                             break
                                         else: print("Less that 30 mana")
 
@@ -8011,6 +10813,7 @@ def botActivity(nomerBota):
                                             print("Excellent, bot ", str(n), "took damage")
                                             botMana[nomerBota] -= 30
                                             botZdorovie[n] -= 30
+                                            if n == imHero: heroPanel(imHero)
                                             break
                                         else: print("Less that 30 mana")
 
@@ -8021,6 +10824,7 @@ def botActivity(nomerBota):
                                             print("Excellent, bot ", str(n), "took damage")
                                             botMana[nomerBota] -= 30
                                             botZdorovie[n] -= 30
+                                            if n == imHero: heroPanel(imHero)
                                             break
                                         else: print("Less that 30 mana")
  
@@ -8031,6 +10835,7 @@ def botActivity(nomerBota):
                                             print("Excellent, bot ", str(n), "took damage")
                                             botMana[nomerBota] -= 30
                                             botZdorovie[n] -= 30
+                                            if n == imHero: heroPanel(imHero)
                                             break
                                         else: print("Less that 30 mana")
                 #if n==14 and botZaklinania[nomerBota][n] != 6: loviVebalo(nomerBota)
@@ -8047,6 +10852,7 @@ def botActivity(nomerBota):
                                         print("Excellent, bot ", str(n), "took damage")
                                         botMana[nomerBota] -= 70
                                         botZdorovie[n] -= 70
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 70 mana")
                             
@@ -8058,6 +10864,7 @@ def botActivity(nomerBota):
                                         print("Excellent, bot ", str(n), "took damage")
                                         botMana[nomerBota] -= 70
                                         botZdorovie[n] -= 70
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 70 mana")
 
@@ -8069,6 +10876,7 @@ def botActivity(nomerBota):
                                         print("Excellent, bot ", str(n), "took damage")
                                         botMana[nomerBota] -= 70
                                         botZdorovie[n] -= 70
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 70 mana")
                             
@@ -8080,6 +10888,7 @@ def botActivity(nomerBota):
                                         print("Excellent, bot ", str(n), "took damage")
                                         botMana[nomerBota] -= 70
                                         botZdorovie[n] -= 70
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 70 mana")   
                 
@@ -8090,6 +10899,7 @@ def botActivity(nomerBota):
                                     print("Excellent, bot ", str(n), "took damage")
                                     botMana[nomerBota] -= 70
                                     botZdorovie[n] -= 70
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 70 mana")
 
@@ -8100,6 +10910,7 @@ def botActivity(nomerBota):
                                     print("Excellent, bot ", str(n), "took damage")
                                     botMana[nomerBota] -= 70
                                     botZdorovie[n] -= 70
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 70 mana")
 
@@ -8110,6 +10921,7 @@ def botActivity(nomerBota):
                                     print("Excellent, bot ", str(n), "took damage")
                                     botMana[nomerBota] -= 70
                                     botZdorovie[n] -= 70
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 70 mana")
  
@@ -8120,6 +10932,7 @@ def botActivity(nomerBota):
                                     print("Excellent, bot ", str(n), "took damage")
                                     botMana[nomerBota] -= 70
                                     botZdorovie[n] -= 70
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 70 mana")
                 #if n==14 and botZaklinania[nomerBota][n] != 12: loviVebalo(nomerBota) 
@@ -8229,6 +11042,7 @@ def botActivity(nomerBota):
                                         print("Excellent, bot ", str(n), "took damage")
                                         botMana[nomerBota] -= 60
                                         botZdorovie[n] -= 50
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 60 mana")
                                     break  
@@ -8241,6 +11055,7 @@ def botActivity(nomerBota):
                                         print("Excellent, bot ", str(n), "took damage")
                                         botMana[nomerBota] -= 60
                                         botZdorovie[n] -= 50
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 60 mana")  
                                     break
@@ -8254,6 +11069,7 @@ def botActivity(nomerBota):
                                         print("Excellent, bot ", str(n), "took damage")
                                         botMana[nomerBota] -= 60
                                         botZdorovie[n] -= 50
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 60 mana")  
                                     break
@@ -8266,6 +11082,7 @@ def botActivity(nomerBota):
                                         print("Excellent, bot ", str(n), "took damage")
                                         botMana[nomerBota] -= 60
                                         botZdorovie[n] -= 50
+                                        if n == imHero: heroPanel(imHero)
                                         break
                                     else: print("Less that 60 mana")
                                     break   
@@ -8278,6 +11095,7 @@ def botActivity(nomerBota):
                                     print("Excellent, bot ", str(n), "took damage")
                                     botMana[nomerBota] -= 60
                                     botZdorovie[n] -= 50
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 60 mana")
                                 break
@@ -8289,6 +11107,7 @@ def botActivity(nomerBota):
                                     print("Excellent, bot ", str(n), "took damage")
                                     botMana[nomerBota] -= 60
                                     botZdorovie[n] -= 50
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 60 mana")
                                 break
@@ -8300,6 +11119,7 @@ def botActivity(nomerBota):
                                     print("Excellent, bot ", str(n), "took damage")
                                     botMana[nomerBota] -= 60
                                     botZdorovie[n] -= 50
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 60 mana")
                                 break
@@ -8311,6 +11131,7 @@ def botActivity(nomerBota):
                                     print("Excellent, bot ", str(n), "took damage")
                                     botMana[nomerBota] -= 60
                                     botZdorovie[n] -= 50
+                                    if n == imHero: heroPanel(imHero)
                                     break
                                 else: print("Less that 60 mana")
                                 break
@@ -9240,19 +12061,19 @@ n = 0
 botExpirience[imHero] = 0   # Главный герой
 botLvl[imHero] = 1
 botRasa[imHero] = 7
-botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botZaklinania[imHero] = [5,12,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+botInventar[imHero] = [1,6,2,7,3,8,0,0,0,0,0,0,0,0,0,0]
+botZaklinania[imHero] = [5,12,22,0,0,0,0,0,0,0,0,0,0,0,0,100]
 botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botIshZdorovie[imHero] = 90
-botZdorovie[imHero] = 90
-botMana[imHero] = 100
-botIshMana[imHero] = 100
-botSila[imHero] = 9
+botIshZdorovie[imHero] = 1300
+botZdorovie[imHero] = 1300
+botMana[imHero] = 1000
+botIshMana[imHero] = 1000
+botSila[imHero] = 20
 botLovkost[imHero] = 5
 botYdacha[imHero] = 9
-botZoloto[imHero] = 0
-botSerebro[imHero] = 0
-botBronza[imHero] = 0
+botZoloto[imHero] = 100
+botSerebro[imHero] = 3000
+botBronza[imHero] = 50000
 botHod[imHero] = botLovkost[imHero]
 botAlgoritm[imHero] = 4
 botVariant[imHero] = 52
@@ -9261,28 +12082,6 @@ world[172] = 52
 botLocation[imHero] = 172 # Исходное положение на карте
 xBot[imHero] = 400
 yBot[imHero] = 256
-
-
-botNumer[1] = 1
-botVariant[1] = 114        
-botLvl[1] = 1
-botZdorovie[1] = 125
-botIshZdorovie[1] = 125
-botMana[1] = 90
-botIshMana[1] = 90
-botZaklinania[1]=[6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-botSila[1] = 11
-botLovkost[1] = 6
-botYdacha[1] = 10
-botHod[1] = botLovkost[1]
-botVozdeistvie[1]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botAlgoritm[1] = 3
-botDeistvie[1]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botInventar[1] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botZoloto[1] = 0
-botSerebro[1] = 0
-botBronza[1] = 200
-bornBot(0, 114)
 
 
 n = 0
@@ -9297,7 +12096,7 @@ n = 0
 heroPanel(52)    
 pygame.display.update()   
 while True:
-    clock.tick(1500)
+    clock.tick(160)
     if botZdorovie[n] > 0: botActivity(n)
     if botVariant[n] > 0 and botZdorovie[n] <= 0:    
             ubiraemTrup(n)      
@@ -9307,7 +12106,7 @@ while True:
             pygame.display.update()
     n += 1
     
-    if n >= 1000: n = 0; lifeTime += 1
+    if n >= 20: n = 0; lifeTime += 1
     
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
@@ -9376,6 +12175,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(0)
+            if i.button == 3: myAttack(0)
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -9384,6 +12184,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(1)
+            if i.button == 3: myAttack(1)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -9391,7 +12192,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(2)            
+            if i.button == 1: doebaca(2)
+            if i.button == 3: myAttack(2)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -9400,6 +12202,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(3)
+            if i.button == 3: myAttack(3)
                 
     if mos_x>145 and (mos_x<175):  x_inside = True
     else: x_inside = False
@@ -9407,7 +12210,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(4) 
+            if i.button == 1: doebaca(4)
+            if i.button == 3: myAttack(4)
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -9416,6 +12220,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(5)
+            if i.button == 3: myAttack(5)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -9424,6 +12229,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(6)
+            if i.button == 3: myAttack(6)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -9431,7 +12237,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(7)            
+            if i.button == 1: doebaca(7)
+            if i.button == 3: myAttack(7)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -9440,6 +12247,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(8)
+            if i.button == 3: myAttack(8)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -9447,7 +12255,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(9) 
+            if i.button == 1: doebaca(9)
+            if i.button == 3: myAttack(9)            
                 
     if mos_x>337 and (mos_x<367):  x_inside = True
     else: x_inside = False
@@ -9456,6 +12265,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(10)
+            if i.button == 3: myAttack(10)
     
     if mos_x>369 and (mos_x<399):  x_inside = True
     else: x_inside = False
@@ -9464,6 +12274,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:  doebaca(11)
+            if i.button == 3: myAttack(11)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -9471,7 +12282,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(12)            
+            if i.button == 1: doebaca(12)
+            if i.button == 3: myAttack(12)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -9480,6 +12292,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(13)
+            if i.button == 3: myAttack(13)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -9487,7 +12300,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(14) 
+            if i.button == 1: doebaca(14)
+            if i.button == 3: myAttack(14)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -9496,6 +12310,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(15)
+            if i.button == 3: myAttack(15)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -9504,6 +12319,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(16)
+            if i.button == 3: myAttack(16)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -9511,7 +12327,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(17)            
+            if i.button == 1: doebaca(17)
+            if i.button == 3: myAttack(17)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -9520,6 +12337,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(18)
+            if i.button == 3: myAttack(18)
                 
     if mos_x>625 and (mos_x<655):  x_inside = True
     else: x_inside = False
@@ -9528,6 +12346,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(19)
+            if i.button == 3: myAttack(19)
                 
     if mos_x>657 and (mos_x<687):  x_inside = True
     else: x_inside = False
@@ -9536,6 +12355,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(20)
+            if i.button == 3: myAttack(20)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -9544,6 +12364,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(21)
+            if i.button == 3: myAttack(21)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -9551,7 +12372,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(22)            
+            if i.button == 1: doebaca(22)
+            if i.button == 3: myAttack(22)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -9560,6 +12382,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(23)
+            if i.button == 3: myAttack(23)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -9567,7 +12390,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:doebaca(24) 
+            if i.button == 1:doebaca(24)
+            if i.button == 3: myAttack(24)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -9576,6 +12400,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(25)
+            if i.button == 3: myAttack(25)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -9584,6 +12409,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(26)
+            if i.button == 3: myAttack(26)
     
     if mos_x>881 and (mos_x<911): 
         x_inside = True
@@ -9593,8 +12419,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(27)            
+            if i.button == 1: doebaca(27)
+            if i.button == 3: myAttack(27)
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -9603,6 +12429,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(28)
+            if i.button == 3: myAttack(28)
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -9611,6 +12438,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(29)
+            if i.button == 3: myAttack(29)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -9618,7 +12446,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(30)    
+            if i.button == 1: doebaca(30)
+            if i.button == 3: myAttack(30)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -9627,6 +12456,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(31)
+            if i.button == 3: myAttack(31)
                 
     #===================================================2 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -9636,6 +12466,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(32)
+            if i.button == 3: myAttack(32)
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -9644,6 +12475,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(33)
+            if i.button == 3: myAttack(33)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -9651,7 +12483,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(34)            
+            if i.button == 1: doebaca(34)
+            if i.button == 3: myAttack(34)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -9660,6 +12493,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(35)
+            if i.button == 3: myAttack(35)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -9667,7 +12501,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(36) 
+            if i.button == 1: doebaca(36)
+            if i.button == 3: myAttack(36)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -9676,6 +12511,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(37)
+            if i.button == 3: myAttack(37)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -9684,6 +12520,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(38)
+            if i.button == 3: myAttack(38)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -9691,7 +12528,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(39)            
+            if i.button == 1: doebaca(39)
+            if i.button == 3: myAttack(39)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -9700,6 +12538,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(40)
+            if i.button == 3: myAttack(40)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -9707,7 +12546,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(41) 
+            if i.button == 1: doebaca(41)
+            if i.button == 3: myAttack(41)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -9716,6 +12556,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(42)
+            if i.button == 3: myAttack(42)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -9724,6 +12565,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(43)
+            if i.button == 3: myAttack(43)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -9731,7 +12573,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(44)          
+            if i.button == 1: doebaca(44)
+            if i.button == 3: myAttack(44)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -9740,6 +12583,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(45)
+            if i.button == 3: myAttack(45)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -9748,6 +12592,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(46) 
+            if i.button == 3: myAttack(46)
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -9756,6 +12601,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(47)
+            if i.button == 3: myAttack(47)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -9764,6 +12610,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(48)
+            if i.button == 3: myAttack(48)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -9771,7 +12618,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(49)            
+            if i.button == 1: doebaca(49)
+            if i.button == 3: myAttack(49)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -9780,6 +12628,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(50)
+            if i.button == 3: myAttack(50)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -9788,6 +12637,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(51)
+            if i.button == 3: myAttack(51)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -9796,6 +12646,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(52)
+            if i.button == 3: myAttack(52)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -9804,6 +12655,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(53)
+            if i.button == 3: myAttack(53)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -9811,7 +12663,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(54)            
+            if i.button == 1: doebaca(54)
+            if i.button == 3: myAttack(54)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -9820,6 +12673,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(55)
+            if i.button == 3: myAttack(55)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -9827,7 +12681,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(56) 
+            if i.button == 1: doebaca(56)
+            if i.button == 3: myAttack(56)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -9836,6 +12691,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(57)
+            if i.button == 3: myAttack(57)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -9844,6 +12700,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(58)
+            if i.button == 3: myAttack(58)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -9851,7 +12708,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(59)            
+            if i.button == 1: doebaca(59)
+            if i.button == 3: myAttack(59)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -9859,7 +12717,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(60)  
+            if i.button == 1: doebaca(60)
+            if i.button == 3: myAttack(60)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -9868,6 +12727,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(61)
+            if i.button == 3: myAttack(61)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -9875,7 +12735,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(62)    
+            if i.button == 1: doebaca(62)
+            if i.button == 3: myAttack(62)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -9884,6 +12745,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(63)
+            if i.button == 3: myAttack(63)
                 
     #===================================================3 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -9893,6 +12755,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(64)
+            if i.button == 3: myAttack(64)
 
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -9901,6 +12764,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(65)
+            if i.button == 3: myAttack(65)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -9908,7 +12772,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(66)            
+            if i.button == 1: doebaca(66)
+            if i.button == 3: myAttack(66) 
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -9917,6 +12782,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(67)
+            if i.button == 3: myAttack(67)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -9924,7 +12790,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(68) 
+            if i.button == 1: doebaca(68)
+            if i.button == 3: myAttack(68)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -9933,6 +12800,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(69)
+            if i.button == 3: myAttack(69)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -9941,6 +12809,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(70)
+            if i.button == 3: myAttack(70)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -9948,7 +12817,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(71)            
+            if i.button == 1: doebaca(71) 
+            if i.button == 3: myAttack(71)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -9957,6 +12827,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(72)
+            if i.button == 3: myAttack(72)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -9964,7 +12835,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(73) 
+            if i.button == 1: doebaca(73)
+            if i.button == 3: myAttack(73)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -9973,6 +12845,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(74)
+            if i.button == 3: myAttack(74)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -9981,6 +12854,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(75)
+            if i.button == 3: myAttack(75)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -9988,7 +12862,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(76)            
+            if i.button == 1: doebaca(76)
+            if i.button == 3: myAttack(76)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -9997,6 +12872,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(77)
+            if i.button == 3: myAttack(77)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -10005,6 +12881,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(78) 
+            if i.button == 3: myAttack(78)
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -10013,6 +12890,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(79)
+            if i.button == 3: myAttack(79)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -10021,6 +12899,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(80)
+            if i.button == 3: myAttack(80)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -10029,6 +12908,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(81)
+            if i.button == 3: myAttack(81)
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -10037,6 +12917,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(82)
+            if i.button == 3: myAttack(82)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -10045,6 +12926,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(83)
+            if i.button == 3: myAttack(83)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -10053,6 +12935,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(84)
+            if i.button == 3: myAttack(84)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -10061,6 +12944,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(85)
+            if i.button == 3: myAttack(85)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -10069,6 +12953,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(86)
+            if i.button == 3: myAttack(86)
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -10077,6 +12962,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(87)
+            if i.button == 3: myAttack(87)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -10085,6 +12971,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(88)
+            if i.button == 3: myAttack(88)
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -10093,6 +12980,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(89)
+            if i.button == 3: myAttack(89)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -10101,6 +12989,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(90)
+            if i.button == 3: myAttack(90)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -10109,6 +12998,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(91)
+            if i.button == 3: myAttack(91)
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -10117,6 +13007,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(92)
+            if i.button == 3: myAttack(92)
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -10125,6 +13016,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(93)
+            if i.button == 3: myAttack(93)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -10133,6 +13025,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(94)
+            if i.button == 3: myAttack(94)
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -10141,6 +13034,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(95)
+            if i.button == 3: myAttack(95)
     
     #===================================================4 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -10150,6 +13044,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(96)
+            if i.button == 3: myAttack(96)
     
     if mos_x>49 and (mos_x<79):  x_inside = True
     else: x_inside = False
@@ -10158,6 +13053,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(97)
+            if i.button == 3: myAttack(97)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -10166,6 +13062,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(98)
+            if i.button == 3: myAttack(98)
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -10174,6 +13071,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(99)
+            if i.button == 3: myAttack(99)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -10181,7 +13079,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(100) 
+            if i.button == 1: doebaca(100)
+            if i.button == 3: myAttack(100)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -10190,6 +13089,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(101)
+            if i.button == 3: myAttack(101)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -10198,6 +13098,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(102)
+            if i.button == 3: myAttack(102)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -10205,7 +13106,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(103)            
+            if i.button == 1: doebaca(103)
+            if i.button == 3: myAttack(103)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -10214,6 +13116,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(104)
+            if i.button == 3: myAttack(104)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -10221,7 +13124,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(105) 
+            if i.button == 1: doebaca(105)
+            if i.button == 3: myAttack(105)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -10230,6 +13134,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(106)
+            if i.button == 3: myAttack(106)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -10238,6 +13143,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(107)
+            if i.button == 3: myAttack(107)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -10245,7 +13151,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(108)            
+            if i.button == 1: doebaca(108) 
+            if i.button == 3: myAttack(108)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -10254,6 +13161,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(109)
+            if i.button == 3: myAttack(109)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -10261,7 +13169,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(110) 
+            if i.button == 1: doebaca(110)
+            if i.button == 3: myAttack(110)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -10270,6 +13179,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(111)
+            if i.button == 3: myAttack(111)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -10277,7 +13187,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(112) 
+            if i.button == 1: doebaca(112)
+            if i.button == 3: myAttack(112)            
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -10285,7 +13196,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(113)             
+            if i.button == 1: doebaca(113) 
+            if i.button == 3: myAttack(113)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -10293,7 +13205,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(114) 
+            if i.button == 1: doebaca(114)
+            if i.button == 3: myAttack(114)            
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -10301,7 +13214,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(115) 
+            if i.button == 1: doebaca(115)
+            if i.button == 3: myAttack(115)            
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -10309,7 +13223,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(116) 
+            if i.button == 1: doebaca(116)
+            if i.button == 3: myAttack(116)            
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -10317,7 +13232,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(117) 
+            if i.button == 1: doebaca(117)
+            if i.button == 3: myAttack(117)            
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -10325,7 +13241,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(118)             
+            if i.button == 1: doebaca(118)
+            if i.button == 3: myAttack(118)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -10333,7 +13250,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(119) 
+            if i.button == 1: doebaca(119)
+            if i.button == 3: myAttack(119)            
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -10341,7 +13259,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(120)  
+            if i.button == 1: doebaca(120)
+            if i.button == 3: myAttack(120)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -10350,6 +13269,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(121) 
+            if i.button == 3: myAttack(121)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -10357,7 +13277,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(122) 
+            if i.button == 1: doebaca(122)
+            if i.button == 3: myAttack(122)            
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -10365,7 +13286,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(123)             
+            if i.button == 1: doebaca(123)
+            if i.button == 3: myAttack(123)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -10373,7 +13295,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(124)   
+            if i.button == 1: doebaca(124)
+            if i.button == 3: myAttack(124)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -10381,7 +13304,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(125) 
+            if i.button == 1: doebaca(125)
+            if i.button == 3: myAttack(125)            
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -10389,7 +13313,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(126)     
+            if i.button == 1: doebaca(126)
+            if i.button == 3: myAttack(126)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -10397,7 +13322,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(127)    
+            if i.button == 1: doebaca(127)
+            if i.button == 3: myAttack(127)            
                 
     #===================================================5 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -10406,7 +13332,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(128) 
+            if i.button == 1: doebaca(128)
+            if i.button == 3: myAttack(128)            
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -10414,7 +13341,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(129) 
+            if i.button == 1: doebaca(129)
+            if i.button == 3: myAttack(129)            
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -10422,7 +13350,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(130)             
+            if i.button == 1: doebaca(130)
+            if i.button == 3: myAttack(130)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -10431,6 +13360,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(131)
+            if i.button == 3: myAttack(131)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -10438,7 +13368,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(132) 
+            if i.button == 1: doebaca(132)
+            if i.button == 3: myAttack(132)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -10447,6 +13378,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(133)
+            if i.button == 3: myAttack(133)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -10455,6 +13387,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(134)
+            if i.button == 3: myAttack(134)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -10462,7 +13395,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(135)            
+            if i.button == 1: doebaca(135)
+            if i.button == 3: myAttack(135)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -10471,6 +13405,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(136)
+            if i.button == 3: myAttack(136)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -10478,7 +13413,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(137) 
+            if i.button == 1: doebaca(137)
+            if i.button == 3: myAttack(137)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -10487,6 +13423,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(138)
+            if i.button == 3: myAttack(138)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -10495,6 +13432,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(139)
+            if i.button == 3: myAttack(139)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -10502,7 +13440,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(140)            
+            if i.button == 1: doebaca(140)
+            if i.button == 3: myAttack(140)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -10511,6 +13450,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(141)
+            if i.button == 3: myAttack(141)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -10518,7 +13458,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(142) 
+            if i.button == 1: doebaca(142)
+            if i.button == 3: myAttack(142)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -10527,6 +13468,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(143)
+            if i.button == 3: myAttack(143)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -10535,6 +13477,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(144)
+            if i.button == 3: myAttack(144)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -10542,7 +13485,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(145)            
+            if i.button == 1: doebaca(145)
+            if i.button == 3: myAttack(145)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -10551,6 +13495,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(146)
+            if i.button == 3: myAttack(146)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -10559,6 +13504,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(147)
+            if i.button == 3: myAttack(147)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -10567,6 +13513,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(148)
+            if i.button == 3: myAttack(148)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -10575,6 +13522,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(149)
+            if i.button == 3: myAttack(149)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -10582,7 +13530,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(150)            
+            if i.button == 1: doebaca(150)
+            if i.button == 3: myAttack(150)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -10591,6 +13540,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(151)
+            if i.button == 3: myAttack(151)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -10598,7 +13548,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(152)  
+            if i.button == 1: doebaca(152)
+            if i.button == 3: myAttack(152)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -10606,7 +13557,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(153) 
+            if i.button == 1: doebaca(153)
+            if i.button == 3: myAttack(153)            
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -10614,7 +13566,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(154) 
+            if i.button == 1: doebaca(154)
+            if i.button == 3: myAttack(154)            
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -10622,7 +13575,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(155)             
+            if i.button == 1: doebaca(155) 
+            if i.button == 3: myAttack(155)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -10630,7 +13584,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(156)   
+            if i.button == 1: doebaca(156)
+            if i.button == 3: myAttack(156)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -10639,6 +13594,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(157) 
+            if i.button == 3: myAttack(157)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -10646,7 +13602,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(158)     
+            if i.button == 1: doebaca(158) 
+            if i.button == 3: myAttack(158)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -10654,7 +13611,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(159)  
+            if i.button == 1: doebaca(159)
+            if i.button == 3: myAttack(159)            
                 
     #===================================================6 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -10663,7 +13621,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(160) 
+            if i.button == 1: doebaca(160)
+            if i.button == 3: myAttack(160)            
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -10672,6 +13631,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(161)
+            if i.button == 3: myAttack(161)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -10679,7 +13639,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(162)            
+            if i.button == 1: doebaca(162)
+            if i.button == 3: myAttack(162)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -10688,6 +13649,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(163)
+            if i.button == 3: myAttack(163)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -10695,7 +13657,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(164) 
+            if i.button == 1: doebaca(164)
+            if i.button == 3: myAttack(164)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -10704,6 +13667,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(165)
+            if i.button == 3: myAttack(165)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -10712,6 +13676,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(166)
+            if i.button == 3: myAttack(166)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -10719,7 +13684,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(167)            
+            if i.button == 1: doebaca(167)
+            if i.button == 3: myAttack(167)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -10728,6 +13694,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(168)
+            if i.button == 3: myAttack(168)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -10735,7 +13702,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(169) 
+            if i.button == 1: doebaca(169)
+            if i.button == 3: myAttack(169)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -10744,6 +13712,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(170)
+            if i.button == 3: myAttack(170)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -10752,6 +13721,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(171)
+            if i.button == 3: myAttack(171)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -10759,7 +13729,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(172)            
+            if i.button == 1: doebaca(172)
+            if i.button == 3: myAttack(172)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -10768,6 +13739,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(173)
+            if i.button == 3: myAttack(173)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -10775,7 +13747,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(174) 
+            if i.button == 1: doebaca(174)
+            if i.button == 3: myAttack(174)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -10784,6 +13757,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(175)
+            if i.button == 3: myAttack(175)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -10792,6 +13766,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(176)
+            if i.button == 3: myAttack(176)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -10799,7 +13774,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(177)            
+            if i.button == 1: doebaca(177)
+            if i.button == 3: myAttack(177)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -10808,6 +13784,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(178)
+            if i.button == 3: myAttack(178)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -10816,6 +13793,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(179)
+            if i.button == 3: myAttack(179)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -10824,6 +13802,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(180)
+            if i.button == 3: myAttack(180)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -10832,6 +13811,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(181)
+            if i.button == 3: myAttack(181)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -10839,7 +13819,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(182)            
+            if i.button == 1: doebaca(182)
+            if i.button == 3: myAttack(182)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -10848,6 +13829,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(183)
+            if i.button == 3: myAttack(183)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -10855,7 +13837,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(184) 
+            if i.button == 1: doebaca(184)
+            if i.button == 3: myAttack(184)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -10864,6 +13847,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(185)
+            if i.button == 3: myAttack(185)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -10872,6 +13856,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(186)
+            if i.button == 3: myAttack(186)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -10879,7 +13864,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(187)            
+            if i.button == 1: doebaca(187)
+            if i.button == 3: myAttack(187)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -10887,7 +13873,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(188)  
+            if i.button == 1: doebaca(188)
+            if i.button == 3: myAttack(188)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -10896,6 +13883,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(189)
+            if i.button == 3: myAttack(189)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -10903,7 +13891,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(190)    
+            if i.button == 1: doebaca(190)
+            if i.button == 3: myAttack(190)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -10911,7 +13900,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(191)     
+            if i.button == 1: doebaca(191)
+            if i.button == 3: myAttack(191)            
                 
     #===================================================7 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -10920,7 +13910,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(192) 
+            if i.button == 1: doebaca(192)
+            if i.button == 3: myAttack(192)            
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -10928,7 +13919,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(193) 
+            if i.button == 1: doebaca(193)
+            if i.button == 3: myAttack(193)            
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -10936,7 +13928,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(194)             
+            if i.button == 1: doebaca(194)
+            if i.button == 3: myAttack(194)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -10944,7 +13937,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(195) 
+            if i.button == 1: doebaca(195)
+            if i.button == 3: myAttack(195)            
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -10952,7 +13946,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(196)  
+            if i.button == 1: doebaca(196)
+            if i.button == 3: myAttack(196)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -10960,7 +13955,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(197) 
+            if i.button == 1: doebaca(197)
+            if i.button == 3: myAttack(197)            
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -10968,7 +13964,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(198) 
+            if i.button == 1: doebaca(198)
+            if i.button == 3: myAttack(198)            
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -10976,7 +13973,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(199)             
+            if i.button == 1: doebaca(199)
+            if i.button == 3: myAttack(199)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -10984,7 +13982,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(200) 
+            if i.button == 1: doebaca(200)
+            if i.button == 3: myAttack(200)            
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -10992,7 +13991,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(201) 
+            if i.button == 1: doebaca(201)
+            if i.button == 3: myAttack(201)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -11001,6 +14001,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(202)
+            if i.button == 3: myAttack(202)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -11009,6 +14010,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(203)
+            if i.button == 3: myAttack(203)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -11016,7 +14018,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(204)            
+            if i.button == 1: doebaca(204)
+            if i.button == 3: myAttack(204)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -11025,6 +14028,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(205)
+            if i.button == 3: myAttack(205)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -11032,7 +14036,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(206) 
+            if i.button == 1: doebaca(206)
+            if i.button == 3: myAttack(206)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -11041,6 +14046,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(207)
+            if i.button == 3: myAttack(207)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -11049,6 +14055,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(208)
+            if i.button == 3: myAttack(208)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -11056,7 +14063,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(209)            
+            if i.button == 1: doebaca(209)
+            if i.button == 3: myAttack(209)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -11065,6 +14073,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(210)
+            if i.button == 3: myAttack(210)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -11073,6 +14082,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(211)
+            if i.button == 3: myAttack(211)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -11081,6 +14091,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(212)
+            if i.button == 3: myAttack(212)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -11089,6 +14100,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(213)
+            if i.button == 3: myAttack(213)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -11096,7 +14108,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(214)            
+            if i.button == 1: doebaca(214)
+            if i.button == 3: myAttack(214)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -11105,6 +14118,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(215)
+            if i.button == 3: myAttack(215)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -11112,7 +14126,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(216) 
+            if i.button == 1: doebaca(216)
+            if i.button == 3: myAttack(216)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -11121,6 +14136,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(217)
+            if i.button == 3: myAttack(217)
     
     if mos_x>849 and (mos_x<879):  x_inside = True
     else: x_inside = False
@@ -11129,6 +14145,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(218)
+            if i.button == 3: myAttack(218)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -11136,7 +14153,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(219)            
+            if i.button == 1: doebaca(219)
+            if i.button == 3: myAttack(219)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -11144,7 +14162,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(220)  
+            if i.button == 1: doebaca(220)
+            if i.button == 3: myAttack(220)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -11153,6 +14172,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(221)
+            if i.button == 3: myAttack(221)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -11160,7 +14180,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(222)    
+            if i.button == 1: doebaca(222)
+            if i.button == 3: myAttack(222)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -11169,6 +14190,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(223)
+            if i.button == 3: myAttack(223)
             
     #===================================================8 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -11178,6 +14200,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(224)
+            if i.button == 3: myAttack(224)
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -11186,6 +14209,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(225)
+            if i.button == 3: myAttack(225)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -11193,7 +14217,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(226)            
+            if i.button == 1: doebaca(226)
+            if i.button == 3: myAttack(226)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -11202,6 +14227,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(227)
+            if i.button == 3: myAttack(227)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -11209,7 +14235,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(228) 
+            if i.button == 1: doebaca(228)
+            if i.button == 3: myAttack(228)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -11218,6 +14245,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(229)
+            if i.button == 3: myAttack(229)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -11226,6 +14254,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(230)
+            if i.button == 3: myAttack(230)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -11233,7 +14262,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(231)            
+            if i.button == 1: doebaca(231)
+            if i.button == 3: myAttack(231)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -11242,6 +14272,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(232)
+            if i.button == 3: myAttack(232)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -11249,7 +14280,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(233) 
+            if i.button == 1: doebaca(233)
+            if i.button == 3: myAttack(233)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -11258,6 +14290,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(234)
+            if i.button == 3: myAttack(234)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -11266,6 +14299,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(235)
+            if i.button == 3: myAttack(235)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -11273,7 +14307,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(236)            
+            if i.button == 1: doebaca(236)
+            if i.button == 3: myAttack(236)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -11282,6 +14317,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(237)
+            if i.button == 3: myAttack(237)
                 
     if mos_x>465 and (mos_x<495): 
         x_inside = True
@@ -11291,7 +14327,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(238) 
+            if i.button == 1: doebaca(238)
+            if i.button == 3: myAttack(238)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -11300,6 +14337,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(239)
+            if i.button == 3: myAttack(239)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -11308,6 +14346,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(240)
+            if i.button == 3: myAttack(240)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -11315,7 +14354,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(241)            
+            if i.button == 1: doebaca(241)
+            if i.button == 3: myAttack(241)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -11324,6 +14364,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(242)
+            if i.button == 3: myAttack(242)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -11332,6 +14373,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(243)
+            if i.button == 3: myAttack(243)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -11340,6 +14382,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(244)
+            if i.button == 3: myAttack(244)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -11348,6 +14391,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(245)
+            if i.button == 3: myAttack(245)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -11355,7 +14399,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(246)            
+            if i.button == 1: doebaca(246)
+            if i.button == 3: myAttack(246)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -11364,6 +14409,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(247)
+            if i.button == 3: myAttack(247)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -11371,7 +14417,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(248) 
+            if i.button == 1: doebaca(248)
+            if i.button == 3: myAttack(248)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -11380,6 +14427,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(249)
+            if i.button == 3: myAttack(249)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -11388,6 +14436,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(250)
+            if i.button == 3: myAttack(250)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -11395,7 +14444,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(251)            
+            if i.button == 1: doebaca(251)
+            if i.button == 3: myAttack(251)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -11403,7 +14453,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(252)  
+            if i.button == 1: doebaca(252)
+            if i.button == 3: myAttack(252)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -11412,6 +14463,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(253)
+            if i.button == 3: myAttack(253)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -11419,7 +14471,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(254)    
+            if i.button == 1: doebaca(254)
+            if i.button == 3: myAttack(254)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -11427,7 +14480,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(255)  
+            if i.button == 1: doebaca(255)
+            if i.button == 3: myAttack(255)            
             
     #===================================================9 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -11437,6 +14491,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(256)
+            if i.button == 3: myAttack(256)
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -11445,6 +14500,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(257)
+            if i.button == 3: myAttack(257)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -11452,7 +14508,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(258)            
+            if i.button == 1: doebaca(258)
+            if i.button == 3: myAttack(258)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -11461,6 +14518,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(259)
+            if i.button == 3: myAttack(259)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -11468,7 +14526,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(260) 
+            if i.button == 1: doebaca(260)
+            if i.button == 3: myAttack(260)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -11476,7 +14535,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(261) 
+            if i.button == 1: doebaca(261)
+            if i.button == 3: myAttack(261)            
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -11484,7 +14544,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(262) 
+            if i.button == 1: doebaca(262)
+            if i.button == 3: myAttack(262)            
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -11492,7 +14553,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(263)             
+            if i.button == 1: doebaca(263)
+            if i.button == 3: myAttack(263)            
     
     if mos_x>273 and (mos_x<303):  x_inside = True
     else: x_inside = False
@@ -11500,7 +14562,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(264) 
+            if i.button == 1: doebaca(264)
+            if i.button == 3: myAttack(264)            
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -11509,7 +14572,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(265)  
+            if i.button == 1: doebaca(265)
+            if i.button == 3: myAttack(265)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -11517,7 +14581,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(266) 
+            if i.button == 1: doebaca(266)
+            if i.button == 3: myAttack(266)            
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -11525,7 +14590,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(267) 
+            if i.button == 1: doebaca(267)
+            if i.button == 3: myAttack(267)            
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -11533,7 +14599,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(268)             
+            if i.button == 1: doebaca(268)
+            if i.button == 3: myAttack(268)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -11541,7 +14608,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(269) 
+            if i.button == 1: doebaca(269)
+            if i.button == 3: myAttack(269)            
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -11549,7 +14617,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(270)  
+            if i.button == 1: doebaca(270)
+            if i.button == 3: myAttack(270)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -11557,7 +14626,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(271) 
+            if i.button == 1: doebaca(271)
+            if i.button == 3: myAttack(271)            
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -11565,7 +14635,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(272) 
+            if i.button == 1: doebaca(272)
+            if i.button == 3: myAttack(272)            
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -11573,7 +14644,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(273)             
+            if i.button == 1: doebaca(273)
+            if i.button == 3: myAttack(273)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -11581,7 +14653,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(274) 
+            if i.button == 1: doebaca(274)
+            if i.button == 3: myAttack(274)            
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -11589,7 +14662,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(275) 
+            if i.button == 1: doebaca(275)
+            if i.button == 3: myAttack(275)            
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -11597,7 +14671,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(276) 
+            if i.button == 1: doebaca(276)
+            if i.button == 3: myAttack(276)            
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -11605,7 +14680,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(277) 
+            if i.button == 1: doebaca(277)
+            if i.button == 3: myAttack(277)            
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -11613,7 +14689,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(278)             
+            if i.button == 1: doebaca(278)
+            if i.button == 3: myAttack(278)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -11621,7 +14698,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(279) 
+            if i.button == 1: doebaca(279)
+            if i.button == 3: myAttack(279)            
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -11629,7 +14707,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(280)  
+            if i.button == 1: doebaca(280)
+            if i.button == 3: myAttack(280)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -11638,6 +14717,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(281)
+            if i.button == 3: myAttack(281)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -11646,6 +14726,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(282)
+            if i.button == 3: myAttack(282)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -11653,7 +14734,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(283)            
+            if i.button == 1: doebaca(283)
+            if i.button == 3: myAttack(283)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -11661,7 +14743,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(284)  
+            if i.button == 1: doebaca(284)
+            if i.button == 3: myAttack(284)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -11670,6 +14753,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(285)
+            if i.button == 3: myAttack(285)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -11677,7 +14761,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(286)    
+            if i.button == 1: doebaca(286)
+            if i.button == 3: myAttack(286)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -11685,7 +14770,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(287)    
+            if i.button == 1: doebaca(287)
+            if i.button == 3: myAttack(287)            
             
     #===================================================10 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -11695,6 +14781,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(288)
+            if i.button == 3: myAttack(288)
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -11703,6 +14790,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(289)
+            if i.button == 3: myAttack(289)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -11710,7 +14798,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(290)            
+            if i.button == 1: doebaca(290)
+            if i.button == 3: myAttack(290)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -11719,6 +14808,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(291)
+            if i.button == 3: myAttack(291)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -11726,7 +14816,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(292) 
+            if i.button == 1: doebaca(292)
+            if i.button == 3: myAttack(292)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -11735,6 +14826,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(293)
+            if i.button == 3: myAttack(293)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -11743,6 +14835,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(294)
+            if i.button == 3: myAttack(294)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -11750,7 +14843,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(295)            
+            if i.button == 1: doebaca(295)
+            if i.button == 3: myAttack(295)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -11759,6 +14853,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(296)
+            if i.button == 3: myAttack(296)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -11766,7 +14861,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(297) 
+            if i.button == 1: doebaca(297)
+            if i.button == 3: myAttack(297)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -11775,6 +14871,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN: 
             if i.button == 1: doebaca(298)
+            if i.button == 3: myAttack(298)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -11783,6 +14880,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(299)
+            if i.button == 3: myAttack(299)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -11790,7 +14888,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(300)            
+            if i.button == 1: doebaca(300)
+            if i.button == 3: myAttack(300)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -11799,6 +14898,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(301)
+            if i.button == 3: myAttack(301)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -11806,7 +14906,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(302) 
+            if i.button == 1: doebaca(302)
+            if i.button == 3: myAttack(302)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -11815,6 +14916,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(303)
+            if i.button == 3: myAttack(303)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -11823,6 +14925,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(304)
+            if i.button == 3: myAttack(304)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -11830,7 +14933,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(305)            
+            if i.button == 1: doebaca(305)
+            if i.button == 3: myAttack(305)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -11839,6 +14943,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(306)
+            if i.button == 3: myAttack(306)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -11847,6 +14952,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(307)
+            if i.button == 3: myAttack(307)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -11855,6 +14961,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(308)
+            if i.button == 3: myAttack(308)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -11863,6 +14970,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(309)
+            if i.button == 3: myAttack(309)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -11870,7 +14978,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(310)            
+            if i.button == 1: doebaca(310)
+            if i.button == 3: myAttack(310)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -11879,6 +14988,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(311)
+            if i.button == 3: myAttack(311)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -11886,7 +14996,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(312) 
+            if i.button == 1: doebaca(312)
+            if i.button == 3: myAttack(312)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -11895,6 +15006,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(313)
+            if i.button == 3: myAttack(313)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -11903,6 +15015,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(314)
+            if i.button == 3: myAttack(314)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -11910,7 +15023,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(315)            
+            if i.button == 1: doebaca(315)
+            if i.button == 3: myAttack(315)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -11918,7 +15032,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(316)  
+            if i.button == 1: doebaca(316)
+            if i.button == 3: myAttack(316)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -11927,6 +15042,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(317)
+            if i.button == 3: myAttack(317)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -11934,7 +15050,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(318)    
+            if i.button == 1: doebaca(318)
+            if i.button == 3: myAttack(318)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -11942,7 +15059,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(319)    
+            if i.button == 1: doebaca(319)
+            if i.button == 3: myAttack(319)            
             
     #===================================================11 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -11952,6 +15070,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(320)
+            if i.button == 3: myAttack(320)
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -11960,6 +15079,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(321)
+            if i.button == 3: myAttack(321)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -11967,7 +15087,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(322)            
+            if i.button == 1: doebaca(322)
+            if i.button == 3: myAttack(322)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -11976,6 +15097,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(323)
+            if i.button == 3: myAttack(323)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -11983,7 +15105,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(324) 
+            if i.button == 1: doebaca(324)
+            if i.button == 3: myAttack(324)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -11992,6 +15115,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(325)
+            if i.button == 3: myAttack(325)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -12000,6 +15124,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(326)
+            if i.button == 3: myAttack(326)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -12007,7 +15132,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(327)            
+            if i.button == 1: doebaca(327)
+            if i.button == 3: myAttack(327)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -12016,6 +15142,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(328)
+            if i.button == 3: myAttack(328)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -12023,7 +15150,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(329) 
+            if i.button == 1: doebaca(329)
+            if i.button == 3: myAttack(329)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -12032,6 +15160,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(330)
+            if i.button == 3: myAttack(330)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -12040,6 +15169,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(331)
+            if i.button == 3: myAttack(331)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -12047,7 +15177,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(332)            
+            if i.button == 1: doebaca(332)
+            if i.button == 3: myAttack(332)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -12056,6 +15187,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(333)
+            if i.button == 3: myAttack(333)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -12063,7 +15195,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(334) 
+            if i.button == 1: doebaca(334)
+            if i.button == 3: myAttack(334)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -12072,6 +15205,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(335)
+            if i.button == 3: myAttack(335)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -12080,6 +15214,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(336)
+            if i.button == 3: myAttack(336)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -12087,7 +15222,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(337)            
+            if i.button == 1: doebaca(337)
+            if i.button == 3: myAttack(337)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -12096,6 +15232,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(338)
+            if i.button == 3: myAttack(338)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -12104,6 +15241,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(339)
+            if i.button == 3: myAttack(339)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -12112,6 +15250,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(340)
+            if i.button == 3: myAttack(340)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -12120,6 +15259,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(341)
+            if i.button == 3: myAttack(341)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -12127,7 +15267,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(342)            
+            if i.button == 1: doebaca(342)
+            if i.button == 3: myAttack(342)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -12136,6 +15277,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(343)
+            if i.button == 3: myAttack(343)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -12143,7 +15285,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(344) 
+            if i.button == 1: doebaca(344)
+            if i.button == 3: myAttack(344)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -12152,6 +15295,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(345)
+            if i.button == 3: myAttack(345)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -12160,6 +15304,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(346)
+            if i.button == 3: myAttack(346)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -12167,7 +15312,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(347)            
+            if i.button == 1: doebaca(347)
+            if i.button == 3: myAttack(347)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -12175,7 +15321,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(348)  
+            if i.button == 1: doebaca(348)
+            if i.button == 3: myAttack(348)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -12184,6 +15331,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(349)
+            if i.button == 3: myAttack(349)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -12191,7 +15339,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(350)    
+            if i.button == 1: doebaca(350)
+            if i.button == 3: myAttack(350)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -12199,7 +15348,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(351)  
+            if i.button == 1: doebaca(351)
+            if i.button == 3: myAttack(351)            
             
     #===================================================12 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -12209,6 +15359,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(352)
+            if i.button == 3: myAttack(352)
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -12217,6 +15368,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(353)
+            if i.button == 3: myAttack(353)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -12224,7 +15376,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(354)            
+            if i.button == 1: doebaca(354)
+            if i.button == 3: myAttack(354)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -12233,6 +15386,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(355)
+            if i.button == 3: myAttack(355)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -12240,7 +15394,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(356) 
+            if i.button == 1: doebaca(356)
+            if i.button == 3: myAttack(356)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -12249,6 +15404,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(357)
+            if i.button == 3: myAttack(357)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -12257,6 +15413,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(358)
+            if i.button == 3: myAttack(358)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -12264,7 +15421,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(359)            
+            if i.button == 1: doebaca(359)
+            if i.button == 3: myAttack(359)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -12273,6 +15431,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(360)
+            if i.button == 3: myAttack(360)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -12280,7 +15439,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(361) 
+            if i.button == 1: doebaca(361)
+            if i.button == 3: myAttack(361)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -12289,6 +15449,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(362)
+            if i.button == 3: myAttack(362)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -12297,6 +15458,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(363)
+            if i.button == 3: myAttack(363)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -12304,7 +15466,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(364)            
+            if i.button == 1: doebaca(364)
+            if i.button == 3: myAttack(364)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -12313,6 +15476,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(365)
+            if i.button == 3: myAttack(365)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -12320,7 +15484,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(366) 
+            if i.button == 1: doebaca(366)
+            if i.button == 3: myAttack(366)            
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -12329,6 +15494,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(367)
+            if i.button == 3: myAttack(367)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -12337,6 +15503,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(368)
+            if i.button == 3: myAttack(368)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -12344,7 +15511,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(369)            
+            if i.button == 1: doebaca(369)
+            if i.button == 3: myAttack(369)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -12353,6 +15521,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(370)
+            if i.button == 3: myAttack(370)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -12361,6 +15530,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(371)
+            if i.button == 3: myAttack(371)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -12369,6 +15539,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(372)
+            if i.button == 3: myAttack(372)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -12377,6 +15548,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(373)
+            if i.button == 3: myAttack(373)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -12384,7 +15556,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(374)            
+            if i.button == 1: doebaca(374)
+            if i.button == 3: myAttack(374)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -12393,6 +15566,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(375)
+            if i.button == 3: myAttack(375)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -12400,7 +15574,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(376) 
+            if i.button == 1: doebaca(376)
+            if i.button == 3: myAttack(376)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -12409,6 +15584,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(377)
+            if i.button == 3: myAttack(377)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -12417,6 +15593,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(378)
+            if i.button == 3: myAttack(378)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -12424,7 +15601,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(379)            
+            if i.button == 1: doebaca(379)
+            if i.button == 3: myAttack(379)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -12432,7 +15610,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(380)  
+            if i.button == 1: doebaca(380)
+            if i.button == 3: myAttack(380)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -12441,6 +15620,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(381)
+            if i.button == 3: myAttack(381)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -12448,7 +15628,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(382)    
+            if i.button == 1: doebaca(382)
+            if i.button == 3: myAttack(382)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -12456,7 +15637,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1: doebaca(383) 
+            if i.button == 1: doebaca(383)
+            if i.button == 3: myAttack(383)            
             
     #===================================================13 ряд===============================================
     if mos_x>17 and (mos_x<47): 
@@ -12467,8 +15649,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(384)
+            if i.button == 1: doebaca(384)
+            if i.button == 3: myAttack(384)
     
     if mos_x>49 and (mos_x<79): 
         x_inside = True
@@ -12478,8 +15660,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(385)
+            if i.button == 1: doebaca(385)
+            if i.button == 3: myAttack(385)
     
     if mos_x>81 and (mos_x<111): 
         x_inside = True
@@ -12489,8 +15671,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(386)            
+            if i.button == 1: doebaca(386)            
+            if i.button == 3: myAttack(386)
     
     if mos_x>113 and (mos_x<143):
         x_inside = True
@@ -12500,8 +15682,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(387)
+            if i.button == 1: doebaca(387)
+            if i.button == 3: myAttack(387)
                 
     if mos_x>145 and (mos_x<175): 
         x_inside = True
@@ -12511,8 +15693,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(388) 
+            if i.button == 1: doebaca(388) 
+            if i.button == 3: myAttack(388)
                
     if mos_x>176 and (mos_x<207): 
         x_inside = True
@@ -12522,8 +15704,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(389)
+            if i.button == 1: doebaca(389)
+            if i.button == 3: myAttack(389)
     
     if mos_x>209 and (mos_x<239): 
         x_inside = True
@@ -12533,8 +15715,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(390)
+            if i.button == 1: doebaca(390)
+            if i.button == 3: myAttack(390)
     
     if mos_x>241 and (mos_x<271): 
         x_inside = True
@@ -12544,8 +15726,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(391)            
+            if i.button == 1: doebaca(391)            
+            if i.button == 3: myAttack(391)
     
     if mos_x>273 and (mos_x<303): 
         x_inside = True
@@ -12555,8 +15737,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(392)
+            if i.button == 1: doebaca(392)
+            if i.button == 3: myAttack(392)
                 
     if mos_x>305 and (mos_x<335):
         x_inside = True
@@ -12566,8 +15748,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(393) 
+            if i.button == 1: doebaca(393) 
+            if i.button == 3: myAttack(393)
                 
     if mos_x>337 and (mos_x<367): 
         x_inside = True
@@ -12577,8 +15759,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(394)
+            if i.button == 1: doebaca(394)
+            if i.button == 3: myAttack(394)
     
     if mos_x>369 and (mos_x<399): 
         x_inside = True
@@ -12588,8 +15770,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(395)
+            if i.button == 1: doebaca(395)
+            if i.button == 3: myAttack(395)
     
     if mos_x>401 and (mos_x<431):
         x_inside = True
@@ -12599,8 +15781,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(396)            
+            if i.button == 1: doebaca(396)            
+            if i.button == 3: myAttack(396)
     
     if mos_x>433 and (mos_x<463):
         x_inside = True
@@ -12610,8 +15792,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(397)
+            if i.button == 1: doebaca(397)
+            if i.button == 3: myAttack(397)
                 
     if mos_x>465 and (mos_x<495): 
         x_inside = True
@@ -12621,8 +15803,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(398) 
+            if i.button == 1: doebaca(398) 
+            if i.button == 3: myAttack(398)
                
     if mos_x>497 and (mos_x<527): 
         x_inside = True
@@ -12632,8 +15814,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(399)
+            if i.button == 1: doebaca(399)
+            if i.button == 3: myAttack(399)
     
     if mos_x>529 and (mos_x<559): 
         x_inside = True
@@ -12643,8 +15825,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(400)
+            if i.button == 1: doebaca(400)
+            if i.button == 3: myAttack(400)
     
     if mos_x>561 and (mos_x<591):
         x_inside = True
@@ -12654,8 +15836,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(401)            
+            if i.button == 1: doebaca(401)            
+            if i.button == 3: myAttack(401)
     
     if mos_x>593 and (mos_x<623): 
         x_inside = True
@@ -12665,8 +15847,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(402)
+            if i.button == 1: doebaca(402)
+            if i.button == 3: myAttack(402)
                 
     if mos_x>625 and (mos_x<655): 
         x_inside = True
@@ -12676,8 +15858,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(403)
+            if i.button == 1: doebaca(403)
+            if i.button == 3: myAttack(403)
                 
     if mos_x>657 and (mos_x<687): 
         x_inside = True
@@ -12687,8 +15869,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(404)
+            if i.button == 1: doebaca(404)
+            if i.button == 3: myAttack(404)
     
     if mos_x>689 and (mos_x<719):
         x_inside = True
@@ -12698,8 +15880,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(405)
+            if i.button == 1: doebaca(405)
+            if i.button == 3: myAttack(405)
     
     if mos_x>721 and (mos_x<751): 
         x_inside = True
@@ -12709,8 +15891,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(406)            
+            if i.button == 1: doebaca(406)            
+            if i.button == 3: myAttack(406)
     
     if mos_x>753 and (mos_x<783): 
         x_inside = True
@@ -12720,8 +15902,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(407)
+            if i.button == 1: doebaca(407)
+            if i.button == 3: myAttack(407)
                 
     if mos_x>785 and (mos_x<815): 
         x_inside = True
@@ -12731,8 +15913,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(408) 
+            if i.button == 1: doebaca(408) 
+            if i.button == 3: myAttack(408)
                
     if mos_x>817 and (mos_x<847): 
         x_inside = True
@@ -12742,8 +15924,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(409)
+            if i.button == 1: doebaca(409)
+            if i.button == 3: myAttack(409)
     
     if mos_x>849 and (mos_x<879): 
         x_inside = True
@@ -12753,8 +15935,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(410)
+            if i.button == 1: doebaca(410)
+            if i.button == 3: myAttack(410)
     
     if mos_x>881 and (mos_x<911): 
         x_inside = True
@@ -12764,8 +15946,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(411)            
+            if i.button == 1: doebaca(411)            
+            if i.button == 3: myAttack(411)
     
     if mos_x>913 and (mos_x<943):
         x_inside = True
@@ -12775,8 +15957,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(412)  
+            if i.button == 1: doebaca(412)  
+            if i.button == 3: myAttack(412)
                 
     if mos_x>945 and (mos_x<975):
         x_inside = True
@@ -12786,8 +15968,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(413)
+            if i.button == 1: doebaca(413)
+            if i.button == 3: myAttack(413)
                 
     if mos_x>977 and (mos_x<1007): 
         x_inside = True
@@ -12797,8 +15979,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(414)    
+            if i.button == 1: doebaca(414)    
+            if i.button == 3: myAttack(414)
                 
     if mos_x>1009 and (mos_x<1040): 
         x_inside = True
@@ -12808,8 +15990,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(415)     
+            if i.button == 1: doebaca(415)     
+            if i.button == 3: myAttack(415)
             
     #===================================================14 ряд===============================================
     if mos_x>17 and (mos_x<47): 
@@ -12820,8 +16002,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(416)
+            if i.button == 1: doebaca(416)
+            if i.button == 3: myAttack(416)
     
     if mos_x>49 and (mos_x<79): 
         x_inside = True
@@ -12831,8 +16013,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(417)
+            if i.button == 1: doebaca(417)
+            if i.button == 3: myAttack(417)
     
     if mos_x>81 and (mos_x<111): 
         x_inside = True
@@ -12842,8 +16024,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(418)            
+            if i.button == 1: doebaca(418)            
+            if i.button == 3: myAttack(418)
     
     if mos_x>113 and (mos_x<143):
         x_inside = True
@@ -12853,8 +16035,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(419)
+            if i.button == 1: doebaca(419)
+            if i.button == 3: myAttack(419)
                 
     if mos_x>145 and (mos_x<175): 
         x_inside = True
@@ -12864,8 +16046,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(420) 
+            if i.button == 1: doebaca(420) 
+            if i.button == 3: myAttack(420)
                
     if mos_x>176 and (mos_x<207): 
         x_inside = True
@@ -12875,8 +16057,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(421)
+            if i.button == 1: doebaca(421)
+            if i.button == 3: myAttack(421)
     
     if mos_x>209 and (mos_x<239): 
         x_inside = True
@@ -12886,8 +16068,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(422)
+            if i.button == 1: doebaca(422)
+            if i.button == 3: myAttack(422)
     
     if mos_x>241 and (mos_x<271): 
         x_inside = True
@@ -12897,8 +16079,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(423)            
+            if i.button == 1: doebaca(423)            
+            if i.button == 3: myAttack(423)
     
     if mos_x>273 and (mos_x<303): 
         x_inside = True
@@ -12908,8 +16090,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(424)
+            if i.button == 1: doebaca(424)
+            if i.button == 3: myAttack(424)
                 
     if mos_x>305 and (mos_x<335):
         x_inside = True
@@ -12919,8 +16101,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(425) 
+            if i.button == 1: doebaca(425) 
+            if i.button == 3: myAttack(425)
                 
     if mos_x>337 and (mos_x<367): 
         x_inside = True
@@ -12930,8 +16112,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(426)
+            if i.button == 1: doebaca(426)
+            if i.button == 3: myAttack(426)
     
     if mos_x>369 and (mos_x<399):
         x_inside = True
@@ -12941,8 +16123,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(427)
+            if i.button == 1: doebaca(427)
+            if i.button == 3: myAttack(427)
     
     if mos_x>401 and (mos_x<431):
         x_inside = True
@@ -12952,8 +16134,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(428)            
+            if i.button == 1: doebaca(428)            
+            if i.button == 3: myAttack(428)
     
     if mos_x>433 and (mos_x<463):
         x_inside = True
@@ -12963,8 +16145,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(429)
+            if i.button == 1: doebaca(429)
+            if i.button == 3: myAttack(429)
                 
     if mos_x>465 and (mos_x<495): 
         x_inside = True
@@ -12974,8 +16156,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(430) 
+            if i.button == 1: doebaca(430) 
+            if i.button == 3: myAttack(430)
                
     if mos_x>497 and (mos_x<527): 
         x_inside = True
@@ -12985,8 +16167,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(431)
+            if i.button == 1: doebaca(431)
+            if i.button == 3: myAttack(431)
     
     if mos_x>529 and (mos_x<559): 
         x_inside = True
@@ -12996,8 +16178,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(432)
+            if i.button == 1: doebaca(432)
+            if i.button == 3: myAttack(432)
     
     if mos_x>561 and (mos_x<591):
         x_inside = True
@@ -13007,8 +16189,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(433)            
+            if i.button == 1: doebaca(433)            
+            if i.button == 3: myAttack(433)
     
     if mos_x>593 and (mos_x<623): 
         x_inside = True
@@ -13018,8 +16200,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(434)
+            if i.button == 1: doebaca(434)
+            if i.button == 3: myAttack(434)
                 
     if mos_x>625 and (mos_x<655): 
         x_inside = True
@@ -13029,8 +16211,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(435)
+            if i.button == 1: doebaca(435)
+            if i.button == 3: myAttack(435)
                 
     if mos_x>657 and (mos_x<687): 
         x_inside = True
@@ -13040,8 +16222,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(436)
+            if i.button == 1: doebaca(436)
+            if i.button == 3: myAttack(436)
     
     if mos_x>689 and (mos_x<719):
         x_inside = True
@@ -13051,8 +16233,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(437)
+            if i.button == 1: doebaca(437)
+            if i.button == 3: myAttack(437)
     
     if mos_x>721 and (mos_x<751): 
         x_inside = True
@@ -13062,8 +16244,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(438)            
+            if i.button == 1: doebaca(438)            
+            if i.button == 3: myAttack(438)
     
     if mos_x>753 and (mos_x<783): 
         x_inside = True
@@ -13073,8 +16255,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(439)
+            if i.button == 1: doebaca(439)
+            if i.button == 3: myAttack(439)
                 
     if mos_x>785 and (mos_x<815): 
         x_inside = True
@@ -13084,8 +16266,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(440) 
+            if i.button == 1: doebaca(440) 
+            if i.button == 3: myAttack(440)
                
     if mos_x>817 and (mos_x<847): 
         x_inside = True
@@ -13095,8 +16277,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(441)
+            if i.button == 1: doebaca(441)
+            if i.button == 3: myAttack(441)
     
     if mos_x>849 and (mos_x<879): 
         x_inside = True
@@ -13106,8 +16288,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(442)
+            if i.button == 1: doebaca(442)
+            if i.button == 3: myAttack(442)
     
     if mos_x>881 and (mos_x<911): 
         x_inside = True
@@ -13117,8 +16299,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(443)            
+            if i.button == 1: doebaca(443)            
+            if i.button == 3: myAttack(443)
     
     if mos_x>913 and (mos_x<943):
         x_inside = True
@@ -13128,8 +16310,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(444)  
+            if i.button == 1: doebaca(444)  
+            if i.button == 3: myAttack(444)
                 
     if mos_x>945 and (mos_x<975):
         x_inside = True
@@ -13139,8 +16321,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(445)
+            if i.button == 1: doebaca(445)
+            if i.button == 3: myAttack(445)
                 
     if mos_x>977 and (mos_x<1007): 
         x_inside = True
@@ -13150,8 +16332,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(446)    
+            if i.button == 1: doebaca(446)    
+            if i.button == 3: myAttack(446)
                 
     if mos_x>1009 and (mos_x<1040): 
         x_inside = True
@@ -13161,8 +16343,8 @@ while True:
     else: y_inside = False
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
-            if i.button == 1:
-                doebaca(447)
+            if i.button == 1: doebaca(447)
+            if i.button == 3: myAttack(447)
 
 #============================================================================================================================================
 #==========================================================ОБРАБОТКА СОБЫТИЙ КНОПОК ЗАКЛИНАНИЙ=============================================== 
@@ -13513,7 +16695,7 @@ while True:
                      attack = 0
                      invent = 1
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(1)    
                  
     if mos_x>840 and (mos_x<904): 
@@ -13530,7 +16712,7 @@ while True:
                      attack = 0
                      invent = 2  
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(2)      
                  
     if mos_x>908 and (mos_x<972): 
@@ -13547,7 +16729,7 @@ while True:
                      attack = 0
                      invent = 3
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(3)      
                                                             
     if mos_x>976 and (mos_x<1040): 
@@ -13564,7 +16746,7 @@ while True:
                      attack = 0
                      invent = 4
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(4)      
                  
     if mos_x>772 and (mos_x<836):  
@@ -13581,7 +16763,7 @@ while True:
                      attack = 0
                      invent = 5
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(5)      
                  
     if mos_x>840 and (mos_x<904): 
@@ -13598,7 +16780,7 @@ while True:
                      attack = 0
                      invent = 6 
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(6)      
                  
     if mos_x>908 and (mos_x<972): 
@@ -13615,7 +16797,7 @@ while True:
                      attack = 0
                      invent = 7         
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(7)      
                                                             
     if mos_x>976 and (mos_x<1040): 
@@ -13632,7 +16814,7 @@ while True:
                      attack = 0
                      invent = 8
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(8)      
                  
     if mos_x>772 and (mos_x<836): 
@@ -13649,7 +16831,7 @@ while True:
                      attack = 0
                      invent = 9
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(9)      
                  
     if mos_x>840 and (mos_x<904): 
@@ -13666,7 +16848,7 @@ while True:
                      attack = 0
                      invent = 10
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(10)      
                  
     if mos_x>908 and (mos_x<972): 
@@ -13683,7 +16865,7 @@ while True:
                      attack = 0 
                      invent = 11         
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(11)      
                                                             
     if mos_x>976 and (mos_x<1040):  
@@ -13700,7 +16882,7 @@ while True:
                      attack = 0 
                      invent = 12         
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(12)      
                  
     if mos_x>772 and (mos_x<836):  
@@ -13717,7 +16899,7 @@ while True:
                      attack = 0
                      invent = 13
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(13)      
                  
     if mos_x>840 and (mos_x<904): 
@@ -13734,7 +16916,7 @@ while True:
                      attack = 0
                      invent = 14
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(14)      
                  
     if mos_x>908 and (mos_x<972): 
@@ -13751,7 +16933,7 @@ while True:
                      attack = 0            
                      invent = 15
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(15)      
                                                             
     if mos_x>976 and (mos_x<1040): 
@@ -13768,7 +16950,7 @@ while True:
                      attack = 0
                      invent = 16
                      textInventar(invent)
-                 if yaNaRinke == 1:
+                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(16)      
     
     
@@ -13783,8 +16965,10 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
-                    useInventar(invent)
-                    yes = 1
+                    if botLocation[imHero] != 146 or botLocation[imHero] != 144 or botLocation[imHero] != 146 or botLocation[imHero] != 113 or botLocation[imHero] != 177 or botLocation[imHero] != 112 or botLocation[imHero] != 114 or botLocation[imHero] != 176 or botLocation[imHero] != 178:
+                        useInventar(invent)
+                        yes = 1
+                    else: yaNaRinke = 1    
                 if yaNaRinke == 1:
                     marketPlace(1)
                     print("yes")
@@ -13800,9 +16984,11 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
-                    botInventar[imHero][invent-1] = 0
-                    heroPanel(hero) 
-                    no = 1 
+                    if botLocation[imHero] != 146 or botLocation[imHero] != 144 or botLocation[imHero] != 146 or botLocation[imHero] != 113 or botLocation[imHero] != 177 or botLocation[imHero] != 112 or botLocation[imHero] != 114 or botLocation[imHero] != 176 or botLocation[imHero] != 178:
+                        botInventar[imHero][invent-1] = 0
+                        heroPanel(hero) 
+                        no = 1 
+                    else: yaNaRinke = 1    
                 if yaNaRinke == 1:
                     marketPlace(2)   
                     print("no")
