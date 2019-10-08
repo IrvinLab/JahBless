@@ -16690,13 +16690,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1: 
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(1) 
+                 else: 
                      zakl = 0
                      attack = 0
                      invent = 1
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(1)    
+                    
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -16707,13 +16708,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1: 
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(2)
+                 else: 
                      zakl = 0 
                      attack = 0
                      invent = 2  
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(2)      
+                       
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -16724,13 +16726,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1:  
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(3)
+                 else:  
                      zakl = 0 
                      attack = 0
                      invent = 3
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(3)      
+                       
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
@@ -16741,13 +16744,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1: 
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(4)
+                 else: 
                      zakl = 0
                      attack = 0
                      invent = 4
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(4)      
+                       
                  
     if mos_x>772 and (mos_x<836):  
         x_inside = True
@@ -16758,13 +16762,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1: 
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(5)  
+                 else: 
                      zakl = 0
                      attack = 0
                      invent = 5
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(5)      
+                     
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -16775,13 +16780,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1: 
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(6) 
+                 else: 
                      zakl = 0
                      attack = 0
                      invent = 6 
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(6)      
+                      
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -16792,13 +16798,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1: 
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(7) 
+                 else: 
                      zakl = 0
                      attack = 0
                      invent = 7         
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(7)      
+                      
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
@@ -16809,13 +16816,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1:  
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(8)
+                 else:  
                      zakl = 0
                      attack = 0
                      invent = 8
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(8)      
+                       
                  
     if mos_x>772 and (mos_x<836): 
         x_inside = True
@@ -16826,13 +16834,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1:
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(9) 
+                 else:
                      zakl = 0
                      attack = 0
                      invent = 9
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(9)      
+                      
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -16843,13 +16852,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1:
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(10)
+                 else:
                      zakl = 0
                      attack = 0
                      invent = 10
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(10)      
+                       
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -16860,13 +16870,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1:
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(11)
+                 else:
                      zakl = 0
                      attack = 0 
                      invent = 11         
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(11)      
+                       
                                                             
     if mos_x>976 and (mos_x<1040):  
         x_inside = True
@@ -16877,13 +16888,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1: 
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(12) 
+                 else: 
                      zakl = 0
                      attack = 0 
                      invent = 12         
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(12)      
+                      
                  
     if mos_x>772 and (mos_x<836):  
         x_inside = True
@@ -16894,13 +16906,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1:  
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(13) 
+                 else:  
                      zakl = 0
                      attack = 0
                      invent = 13
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(13)      
+                      
                  
     if mos_x>840 and (mos_x<904): 
         x_inside = True
@@ -16911,13 +16924,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1:  
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(14)
+                 else:  
                      zakl = 0
                      attack = 0
                      invent = 14
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(14)      
+                       
                  
     if mos_x>908 and (mos_x<972): 
         x_inside = True
@@ -16928,13 +16942,14 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
-                 if newGameButton == 0 and newGame == 1:
+                 if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
+                     buyInvent(15) 
+                 else:
                      zakl = 0
                      attack = 0            
                      invent = 15
                      textInventar(invent)
-                 if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
-                     buyInvent(15)      
+                      
                                                             
     if mos_x>976 and (mos_x<1040): 
         x_inside = True
