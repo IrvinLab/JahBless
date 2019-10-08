@@ -299,7 +299,7 @@ yGameMap = 548
 def levelUp(nomerBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
     
-    if botExpirience[nomerBota] >= 1000*(1.5**(botLvl[nomerBota]-1)):
+    if botExpirience[nomerBota] >= 5000*(1.5**(botLvl[nomerBota]-1)):
         botLvl[nomerBota] += 1
         botExpirience[nomerBota] = 0
         botIshMana[nomerBota] += 20 * botLvl[nomerBota]
@@ -318,15 +318,17 @@ def myAttack(kletka):
     n = 0
     for n in range(20):
         if botLocation[n] == kletka and n != imHero:
-            if botSila[imHero] > botZachita[n]:
-                botZdorovie[n] -= botSila[imHero] + botZachita[n]
-                botExpirience[imHero] += botSila[imHero]
-                if botZdorovie[n] <= 0: otdaiLut(imHero, n); ubiraemTrup(n)
-                botVariant[imHero]
-                worldUpdate()
-                heroPanel(hero)
-                levelUp(imHero)
-                print("SAS")
+            if botLocation[imHero] == botLocation[n]+1 or botLocation[imHero] == botLocation[n]-1 or botLocation[imHero] == botLocation[n]+32 or botLocation[imHero] == botLocation[n]-32 or botLocation[imHero] == botLocation[n]+33 or botLocation[imHero] == botLocation[n]+31 or botLocation[imHero] == botLocation[n]-33 or botLocation[imHero] == botLocation[n]-31:
+                if botSila[imHero] > botZachita[n]:
+                    botZdorovie[n] -= botSila[imHero] + botZachita[n]
+                    botExpirience[imHero] += botSila[imHero]
+                    if botZdorovie[n] <= 0: otdaiLut(imHero, n); ubiraemTrup(n)
+                    botVariant[imHero]
+                    worldUpdate()
+                    heroPanel(hero)
+                    levelUp(imHero)
+                    doebaca(kletka)
+                    print("SAS")
                 
 
 def botKoldun(nom, poriad, vragBot): # функция колдовства (Номер колдующего бота, порядковый номер заклинания, номер вражеского бота)
@@ -363,138 +365,168 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global attack
     
     print ("Колдовство: ",nom, poriad, vragBot)
-    if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:
-        if botZaklinania[nom][poriad] == 100: # Это удар мечом
-            botHod[nom] -= 1
-            if botSila[nom] + botAttack[nom] > botZachita[vragBot]:
-                botZdorovie[vragBot] -= botSila[nom] + botAttack[nom] - botZachita[vragBot]
-    
-        if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
+        
+    if botZaklinania[nom][poriad] == 1:  # Пронзающая смерть
+        if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:    
             if botMana[nom] >= 200: # Если хватает маны, то колдуем
                 botMana[nom] -= 200
-                botZdorovie[vragBot] -= 200
+                botZdorovie[vragBot] -= 300
                 botHod[nom] -= 1
                 print("Пронзающая смерть")
                 botExpirience[nom] += 100
                 yaKastanul = 1
+                
+    if botZaklinania[nom][poriad] == 2:  # Телепортация
+        if botMana[nom] >= 350:
+            print("SAS")
+            if world[vragBot] == 0:
+                botMana[nom] -= 350
+                world[botLocation[nom]] = 0
+                world[vragBot] = botVariant[nom]
+                botLocation[nom] = vragBot
+                if vragBot >=0 and vragBot <= 31: xBot = 16 + 32 * vragBot; yBot = 96
+                if vragBot >=32 and vragBot <= 63: xBot = 16 + 32 * (vragBot-32); yBot = 128
+                if vragBot >=64 and vragBot <= 95: xBot = 16 + 32 * (vragBot-64); yBot = 160
+                if vragBot >=96 and vragBot <= 127: xBot = 16 + 32 * (vragBot-96); yBot = 192
+                if vragBot >=128 and vragBot <= 159: xBot = 16 + 32 * (vragBot-128); yBot = 224 
+                if vragBot >=160 and vragBot <= 191: xBot = 16 + 32 * (vragBot-160); yBot = 256 
+                if vragBot >=192 and vragBot <= 223: xBot = 16 + 32 * (vragBot-192); yBot = 288 
+                if vragBot >=224 and vragBot <= 255: xBot = 16 + 32 * (vragBot-224); yBot = 320 
+                if vragBot >=256 and vragBot <= 287: xBot = 16 + 32 * (vragBot-256); yBot = 352 
+                if vragBot >=288 and vragBot <= 319: xBot = 16 + 32 * (vragBot-288); yBot = 384 
+                if vragBot >=320 and vragBot <= 351: xBot = 16 + 32 * (vragBot-320); yBot = 416 
+                if vragBot >=352 and vragBot <= 383: xBot = 16 + 32 * (vragBot-352); yBot = 448 
+                if vragBot >=384 and vragBot <= 415: xBot = 16 + 32 * (vragBot-384); yBot = 480 
+                if vragBot >=416 and vragBot <= 447: xBot = 16 + 32 * (vragBot-416); yBot = 512
+                worldUpdate()                    
+                                
         
         
-        if botZaklinania[nom][poriad] == 3: # Доспехи Феникса
-            if botMana[nom] >= 30:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 3:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 3
-                            botDeistvie[vragBot][n] = 10
-                            botMana[nom] -= 30
-                            botExpirience[nom] += 10
-                            break        
-                n = 0
-                yaKastanul = 1
-        if botZaklinania[nom][poriad] == 4: # Кража магии
+    if botZaklinania[nom][poriad] == 3: # Доспехи Феникса
+        if botMana[nom] >= 30:
             botHod[nom] -= 1
-            if botMana[nom] >= 20:
-                botMana[nom] -= 20
-                if botMana[vragBot] > 100:
-                    botMana[vragBot] -= 100
-                    botExpirience[nom] += 30
-                else:
-                    botMana[vragBot] = 0    
-                    botExpirience[nom] += 30            
+            n = 0
+            disable = 0
+            for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                if botVozdeistvie[vragBot][n] == 3:
+                    dissable = 1
+                    break
+            if disable == 0:        
+                for n in range(15):
+                    if botVozdeistvie[vragBot][n] == 0:
+                        botVozdeistvie[vragBot][n] = 3
+                        botDeistvie[vragBot][n] = 10
+                        botMana[nom] -= 30
+                        botExpirience[nom] += 10
+                        break        
+                n = 0
                 yaKastanul = 1
-        if botZaklinania[nom][poriad] == 5: # Обман
-            if botMana[nom] >= 50:
-                botHod[nom] -= 1
-                botMana[nom] -= 50
-                botExpirience[nom] += 10
-                botAlgoritm[vragBot] = 0
-                yaKastanul = 1
-        if botZaklinania[nom][poriad] == 6: # Огненная сфера
+    
+    if botZaklinania[nom][poriad] == 4: # Кража магии
+        botHod[nom] -= 1
+        if botMana[nom] >= 20:
+            botMana[nom] -= 20
+            if botMana[vragBot] > 100:
+                botMana[vragBot] -= 100
+                botExpirience[nom] += 30
+            else:
+                botMana[vragBot] = 0    
+                botExpirience[nom] += 30            
+            yaKastanul = 1
+
+    if botZaklinania[nom][poriad] == 5: # Обман
+        if botMana[nom] >= 50:
+            botHod[nom] -= 1
+            botMana[nom] -= 50
+            botExpirience[nom] += 10
+            botAlgoritm[vragBot] = 0
+            yaKastanul = 1
+
+    if botZaklinania[nom][poriad] == 6: # Огненная сфера
+        if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:    
             if botMana[nom] >= 25:
                 botMana[nom] -= 25
                 botZdorovie[vragBot] -= 30
                 botExpirience[nom] += 15
                 botHod[nom] -= 1
                 yaKastanul = 1
-        if botZaklinania[nom][poriad] == 7: # Яд 
-            if botMana[nom] >= 15:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 7:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 7
-                            botDeistvie[vragBot][n] = 1000
-                            botMana[nom] -= 15
-                            botExpirience[nom] += 10
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 8: # Кровожадность
-            if botMana[nom] >= 35:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 8:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 8
-                            botDeistvie[vragBot][n] = 5
-                            botMana[nom] -= 35
-                            botExpirience[nom] += 10
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 9: # Лунный обряд
-            if botMana[nom] >=50 and botZdorovie[vragBot]+70 <= botIshZdorovie[vragBot]:
-                botMana[nom] -= 50
-                botZdorovie[vragBot] += 70
-                botHod[nom] -= 1
-                botExpirience[nom] += 10
-                print("Исцелили: ", vragBot)
-                yaKastanul = 1
-            elif botMana[nom] >=50 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-70:
-                botZdorovie[vragBot] = botIshZdorovie[vragBot] 
-                print("Исцелили: ", vragBot, "Полное здоровье")
-                botHod[nom] -= 1
-                botExpirience[nom] += 10
-                yaKastanul = 1 
-        if botZaklinania[nom][poriad] == 10: # Мощь природы
-            if botMana[nom] >= 60:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 10:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 10
-                            botDeistvie[vragBot][n] = 10
-                            botMana[nom] -= 60
-                            botExpirience[nom] += 15
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 11: # Могильный луч
+        
+    if botZaklinania[nom][poriad] == 7: # Яд 
+        if botMana[nom] >= 15:
+            botHod[nom] -= 1
+            n = 0
+            disable = 0
+            for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                if botVozdeistvie[vragBot][n] == 7:
+                    dissable = 1
+                    break
+            if disable == 0:        
+                for n in range(15):
+                    if botVozdeistvie[vragBot][n] == 0:
+                        botVozdeistvie[vragBot][n] = 7
+                        botDeistvie[vragBot][n] = 1000
+                        botMana[nom] -= 15
+                        botExpirience[nom] += 10
+                        break        
+            n = 0
+            yaKastanul = 1  
+    
+    if botZaklinania[nom][poriad] == 8: # Кровожадность
+        if botMana[nom] >= 35:
+            botHod[nom] -= 1
+            n = 0
+            disable = 0
+            for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                if botVozdeistvie[vragBot][n] == 8:
+                    dissable = 1
+                    break
+            if disable == 0:        
+                for n in range(15):
+                    if botVozdeistvie[vragBot][n] == 0:
+                        botVozdeistvie[vragBot][n] = 8
+                        botDeistvie[vragBot][n] = 5
+                        botMana[nom] -= 35
+                        botExpirience[nom] += 10
+                        break        
+            n = 0
+            yaKastanul = 1  
+  
+    if botZaklinania[nom][poriad] == 9: # Лунный обряд
+        if botMana[nom] >=50 and botZdorovie[vragBot]+70 <= botIshZdorovie[vragBot]:
+            botMana[nom] -= 50
+            botZdorovie[vragBot] += 70
+            botHod[nom] -= 1
+            botExpirience[nom] += 10
+            print("Исцелили: ", vragBot)
+            yaKastanul = 1
+        elif botMana[nom] >=50 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-70:
+            botZdorovie[vragBot] = botIshZdorovie[vragBot] 
+            print("Исцелили: ", vragBot, "Полное здоровье")
+            botHod[nom] -= 1
+            botExpirience[nom] += 10
+            yaKastanul = 1 
+  
+    if botZaklinania[nom][poriad] == 10: # Мощь природы
+        if botMana[nom] >= 60:
+            botHod[nom] -= 1
+            n = 0
+            disable = 0
+            for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                if botVozdeistvie[vragBot][n] == 10:
+                    dissable = 1
+                    break
+            if disable == 0:        
+                for n in range(15):
+                    if botVozdeistvie[vragBot][n] == 0:
+                        botVozdeistvie[vragBot][n] = 10
+                        botDeistvie[vragBot][n] = 10
+                        botMana[nom] -= 60
+                        botExpirience[nom] += 15
+                        break        
+            n = 0
+            yaKastanul = 1  
+    if botZaklinania[nom][poriad] == 11: # Могильный луч
+        if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:    
             if botMana[nom] >= 60:
                 botHod[nom] -= 1
                 n = 0
@@ -514,183 +546,89 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                             break        
                 n = 0
                 yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 12: # Молния
+    if botZaklinania[nom][poriad] == 12: # Молния
+        if botLocation[nom] == botLocation[vragBot] or botLocation[nom] == botLocation[vragBot]-1 or botLocation[nom] == botLocation[vragBot]+1 or botLocation[nom] == botLocation[vragBot]-32 or botLocation[nom] == botLocation[vragBot]-31 or botLocation[nom] == botLocation[vragBot]-33 or botLocation[nom] == botLocation[vragBot]+32 or botLocation[nom] == botLocation[vragBot]+31 or botLocation[nom] == botLocation[vragBot]+33:    
             if botMana[nom] >= 70:
                 botMana[nom] -= 70
                 botZdorovie[vragBot] -= 70
                 botExpirience[nom] += 40
                 botHod[nom] -= 1
                 yaKastanul = 1
-        if botZaklinania[nom][poriad] == 13: # Печать Хаоса
-            if botMana[nom] >= 100:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 13:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 13
-                            botDeistvie[vragBot][n] = 10
-                            botMana[nom] -= 100
-                            botExpirience[nom] += 40
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 14: # Печать Смерти
-            if botMana[nom] >= 230:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 14:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 14
-                            botDeistvie[vragBot][n] = 5
-                            botExpirience[nom] += 70
-                            botMana[nom] -= 230
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 15: # Поцелуй Смерти
-            if botMana[nom] >= 150:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 15:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 15
-                            botDeistvie[vragBot][n] = 1000
-                            botExpirience[nom] += 50
-                            botMana[nom] -= 150
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 16: # Проклятье
-            if botMana[nom] >= 75:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 16:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 16
-                            botExpirience[nom] += 20
-                            botDeistvie[vragBot][n] = 1000
-                            botMana[nom] -= 75
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 17: # Пронзающий крик
-            if botMana[nom] >= 50:
-                botMana[nom] -= 50
-                botZdorovie[vragBot] -= 50
-                botExpirience[nom] += 20
-                botHod[nom] -= 1
-                yaKastanul = 1
-        if botZaklinania[nom][poriad] == 18: # Регенерация
-            if botMana[nom] >= 40:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 18:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 18
-                            botDeistvie[vragBot][n] = 1000
-                            botMana[nom] -= 40
-                            botExpirience[nom] += 10
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 19: # Сжигание маны
-            if botMana[nom] >= 15:
-                botMana[nom] -= 15
-                botExpirience[nom] += 10
-                botMana[vragBot] = 0
-                botHod[nom] -= 1
-                yaKastanul = 1
-        if botZaklinania[nom][poriad] == 20: # Вампиризм
-            if botMana[nom] >= 55:
-                botHod[nom] -= 1
-                n = 0
-                disable = 0
-                for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
-                    if botVozdeistvie[vragBot][n] == 20:
-                        dissable = 1
-                        break
-                if disable == 0:        
-                    for n in range(15):
-                        if botVozdeistvie[vragBot][n] == 0:
-                            botVozdeistvie[vragBot][n] = 20
-                            botDeistvie[vragBot][n] = 10
-                            botMana[nom] -= 55
-                            botExpirience[nom] += 10
-                            break        
-                n = 0
-                yaKastanul = 1  
-        if botZaklinania[nom][poriad] == 21: # Хрен знает что за заклинание
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 22: # Лечение
-            if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
-                botMana[nom] -= 30
-                botZdorovie[vragBot] += 30
-                botHod[nom] -= 1
-                botExpirience[nom] += 10
-                print("Подлечили бота: ", vragBot)
-                yaKastanul = 1
-            elif botMana[nom] >=30 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-30:
-                botZdorovie[vragBot] = botIshZdorovie[vragBot] 
-                print("Подлечили бота: ", vragBot, "Полное здоровье")
-                botHod[nom] -= 1
-                yaKastanul = 1
-                botExpirience[nom] += 10            
-        if botZaklinania[nom][poriad] == 23: # Рассеять чары
-            botVozdeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            botDeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    
+    if botZaklinania[nom][poriad] == 13: # Печать Хаоса
+        if botMana[nom] >= 100:
+            botHod[nom] -= 1
             n = 0
-            for n in range(1000):
-                if botLocation[n] == botLocation[nom]-1 or botLocation[n] == botLocation[nom]+1 or botLocation[n] == botLocation[nom]-31 or botLocation[n] == botLocation[nom]-32 or botLocation[n] == botLocation[nom]-33 or botLocation[n] == botLocation[nom]+31 or botLocation[n] == botLocation[nom]+32 or botLocation[n] == botLocation[nom]+33:
-                    botVozdeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botDeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    zyxel = 1
-                    
-                if zyxel == 1:
-                    botMana[nom] -= 40
-                    botExpirience[nom] += 10
-                    zyxel = 0   
-                    botHod[nom] -= 1 
+            disable = 0
+            for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                if botVozdeistvie[vragBot][n] == 13:
+                    dissable = 1
+                    break
+            if disable == 0:        
+                for n in range(15):
+                    if botVozdeistvie[vragBot][n] == 0:
+                        botVozdeistvie[vragBot][n] = 13
+                        botDeistvie[vragBot][n] = 10
+                        botMana[nom] -= 100
+                        botExpirience[nom] += 40
+                        break        
             n = 0
-        if botZaklinania[nom][poriad] == 24:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 25:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 26:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 27:
-            yaKastanul = 1
-        if botZaklinania[nom][poriad] == 28:
             yaKastanul = 1  
+        
+    if botZaklinania[nom][poriad] == 14: # Печать Смерти
+        if botMana[nom] >= 230:
+            botHod[nom] -= 1
+            n = 0
+            disable = 0
+            for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                if botVozdeistvie[vragBot][n] == 14:
+                    dissable = 1
+                    break
+            if disable == 0:        
+                for n in range(15):
+                    if botVozdeistvie[vragBot][n] == 0:
+                        botVozdeistvie[vragBot][n] = 14
+                        botDeistvie[vragBot][n] = 5
+                        botExpirience[nom] += 70
+                        botMana[nom] -= 230
+                        break        
+            n = 0
+            yaKastanul = 1  
+    if botZaklinania[nom][poriad] == 15: # Поцелуй Смерти
+        if botMana[nom] >= 150:
+            botHod[nom] -= 1
+            n = 0
+            disable = 0
+            for n in range(15): # Если бот не под действием этого заклинания, тогда разрешаем заклинание
+                if botVozdeistvie[vragBot][n] == 15:
+                    dissable = 1
+                    break
+            if disable == 0:        
+                for n in range(15):
+                    if botVozdeistvie[vragBot][n] == 0:
+                        botVozdeistvie[vragBot][n] = 15
+                        botDeistvie[vragBot][n] = 1000
+                        botExpirience[nom] += 50
+                        botMana[nom] -= 150
+                        break        
+            n = 0
+            yaKastanul = 1  
+    
+
+    if botZaklinania[nom][poriad] == 22: # Лечение
+        if botMana[nom] >=30 and botZdorovie[vragBot]+30 <= botIshZdorovie[vragBot]:
+            botMana[nom] -= 30
+            botZdorovie[vragBot] += 30
+            botHod[nom] -= 1
+            botExpirience[nom] += 10
+            print("Подлечили бота: ", vragBot)
+            yaKastanul = 1
+        elif botMana[nom] >=30 and botZdorovie[vragBot] > botIshZdorovie[vragBot]-30:
+            botZdorovie[vragBot] = botIshZdorovie[vragBot] 
+            print("Подлечили бота: ", vragBot, "Полное здоровье")
+            botHod[nom] -= 1
+            yaKastanul = 1
+            botExpirience[nom] += 10            
     
     
     if botZdorovie[vragBot] <= 0 and attack == 0: 
@@ -972,7 +910,6 @@ def useInventar(dasLut):
     heroPanel(hero)
 
 def otdaiLut(nom, vragBot):
-    print(botInventar[vragBot])
     if botZdorovie[vragBot] <= 0: 
         botExpirience[nom] += int(botIshZdorovie[vragBot] / 2)
         tempEnum = 0
@@ -4662,31 +4599,26 @@ def textMagic(numerCeil):
         variableName = u"Мощное боевое заклинание 5 уровня "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"-200 Здоровья"
+        variableName = u"-300 Здоровья"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
         variableName = u"Требует 200 маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
     if botZaklinania[imHero][numerCeil-1] == 2:
-        variableName = u"Добить и воскресить"
+        variableName = u"Телепортация"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Базовое магическое заклинание"
+        variableName = u"Перемещение игрока в любое указанное"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"начинающего некроманта. Создаёт скелета"
+        variableName = u"место на карте"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"из существа при условии, чтоего здоровье"
+        variableName = u"Требует 350 маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = u"меньше или равно 30."
-        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 640))  
-        variableName = u"Требует 30 маны"
-        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660)) 
+        
     if botZaklinania[imHero][numerCeil-1] == 3:
         variableName = u"Доспехи Феникса"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -5603,21 +5535,21 @@ def doebaca(hehmda):  #Функция отображающая информац�
             break        
         
     if zakl > 0 and ktoZdesVrag != 999:
-        if zakl == 1: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 2: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 3: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 4: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 5: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 6: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 7: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 8: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 9: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 10: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 11: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 12: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 13: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 14: botKoldun(0,zakl-1,ktoZdesVrag)
-        if zakl == 15: botKoldun(0,zakl-1,ktoZdesVrag)
+        if zakl == 1: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 2: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 3: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 4: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 5: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 6: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 7: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 8: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 9: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 10: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 11: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 12: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 13: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 14: botKoldun(imHero,zakl-1,ktoZdesVrag)
+        if zakl == 15: botKoldun(imHero,zakl-1,ktoZdesVrag)
                         
         zakl = 0
         attack = 0
@@ -8069,7 +8001,7 @@ def loviVebalo(nomBota): # Используется если у бота нет 
                 break
         
                 
-        if botZdorovie[n] <= 0: ubiraemTrup(n)        
+        if botZdorovie[n] <= 0: ubiraemTrup(n); otdaiLut(nomBota, n)        
     
 
 def bornBot(numerBurnBota, typeBurnBota):
@@ -10561,6 +10493,7 @@ def botActivity(nomerBota):
                             botZdorovie[n] -= botSila[nomerBota]
                             print("Im - ", str(nomerBota), " shot up. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
                             if n == imHero: heroPanel(imHero)
+                            if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                             break                    
                     
         elif genom[botStep[nomerBota]] == 6: # Бьём врага вниз 
@@ -10572,6 +10505,7 @@ def botActivity(nomerBota):
                             botZdorovie[n] -= botSila[nomerBota]
                             print("Im - ", str(nomerBota), " shot down. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
                             if n == imHero: heroPanel(imHero)
+                            if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                             break
         
         elif genom[botStep[nomerBota]] == 7: # Бьём врага слева
@@ -10583,6 +10517,7 @@ def botActivity(nomerBota):
                             botZdorovie[n] -= botSila[nomerBota]
                             print("Im - ", str(nomerBota), " shot left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
                             if n == imHero: heroPanel(imHero)
+                            if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                             break
         
         elif genom[botStep[nomerBota]] == 8: # Бьём врага справа
@@ -10594,6 +10529,7 @@ def botActivity(nomerBota):
                             botZdorovie[n] -= botSila[nomerBota]
                             print("Im - ", str(nomerBota), " shot right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n]) 
                             if n == imHero: heroPanel(imHero)
+                            if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                             break
 
         elif genom[botStep[nomerBota]] == 9: # Бьём врага сверху-справа
@@ -10605,7 +10541,8 @@ def botActivity(nomerBota):
                             if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0: 
                                 botZdorovie[n] -= botSila[nomerBota]
                                 print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
-                                if n == imHero: heroPanel(imHero)                                
+                                if n == imHero: heroPanel(imHero)
+                                if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                 break
         
         elif genom[botStep[nomerBota]] == 10: # Бьём врага сверху-слева
@@ -10617,7 +10554,8 @@ def botActivity(nomerBota):
                             if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0: 
                                 botZdorovie[n] -= botSila[nomerBota]
                                 print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
-                                if n == imHero: heroPanel(imHero)                                
+                                if n == imHero: heroPanel(imHero)
+                                if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                 break
                             
         elif genom[botStep[nomerBota]] == 11: # Бьём врага снизу-справа
@@ -10630,6 +10568,7 @@ def botActivity(nomerBota):
                                 botZdorovie[n] -= botSila[nomerBota]
                                 print("Im - ", str(nomerBota), " shot up-right. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
                                 if n == imHero: heroPanel(imHero)
+                                if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                 break
         
         elif genom[botStep[nomerBota]] == 12: # Бьём врага снизу-слева
@@ -10642,6 +10581,7 @@ def botActivity(nomerBota):
                                 botZdorovie[n] -= botSila[nomerBota]
                                 print("Im - ", str(nomerBota), " shot up-left. Step -", botStep[nomerBota], "Life bot enemy -",botZdorovie[n])
                                 if n == imHero: heroPanel(imHero)
+                                if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                 break
                             
         elif genom[botStep[nomerBota]] == 13:  # Применяем заклинание "Пронзающая смерть"
@@ -10657,6 +10597,7 @@ def botActivity(nomerBota):
                                         botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 200 mana")
                             
@@ -10669,6 +10610,7 @@ def botActivity(nomerBota):
                                         botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 200 mana")
     
@@ -10681,6 +10623,7 @@ def botActivity(nomerBota):
                                         botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 200 mana")
                             
@@ -10693,6 +10636,7 @@ def botActivity(nomerBota):
                                         botZdorovie[n] -= 300
                                         print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 200 mana")                             
                 
@@ -10704,6 +10648,7 @@ def botActivity(nomerBota):
                                     botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 200 mana")
 
@@ -10715,6 +10660,7 @@ def botActivity(nomerBota):
                                     botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 200 mana")
 
@@ -10726,6 +10672,7 @@ def botActivity(nomerBota):
                                     botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 200 mana")
      
@@ -10737,6 +10684,7 @@ def botActivity(nomerBota):
                                     botZdorovie[n] -= 300
                                     print("Excellent, bot ", str(n), "is DEATH. BotZdorovie =",botZdorovie[n])
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 200 mana")  
                 #if n==14 and botZaklinania[nomerBota][n] != 1: loviVebalo(nomerBota)
@@ -10756,6 +10704,7 @@ def botActivity(nomerBota):
                                                 botMana[nomerBota] -= 30
                                                 botZdorovie[n] -= 30
                                                 if n == imHero: heroPanel(imHero)
+                                                if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                                 break
                                             else: print("Less that 30 mana")
                             
@@ -10768,6 +10717,7 @@ def botActivity(nomerBota):
                                                 botMana[nomerBota] -= 30
                                                 botZdorovie[n] -= 30
                                                 if n == imHero: heroPanel(imHero)
+                                                if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                                 break
                                             else: print("Less that 30 mana")
 
@@ -10780,6 +10730,7 @@ def botActivity(nomerBota):
                                                 botMana[nomerBota] -= 30
                                                 botZdorovie[n] -= 30
                                                 if n == imHero: heroPanel(imHero)
+                                                if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                                 break
                                             else: print("Less that 30 mana")
                             
@@ -10792,6 +10743,7 @@ def botActivity(nomerBota):
                                                 botMana[nomerBota] -= 30
                                                 botZdorovie[n] -= 30
                                                 if n == imHero: heroPanel(imHero)
+                                                if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                                 break
                                             else: print("Less that 30 mana")   
                 
@@ -10803,6 +10755,7 @@ def botActivity(nomerBota):
                                             botMana[nomerBota] -= 30
                                             botZdorovie[n] -= 30
                                             if n == imHero: heroPanel(imHero)
+                                            if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                             break
                                         else: print("Less that 30 mana")
 
@@ -10814,6 +10767,7 @@ def botActivity(nomerBota):
                                             botMana[nomerBota] -= 30
                                             botZdorovie[n] -= 30
                                             if n == imHero: heroPanel(imHero)
+                                            if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                             break
                                         else: print("Less that 30 mana")
 
@@ -10825,6 +10779,7 @@ def botActivity(nomerBota):
                                             botMana[nomerBota] -= 30
                                             botZdorovie[n] -= 30
                                             if n == imHero: heroPanel(imHero)
+                                            if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                             break
                                         else: print("Less that 30 mana")
  
@@ -10836,6 +10791,7 @@ def botActivity(nomerBota):
                                             botMana[nomerBota] -= 30
                                             botZdorovie[n] -= 30
                                             if n == imHero: heroPanel(imHero)
+                                            if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                             break
                                         else: print("Less that 30 mana")
                 #if n==14 and botZaklinania[nomerBota][n] != 6: loviVebalo(nomerBota)
@@ -10853,6 +10809,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 70
                                         botZdorovie[n] -= 70
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 70 mana")
                             
@@ -10865,6 +10822,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 70
                                         botZdorovie[n] -= 70
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 70 mana")
 
@@ -10877,6 +10835,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 70
                                         botZdorovie[n] -= 70
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 70 mana")
                             
@@ -10889,6 +10848,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 70
                                         botZdorovie[n] -= 70
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 70 mana")   
                 
@@ -10900,6 +10860,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 70
                                     botZdorovie[n] -= 70
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 70 mana")
 
@@ -10911,6 +10872,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 70
                                     botZdorovie[n] -= 70
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 70 mana")
 
@@ -10922,6 +10884,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 70
                                     botZdorovie[n] -= 70
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 70 mana")
  
@@ -10933,6 +10896,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 70
                                     botZdorovie[n] -= 70
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 70 mana")
                 #if n==14 and botZaklinania[nomerBota][n] != 12: loviVebalo(nomerBota) 
@@ -11043,6 +11007,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 60
                                         botZdorovie[n] -= 50
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 60 mana")
                                     break  
@@ -11056,6 +11021,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 60
                                         botZdorovie[n] -= 50
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 60 mana")  
                                     break
@@ -11070,6 +11036,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 60
                                         botZdorovie[n] -= 50
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 60 mana")  
                                     break
@@ -11083,6 +11050,7 @@ def botActivity(nomerBota):
                                         botMana[nomerBota] -= 60
                                         botZdorovie[n] -= 50
                                         if n == imHero: heroPanel(imHero)
+                                        if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                         break
                                     else: print("Less that 60 mana")
                                     break   
@@ -11096,6 +11064,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 60
                                     botZdorovie[n] -= 50
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 60 mana")
                                 break
@@ -11108,6 +11077,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 60
                                     botZdorovie[n] -= 50
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 60 mana")
                                 break
@@ -11120,6 +11090,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 60
                                     botZdorovie[n] -= 50
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 60 mana")
                                 break
@@ -11132,6 +11103,7 @@ def botActivity(nomerBota):
                                     botMana[nomerBota] -= 60
                                     botZdorovie[n] -= 50
                                     if n == imHero: heroPanel(imHero)
+                                    if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: print("Less that 60 mana")
                                 break
@@ -12062,7 +12034,7 @@ botExpirience[imHero] = 0   # Главный герой
 botLvl[imHero] = 1
 botRasa[imHero] = 7
 botInventar[imHero] = [1,6,2,7,3,8,0,0,0,0,0,0,0,0,0,0]
-botZaklinania[imHero] = [5,12,22,0,0,0,0,0,0,0,0,0,0,0,0,100]
+botZaklinania[imHero] = [1,12,22,2,0,0,0,0,0,0,0,0,0,0,0,100]
 botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 botIshZdorovie[imHero] = 1300
 botZdorovie[imHero] = 1300
@@ -12125,6 +12097,7 @@ while True:
                 botLocation[imHero] -= 1
                 worldUpdate()
                 heroPanel(botVariant[imHero])
+                invent = 0
                 
             elif i.key == pygame.K_RIGHT and xBot[imHero] <= 990 and world[botLocation[imHero]+1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -12137,8 +12110,9 @@ while True:
                 botLocation[imHero] += 1
                 worldUpdate()
                 heroPanel(botVariant[imHero])
+                invent = 0
                 
-            elif i.key == pygame.K_UP and yBot[imHero] >= 96 and world[botLocation[imHero]-32] == 0:
+            elif i.key == pygame.K_UP and yBot[imHero] > 96 and world[botLocation[imHero]-32] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
@@ -12149,6 +12123,7 @@ while True:
                 botLocation[imHero] -= 32
                 worldUpdate()
                 heroPanel(botVariant[imHero])
+                invent = 0
                 
             elif i.key == pygame.K_DOWN and yBot[imHero] <= 510 and world[botLocation[imHero]+32] == 0: 
                 pix = pygame.image.load('Images/weed.jpg')
@@ -12161,6 +12136,7 @@ while True:
                 botLocation[imHero] += 32
                 worldUpdate()
                 heroPanel(botVariant[imHero])
+                invent = 0
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
 #============================================================================================================================================    
@@ -12238,7 +12214,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(7)
-            if i.button == 3: myAttack(7)            
+            if i.button == 3: myAttack(7)           
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -12283,7 +12259,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(12)
-            if i.button == 3: myAttack(12)            
+            if i.button == 3: myAttack(12)           
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -12301,7 +12277,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(14)
-            if i.button == 3: myAttack(14)            
+            if i.button == 3: myAttack(14)           
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -12328,7 +12304,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(17)
-            if i.button == 3: myAttack(17)            
+            if i.button == 3: myAttack(17)          
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -12364,7 +12340,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(21)
-            if i.button == 3: myAttack(21)
+            if i.button == 3: myAttack(21); doebaca(21)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -12373,7 +12349,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(22)
-            if i.button == 3: myAttack(22)            
+            if i.button == 3: myAttack(22); doebaca(22)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -12382,7 +12358,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(23)
-            if i.button == 3: myAttack(23)
+            if i.button == 3: myAttack(23); doebaca(23)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -12391,7 +12367,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:doebaca(24)
-            if i.button == 3: myAttack(24)            
+            if i.button == 3: myAttack(24); doebaca(24)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -12400,7 +12376,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(25)
-            if i.button == 3: myAttack(25)
+            if i.button == 3: myAttack(25); doebaca(25)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -12409,7 +12385,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(26)
-            if i.button == 3: myAttack(26)
+            if i.button == 3: myAttack(26); doebaca(26)
     
     if mos_x>881 and (mos_x<911): 
         x_inside = True
@@ -12420,7 +12396,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(27)
-            if i.button == 3: myAttack(27)
+            if i.button == 3: myAttack(27); doebaca(27)
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -12429,7 +12405,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(28)
-            if i.button == 3: myAttack(28)
+            if i.button == 3: myAttack(28); doebaca(28)
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -12438,7 +12414,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(29)
-            if i.button == 3: myAttack(29)
+            if i.button == 3: myAttack(29); doebaca(29)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -12447,7 +12423,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(30)
-            if i.button == 3: myAttack(30)            
+            if i.button == 3: myAttack(30); doebaca(30)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -12456,7 +12432,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(31)
-            if i.button == 3: myAttack(31)
+            if i.button == 3: myAttack(31); doebaca(31)
                 
     #===================================================2 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
@@ -12466,7 +12442,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(32)
-            if i.button == 3: myAttack(32)
+            if i.button == 3: myAttack(32); doebaca(32)
     
     if mos_x>49 and (mos_x<79): x_inside = True
     else: x_inside = False
@@ -12475,7 +12451,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(33)
-            if i.button == 3: myAttack(33)
+            if i.button == 3: myAttack(33); doebaca(33)
     
     if mos_x>81 and (mos_x<111): x_inside = True
     else: x_inside = False
@@ -12484,7 +12460,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(34)
-            if i.button == 3: myAttack(34)            
+            if i.button == 3: myAttack(34); doebaca(34)            
     
     if mos_x>113 and (mos_x<143): x_inside = True
     else: x_inside = False
@@ -12493,7 +12469,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(35)
-            if i.button == 3: myAttack(35)
+            if i.button == 3: myAttack(35); doebaca(35)
                 
     if mos_x>145 and (mos_x<175): x_inside = True
     else: x_inside = False
@@ -12502,7 +12478,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(36)
-            if i.button == 3: myAttack(36)            
+            if i.button == 3: myAttack(36); doebaca(36)            
                
     if mos_x>176 and (mos_x<207): x_inside = True
     else: x_inside = False
@@ -12511,7 +12487,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(37)
-            if i.button == 3: myAttack(37)
+            if i.button == 3: myAttack(37); doebaca(37)
     
     if mos_x>209 and (mos_x<239): x_inside = True
     else: x_inside = False
@@ -12520,7 +12496,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(38)
-            if i.button == 3: myAttack(38)
+            if i.button == 3: myAttack(38); doebaca(38)
     
     if mos_x>241 and (mos_x<271): x_inside = True
     else: x_inside = False
@@ -12529,7 +12505,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(39)
-            if i.button == 3: myAttack(39)            
+            if i.button == 3: myAttack(39); doebaca(39)            
     
     if mos_x>273 and (mos_x<303): x_inside = True
     else: x_inside = False
@@ -12538,7 +12514,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(40)
-            if i.button == 3: myAttack(40)
+            if i.button == 3: myAttack(40); doebaca(40)
                 
     if mos_x>305 and (mos_x<335): x_inside = True
     else: x_inside = False
@@ -12547,7 +12523,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(41)
-            if i.button == 3: myAttack(41)            
+            if i.button == 3: myAttack(41); doebaca(41)            
                 
     if mos_x>337 and (mos_x<367): x_inside = True
     else: x_inside = False
@@ -12556,7 +12532,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(42)
-            if i.button == 3: myAttack(42)
+            if i.button == 3: myAttack(42); doebaca(42)
     
     if mos_x>369 and (mos_x<399): x_inside = True
     else: x_inside = False
@@ -12565,7 +12541,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(43)
-            if i.button == 3: myAttack(43)
+            if i.button == 3: myAttack(43); doebaca(43)
     
     if mos_x>401 and (mos_x<431): x_inside = True
     else: x_inside = False
@@ -12574,7 +12550,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(44)
-            if i.button == 3: myAttack(44)            
+            if i.button == 3: myAttack(44); doebaca(44)            
     
     if mos_x>433 and (mos_x<463): x_inside = True
     else: x_inside = False
@@ -12583,7 +12559,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(45)
-            if i.button == 3: myAttack(45)
+            if i.button == 3: myAttack(45); doebaca(45)
                 
     if mos_x>465 and (mos_x<495): x_inside = True
     else: x_inside = False
@@ -12592,7 +12568,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(46) 
-            if i.button == 3: myAttack(46)
+            if i.button == 3: myAttack(46); doebaca(46)
                
     if mos_x>497 and (mos_x<527): x_inside = True
     else: x_inside = False
@@ -12601,7 +12577,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(47)
-            if i.button == 3: myAttack(47)
+            if i.button == 3: myAttack(47); doebaca(47)
     
     if mos_x>529 and (mos_x<559): x_inside = True
     else: x_inside = False
@@ -12610,7 +12586,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(48)
-            if i.button == 3: myAttack(48)
+            if i.button == 3: myAttack(48); doebaca(48)
     
     if mos_x>561 and (mos_x<591): x_inside = True
     else: x_inside = False
@@ -12619,7 +12595,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(49)
-            if i.button == 3: myAttack(49)            
+            if i.button == 3: myAttack(49); doebaca(49)            
     
     if mos_x>593 and (mos_x<623): x_inside = True
     else: x_inside = False
@@ -12628,7 +12604,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(50)
-            if i.button == 3: myAttack(50)
+            if i.button == 3: myAttack(50); doebaca(50)
                 
     if mos_x>625 and (mos_x<655): x_inside = True
     else: x_inside = False
@@ -12637,7 +12613,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(51)
-            if i.button == 3: myAttack(51)
+            if i.button == 3: myAttack(51); doebaca(51)
                 
     if mos_x>657 and (mos_x<687): x_inside = True
     else: x_inside = False
@@ -12646,7 +12622,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(52)
-            if i.button == 3: myAttack(52)
+            if i.button == 3: myAttack(52); doebaca(52)
     
     if mos_x>689 and (mos_x<719): x_inside = True
     else: x_inside = False
@@ -12655,7 +12631,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(53)
-            if i.button == 3: myAttack(53)
+            if i.button == 3: myAttack(53); doebaca(53)
     
     if mos_x>721 and (mos_x<751): x_inside = True
     else: x_inside = False
@@ -12664,7 +12640,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(54)
-            if i.button == 3: myAttack(54)            
+            if i.button == 3: myAttack(54); doebaca(54)            
     
     if mos_x>753 and (mos_x<783): x_inside = True
     else: x_inside = False
@@ -12673,7 +12649,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(55)
-            if i.button == 3: myAttack(55)
+            if i.button == 3: myAttack(55); doebaca(55)
                 
     if mos_x>785 and (mos_x<815): x_inside = True
     else: x_inside = False
@@ -12682,7 +12658,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(56)
-            if i.button == 3: myAttack(56)            
+            if i.button == 3: myAttack(56); doebaca(56)            
                
     if mos_x>817 and (mos_x<847): x_inside = True
     else: x_inside = False
@@ -12691,7 +12667,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(57)
-            if i.button == 3: myAttack(57)
+            if i.button == 3: myAttack(57); doebaca(57)
     
     if mos_x>849 and (mos_x<879): x_inside = True
     else: x_inside = False
@@ -12700,7 +12676,7 @@ while True:
     if x_inside and y_inside:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(58)
-            if i.button == 3: myAttack(58)
+            if i.button == 3: myAttack(58); doebaca(58)
     
     if mos_x>881 and (mos_x<911): x_inside = True
     else: x_inside = False
@@ -12709,7 +12685,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(59)
-            if i.button == 3: myAttack(59)            
+            if i.button == 3: myAttack(59); doebaca(59)            
     
     if mos_x>913 and (mos_x<943): x_inside = True
     else: x_inside = False
@@ -12718,7 +12694,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(60)
-            if i.button == 3: myAttack(60)            
+            if i.button == 3: myAttack(60); doebaca(60)            
                 
     if mos_x>945 and (mos_x<975): x_inside = True
     else: x_inside = False
@@ -12727,7 +12703,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(61)
-            if i.button == 3: myAttack(61)
+            if i.button == 3: myAttack(61); doebaca(61)
                 
     if mos_x>977 and (mos_x<1007): x_inside = True
     else: x_inside = False
@@ -12736,7 +12712,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(62)
-            if i.button == 3: myAttack(62)            
+            if i.button == 3: myAttack(62); doebaca(62)            
                 
     if mos_x>1009 and (mos_x<1040): x_inside = True
     else: x_inside = False
@@ -12745,7 +12721,7 @@ while True:
     if x_inside and y_inside: 
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1: doebaca(63)
-            if i.button == 3: myAttack(63)
+            if i.button == 3: myAttack(63); doebaca(63)
                 
     #===================================================3 ряд===============================================
     if mos_x>17 and (mos_x<47): x_inside = True
