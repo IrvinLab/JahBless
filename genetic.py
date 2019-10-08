@@ -377,8 +377,8 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 yaKastanul = 1
                 
     if botZaklinania[nom][poriad] == 2:  # Телепортация
+        print("2ch")
         if botMana[nom] >= 350:
-            print("SAS")
             if world[vragBot] == 0:
                 botMana[nom] -= 350
                 world[botLocation[nom]] = 0
@@ -631,7 +631,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             botExpirience[nom] += 10            
     
     
-    if botZdorovie[vragBot] <= 0 and attack == 0: 
+    if botZdorovie[vragBot] <= 0 and attack == 0 and yaKastanul == 1: 
         randomMoney = int(random.random()*10)
         randomBronza = int(random.random()*70) * botLvl[vragBot]
         randomSerebro = int(random.random()*5) * botLvl[vragBot]
@@ -5526,7 +5526,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
     
     ktoZdesVrag = 0
-    for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+    for ktoZdesVrag in range(50): # Определяем номер бота по клетке
         if botLocation[ktoZdesVrag] == hehmda:
             if ktoZdesVrag != imHero:
                 variableName = u"Здоровье: " + str(botZdorovie[ktoZdesVrag]) + "/" + str(botIshZdorovie[ktoZdesVrag])
@@ -5534,7 +5534,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 sc.blit(nameObj,(440, 760))
             break        
         
-    if zakl > 0 and ktoZdesVrag != 999:
+    if zakl > 0:
         if zakl == 1: botKoldun(imHero,zakl-1,ktoZdesVrag)
         if zakl == 2: botKoldun(imHero,zakl-1,ktoZdesVrag)
         if zakl == 3: botKoldun(imHero,zakl-1,ktoZdesVrag)
