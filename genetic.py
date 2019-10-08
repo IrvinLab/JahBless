@@ -9,7 +9,7 @@ m = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [36, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 4, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 34, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 50, 16, 24, 55, 34, 9, 22, 55, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 2, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 34, 51, 45]
+    genom = [1, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 4, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 34, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 1, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 50, 16, 24, 55, 34, 9, 22, 1, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 2, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 34, 51, 45]
 
 
 
@@ -8190,7 +8190,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 1
                     botBronza[n] = 150
@@ -8311,7 +8311,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 100
@@ -8343,7 +8343,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 200
@@ -8376,7 +8376,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 300
@@ -8410,7 +8410,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [68,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 1
                     botBronza[n] = 500
@@ -8569,7 +8569,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
@@ -8601,7 +8601,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
@@ -8633,7 +8633,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
@@ -8665,7 +8665,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 100
@@ -8944,7 +8944,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 90
@@ -8975,7 +8975,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 150
@@ -9006,7 +9006,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 350
@@ -9037,7 +9037,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 450
@@ -9068,7 +9068,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 150
@@ -9102,7 +9102,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9136,7 +9136,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [59,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 450
@@ -9232,7 +9232,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9305,7 +9305,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 100
@@ -9336,7 +9336,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 150
@@ -9367,7 +9367,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9398,7 +9398,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [5,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9429,7 +9429,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [6,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9460,7 +9460,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [6,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9494,12 +9494,12 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1
                         botBronza[n] = 350
                     if botRandom >= 20 and botRandom <= 25:
@@ -9528,7 +9528,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [59,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 350
@@ -9570,7 +9570,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 100
@@ -9911,7 +9911,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9945,7 +9945,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 150
@@ -10103,7 +10103,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 200
@@ -10134,7 +10134,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 300
@@ -10165,7 +10165,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
@@ -10196,7 +10196,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -10261,7 +10261,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 120
@@ -10292,7 +10292,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 170
@@ -10323,7 +10323,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 270
@@ -10354,7 +10354,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 370
@@ -10385,7 +10385,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [7,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 480
@@ -10416,7 +10416,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 680
@@ -12069,7 +12069,7 @@ n = 0
 heroPanel(52)    
 pygame.display.update()   
 while True:
-    clock.tick(160)
+    clock.tick(260)
     if botZdorovie[n] > 0: botActivity(n)
     if botVariant[n] > 0 and botZdorovie[n] <= 0:    
             ubiraemTrup(n)      
