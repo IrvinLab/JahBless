@@ -10514,7 +10514,7 @@ def botActivity(nomerBota):
                     botIshZdorovie[n] = 50000
                     botMana[n] = 50000
                     botIshMana[n] = 50000
-                    botZaklinania[n]=[0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,100]
+                    botZaklinania[n]=[0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 0
                     botLovkost[n] = 6
                     botYdacha[n] = 18
@@ -10545,7 +10545,7 @@ def botActivity(nomerBota):
                     botIshZdorovie[n] = 50000
                     botMana[n] = 50000
                     botIshMana[n] = 50000
-                    botZaklinania[n]=[0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,100]
+                    botZaklinania[n]=[0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 10000
                     botLovkost[n] = 6
                     botYdacha[n] = 18
