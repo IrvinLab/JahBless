@@ -5557,7 +5557,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
     
     ktoZdesVrag = 0    
     if posohSmerti == 1:
-        for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+        for ktoZdesVrag in range(300): # Определяем номер бота по клетке
             if botLocation[ktoZdesVrag] == hehmda:
                 break  
         
@@ -5572,7 +5572,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         heroPanel(hero)
         
     if attack == 1 and botHod[imHero] > 0:  # Тут мы атакуем ботов
-            for ktoZdesVrag in range(1000): # Определяем номер бота по клетке
+            for ktoZdesVrag in range(300): # Определяем номер бота по клетке
                 if botLocation[ktoZdesVrag] == hehmda:
                     if botLocation[imHero] == botLocation[ktoZdesVrag]+1 or botLocation[imHero] == botLocation[ktoZdesVrag]-1 or botLocation[imHero] == botLocation[ktoZdesVrag]+31 or botLocation[imHero] == botLocation[ktoZdesVrag]+32 or botLocation[imHero] == botLocation[ktoZdesVrag]+33 or botLocation[imHero] == botLocation[ktoZdesVrag]-31 or botLocation[imHero] == botLocation[ktoZdesVrag]-32 or botLocation[imHero] == botLocation[ktoZdesVrag]-33:
                         break 
@@ -12214,16 +12214,16 @@ botRasa[imHero] = 7
 botInventar[imHero] = [1,6,2,7,3,8,0,0,0,0,0,0,0,0,0,0]
 botZaklinania[imHero] = [1,12,22,2,0,0,0,0,0,0,0,0,0,0,0,100]
 botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botIshZdorovie[imHero] = 1300
-botZdorovie[imHero] = 1300
-botMana[imHero] = 1000
-botIshMana[imHero] = 1000
+botIshZdorovie[imHero] = 200
+botZdorovie[imHero] = 200
+botMana[imHero] = 100
+botIshMana[imHero] = 100
 botSila[imHero] = 20
 botLovkost[imHero] = 5
 botYdacha[imHero] = 9
 botZoloto[imHero] = 100
 botSerebro[imHero] = 3000
-botBronza[imHero] = 50000
+botBronza[imHero] = 100
 botHod[imHero] = botLovkost[imHero]
 botAlgoritm[imHero] = 4
 botVariant[imHero] = 52
