@@ -9,7 +9,7 @@ m = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [1, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 4, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 34, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 1, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 50, 16, 24, 55, 34, 9, 22, 1, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 2, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 34, 51, 45]
+    genom = [36, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 4, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 34, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 50, 16, 24, 55, 34, 9, 22, 55, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 2, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 34, 51, 45]
 
 
 
@@ -7214,7 +7214,53 @@ def doebaca(hehmda):  #Функция отображающая информац�
         sc.blit(nameObj,(440, 640))  
         variableName = u"а также защитной и лечебной магиями"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))     
+        sc.blit(nameObj,(440, 660))
+    if world[hehmda] == 173:
+        pix = pygame.image.load('Images/dux.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Дух-союзник"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот дух способен наделить магией и "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"тайным знанием всех к кому он благосклонен"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"Не смотря на устрашающий вид,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"дух-союзник никогда не причинит вреда"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"существам этого мира."
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    if world[hehmda] == 174:
+        pix = pygame.image.load('Images/dux.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (340,548))
+        variableName = u"Дух смерти"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Беспощадный и неумолимый дух,"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"способный уничтожить одним лишь"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))  
+        variableName = u"прикосновением"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620))   
+        variableName = u"Дух будет уничтожать всё на своём"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))  
+        variableName = u"пути пока не насытиться смертью"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))                
     if world[hehmda] == 50:
         pix = pygame.image.load('Images/akami.jpg')
         x_len = pix.get_width()
@@ -7436,7 +7482,9 @@ def markLocation(numberMark, iconka): # Определяем кординаты 
     if iconka == 169: pix = pygame.image.load('Images/womanElf4_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 170: pix = pygame.image.load('Images/womanElf5_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))  
     if iconka == 171: pix = pygame.image.load('Images/womanElf6_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))
-    if iconka == 172: pix = pygame.image.load('Images/womanElf7_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))     
+    if iconka == 172: pix = pygame.image.load('Images/womanElf7_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))
+    if iconka == 173: pix = pygame.image.load('Images/dux_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap)) 
+    if iconka == 174: pix = pygame.image.load('Images/dux_32.jpg'); x_len = pix.get_width(); y_len = pix.get_height(); sc.blit(pix, (xMap,yMap))    
     #pygame.display.update()   
 
 def worldUpdate():   # Отправляем данные об объекте
@@ -8044,7 +8092,34 @@ def bornBot(numerBurnBota, typeBurnBota):
             yBot[numerBurnBota] = 256
             world[177] = typeBurnBota
             botLocation[numerBurnBota] = 177
-            
+    
+    elif typeBurnBota == 173 or typeBurnBota == 174: # Если это духи
+        if world[240] == 0:
+            xBot[numerBurnBota] = 528
+            yBot[numerBurnBota] = 320
+            world[240] = typeBurnBota
+            botLocation[numerBurnBota] = 240
+        elif world[241] == 0:
+            xBot[numerBurnBota] = 560
+            yBot[numerBurnBota] = 320
+            world[241] = typeBurnBota
+            botLocation[numerBurnBota] = 241
+        elif world[242] == 0:
+            xBot[numerBurnBota] = 592
+            yBot[numerBurnBota] = 320
+            world[242] = typeBurnBota
+            botLocation[numerBurnBota] = 242
+        elif world[243] == 0:
+            xBot[numerBurnBota] = 624
+            yBot[numerBurnBota] = 320
+            world[243] = typeBurnBota
+            botLocation[numerBurnBota] = 243
+        elif world[244] == 0:
+            xBot[numerBurnBota] = 656
+            yBot[numerBurnBota] = 320
+            world[244] = typeBurnBota
+            botLocation[numerBurnBota] = 244             
+    
     else:
         if world[384] == 0:
             xBot[numerBurnBota] = 16
@@ -8107,7 +8182,7 @@ def botActivity(nomerBota):
     if sobitie % 537 == 0: # Рожаем бота
         for n in range(20):
             if botZdorovie[n] <= 0: #Если бот номер N мёртв, то занимаем его ID
-                tmp = int(random.random()*72)+100 # Генеруем вид бота
+                tmp = int(random.random()*74)+100 # Генеруем вид бота
                 botRandom = int(random.random()*100) # Переменная для случайного распределения артефактов
                 print("BORN bot #",str(n)," variant -",str(tmp))
                 if tmp == 100: # Эльф 1 ур.
@@ -8190,7 +8265,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 1
                     botBronza[n] = 150
@@ -8311,7 +8386,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 100
@@ -8343,7 +8418,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 200
@@ -8376,7 +8451,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 300
@@ -8410,7 +8485,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [68,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 1
                     botBronza[n] = 500
@@ -8569,7 +8644,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
@@ -8601,7 +8676,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
@@ -8633,7 +8708,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
@@ -8665,7 +8740,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 100
@@ -8944,7 +9019,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 90
@@ -8975,7 +9050,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 150
@@ -9006,7 +9081,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 350
@@ -9037,7 +9112,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [49,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 450
@@ -9068,7 +9143,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 150
@@ -9102,7 +9177,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9136,7 +9211,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [59,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 450
@@ -9232,7 +9307,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9305,7 +9380,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 100
@@ -9336,7 +9411,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 150
@@ -9367,7 +9442,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9398,7 +9473,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [5,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9429,7 +9504,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9460,7 +9535,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9494,12 +9569,12 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [7,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1
                         botBronza[n] = 350
                     if botRandom >= 20 and botRandom <= 25:
@@ -9528,7 +9603,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [59,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 350
@@ -9570,7 +9645,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [60,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 100
@@ -9911,7 +9986,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -9945,7 +10020,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 150
@@ -10103,7 +10178,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 200
@@ -10134,7 +10209,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 300
@@ -10165,7 +10240,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
@@ -10196,7 +10271,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
@@ -10261,7 +10336,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 120
@@ -10292,7 +10367,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 170
@@ -10323,7 +10398,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 270
@@ -10354,7 +10429,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 370
@@ -10385,7 +10460,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 480
@@ -10416,7 +10491,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 680
@@ -10430,7 +10505,69 @@ def botActivity(nomerBota):
                         botInventar[n] = [58,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 1500       
                     bornBot(n, tmp)                 
-                        
+                
+                if tmp == 173: # Дух знания
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 100
+                    botZdorovie[n] = 50000
+                    botIshZdorovie[n] = 50000
+                    botMana[n] = 50000
+                    botIshMana[n] = 50000
+                    botZaklinania[n]=[0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 0
+                    botLovkost[n] = 6
+                    botYdacha[n] = 18
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 780
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 900
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 1500       
+                    bornBot(n, tmp) 
+
+                if tmp == 174: # Дух смерти
+                    botNumer[n] = n
+                    botVariant[n] = tmp        
+                    botLvl[n] = 100
+                    botZdorovie[n] = 50000
+                    botIshZdorovie[n] = 50000
+                    botMana[n] = 50000
+                    botIshMana[n] = 50000
+                    botZaklinania[n]=[0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,100]
+                    botSila[n] = 10000
+                    botLovkost[n] = 6
+                    botYdacha[n] = 18
+                    botHod[n] = botLovkost[n]
+                    botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botAlgoritm[n] = 3
+                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botZoloto[n] = 0
+                    botSerebro[n] = 0
+                    botBronza[n] = 0
+                    if botRandom >= 30 and botRandom <= 40:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 780
+                    if botRandom >= 20 and botRandom <= 25:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botBronza[n] = 900
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botBronza[n] = 1500       
+                    bornBot(n, tmp)                    
+                
                 break   
                  
     
@@ -10443,7 +10580,9 @@ def botActivity(nomerBota):
     if botStep[nomerBota] > 127: botStep[nomerBota] = 0
     if botZdorovie[nomerBota] > 0 and nomerBota != imHero: # Если бот жив
         
-        if genom[botStep[nomerBota]] == 0: pass # Если равен нулю, то ничего не делаем
+        if genom[botStep[nomerBota]] == 0:
+            if botVariant[nomerBota] == 173 or botVariant[nomerBota] == 174:
+                botZdorovie[nomerBota] = 0
         
         elif genom[botStep[nomerBota]] == 1: # Идём вверх
             if botLocation[nomerBota]>=32:
@@ -10588,7 +10727,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 13:  # Применяем заклинание "Пронзающая смерть"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 1:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -10695,7 +10834,7 @@ def botActivity(nomerBota):
                 if botZaklinania[nomerBota][n] == 1:
                     for n in range(15):
                         if botZaklinania[n] == 6:
-                            for n in range(1000):
+                            for n in range(300):
                                 if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                                     if botLocation[nomerBota]>=32:
                                         if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -10800,7 +10939,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 15:  # Применяем заклинание "Молния"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 12:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -10998,7 +11137,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 23:  # Применяем заклинание "Могильный луч"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 11:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -11135,7 +11274,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 25:  # Применяем заклинание "Обман"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 5:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -11257,7 +11396,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 26:  # Применяем заклинание "Отравление"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 7:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -11418,7 +11557,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 29:  # Применяем заклинание "Печать Хаоса"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 13:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -11541,7 +11680,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 30:  # Применяем заклинание "Поцелуй Смерти"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 15:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -11663,7 +11802,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 31:  # Применяем заклинание "Печать Смерти"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 14:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -11786,7 +11925,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 32:  # Применяем заклинание "Проклятье"
             for n in range(15):
                 if botZaklinania[nomerBota][n] == 16:
-                    for n in range(1000):
+                    for n in range(300):
                         if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
                             if botLocation[nomerBota]>=32:
                                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
@@ -11834,7 +11973,7 @@ def botActivity(nomerBota):
                             
                         if botLocation[nomerBota] == botLocation[n]+33: # Бот снизу-справа
                             if botLocation[nomerBota]<=416:
-                                if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
                                     if botMana[nomerBota] >= 75:
                                         for m in range(15):
                                             if botVozdeistvie[n][m] != 16:
@@ -11925,7 +12064,45 @@ def botActivity(nomerBota):
                     else: print("Need a mana for Dispel spell")
                     break
                 #if n==14 and botZaklinania[nomerBota][n] != 23: loviVebalo(nomerBota) 
+
+        elif genom[botStep[nomerBota]] == 34: # Способность духа - прибавить исходную ману 
+            if botVariant[nomerBota] == 173:    
+                for n in range(300):
+                    if botLocation[nomerBota] == botLocation[n]-33: # Бот сверху-слева
+                        if botLocation[nomerBota]>=32:
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                botIshMana[n] += 100
+                                break
+                                
+                    if botLocation[nomerBota] == botLocation[n]-32: # Бот сверху
+                        if botLocation[nomerBota]>=32:
+                            botIshMana[n] += 100
+                            break 
                     
+                    if botLocation[nomerBota] == botLocation[n]-31: # Бот сверху-справа
+                        if botLocation[nomerBota]>=32:
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                botIshMana[n] += 100
+                                break
+
+                    if botLocation[nomerBota] == botLocation[n]+33: # Бот сверху-слева
+                        if botLocation[nomerBota]<=416:
+                            if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
+                                botIshMana[n] += 100
+                                break
+                                
+                    if botLocation[nomerBota] == botLocation[n]+32: # Бот сверху
+                        if botLocation[nomerBota]<=416:
+                            botIshMana[n] += 100
+                            break 
+                    
+                    if botLocation[nomerBota] == botLocation[n]+31: # Бот сверху-справа
+                        if botLocation[nomerBota]<=416:
+                            if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
+                                botIshMana[n] += 100
+                                break                                
+                                                     
+        
         elif genom[botStep[nomerBota]] == 45: # Бьём врага вверх 
             if botLocation[nomerBota]>=32:
                 if world[botLocation[nomerBota]-32] >= 50: # Если сверху кто-то есть, то...
@@ -12069,7 +12246,7 @@ n = 0
 heroPanel(52)    
 pygame.display.update()   
 while True:
-    clock.tick(260)
+    clock.tick(160)
     if botZdorovie[n] > 0: botActivity(n)
     if botVariant[n] > 0 and botZdorovie[n] <= 0:    
             ubiraemTrup(n)      
