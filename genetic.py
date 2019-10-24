@@ -3142,40 +3142,40 @@ def buyInvent(imBuy):
                 putInventar(25)
                 botBronza[imHero] -= 240
         if market[thisPlace-1] == 26:
-            if botBronza[imHero] >= 300:
+            if botBronza[imHero] >= 700:
                 market[thisPlace-1] = 0
                 putInventar(26)
-                botBronza[imHero] -= 300
+                botBronza[imHero] -= 700
         if market[thisPlace-1] == 27:
-            if botBronza[imHero] >= 550:
+            if botBronza[imHero] >= 1450:
                 market[thisPlace-1] = 0
                 putInventar(27)
-                botBronza[imHero] -= 550
+                botBronza[imHero] -= 1450
         if market[thisPlace-1] == 28:
-            if botBronza[imHero] >= 1000:
+            if botBronza[imHero] >= 2900:
                 market[thisPlace-1] = 0
                 putInventar(28)
-                botBronza[imHero] -= 1000
+                botBronza[imHero] -= 2900
         if market[thisPlace-1] == 29:
-            if botBronza[imHero] >= 2500:
-                market[thisPlace-1] = 0
-                putInventar(29)
-                botBronza[imHero] -= 2500
-        if market[thisPlace-1] == 30:
             if botBronza[imHero] >= 5000:
                 market[thisPlace-1] = 0
-                putInventar(30)
+                putInventar(29)
                 botBronza[imHero] -= 5000
+        if market[thisPlace-1] == 30:
+            if botBronza[imHero] >= 7350:
+                market[thisPlace-1] = 0
+                putInventar(30)
+                botBronza[imHero] -= 7350
         if market[thisPlace-1] == 31:
-            if botBronza[imHero] >= 8500:
+            if botBronza[imHero] >= 11700:
                 market[thisPlace-1] = 0
                 putInventar(31)
-                botBronza[imHero] -= 8500
+                botBronza[imHero] -= 11700
         if market[thisPlace-1] == 32:
-            if botBronza[imHero] >= 13500:
+            if botBronza[imHero] >= 21000:
                 market[thisPlace-1] = 0
                 putInventar(32)
-                botBronza[imHero] -= 13500
+                botBronza[imHero] -= 21000
         if market[thisPlace-1] == 33:
             if botBronza[imHero] >= 4000:
                 market[thisPlace-1] = 0
@@ -3242,35 +3242,35 @@ def buyInvent(imBuy):
                 putInventar(45)
                 botBronza[imHero] -= 2000
         if market[thisPlace-1] == 46:
-            if botBronza[imHero] >= 300:
+            if botBronza[imHero] >= 900:
                 market[thisPlace-1] = 0
                 putInventar(46)
-                botBronza[imHero] -= 300
+                botBronza[imHero] -= 900
         if market[thisPlace-1] == 47:
-            if botBronza[imHero] >= 500:
+            if botBronza[imHero] >= 1500:
                 market[thisPlace-1] = 0
                 putInventar(47)
-                botBronza[imHero] -= 500
+                botBronza[imHero] -= 1500
         if market[thisPlace-1] == 48:
-            if botBronza[imHero] >= 850:
+            if botBronza[imHero] >= 2900:
                 market[thisPlace-1] = 0
                 putInventar(48)
-                botBronza[imHero] -= 850
+                botBronza[imHero] -= 2900
         if market[thisPlace-1] == 49:
-            if botBronza[imHero] >= 1600:
+            if botBronza[imHero] >= 4350:
                 market[thisPlace-1] = 0
                 putInventar(49)
-                botBronza[imHero] -= 1600
+                botBronza[imHero] -= 4350
         if market[thisPlace-1] == 50:
-            if botBronza[imHero] >= 3000:
+            if botBronza[imHero] >= 6150:
                 market[thisPlace-1] = 0
                 putInventar(50)
-                botBronza[imHero] -= 3000
+                botBronza[imHero] -= 6150
         if market[thisPlace-1] == 51:
-            if botBronza[imHero] >= 6000:
+            if botBronza[imHero] >= 9500:
                 market[thisPlace-1] = 0
                 putInventar(51)
-                botBronza[imHero] -= 6000
+                botBronza[imHero] -= 9500
         if market[thisPlace-1] == 53:
             if botBronza[imHero] >= 1200:
                 market[thisPlace-1] = 0
@@ -3307,60 +3307,60 @@ def buyInvent(imBuy):
                 putInventar(59)
                 botBronza[imHero] -= 1000
         if market[thisPlace-1] == 60:
-            if botBronza[imHero] >= 250:
+            if botBronza[imHero] >= 750:
                 market[thisPlace-1] = 0
                 putInventar(60)
-                botBronza[imHero] -= 250
+                botBronza[imHero] -= 750
         if market[thisPlace-1] == 61:
-            if botBronza[imHero] >= 450:
+            if botBronza[imHero] >= 1300:
                 market[thisPlace-1] = 0
                 putInventar(61)
-                botBronza[imHero] -= 450
+                botBronza[imHero] -= 1300
         if market[thisPlace-1] == 62:
-            if botBronza[imHero] >= 900:
+            if botBronza[imHero] >= 2350:
                 market[thisPlace-1] = 0
                 putInventar(62)
-                botBronza[imHero] -= 900
+                botBronza[imHero] -= 2350
         if market[thisPlace-1] == 63:
-            if botBronza[imHero] >= 900:
+            if botBronza[imHero] >= 4000:
                 market[thisPlace-1] = 0
                 putInventar(900)
-                botBronza[imHero] -= 900
+                botBronza[imHero] -= 4000
         if market[thisPlace-1] == 64:
-            if botBronza[imHero] >= 2400:
+            if botBronza[imHero] >= 8900:
                 market[thisPlace-1] = 0
                 putInventar(64)
-                botBronza[imHero] -= 2400
+                botBronza[imHero] -= 8900
         if market[thisPlace-1] == 65:
-            if botBronza[imHero] >= 6000:
+            if botBronza[imHero] >= 12000:
                 market[thisPlace-1] = 0
                 putInventar(65)
-                botBronza[imHero] -= 6000
+                botBronza[imHero] -= 12000
         if market[thisPlace-1] == 66:
             if botBronza[imHero] >= 20000:
                 market[thisPlace-1] = 0
                 putInventar(66)
                 botBronza[imHero] -= 20000
         if market[thisPlace-1] == 67:
-            if botBronza[imHero] >= 400:
+            if botBronza[imHero] >= 800:
                 market[thisPlace-1] = 0
                 putInventar(67)
-                botBronza[imHero] -= 400
+                botBronza[imHero] -= 800
         if market[thisPlace-1] == 68:
-            if botBronza[imHero] >= 650:
+            if botBronza[imHero] >= 1250:
                 market[thisPlace-1] = 0
                 putInventar(68)
-                botBronza[imHero] -= 650
+                botBronza[imHero] -= 1250
         if market[thisPlace-1] == 69:
-            if botBronza[imHero] >= 1000:
+            if botBronza[imHero] >= 2100:
                 market[thisPlace-1] = 0
                 putInventar(69)
-                botBronza[imHero] -= 1000
+                botBronza[imHero] -= 2100
         if market[thisPlace-1] == 70:
-            if botBronza[imHero] >= 1500:
+            if botBronza[imHero] >= 3500:
                 market[thisPlace-1] = 0
                 putInventar(70)
-                botBronza[imHero] -= 1500
+                botBronza[imHero] -= 3500
         if market[thisPlace-1] == 71:
             if botBronza[imHero] >= 1900:
                 market[thisPlace-1] = 0
@@ -3733,7 +3733,7 @@ def buyInvent(imBuy):
         variableName = u"+3 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        variableName = u"Куп./прод. 700бр|6ср/210бр|4ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
         variableName = u"Купить?"
@@ -3758,7 +3758,7 @@ def buyInvent(imBuy):
         variableName = u"+6 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 550бр|11ср/385бр|7ср"
+        variableName = u"Куп./прод. 1450бр|11ср/385бр|7ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
         variableName = u"Купить?"
@@ -3783,7 +3783,7 @@ def buyInvent(imBuy):
         variableName = u"+12 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        variableName = u"Куп./прод. 2900бр|20ср/700бр|14ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
         variableName = u"Купить?"
@@ -3805,7 +3805,7 @@ def buyInvent(imBuy):
         variableName = u"+25 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        variableName = u"Куп./прод. 5000бр|50ср/1750бр|35ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
         variableName = u"Купить?"
@@ -3833,7 +3833,7 @@ def buyInvent(imBuy):
         variableName = u"+35 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
-        variableName = u"Куп./прод. 5000бр|100ср/3500бр|70ср"
+        variableName = u"Куп./прод. 7350бр|100ср/3500бр|70ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 700))
         variableName = u"Купить?"
@@ -3861,7 +3861,7 @@ def buyInvent(imBuy):
         variableName = u"+55 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
-        variableName = u"Куп./прод. 8500бр|170ср/5950бр|118ср"
+        variableName = u"Куп./прод. 11700бр|170ср/5950бр|118ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 700))
         variableName = u"Купить?"
@@ -3886,7 +3886,7 @@ def buyInvent(imBuy):
         variableName = u"+75 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 13500бр|270ср/9450бр|189ср"
+        variableName = u"Куп./прод. 21000бр|270ср/9450бр|189ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
         variableName = u"Купить?"
@@ -4089,7 +4089,7 @@ def buyInvent(imBuy):
         variableName = u"+3 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        variableName = u"Куп./прод. 900бр|6ср/210бр|4ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660)) 
         variableName = u"Купить?"
@@ -4111,7 +4111,7 @@ def buyInvent(imBuy):
         variableName = u"+5 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 500бр|10ср/350бр|7ср"
+        variableName = u"Куп./прод. 1500бр|10ср/350бр|7ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
         variableName = u"Купить?"
@@ -4130,7 +4130,7 @@ def buyInvent(imBuy):
         variableName = u"+8 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 850бр|17ср/595бр|12ср"
+        variableName = u"Куп./прод. 2900бр|17ср/595бр|12ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4152,7 +4152,7 @@ def buyInvent(imBuy):
         variableName = u"+14 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 1600бр|32ср/1120бр|22ср"
+        variableName = u"Куп./прод. 4350бр|32ср/1120бр|22ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
         variableName = u"Купить?"
@@ -4171,7 +4171,7 @@ def buyInvent(imBuy):
         variableName = u"+21 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        variableName = u"Куп./прод. 6150бр|60ср/2100бр|42ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4193,7 +4193,7 @@ def buyInvent(imBuy):
         variableName = u"+30 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        variableName = u"Куп./прод. 9500бр|120ср/4200бр|84ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
         variableName = u"Купить?"
@@ -4348,7 +4348,7 @@ def buyInvent(imBuy):
         variableName = u"+3 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
-        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        variableName = u"Куп./прод. 750бр|5ср/175бр|3ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4367,7 +4367,7 @@ def buyInvent(imBuy):
         variableName = u"+5 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 450бр|4ср/315бр|6ср"
+        variableName = u"Куп./прод. 1300бр|4ср/315бр|6ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4386,7 +4386,7 @@ def buyInvent(imBuy):
         variableName = u"+8 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 900бр|18ср/630бр|12ср"
+        variableName = u"Куп./прод. 2350бр|18ср/630бр|12ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4411,7 +4411,7 @@ def buyInvent(imBuy):
         variableName = u"+14 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 2400бр|48ср/1680бр|33ср"
+        variableName = u"Куп./прод. 4000бр|48ср/1680бр|33ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680)) 
         variableName = u"Купить?"
@@ -4430,7 +4430,7 @@ def buyInvent(imBuy):
         variableName = u"+21 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 4300бр|86ср/3000бр|60ср"
+        variableName = u"Куп./прод. 8900бр|86ср/3000бр|60ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4452,7 +4452,7 @@ def buyInvent(imBuy):
         variableName = u"+30 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        variableName = u"Куп./прод. 12000бр|120ср/4200бр|84ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4490,7 +4490,7 @@ def buyInvent(imBuy):
         variableName = u"+4 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        variableName = u"Куп./прод. 800бр|8ср/280бр|5ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4509,7 +4509,7 @@ def buyInvent(imBuy):
         variableName = u"+6 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 650бр|13ср/455бр|9ср"
+        variableName = u"Куп./прод. 1250бр|13ср/455бр|9ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4528,7 +4528,7 @@ def buyInvent(imBuy):
         variableName = u"+9 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        variableName = u"Куп./прод. 2100бр|20ср/700бр|14ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640)) 
         variableName = u"Купить?"
@@ -4547,7 +4547,7 @@ def buyInvent(imBuy):
         variableName = u"+13 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 1500бр|30ср/1050бр|21ср"
+        variableName = u"Куп./прод. 3500бр|30ср/1050бр|21ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640)) 
         variableName = u"Купить?"
@@ -12219,18 +12219,18 @@ botExpirience[imHero] = 0   # Главный герой
 botLvl[imHero] = 1
 botRasa[imHero] = 7
 botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botZaklinania[imHero] = [1,12,22,2,0,0,0,0,0,0,0,0,0,0,0,100]
+botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
 botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 botIshZdorovie[imHero] = 200
 botZdorovie[imHero] = 200
 botMana[imHero] = 100
 botIshMana[imHero] = 100
-botSila[imHero] = 20
+botSila[imHero] = 10
 botLovkost[imHero] = 5
 botYdacha[imHero] = 9
-botZoloto[imHero] = 100
-botSerebro[imHero] = 3000
-botBronza[imHero] = 100
+botZoloto[imHero] = 0
+botSerebro[imHero] = 0
+botBronza[imHero] = 0
 botHod[imHero] = botLovkost[imHero]
 botAlgoritm[imHero] = 4
 botVariant[imHero] = 52
