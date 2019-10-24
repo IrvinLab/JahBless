@@ -914,6 +914,9 @@ def otdaiLut(nom, vragBot):
     if botZdorovie[vragBot] <= 0: 
         botExpirience[nom] += int(botIshZdorovie[vragBot] / 2)
         tempEnum = 0
+        botBronza[nom] += botBronza[vragBot]
+        botSerebro[nom] += botSerebro[vragBot]
+        botZoloto[nom] += botZoloto[vragBot]
         for tempEnum in range(16):
             if botInventar[vragBot][tempEnum] > 0:
                 if botInventar[nom][0] == 0: botInventar[nom][0] = botInventar[vragBot][tempEnum]
