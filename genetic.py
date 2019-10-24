@@ -968,7 +968,7 @@ def textInventar(nomInv):
                 
     if tmpMarket == 1:
         heroPanel(hero)
-        randMoney = int(random.random()*6)        
+        randMoney = 1        
         tmpMarket = 0
         yaNaRinke = 0        
         yes = 0
@@ -8171,7 +8171,7 @@ def botActivity(nomerBota):
         for n in range(16): 
             pass
             nn = 0 
-            tmp = int(random.random()*73)
+            tmp = int(random.random()*75)
             if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56:
                 market[n] = tmpInventar[n] = 0
             else:
@@ -8212,10 +8212,10 @@ def botActivity(nomerBota):
                         botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 100
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 150
                     if botRandom == 10:
-                        botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 200
                     bornBot(n, tmp)           
                             
@@ -8242,13 +8242,13 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 90
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 200
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 300
                     if botRandom == 10:
-                        botInventar[n] = [3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 400       
                     bornBot(n, tmp)
                         
@@ -8273,13 +8273,13 @@ def botActivity(nomerBota):
                     botSerebro[n] = 1
                     botBronza[n] = 150
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 250
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [3,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 350 
                     if botRandom == 10:
-                        botInventar[n] = [4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2
                         botBronza[n] = 450       
                     bornBot(n, tmp)
@@ -8309,7 +8309,7 @@ def botActivity(nomerBota):
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                     if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 100
                     bornBot(n, tmp) 
                         
@@ -8339,7 +8339,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 60
                     if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 120
                     bornBot(n, tmp)  
                         
@@ -8359,7 +8359,7 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 5
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 40
@@ -8493,15 +8493,15 @@ def botActivity(nomerBota):
                     botSerebro[n] = 1
                     botBronza[n] = 500
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [69,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [69,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2
                         botBronza[n] = 500
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [70,5,2,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [70,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2 
                         botBronza[n] = 600
                     if botRandom == 10:
-                        botInventar[n] = [70,5,3,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [70,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3       
                         botBronza[n] = 800
                     bornBot(n, tmp)
@@ -8626,7 +8626,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 210
                     if botRandom == 10:
-                        botInventar[n] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botInventar[n] = [4,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botSerebro[n] = 1
                         botBronza[n] = 290
                     bornBot(n, tmp)
@@ -8684,10 +8684,10 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 0
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [7,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 60
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 100
                     if botRandom == 10:
                         botInventar[n] = [73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
@@ -8711,15 +8711,15 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [7,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 200
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 250
                     if botRandom == 10:
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
@@ -8748,7 +8748,7 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 100
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [6,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 150
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [61,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
@@ -8999,10 +8999,10 @@ def botActivity(nomerBota):
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 160
                     if botRandom == 10:
-                        botInventar[n] = [4,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botInventar[n] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botBronza[n] = 250
                     bornBot(n, tmp)
                         
@@ -9151,11 +9151,11 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 150
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1
                         botBronza[n] = 200
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [59,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [59,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botSerebro[n] = 2
                         botBronza[n] = 300
                     if botRandom == 10:
@@ -9219,7 +9219,7 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 450
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [9,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1
                         botBronza[n] = 500
                     if botRandom >= 20 and botRandom <= 25:
@@ -9760,8 +9760,8 @@ def botActivity(nomerBota):
                     botNumer[n] = n
                     botVariant[n] = tmp        
                     botLvl[n] = 2
-                    botZdorovie[n] = 75
-                    botIshZdorovie[n] = 75
+                    botZdorovie[n] = 80
+                    botIshZdorovie[n] = 80
                     botMana[n] = 0
                     botIshMana[n] = 0
                     botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -9791,8 +9791,8 @@ def botActivity(nomerBota):
                     botNumer[n] = n
                     botVariant[n] = tmp        
                     botLvl[n] = 3
-                    botZdorovie[n] = 110
-                    botIshZdorovie[n] = 110
+                    botZdorovie[n] = 120
+                    botIshZdorovie[n] = 120
                     botMana[n] = 0
                     botIshMana[n] = 0
                     botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -9822,8 +9822,8 @@ def botActivity(nomerBota):
                     botNumer[n] = n
                     botVariant[n] = tmp        
                     botLvl[n] = 4
-                    botZdorovie[n] = 155
-                    botIshZdorovie[n] = 155
+                    botZdorovie[n] = 165
+                    botIshZdorovie[n] = 165
                     botMana[n] = 0
                     botIshMana[n] = 0
                     botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -9853,8 +9853,8 @@ def botActivity(nomerBota):
                     botNumer[n] = n
                     botVariant[n] = tmp        
                     botLvl[n] = 5
-                    botZdorovie[n] = 200
-                    botIshZdorovie[n] = 200
+                    botZdorovie[n] = 220
+                    botIshZdorovie[n] = 220
                     botMana[n] = 0
                     botIshMana[n] = 0
                     botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
@@ -10028,7 +10028,7 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 150
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1
                         botBronza[n] = 200
                     if botRandom >= 20 and botRandom <= 25:
@@ -10217,7 +10217,7 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 300
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [11,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [0,12,48,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 450
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [31,49,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
@@ -10254,7 +10254,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [59,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botSerebro[n] = 1
                     if botRandom == 10:
-                        botInventar[n] = [53,11,12,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botInventar[n] = [53,0,12,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botSerebro[n] = 3
                     bornBot(n, tmp)
                         
@@ -10274,12 +10274,12 @@ def botActivity(nomerBota):
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    botInventar[n] = [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 250
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [9,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1
                         botBronza[n] = 400
                     if botRandom >= 20 and botRandom <= 25:
@@ -10316,10 +10316,10 @@ def botActivity(nomerBota):
                         botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 100
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 150
                     if botRandom == 10:
-                        botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 200       
                     bornBot(n, tmp)
                         
@@ -10347,10 +10347,10 @@ def botActivity(nomerBota):
                         botInventar[n] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 200
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 350
                     if botRandom == 10:
-                        botInventar[n] = [5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 500       
                     bornBot(n, tmp)
                         
@@ -10375,13 +10375,13 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 170
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 270
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 370
                     if botRandom == 10:
-                        botInventar[n] = [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 570       
                     bornBot(n, tmp)
                         
@@ -10406,10 +10406,10 @@ def botActivity(nomerBota):
                     botSerebro[n] = 0
                     botBronza[n] = 270
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [6,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 370
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [7,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [0,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 500
                     if botRandom == 10:
                         botInventar[n] = [59,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -10440,7 +10440,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 470
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [11,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [0,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 600
                     if botRandom == 10:
                         botInventar[n] = [72,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -10471,7 +10471,7 @@ def botActivity(nomerBota):
                         botInventar[n] = [71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 580
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [11,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 800
                     if botRandom == 10:
                         botInventar[n] = [56,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -10586,6 +10586,7 @@ def botActivity(nomerBota):
         if genom[botStep[nomerBota]] == 0:
             if botVariant[nomerBota] == 173 or botVariant[nomerBota] == 174:
                 botZdorovie[nomerBota] = 0
+                ubiraemTrup[nomerBota]
         
         elif genom[botStep[nomerBota]] == 1: # Идём вверх
             if botLocation[nomerBota]>=32:
