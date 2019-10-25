@@ -1359,7 +1359,7 @@ def textInventar(nomInv):
         variableName = u"+65 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 78бр|2ср/55бр|1ср"
+        variableName = u"Куп./прод. 170бр|2ср/55бр|1ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1372,7 +1372,7 @@ def textInventar(nomInv):
         variableName = u"+150 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 120бр|3ср/84бр|2ср"
+        variableName = u"Куп./прод. 280бр|3ср/84бр|2ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1385,7 +1385,7 @@ def textInventar(nomInv):
         variableName = u"+320 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 220бр|4ср/155бр|3ср"
+        variableName = u"Куп./прод. 400бр|4ср/155бр|3ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1398,7 +1398,7 @@ def textInventar(nomInv):
         variableName = u"+675 Здоровья "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        variableName = u"Куп./прод. 800бр|8ср/280бр|5ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1411,7 +1411,7 @@ def textInventar(nomInv):
         variableName = u"+60 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 70бр|2ср/50бр|1ср"
+        variableName = u"Куп./прод. 90бр|2ср/50бр|1ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1424,7 +1424,7 @@ def textInventar(nomInv):
         variableName = u"+130 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 140бр|3ср/98бр|2ср"
+        variableName = u"Куп./прод. 210бр|3ср/98бр|2ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1437,7 +1437,7 @@ def textInventar(nomInv):
         variableName = u"+260 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        variableName = u"Куп./прод. 370бр|5ср/175бр|3ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1450,7 +1450,7 @@ def textInventar(nomInv):
         variableName = u"+520 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 370бр|7ср/250бр|5ср"
+        variableName = u"Куп./прод. 700бр|7ср/250бр|5ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1463,7 +1463,7 @@ def textInventar(nomInv):
         variableName = u"+1100 Маны "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
-        variableName = u"Куп./прод. 600бр|12ср/420бр|8ср"
+        variableName = u"Куп./прод. 1350бр|12ср/420бр|8ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1689,7 +1689,7 @@ def textInventar(nomInv):
         variableName = u"+3 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        variableName = u"Куп./прод. 700бр|6ср/210бр|4ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1714,7 +1714,7 @@ def textInventar(nomInv):
         variableName = u"+6 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 550бр|11ср/385бр|7ср"
+        variableName = u"Куп./прод. 1450бр|11ср/385бр|7ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1739,7 +1739,7 @@ def textInventar(nomInv):
         variableName = u"+12 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        variableName = u"Куп./прод. 2900бр|20ср/700бр|14ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1761,7 +1761,7 @@ def textInventar(nomInv):
         variableName = u"+25 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 2500бр|50ср/1750бр|35ср"
+        variableName = u"Куп./прод. 5000бр|50ср/1750бр|35ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1789,7 +1789,7 @@ def textInventar(nomInv):
         variableName = u"+35 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
-        variableName = u"Куп./прод. 5000бр|100ср/3500бр|70ср"
+        variableName = u"Куп./прод. 7350бр|100ср/3500бр|70ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 700))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1817,7 +1817,7 @@ def textInventar(nomInv):
         variableName = u"+55 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
-        variableName = u"Куп./прод. 8500бр|170ср/5950бр|118ср"
+        variableName = u"Куп./прод. 11700бр|170ср/5950бр|118ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 700))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1842,7 +1842,7 @@ def textInventar(nomInv):
         variableName = u"+75 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 13500бр|270ср/9450бр|189ср"
+        variableName = u"Куп./прод. 21000бр|270ср/9450бр|189ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2045,7 +2045,7 @@ def textInventar(nomInv):
         variableName = u"+3 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 300бр|6ср/210бр|4ср"
+        variableName = u"Куп./прод. 900бр|6ср/210бр|4ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))        
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2067,7 +2067,7 @@ def textInventar(nomInv):
         variableName = u"+5 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 500бр|10ср/350бр|7ср"
+        variableName = u"Куп./прод. 1500бр|10ср/350бр|7ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2086,7 +2086,7 @@ def textInventar(nomInv):
         variableName = u"+8 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 850бр|17ср/595бр|12ср"
+        variableName = u"Куп./прод. 2900бр|17ср/595бр|12ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2108,7 +2108,7 @@ def textInventar(nomInv):
         variableName = u"+14 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 1600бр|32ср/1120бр|22ср"
+        variableName = u"Куп./прод. 4350бр|32ср/1120бр|22ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2127,7 +2127,7 @@ def textInventar(nomInv):
         variableName = u"+21 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 3000бр|60ср/2100бр|42ср"
+        variableName = u"Куп./прод. 6150бр|60ср/2100бр|42ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2149,7 +2149,7 @@ def textInventar(nomInv):
         variableName = u"+30 Защиты"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        variableName = u"Куп./прод. 9500бр|120ср/4200бр|84ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2308,7 +2308,7 @@ def textInventar(nomInv):
         variableName = u"+3 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
-        variableName = u"Куп./прод. 250бр|5ср/175бр|3ср"
+        variableName = u"Куп./прод. 750бр|5ср/175бр|3ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2327,7 +2327,7 @@ def textInventar(nomInv):
         variableName = u"+5 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 450бр|4ср/315бр|6ср"
+        variableName = u"Куп./прод. 1300бр|4ср/315бр|6ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2346,7 +2346,7 @@ def textInventar(nomInv):
         variableName = u"+8 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 900бр|18ср/630бр|12ср"
+        variableName = u"Куп./прод. 2350бр|18ср/630бр|12ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2371,7 +2371,7 @@ def textInventar(nomInv):
         variableName = u"+14 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
-        variableName = u"Куп./прод. 2400бр|48ср/1680бр|33ср"
+        variableName = u"Куп./прод. 4000бр|48ср/1680бр|33ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))        
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2390,7 +2390,7 @@ def textInventar(nomInv):
         variableName = u"+21 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 4300бр|86ср/3000бр|60ср"
+        variableName = u"Куп./прод. 8900бр|86ср/3000бр|60ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2412,7 +2412,7 @@ def textInventar(nomInv):
         variableName = u"+30 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Куп./прод. 6000бр|120ср/4200бр|84ср"
+        variableName = u"Куп./прод. 12000бр|120ср/4200бр|84ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2450,7 +2450,7 @@ def textInventar(nomInv):
         variableName = u"+4 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 400бр|8ср/280бр|5ср"
+        variableName = u"Куп./прод. 800бр|8ср/280бр|5ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2469,7 +2469,7 @@ def textInventar(nomInv):
         variableName = u"+6 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 650бр|13ср/455бр|9ср"
+        variableName = u"Куп./прод. 1250бр|13ср/455бр|9ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2488,7 +2488,7 @@ def textInventar(nomInv):
         variableName = u"+9 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        variableName = u"Куп./прод. 2100бр|20ср/700бр|14ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))        
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -2507,7 +2507,7 @@ def textInventar(nomInv):
         variableName = u"+13 Силы"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 1500бр|30ср/1050бр|21ср"
+        variableName = u"Куп./прод. 3500бр|30ср/1050бр|21ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))        
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
