@@ -9,7 +9,7 @@ m = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [36, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 1, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 34, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 2, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 34, 51, 45]
+    genom = [36, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 1, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 51, 45]
 
 
 
@@ -8170,7 +8170,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"с помощью духа-союзника, то придётся за "
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 740))    
-                variableName = u"нам побегать"
+                variableName = u"ним побегать"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 760))
             if slova == 5:
@@ -8184,39 +8184,124 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 600))
             if slova == 6:
-                variableName = u"Духи-союзники иногда приходят в наши земли."
+                variableName = u"Когда появиться дух смерти, лучше"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
-                variableName = u"Бывает времена когда они заглядывают"
+                variableName = u"спрятаться от него подальше."
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 580))  
-                variableName = u"лишь на мгновение..."
+                variableName = u"Отряд душекрадов по сравнению с ним -"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 600)) 
-                variableName = u"Если встать рядом с таким духом"
+                variableName = u"горстка жалких котят. Этот дух способен"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 620)) 
-                variableName = u"он может увеличить твою исходную ману"
+                variableName = u"убить любого одним лишь прикосновением"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 640))
-                variableName = u"на 100 единиц. Стой как можно дольше"
+                variableName = u"Они невероятно сильны и не предсказуемы."
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 660))
-                variableName = u"с ним рядом. Они умеют телепортироваться"
+                variableName = u"Ты можешь беззаботно идти на рынок,"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 680))
-                variableName = u"на довольно большие расстояния, так что"
+                variableName = u"чтобы продать свои трофеи, а дух встанет"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 700))
-                variableName = u"если хочешь стать могущественным магом"
+                variableName = u"перед тобой, ты даже не успеешь отпрыгнуть"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 720))
-                variableName = u"с помощью духа-союзника, то придётся за "
+                variableName = u"от него, как окажешься на том свете."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 740))   
+            if slova == 7:
+                variableName = u"У эльфиек обычно много бронзы при себе"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"Они в роли посыльных на сколько мне"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"известно в городе. Их отправляют в"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"магический лес за лекарственными "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"растениями, и на рынок за снадобьями."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+            if slova == 8 and botLvl[imHero] <= 5:
+                variableName = u"Знаешь, а у меня ведь есть камень"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"который способен открыть врата для духов."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"Позже я его смогу тебе продать"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"А пока твой дух слаб, и я боюсь ты"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"не сможешь распорядиться им должным"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+                variableName = u"образом. Ведь этот артефакт настолько"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))
+                variableName = u"могущественен, что способен тебя убить"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680)) 
+            if slova == 9:
+                variableName = u"Послушай, может в другой раз поговорим?"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"Я сейчас очень занят"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))
+            if slova == 10:
+                variableName = u"У Некромантов и Оккультистов есть"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"особый посох. Ты можешь с помощью него
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"использовать заклинание Пронзающей"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"Смерти, направив его на врага, при этом"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"маны расходуется в два раза меньше."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+                variableName = u"Правда им достаточно не удобно"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))
+                variableName = u"пользоваться, но при должной сноровке"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680))
+                variableName = u"он будет служить тебе не заменимым"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 700))
+                variableName = u"инструментом в борьбе. Мне довелось"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 720))
+                variableName = u"пользоваться таким артефактом во времена"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 740))    
-                variableName = u"ним побегать"
+                variableName = u"Великого Нашествия. От моих рук полег"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-                sc.blit(nameObj,(440, 760))                                
+                sc.blit(nameObj,(440, 760))
+                variableName = u"не один десяток орков, и всё благодаря"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 800))
+                variableName = u"этому посоху, быть может однажды я его"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 820))
+                variableName = u"тебе продам"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 840))                                      
         
     if selectLot == 3:
         hijinaMaga = 0
@@ -8809,7 +8894,7 @@ def botActivity(nomerBota):
                         botSerebro[n] = 2 
                     if botRandom == 10:
                         botInventar[n] = [70,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 3 
+                        botSerebro[n] = 4 
                     bornBot(n, tmp)
                         
                 if tmp == 109: # Гном 4 ур.
@@ -8830,16 +8915,16 @@ def botActivity(nomerBota):
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
-                    botSerebro[n] = 1
+                    botSerebro[n] = 2
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [69,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 2
+                        botSerebro[n] = 3
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [70,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 2 
+                        botSerebro[n] = 4 
                     if botRandom == 10:
                         botInventar[n] = [70,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 3  
+                        botSerebro[n] = 5  
                     bornBot(n, tmp)
                         
                 if tmp == 110: # Гоблин 0 ур.
@@ -9123,7 +9208,7 @@ def botActivity(nomerBota):
                         botBronza[n] = 40
                     if botRandom == 10:
                         botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
-                        botBronza[n] = 90
+                        botSerebro[n] = 1
                     bornBot(n, tmp)
                         
                 if tmp == 119: # Монстр 1 ур.
@@ -9460,7 +9545,7 @@ def botActivity(nomerBota):
                         botBronza[n] = 250
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [63,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 300
+                        botSerebro[n] = 3
                     if botRandom == 10:
                         botInventar[n] = [65,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 500       
@@ -9556,16 +9641,13 @@ def botActivity(nomerBota):
                     botBronza[n] = 10
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 1
-                        botBronza[n] = 20
+                        botSerebro[n] = 2
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botSerebro[n] = 2
-                        botBronza[n] = 30
+                        botSerebro[n] = 3
                     if botRandom == 10:
                         botInventar[n] = [51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 3
-                        botBronza[n] = 70       
+                        botSerebro[n] = 4      
                     bornBot(n, tmp)
                         
                 if tmp == 133: # Огр 1 ур.
@@ -9627,7 +9709,7 @@ def botActivity(nomerBota):
                         botBronza[n] = 110
                     if botRandom == 10:
                         botInventar[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 120
+                        botSerebro[n] = 1
                     bornBot(n, tmp)
                         
                 if tmp == 135: # Оккультист 6 ур.
@@ -9664,11 +9746,11 @@ def botActivity(nomerBota):
                         botBronza[n] = 80
                     if botRandom == 11:
                         botInventar[n] = [57,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 3
+                        botSerebro[n] = 5
                         botBronza[n] = 90
                     if botRandom == 10:
                         botInventar[n] = [66,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 3
+                        botSerebro[n] = 7
                         botBronza[n] = 40       
                     bornBot(n, tmp)
                         
@@ -9762,7 +9844,7 @@ def botActivity(nomerBota):
                         botBronza[n] = 80
                     if botRandom == 10:
                         botInventar[n] = [29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 90
+                        botSerebro[n] = 1
                     bornBot(n, tmp)
                         
                 if tmp == 139: # Орк 4 ур.
@@ -9787,7 +9869,7 @@ def botActivity(nomerBota):
                     botBronza[n] = 50
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 150
+                        botSerebro[n] = 1
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 200
@@ -9990,7 +10072,7 @@ def botActivity(nomerBota):
                     botBronza[n] = 100
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [46,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 150
+                        botSerebro[n] = 1
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 200
@@ -10018,10 +10100,10 @@ def botActivity(nomerBota):
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
-                    botBronza[n] = 100
+                    botBronza[n] = 130
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 150
+                        botSerebro[n] = 2
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 200
@@ -10058,7 +10140,7 @@ def botActivity(nomerBota):
                         botBronza[n] = 200
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 300
+                        botSerebro[n] = 10
                     bornBot(n, tmp)
                         
                 if tmp == 148: # Скелет 1 ур.
@@ -10081,15 +10163,6 @@ def botActivity(nomerBota):
                     botZoloto[n] = 0
                     botSerebro[n] = 0
                     botBronza[n] = 0
-                    if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 0
-                    if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 0
-                    if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 0
                     bornBot(n, tmp)
                         
                 if tmp == 149: # Скелет 2 ур.
@@ -10109,18 +10182,6 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
-                    if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 0
-                    if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 0
-                    if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 0
                     bornBot(n, tmp)
                         
                 if tmp == 150: # Скелет 3 ур.
@@ -10140,18 +10201,6 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
-                    if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 0
-                    if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 0
-                    if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 0
                     bornBot(n, tmp)
                         
                 if tmp == 151: # Скелет 4 ур.
@@ -10171,18 +10220,6 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
-                    if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 0
-                    if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 0
-                    if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 0
                     bornBot(n, tmp)
                         
                 if tmp == 152: # Скелет 5 ур.
@@ -10202,18 +10239,6 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
-                    if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 0
-                    if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 0
-                    if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 0
                     bornBot(n, tmp)
                         
                 if tmp == 153: # Скелет 6 ур.
@@ -10233,18 +10258,6 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
-                    if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 0
-                    if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 0
-                    if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 0
                     bornBot(n, tmp)
                         
                 if tmp == 154: # Скелет 7 ур.
@@ -10264,18 +10277,6 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
-                    if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 0
-                    if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 0
-                    if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 0
                     bornBot(n, tmp)
                         
                 if tmp == 155: # Скелет 8 ур.
@@ -10295,18 +10296,6 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 4
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
-                    if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 0
-                    if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 0
-                    if botRandom == 10:
-                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 0
                     bornBot(n, tmp)
                         
                 if tmp == 156: # Душекрад 10 ур.
@@ -10433,10 +10422,10 @@ def botActivity(nomerBota):
                         botBronza[n] = 100
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 100
+                        botSerebro[n] = 1
                     if botRandom == 10:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 100
+                        botSerebro[n] = 2
                     bornBot(n, tmp)
                         
                 if tmp == 160: # Тролль 3 ур.
@@ -10498,7 +10487,7 @@ def botActivity(nomerBota):
                         botBronza[n] = 280
                     if botRandom == 10:
                         botInventar[n] = [30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
-                        botBronza[n] = 300
+                        botSerebro[n] = 1
                     bornBot(n, tmp)
                         
                 if tmp == 162: # Тролль 5 ур.
@@ -10744,6 +10733,7 @@ def botActivity(nomerBota):
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 270
+                        botSerebro[n] = 1
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [0,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 400
@@ -10802,16 +10792,17 @@ def botActivity(nomerBota):
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
-                    botBronza[n] = 380
+                    botBronza[n] = 80
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [71,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 480
+                        botBronza[n] = 280
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 600
+                        botBronza[n] = 300
+                        botSerebro[n] = 3
                     if botRandom == 10:
                         botInventar[n] = [56,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 8000       
+                        botBronza[n] = 400       
                     bornBot(n, tmp)
                         
                 if tmp == 172: # Женщина-эльф 7 ур.
@@ -10833,16 +10824,16 @@ def botActivity(nomerBota):
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 0
-                    botBronza[n] = 680
+                    botBronza[n] = 280
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 780
+                        botBronza[n] = 380
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 900
+                        botBronza[n] = 400
                     if botRandom == 10:
                         botInventar[n] = [58,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botBronza[n] = 1500       
+                        botBronza[n] = 500       
                     bornBot(n, tmp)                 
                 
                 if tmp == 173: # Дух знания
@@ -12464,7 +12455,7 @@ def botActivity(nomerBota):
     sobitie += 1
     #botZdorovie[nomerBota] -= 1
     if sobitie > 100000: sobitie = 0
-    if botZdorovie[nomerBota] <= 0: ubiraemTrup(nomerBota); otdaiLut(n, nomerBota)
+    if botZdorovie[nomerBota] <= 0 and botVariant[nomerBota] != 173 and botVariant[nomerBota] != 173: ubiraemTrup(nomerBota); otdaiLut(n, nomerBota)
    
 worldCreate()    
 
