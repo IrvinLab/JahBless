@@ -5607,6 +5607,28 @@ def doebaca(hehmda):  #Функция отображающая информац�
     if botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
         # Тут мы взаимодействуем с Хижиной Мага
         hijinaMaga = 1
+        for n in range(15):     
+            if n == 0: xIn = 772; yIn = 548
+            if n == 1: xIn = 840; yIn = 548
+            if n == 2: xIn = 908; yIn = 548
+            if n == 3: xIn = 976; yIn = 548
+            if n == 4: xIn = 772; yIn = 616
+            if n == 5: xIn = 840; yIn = 616
+            if n == 6: xIn = 908; yIn = 616
+            if n == 7: xIn = 976; yIn = 616
+            if n == 8: xIn = 772; yIn = 684
+            if n == 9: xIn = 840; yIn = 684
+            if n == 10: xIn = 908; yIn = 684
+            if n == 11: xIn = 976; yIn = 684
+            if n == 12: xIn = 772; yIn = 752
+            if n == 13: xIn = 840; yIn = 752
+            if n == 14: xIn = 908; yIn = 752
+            if n == 15: xIn = 976; yIn = 752
+            pix = pygame.image.load('Images/zero.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xIn,yIn))
+            
         pix = pygame.image.load('Images/47641705.jpg')
         x_len = pix.get_width()
         y_len = pix.get_height() 
@@ -8016,7 +8038,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
             sc.blit(nameObj,(440, 580))
             
         if drujbaMaga >= 1:
-            slova = int(random.random() * 5)
+            slova = int(random.random() * 10)
             if slova == 0:
                 variableName = u"Те кто хорошо овладел магической и"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -8097,7 +8119,104 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 sc.blit(nameObj,(440, 720))
                 variableName = u"одиночку одолеть целое полчище врага"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-                sc.blit(nameObj,(440, 740))                   
+                sc.blit(nameObj,(440, 740))
+            if slova == 3:
+                variableName = u"Гноллы - самые бесполезные создания"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"в этих землях. Не знаю, что им здесь"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"нужно, они лезут из портала в этот"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"мир. Хорошо будет если ты будешь их"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"истреблять. Жаль что у них ничего"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+                variableName = u"ценного при себе не бывает."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))
+            if slova == 4:
+                variableName = u"Духи-союзники иногда приходят в наши земли."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"Бывает времена когда они заглядывают"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"лишь на мгновение..."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"Если встать рядом с таким духом"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"он может увеличить твою исходную ману"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+                variableName = u"на 100 единиц. Стой как можно дольше"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))
+                variableName = u"с ним рядом. Они умеют телепортироваться"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680))
+                variableName = u"на довольно большие расстояния, так что"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 700))
+                variableName = u"если хочешь стать могущественным магом"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 720))
+                variableName = u"с помощью духа-союзника, то придётся за "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 740))    
+                variableName = u"нам побегать"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 760))
+            if slova == 5:
+                variableName = u"На первых порах лучше покупай зелья"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"Маны, вместо зелий Здоровья"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"Так дешевле выйдет залечивать свои раны"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600))
+            if slova == 6:
+                variableName = u"Духи-союзники иногда приходят в наши земли."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"Бывает времена когда они заглядывают"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"лишь на мгновение..."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"Если встать рядом с таким духом"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"он может увеличить твою исходную ману"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+                variableName = u"на 100 единиц. Стой как можно дольше"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))
+                variableName = u"с ним рядом. Они умеют телепортироваться"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680))
+                variableName = u"на довольно большие расстояния, так что"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 700))
+                variableName = u"если хочешь стать могущественным магом"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 720))
+                variableName = u"с помощью духа-союзника, то придётся за "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 740))    
+                variableName = u"ним побегать"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 760))                                
         
     if selectLot == 3:
         hijinaMaga = 0
