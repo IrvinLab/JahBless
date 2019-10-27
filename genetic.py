@@ -9,7 +9,7 @@ m = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [36, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 1, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 51, 45]
+    genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 41, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 18, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 45]
 
 
 
@@ -8423,16 +8423,18 @@ def loviVebalo(nomBota): # Используется если у бота нет 
         if botLocation[nomBota] == botLocation[n]-33: # Бот сверху-слева
             if botLocation[nomBota]>=32:
                 if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
-                    botZdorovie[n] -= botSila[nomBota]
-                    print("BOT #", str(nomBota), " shot up-left. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                    if botZachita[n] > botSila[nomBota]: 
+                        botZdorovie[n] -= botSila[nomBota]+botZachita[n]
+                        print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                     if n == imHero: heroPanel(imHero)
                     break
                             
         if botLocation[nomBota] == botLocation[n]-31: # Бот сверху-справа
             if botLocation[nomBota]>=32:
                 if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
-                    botZdorovie[n] -= botSila[nomBota]
-                    print("BOT #", str(nomBota), " shot up-right. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                    if botZachita[n] > botSila[nomBota]: 
+                        botZdorovie[n] -= botSila[nomBota]+botZachita[n]
+                        print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                     if n == imHero: heroPanel(imHero)
                     break
 
@@ -8440,44 +8442,50 @@ def loviVebalo(nomBota): # Используется если у бота нет 
 
             if botLocation[nomBota]<=416:
                 if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
-                    botZdorovie[n] -= botSila[nomBota]
-                    print("BOT #", str(nomBota), " shot down-left. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                    if botZachita[n] > botSila[nomBota]: 
+                        botZdorovie[n] -= botSila[nomBota]+botZachita[n]
+                        print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                     if n == imHero: heroPanel(imHero)
                     break
                             
         if botLocation[nomBota] == botLocation[n]+33: # Бот снизу-справа
             if botLocation[nomBota]<=416:
                 if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
-                    botZdorovie[n] -= botSila[nomBota]
-                    print("BOT #", str(nomBota), " shot down-right. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                    if botZachita[n] > botSila[nomBota]: 
+                        botZdorovie[n] -= botSila[nomBota]+botZachita[n]
+                        print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                     if n == imHero: heroPanel(imHero)
                     break
                 
         if botLocation[nomBota] == botLocation[n]-1: # Бот слева
             if botLocation[nomBota] != 0 and botLocation[nomBota] != 32 and botLocation[nomBota] != 64 and botLocation[nomBota] != 96 and botLocation[nomBota] != 128 and botLocation[nomBota] != 160 and botLocation[nomBota] != 192 and botLocation[nomBota] != 224 and botLocation[nomBota] != 256 and botLocation[nomBota] != 288 and botLocation[nomBota] != 320 and botLocation[nomBota] != 352 and botLocation[nomBota] != 384 and botLocation[nomBota] != 416:
-                botZdorovie[n] -= botSila[nomBota]
-                print("BOT #", str(nomBota), " shot left. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                if botZachita[n] > botSila[nomBota]: 
+                    botZdorovie[n] -= botSila[nomBota]+botZachita[n]
+                    print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                 if n == imHero: heroPanel(imHero)
                 break
 
         if botLocation[nomBota] == botLocation[n]+1: # Бот справа
             if botLocation[nomBota] != 31 and botLocation[nomBota] != 63 and botLocation[nomBota] != 95 and botLocation[nomBota] != 127 and botLocation[nomBota] != 159 and botLocation[nomBota] != 191 and botLocation[nomBota] != 223 and botLocation[nomBota] != 255 and botLocation[nomBota] != 287 and botLocation[nomBota] != 319 and botLocation[nomBota] != 351 and botLocation[nomBota] != 383 and botLocation[nomBota] != 415 and botLocation[nomBota] != 447:
-                botZdorovie[n] -= botSila[nomBota]
-                print("BOT #", str(nomBota), " shot right. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                if botZachita[n] > botSila[nomBota]: 
+                    botZdorovie[n] -= botSila[nomBota]+botZachita[n]
+                    print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                 if n == imHero: heroPanel(imHero)
                 break
 
         if botLocation[nomBota] == botLocation[n]-32: # Бот сверху
             if botLocation[nomBota] >= 32:
-                botZdorovie[n] -= botSila[nomBota]
-                print("BOT #", str(nomBota), " shot up. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                if botZachita[n] > botSila[nomBota]: 
+                    botZdorovie[n] -= botSila[nomBota]+botZachita[n]
+                    print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                 if n == imHero: heroPanel(imHero)
                 break
  
         if botLocation[nomBota] == botLocation[n]+32: # Бот снизу
             if botLocation[nomBota] <= 416:
-                botZdorovie[n] -= botSila[nomBota]
-                print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
+                if botZachita[n] > botSila[nomBota]: 
+                    botZdorovie[n] -= botSila[nomBota]+botZachita[n]
+                    print("BOT #", str(nomBota), " shot down. Step -", botStep[nomBota], "Life bot enemy -",botZdorovie[n])
                 if n == imHero: heroPanel(imHero)
                 break
         
