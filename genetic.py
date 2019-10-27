@@ -8263,7 +8263,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"У Некромантов и Оккультистов есть"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
-                variableName = u"особый посох. Ты можешь с помощью него
+                variableName = u"особый посох. Ты можешь с помощью него"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 580))  
                 variableName = u"использовать заклинание Пронзающей"
