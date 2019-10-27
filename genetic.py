@@ -31,12 +31,18 @@ posohSmerti = 0
 attack = 0
 hero = 52
 market = [2,7,0,26,0,0,17,46,60,0,0,0,0,0,0,36]
+xijina = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 tmpMarket = 0
 yaNaRinke = 0
 buttonNextStep = 0
 imBuyThis = 0
 yes = 0
 no = 0
+hijinaMaga = 0
+hijina = 0
+zadanieMaga = 0
+drujbaMaga= 0
+tmpMagExp = 0
 
 iteration = 1
 FPS = 60
@@ -424,14 +430,9 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     
     if botZaklinania[nom][poriad] == 4: # Кража магии
         botHod[nom] -= 1
-        if botMana[nom] >= 20:
-            botMana[nom] -= 20
-            if botMana[vragBot] > 100:
-                botMana[vragBot] -= 100
-                botExpirience[nom] += 30
-            else:
-                botMana[vragBot] = 0    
-                botExpirience[nom] += 30            
+        if botMana[nom] >= 200:
+            botMana[nom] -= 200
+            botMana[vragBot] = 0         
             yaKastanul = 1
 
     if botZaklinania[nom][poriad] == 5: # Обман
@@ -2158,7 +2159,7 @@ def textInventar(nomInv):
         variableName = u"Банка"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Отнесите эту банку зельевару"
+        variableName = u"Отнесите эту банку в хижину Мага"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
         variableName = u"Выкинуть - (Нет)"
@@ -4648,7 +4649,7 @@ def textMagic(numerCeil):
         variableName = u"отнятой маны прибавляет заклинателю"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"Требует 20 маны"
+        variableName = u"Требует 200 маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620)) 
     if botZaklinania[imHero][numerCeil-1] == 5:
@@ -5525,7 +5526,7 @@ def printInventar(numberInventar):                                # Отобра
 
 def doebaca(hehmda):  #Функция отображающая информацию об объектах и позволяющая с ними взаимодействовать
     global botType, botStep, xBot, yBot, botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botInventar, botIshZdorovie, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha
-    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent
+    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, tmpMagExp, drujbaMaga
     
     n = 0
     yes = no = invent = 0
@@ -5539,6 +5540,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
                 sc.blit(nameObj,(440, 760))
             break        
+    
         
     if zakl > 0 and ktoZdesVrag != 49:
         if zakl == 1: botKoldun(imHero,zakl-1,ktoZdesVrag)
@@ -5560,6 +5562,8 @@ def doebaca(hehmda):  #Функция отображающая информац�
         zakl = 0
         attack = 0
     
+    
+    
     ktoZdesVrag = 0    
     if posohSmerti == 1:
         for ktoZdesVrag in range(300): # Определяем номер бота по клетке
@@ -5577,7 +5581,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         heroPanel(hero)
         
     if attack == 1 and botHod[imHero] > 0:  # Тут мы атакуем ботов
-            for ktoZdesVrag in range(300): # Определяем номер бота по клетке
+            for ktoZdesVrag in range(200): # Определяем номер бота по клетке
                 if botLocation[ktoZdesVrag] == hehmda:
                     if botLocation[imHero] == botLocation[ktoZdesVrag]+1 or botLocation[imHero] == botLocation[ktoZdesVrag]-1 or botLocation[imHero] == botLocation[ktoZdesVrag]+31 or botLocation[imHero] == botLocation[ktoZdesVrag]+32 or botLocation[imHero] == botLocation[ktoZdesVrag]+33 or botLocation[imHero] == botLocation[ktoZdesVrag]-31 or botLocation[imHero] == botLocation[ktoZdesVrag]-32 or botLocation[imHero] == botLocation[ktoZdesVrag]-33:
                         break 
@@ -5599,10 +5603,36 @@ def doebaca(hehmda):  #Функция отображающая информац�
             heroPanel(hero)
             worldUpdate()        
             attack = 0
+    
+    if botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+        # Тут мы взаимодействуем с Хижиной Мага
+        hijinaMaga = 1
+        pix = pygame.image.load('Images/47641705.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (772,548))
+        pix = pygame.image.load('Images/wizard.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (840,548))
+        pix = pygame.image.load('Images/76611378.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (908,548))
+        if zadanieMaga == 1:
+            for n in range(15):
+                if botInventar[imHero][n] == 52:
+                    tmpMagExp = 0
+                    zadanieMaga = 2
+                    botBronza[imHero] += 1000
+                    botInventar[imHero][n] = 0
+                    drujbaMaga += 1
+                    break
+    
                      
     if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 177 or botLocation[imHero] == 176 or botLocation[imHero] == 178 or botLocation[imHero] == 113 or botLocation[imHero] == 112 or botLocation[imHero] == 114:
         if world[hehmda] == 8:
-            yaNaRinke = 1  
+            yaNaRinke = 1  # Это взаимодействие с рынком 
             variableName = u"Смотреть предложения - (Да)"
             nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
             sc.blit(nameObj,(440, 660))
@@ -7962,6 +7992,199 @@ def ubiraemTrup(trup):
     botAlgoritm[trup] = 0
     botLocation[trup] = 0
 
+def magDoIt(selectLot): #Покупаем в Хижине магов
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world
+    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga 
+    
+    pygame.draw.rect(sc, (255, 255, 255), (405, 550, 365, 896))
+    if selectLot == 1:
+        hijinaMaga = 0
+        hijina = 0
+        if botSerebro[imHero] >= 25:
+            botSerebro[imHero] -= 25
+            botIshMana[imHero] += 150
+    
+    if selectLot == 2:
+        hijinaMaga = 0
+        hijina = 0
+        if drujbaMaga == 0:
+            variableName = u"Молодой человек, у меня нет времени"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"трепать языком с Вами о всякой ерунде"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))
+            
+        if drujbaMaga >= 1:
+            slova = int(random.random() * 64)
+            if slova == 0:
+                variableName = u"Те кто хорошо овладел магической и"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"шаманскими практиками иногда носят"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"с собой такие предметы, за которые "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"торговцы на рынке могут выложить целое"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"состояние. Обычная казалось бы палка"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+                variableName = u"тускло светящееся фиолетовым цветом"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))
+                variableName = u"может стоить тысячи бронзовых монет."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680))
+                variableName = u"Хорошо, что торговцы не умеют "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 700))
+                variableName = u"пользоваться подобными штуками."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 720))
+                variableName = u"Сколько бы хаоса породили эти алчные"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 740))
+                variableName = u"твари в противном случае."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 760))
+            if slova == 1:
+                variableName = u"У гномов чаще всего есть серебро"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"при себе. Они не редко ко мне забегают"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"за особым зельем, которое вызывает у"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"них необычные видения. Настанет время"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"и я тебя им тоже угощу"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+            if slova == 2:
+                variableName = u"Самые страшные создания в этом мире"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"это - Душекрады. Они владеют во истину"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"ужасающим заклинанием - Пронзающая смерть."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"Оно отнимает 300 здоровья. Есть книга"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"в которой говориться как овладеть"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+                variableName = u"этим заклинанием. Её ты можешь найти"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))
+                variableName = u"у прихвостней демонов - некромантов и"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680))
+                variableName = u"отшельников"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 700))
+                variableName = u"Изучив это заклинание ты сможешь в"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 720))
+                variableName = u"одиночку одолеть целое полчище врага"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 740))                   
+        
+    if selectLot == 3:
+        hijinaMaga = 0
+        hijina = 0
+        if zadanieMaga == 0:
+            zadanieMaga = 1
+            
+            variableName = u"У одного из представителя расы людей"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"есть банка с особым зельем. Оно мне"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))  
+            variableName = u"нужно для моих исследований, найди её"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600)) 
+            variableName = u"Я заплачу тебе 1000 бронзовых монет "
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620)) 
+            variableName = u"если тебе удастся её мне принести"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 640))
+    
+    
+def magPerdun(perdun): # Взаимодействие с хижиной Мага
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world
+    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga
+    
+    hijinaMaga = 2
+    pygame.draw.rect(sc, (255, 255, 255), (405, 550, 365, 896))
+    
+    pix = pygame.image.load('Images/yes.png') 
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (462,786))    
+    pix = pygame.image.load('Images/no.png') 
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (530,786))
+    
+    if perdun == 1:
+        variableName = u"Увеличить магическую силу"
+        nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"За 25 серебра старый Маг может"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"увеличить исходное количество маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"на 150 единиц, тем самым Вы сможете"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"применять более могущественные "
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))    
+        variableName = u"заклинания"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))
+    elif perdun == 2:
+        variableName = u"Говорить с Магом"
+        nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Этот Колдун знает очень многое об"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"этом мире. Поговорив с ним, вы будете"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600)) 
+        variableName = u"действовать, как действовали маги"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 620)) 
+        variableName = u"древности когда искали силы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+    elif perdun == 3:
+        variableName = u"Получить задание"
+        nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Вы можете заработать немного бронзы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))  
+        variableName = u"выполнив поручение старого Колдуна"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 600))          
+     
+
 def mutation(): # Изменяем геном. Меняем случайный ген случайным образом
     global genom, iteration, lifeTime
     
@@ -8059,9 +8282,14 @@ def loviVebalo(nomBota): # Используется если у бота нет 
     
 
 def bornBot(numerBurnBota, typeBurnBota):
-    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world 
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world, tmpMagExp, zadanieMaga  
     
     if typeBurnBota == 100 or typeBurnBota == 101 or typeBurnBota == 102 or typeBurnBota == 106 or typeBurnBota == 107 or typeBurnBota == 108 or typeBurnBota == 109 or typeBurnBota == 110 or typeBurnBota == 111 or typeBurnBota == 112 or typeBurnBota == 113 or typeBurnBota == 114 or typeBurnBota == 115 or typeBurnBota == 116 or typeBurnBota == 117 or typeBurnBota == 118 or typeBurnBota == 126 or typeBurnBota == 127 or typeBurnBota == 128 or typeBurnBota == 129 or typeBurnBota == 145 or typeBurnBota == 146 or typeBurnBota == 157 or typeBurnBota == 165 or typeBurnBota == 166 or typeBurnBota == 167 or typeBurnBota == 168 or typeBurnBota == 169 or typeBurnBota == 170 or typeBurnBota == 171 or typeBurnBota == 172:
+        if zadanieMaga == 1 and tmpMagExp == 0:
+            if typeBurnBota == 114 or typeBurnBota == 116 or typeBurnBota == 117 or typeBurnBota == 118 or typeBurnBota == 128 or typeBurnBota == 130 or typeBurnBota == 135 or typeBurnBota == 144 or typeBurnBota == 145 or typeBurnBota == 146 or typeBurnBota == 157:
+                tmpMagExp = 1
+                botInventar[numerBurnBota] = [52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                
         if world[30] == 0:
             xBot[numerBurnBota] = 976
             yBot[numerBurnBota] = 96
@@ -8392,9 +8620,6 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 10
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 15
@@ -8403,8 +8628,7 @@ def botActivity(nomerBota):
                         botBronza[n] = 25
                     if botRandom == 10:
                         botInventar[n] = [67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 1       
-                        botBronza[n] = 40
+                        botSerebro[n] = 1
                     bornBot(n, tmp)
                         
                 if tmp == 107: # Гном 2 ур.
@@ -8424,11 +8648,10 @@ def botActivity(nomerBota):
                     botAlgoritm[n] = 3
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 30
+                    botSerebro[n] = 1
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1 
                         botBronza[n] = 30
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -8458,20 +8681,16 @@ def botActivity(nomerBota):
                     botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 40
+                    botSerebro[n] = 1
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [68,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1
-                        botBronza[n] = 40
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [69,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2 
-                        botBronza[n] = 50
                     if botRandom == 10:
                         botInventar[n] = [70,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 3       
-                        botBronza[n] = 65
+                        botSerebro[n] = 3 
                     bornBot(n, tmp)
                         
                 if tmp == 109: # Гном 4 ур.
@@ -8493,19 +8712,15 @@ def botActivity(nomerBota):
                     botInventar[n] = [68,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botZoloto[n] = 0
                     botSerebro[n] = 1
-                    botBronza[n] = 100
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [69,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2
-                        botBronza[n] = 200
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [70,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2 
-                        botBronza[n] = 300
                     if botRandom == 10:
                         botInventar[n] = [70,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 3       
-                        botBronza[n] = 500
+                        botSerebro[n] = 3  
                     bornBot(n, tmp)
                         
                 if tmp == 110: # Гоблин 0 ур.
@@ -8629,7 +8844,7 @@ def botActivity(nomerBota):
                         botBronza[n] = 20
                     if botRandom == 10:
                         botInventar[n] = [0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
-                        botSerebro[n] = 1
+                        botSerebro[n] = 2
                         botBronza[n] = 20
                     bornBot(n, tmp)
                         
@@ -12130,7 +12345,7 @@ def botActivity(nomerBota):
     sobitie += 1
     #botZdorovie[nomerBota] -= 1
     if sobitie > 100000: sobitie = 0
-    if botZdorovie[nomerBota] <= 0: ubiraemTrup(nomerBota)
+    if botZdorovie[nomerBota] <= 0: ubiraemTrup(nomerBota); otdaiLut(n, nomerBota)
    
 worldCreate()    
 
@@ -12151,7 +12366,7 @@ botSila[imHero] = 10
 botLovkost[imHero] = 5
 botYdacha[imHero] = 9
 botZoloto[imHero] = 0
-botSerebro[imHero] = 0
+botSerebro[imHero] = 100
 botBronza[imHero] = 0
 botHod[imHero] = botLovkost[imHero]
 botAlgoritm[imHero] = 4
@@ -16775,6 +16990,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(1) 
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 1
+                     magPerdun(1)
                  else: 
                      zakl = 0
                      attack = 0
@@ -16793,6 +17011,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(2)
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 2
+                     magPerdun(2)
                  else: 
                      zakl = 0 
                      attack = 0
@@ -16811,6 +17032,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(3)
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 3
+                     magPerdun(3)
                  else:  
                      zakl = 0 
                      attack = 0
@@ -16829,6 +17053,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(4)
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 4
+                     magPerdun(4)
                  else: 
                      zakl = 0
                      attack = 0
@@ -16847,6 +17074,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(5)  
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 5
+                     magPerdun(5)
                  else: 
                      zakl = 0
                      attack = 0
@@ -16865,6 +17095,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(6) 
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 6
+                     magPerdun(6)
                  else: 
                      zakl = 0
                      attack = 0
@@ -16883,6 +17116,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(7) 
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 7
+                     magPerdun(7)
                  else: 
                      zakl = 0
                      attack = 0
@@ -16901,6 +17137,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(8)
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 8
+                     magPerdun(8)
                  else:  
                      zakl = 0
                      attack = 0
@@ -16919,6 +17158,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(9) 
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 9
+                     magPerdun(9)
                  else:
                      zakl = 0
                      attack = 0
@@ -16937,6 +17179,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(10)
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 10
+                     magPerdun(10)
                  else:
                      zakl = 0
                      attack = 0
@@ -16955,6 +17200,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(11)
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 11
+                     magPerdun(11)
                  else:
                      zakl = 0
                      attack = 0 
@@ -16973,6 +17221,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(12) 
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 12
+                     magPerdun(12)
                  else: 
                      zakl = 0
                      attack = 0 
@@ -16991,6 +17242,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(13) 
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 13
+                     magPerdun(13)
                  else:  
                      zakl = 0
                      attack = 0
@@ -17009,6 +17263,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(14)
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 14
+                     magPerdun(14)
                  else:  
                      zakl = 0
                      attack = 0
@@ -17027,6 +17284,9 @@ while True:
             if i.button == 1:
                  if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(15) 
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 15
+                     magPerdun(15)
                  else:
                      zakl = 0
                      attack = 0            
@@ -17050,7 +17310,14 @@ while True:
                      textInventar(invent)
                  if botLocation[imHero] != 146 or botLocation[imHero] == 144 or botLocation[imHero] == 146 or botLocation[imHero] == 113 or botLocation[imHero] == 177 or botLocation[imHero] == 112 or botLocation[imHero] == 114 or botLocation[imHero] == 176 or botLocation[imHero] == 178:
                      buyInvent(16)      
-    
+                 elif botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
+                     hijina = 16
+                     magPerdun(16)
+                 else:
+                     zakl = 0
+                     attack = 0            
+                     invent = 16
+                     textInventar(invent)
     
                     
     if mos_x>462 and (mos_x<526):  # Кнопка "Да"
@@ -17070,7 +17337,10 @@ while True:
                 if yaNaRinke == 1:
                     marketPlace(1)
                     print("yes")
-                if imBuyThis == 1: yes = 5; buyInvent(thisPlace)    
+                if imBuyThis == 1: yes = 5; buyInvent(thisPlace)   
+                if hijina == 1: heroPanel(hero)
+                if hijinaMaga == 2: magDoIt(hijina)
+ 
                     
     if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
         x_inside = True
@@ -17113,4 +17383,15 @@ while True:
 # 161 - Тролль 4 ур, 162 - Тролль 5 ур, 163 - Тролль 6 ур, 164 - Вампир 3 ур., 165 - Колдун 5 ур
 # 166 - Женщина-эльф 1 ур, 167 - Женщина-эльф 2 ур, 168 - Женщина-эльф 3 ур
 # 169 - Женщина-эльф 4 ур, 170 - Женщина-эльф 5 ур, 171 - Женщина-эльф 6 ур
-# 172 - Женщина-эльф 7 ур        
+# 172 - Женщина-эльф 7 ур 
+
+# Хижина мага
+# 1 - говорить с магом, 2 - увеличить магическую силу, 3 - получить задание 
+#      
+#
+#
+#
+#
+#
+#
+# 
