@@ -43,6 +43,7 @@ hijina = 0
 zadanieMaga = 0
 drujbaMaga= 0
 tmpMagExp = 0
+posohSveta = 0
 
 iteration = 1
 FPS = 60
@@ -325,8 +326,8 @@ def myAttack(kletka):
     for n in range(20):
         if botLocation[n] == kletka and n != imHero:
             if botLocation[imHero] == botLocation[n]+1 or botLocation[imHero] == botLocation[n]-1 or botLocation[imHero] == botLocation[n]+32 or botLocation[imHero] == botLocation[n]-32 or botLocation[imHero] == botLocation[n]+33 or botLocation[imHero] == botLocation[n]+31 or botLocation[imHero] == botLocation[n]-33 or botLocation[imHero] == botLocation[n]-31:
-                if botSila[imHero] > botZachita[n]:
-                    botZdorovie[n] -= botSila[imHero] + botZachita[n]
+                if botSila[imHero] + botUseWeapon[imHero] > botZachita[n]:
+                    botZdorovie[n] -= (botSila[imHero] + botUseWeapon[imHero]) + botZachita[n]
                     botExpirience[imHero] += botSila[imHero]
                     if botZdorovie[n] <= 0: otdaiLut(imHero, n); ubiraemTrup(n)
                     botVariant[imHero]
@@ -723,32 +724,25 @@ def useInventar(dasLut):
         botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     
     if botInventar[imHero][dasLut-1] == 26: # Используем топор
-        botUseWeapon[imHero] = 26
-        botAttack[imHero] = 3
+        botUseWeapon[imHero] = 3
     
     if botInventar[imHero][dasLut-1] == 27: 
-        botUseWeapon[imHero] = 27
-        botAttack[imHero] = 6
+        botUseWeapon[imHero] = 6
     
     if botInventar[imHero][dasLut-1] == 28: 
-        botUseWeapon[imHero] = 28
-        botAttack[imHero] = 12
+        botUseWeapon[imHero] = 12
     
     if botInventar[imHero][dasLut-1] == 29: 
-        botUseWeapon[imHero] = 29
-        botAttack[imHero] = 25
+        botUseWeapon[imHero] = 25
  
     if botInventar[imHero][dasLut-1] == 30: 
-        botUseWeapon[imHero] = 29
-        botAttack[imHero] = 35
+        botUseWeapon[imHero] = 35
 
     if botInventar[imHero][dasLut-1] == 31: 
-        botUseWeapon[imHero] = 30
-        botAttack[imHero] = 55
+        botUseWeapon[imHero] = 55
 
     if botInventar[imHero][dasLut-1] == 32: 
-        botUseWeapon[imHero] = 31
-        botAttack[imHero] = 75        
+        botUseWeapon[imHero] = 75       
     
     if botInventar[imHero][dasLut-1] == 33: # Это книга Пронзающая Смерть
         n = 0
@@ -833,44 +827,34 @@ def useInventar(dasLut):
     if botInventar[imHero][dasLut-1] == 51: botZachita[imHero] = 30
     
     if botInventar[imHero][dasLut-1] == 60: 
-        botUseWeapon[imHero] = 60
-        botAttack[imHero] = 3
+        botUseWeapon[imHero] = 3
         
     if botInventar[imHero][dasLut-1] == 61: 
-        botUseWeapon[imHero] = 61
-        botAttack[imHero] = 5
+        botUseWeapon[imHero] = 5
         
     if botInventar[imHero][dasLut-1] == 62: 
-        botUseWeapon[imHero] = 62
-        botAttack[imHero] = 8
+        botUseWeapon[imHero] = 8
         
     if botInventar[imHero][dasLut-1] == 63: 
-        botUseWeapon[imHero] = 63
-        botAttack[imHero] = 14
+        botUseWeapon[imHero] = 14
         
     if botInventar[imHero][dasLut-1] == 64: 
-        botUseWeapon[imHero] = 64
-        botAttack[imHero] = 21
+        botUseWeapon[imHero] = 21
        
     if botInventar[imHero][dasLut-1] == 65: 
-        botUseWeapon[imHero] = 65
-        botAttack[imHero] = 30
+        botUseWeapon[imHero] = 30
 
     if botInventar[imHero][dasLut-1] == 67: 
-        botUseWeapon[imHero] = 67
-        botAttack[imHero] = 4
+        botUseWeapon[imHero] = 4
 
     if botInventar[imHero][dasLut-1] == 68: 
-        botUseWeapon[imHero] = 68
-        botAttack[imHero] = 6   
+        botUseWeapon[imHero] = 6  
 
     if botInventar[imHero][dasLut-1] == 69: 
-        botUseWeapon[imHero] = 69
-        botAttack[imHero] = 9
+        botUseWeapon[imHero] = 9
 
     if botInventar[imHero][dasLut-1] == 70: 
-        botUseWeapon[imHero] = 70
-        botAttack[imHero] = 13        
+        botUseWeapon[imHero] = 13       
     
     if botInventar[imHero][dasLut-1] == 71: # Это книга Лечение
         n = 0
@@ -4266,18 +4250,21 @@ def buyInvent(imBuy):
         variableName = u"Рассеять чары, а также даёт"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
-        variableName = u"+100 Здоровья при использовании"
+        variableName = u"Требует 110 Маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 8000бр|160ср/5600бр|112ср"
+        variableName = u"+100 Здоровья при использовании"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
-        variableName = u"Требует 50 Маны"
+        variableName = u"Куп./прод. 8000бр|160ср/5600бр|112ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))
+        variableName = u"Требует 50 Маны"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))
         variableName = u"Купить?"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 680)) 
+        sc.blit(nameObj,(440, 700)) 
     if market[imBuy-1] == 57:
         variableName = u"Посох Вечной Жизни"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -5565,8 +5552,20 @@ def doebaca(hehmda):  #Функция отображающая информац�
     
     
     ktoZdesVrag = 0    
+    if posohSveta == 1: # Посох света
+        for ktoZdesVrag in range(200): # Определяем номер бота по клетке
+            if botLocation[ktoZdesVrag] == hehmda:
+                break  
+
+        botDeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botVozdeistvie = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botMana[imHero] -= 110
+        botZdorovie[ktoZdesVrag] += 100
+        botExpirience[imHero] += 50
+        posohSveta= 0
+    
     if posohSmerti == 1:
-        for ktoZdesVrag in range(300): # Определяем номер бота по клетке
+        for ktoZdesVrag in range(200): # Определяем номер бота по клетке
             if botLocation[ktoZdesVrag] == hehmda:
                 break  
         
@@ -7948,12 +7947,12 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     manaObj = manna.render(variableMana, False, (0, 0, 255)) # Создали объект типа "текст" 
     sc.blit(manaObj,(290, 657)) # Отображаем ману
     
-    if botAttack[imHero] == 0:
+    if botUseWeapon[imHero] == 0:
         variableSila = u"Сила: " + str(botSila[imHero]) 
         silaObj = textSila.render(variableSila, False, (0, 0, 0)) # Создали объект типа "текст" 
         sc.blit(silaObj,(290, 670)) 
     else:
-        variableSila = u"Сила: " + str(botSila[imHero]) + u"+" + str(botAttack[imHero])
+        variableSila = u"Сила: " + str(botSila[imHero]) + u"+" + str(botUseWeapon[imHero])
         silaObj = textSila.render(variableSila, False, (0, 255, 0)) # Создали объект типа "текст" 
         sc.blit(silaObj,(290, 670))
         
@@ -12473,7 +12472,7 @@ n = 0
 botExpirience[imHero] = 0   # Главный герой
 botLvl[imHero] = 1
 botRasa[imHero] = 7
-botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+botInventar[imHero] = [32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
 botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 botIshZdorovie[imHero] = 200
