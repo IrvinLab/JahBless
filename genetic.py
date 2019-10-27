@@ -8016,7 +8016,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
             sc.blit(nameObj,(440, 580))
             
         if drujbaMaga >= 1:
-            slova = int(random.random() * 64)
+            slova = int(random.random() * 5)
             if slova == 0:
                 variableName = u"Те кто хорошо овладел магической и"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -12366,7 +12366,7 @@ botSila[imHero] = 10
 botLovkost[imHero] = 5
 botYdacha[imHero] = 9
 botZoloto[imHero] = 0
-botSerebro[imHero] = 100
+botSerebro[imHero] = 0
 botBronza[imHero] = 0
 botHod[imHero] = botLovkost[imHero]
 botAlgoritm[imHero] = 4
@@ -17330,6 +17330,8 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
+                    if hijina == 1: heroPanel(hero)
+                    if hijinaMaga == 2: magDoIt(hijina)
                     if botLocation[imHero] != 146 or botLocation[imHero] != 144 or botLocation[imHero] != 146 or botLocation[imHero] != 113 or botLocation[imHero] != 177 or botLocation[imHero] != 112 or botLocation[imHero] != 114 or botLocation[imHero] != 176 or botLocation[imHero] != 178:
                         useInventar(invent)
                         yes = 1
@@ -17338,8 +17340,7 @@ while True:
                     marketPlace(1)
                     print("yes")
                 if imBuyThis == 1: yes = 5; buyInvent(thisPlace)   
-                if hijina == 1: heroPanel(hero)
-                if hijinaMaga == 2: magDoIt(hijina)
+                
  
                     
     if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
