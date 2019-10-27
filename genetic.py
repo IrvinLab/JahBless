@@ -9,7 +9,7 @@ m = 0
 myGen = 1
 
 if myGen == 1:
-    genom = [36, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 4, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 34, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 50, 16, 24, 55, 34, 9, 22, 55, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 2, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 34, 51, 45]
+    genom = [36, 14, 58, 33, 53, 15, 16, 2, 4, 18, 53, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 57, 15, 11, 1, 38, 8, 41, 13, 5, 10, 43, 19, 43, 59, 15, 47, 55, 47, 3, 31, 34, 36, 58, 9, 47, 12, 18, 20, 6, 9, 60, 52, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 55, 52, 41, 54, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 57, 19, 39, 41, 63, 43, 1, 41, 46, 51, 2, 28, 6, 29, 14, 53, 30, 29, 22, 47, 44, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 34, 51, 45]
 
 
 
@@ -12420,6 +12420,7 @@ while True:
                 worldUpdate()
                 heroPanel(botVariant[imHero])
                 invent = 0
+                if tmpMarket == 2: yaNaRinke = 0
                 
             elif i.key == pygame.K_RIGHT and xBot[imHero] <= 990 and world[botLocation[imHero]+1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -12433,6 +12434,7 @@ while True:
                 worldUpdate()
                 heroPanel(botVariant[imHero])
                 invent = 0
+                if tmpMarket == 2: yaNaRinke = 0
                 
             elif i.key == pygame.K_UP and yBot[imHero] > 96 and world[botLocation[imHero]-32] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -12446,6 +12448,7 @@ while True:
                 worldUpdate()
                 heroPanel(botVariant[imHero])
                 invent = 0
+                if tmpMarket == 2: yaNaRinke = 0
                 
             elif i.key == pygame.K_DOWN and yBot[imHero] <= 510 and world[botLocation[imHero]+32] == 0: 
                 pix = pygame.image.load('Images/weed.jpg')
@@ -12459,6 +12462,7 @@ while True:
                 worldUpdate()
                 heroPanel(botVariant[imHero])
                 invent = 0
+                if tmpMarket == 2: yaNaRinke = 0
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
 #============================================================================================================================================    
@@ -17330,8 +17334,6 @@ while True:
         if i.type == pygame.MOUSEBUTTONDOWN:
             if i.button == 1:
                 if newGame == 1 and buttonNextStep == 0 and invent > 0:
-                    if hijina == 1: heroPanel(hero)
-                    if hijinaMaga == 2: magDoIt(hijina)
                     if botLocation[imHero] != 146 or botLocation[imHero] != 144 or botLocation[imHero] != 146 or botLocation[imHero] != 113 or botLocation[imHero] != 177 or botLocation[imHero] != 112 or botLocation[imHero] != 114 or botLocation[imHero] != 176 or botLocation[imHero] != 178:
                         useInventar(invent)
                         yes = 1
@@ -17340,7 +17342,8 @@ while True:
                     marketPlace(1)
                     print("yes")
                 if imBuyThis == 1: yes = 5; buyInvent(thisPlace)   
-                
+                if hijina == 1: heroPanel(hero)
+                if hijinaMaga == 2: magDoIt(hijina)
  
                     
     if mos_x>530 and (mos_x<594):  # Кнопка "Нет"
