@@ -12463,7 +12463,9 @@ def botActivity(nomerBota):
     sobitie += 1
     #botZdorovie[nomerBota] -= 1
     if sobitie > 100000: sobitie = 0
-    if botZdorovie[nomerBota] <= 0 and botVariant[nomerBota] != 173 and botVariant[nomerBota] != 173: ubiraemTrup(nomerBota); otdaiLut(n, nomerBota)
+    if botZdorovie[nomerBota] <= 0:
+        if botVariant[nomerBota] != 173 and botVariant[nomerBota] != 174: otdaiLut(n, nomerBota); ubiraemTrup(nomerBota)
+        else: ubiraemTrup(nomerBota)
    
 worldCreate()    
 
