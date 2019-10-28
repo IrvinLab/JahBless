@@ -8023,7 +8023,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
         hijina = 0
         if botSerebro[imHero] >= 25:
             botSerebro[imHero] -= 25
-            botIshMana[imHero] += 150
+            botIshMana[imHero] += 275
     
     if selectLot == 2:
         hijinaMaga = 0
@@ -8351,7 +8351,7 @@ def magPerdun(perdun): # Взаимодействие с хижиной Мага
         variableName = u"увеличить исходное количество маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"на 150 единиц, тем самым Вы сможете"
+        variableName = u"на 275 единиц, тем самым Вы сможете"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620)) 
         variableName = u"применять более могущественные "
