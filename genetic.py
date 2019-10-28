@@ -5605,51 +5605,50 @@ def doebaca(hehmda):  #Функция отображающая информац�
     
     if botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
         # Тут мы взаимодействуем с Хижиной Мага
-        if hehmda == 5: 
-            hijinaMaga = 1
-            for n in range(15):     
-                if n == 0: xIn = 772; yIn = 548
-                if n == 1: xIn = 840; yIn = 548
-                if n == 2: xIn = 908; yIn = 548
-                if n == 3: xIn = 976; yIn = 548
-                if n == 4: xIn = 772; yIn = 616
-                if n == 5: xIn = 840; yIn = 616
-                if n == 6: xIn = 908; yIn = 616
-                if n == 7: xIn = 976; yIn = 616
-                if n == 8: xIn = 772; yIn = 684
-                if n == 9: xIn = 840; yIn = 684
-                if n == 10: xIn = 908; yIn = 684
-                if n == 11: xIn = 976; yIn = 684
-                if n == 12: xIn = 772; yIn = 752
-                if n == 13: xIn = 840; yIn = 752
-                if n == 14: xIn = 908; yIn = 752
-                if n == 15: xIn = 976; yIn = 752
-                pix = pygame.image.load('Images/zero.jpg') 
-                x_len = pix.get_width()
-                y_len = pix.get_height() 
-                sc.blit(pix, (xIn,yIn))
-                
-            pix = pygame.image.load('Images/47641705.jpg')
+        hijinaMaga = 1
+        for n in range(15):     
+            if n == 0: xIn = 772; yIn = 548
+            if n == 1: xIn = 840; yIn = 548
+            if n == 2: xIn = 908; yIn = 548
+            if n == 3: xIn = 976; yIn = 548
+            if n == 4: xIn = 772; yIn = 616
+            if n == 5: xIn = 840; yIn = 616
+            if n == 6: xIn = 908; yIn = 616
+            if n == 7: xIn = 976; yIn = 616
+            if n == 8: xIn = 772; yIn = 684
+            if n == 9: xIn = 840; yIn = 684
+            if n == 10: xIn = 908; yIn = 684
+            if n == 11: xIn = 976; yIn = 684
+            if n == 12: xIn = 772; yIn = 752
+            if n == 13: xIn = 840; yIn = 752
+            if n == 14: xIn = 908; yIn = 752
+            if n == 15: xIn = 976; yIn = 752
+            pix = pygame.image.load('Images/zero.jpg') 
             x_len = pix.get_width()
             y_len = pix.get_height() 
-            sc.blit(pix, (772,548))
-            pix = pygame.image.load('Images/wizard.jpg')
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (840,548))
-            pix = pygame.image.load('Images/76611378.jpg')
-            x_len = pix.get_width()
-            y_len = pix.get_height() 
-            sc.blit(pix, (908,548))
-            if zadanieMaga == 1:
-                for n in range(15):
-                    if botInventar[imHero][n] == 52:
-                        tmpMagExp = 0
-                        zadanieMaga = 2
-                        botBronza[imHero] += 1000
-                        botInventar[imHero][n] = 0
-                        drujbaMaga += 1
-                        break
+            sc.blit(pix, (xIn,yIn))
+            
+        pix = pygame.image.load('Images/47641705.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (772,548))
+        pix = pygame.image.load('Images/wizard.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (840,548))
+        pix = pygame.image.load('Images/76611378.jpg')
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (908,548))
+        if zadanieMaga == 1:
+            for n in range(15):
+                if botInventar[imHero][n] == 52:
+                    tmpMagExp = 0
+                    zadanieMaga = 2
+                    botBronza[imHero] += 1000
+                    botInventar[imHero][n] = 0
+                    drujbaMaga += 1
+                    break
     
                      
     if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 177 or botLocation[imHero] == 176 or botLocation[imHero] == 178 or botLocation[imHero] == 113 or botLocation[imHero] == 112 or botLocation[imHero] == 114:
