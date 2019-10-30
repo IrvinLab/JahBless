@@ -306,10 +306,10 @@ yGameMap = 548
 def levelUp(nomerBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
     
-    if botExpirience[nomerBota] >= 5000*(1.5**(botLvl[nomerBota]-1)):
+    if botExpirience[nomerBota] >= 5000*(1.54**(botLvl[nomerBota]-1)):
         botLvl[nomerBota] += 1
         botExpirience[nomerBota] = 0
-        botIshMana[nomerBota] += 20 * botLvl[nomerBota]
+        botIshMana[nomerBota] += 16 * botLvl[nomerBota]
         botMana[nomerBota] = botIshMana[nomerBota]
         botIshZdorovie[nomerBota] += 20 * botLvl[nomerBota]
         botZdorovie[nomerBota] = botIshZdorovie[nomerBota]
