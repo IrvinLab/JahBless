@@ -3041,7 +3041,7 @@ def buyInvent(imBuy):
                 putInventar(8)
                 botBronza[imHero] -= 370
         if market[thisPlace-1] == 9:
-            if botBronza[imHero] >= 70:
+            if botBronza[imHero] >= 700:
                 market[thisPlace-1] = 0
                 putInventar(9)
                 botBronza[imHero] -= 700
