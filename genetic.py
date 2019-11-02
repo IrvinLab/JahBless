@@ -7809,16 +7809,11 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     
     pygame.draw.rect(sc, (255, 255, 255), (284, 548, 481, 896)) 
     pygame.draw.rect(sc, (255, 255, 255), (405, 550, 365, 896))
-    #pix = pygame.image.load('Images/next.png') # Кнопка "Конец хода" она нужна)
-    #x_len = pix.get_width()
-    #y_len = pix.get_height() 
-    #sc.blit(pix, (286,786))
    
     n = 0
     xShift = 410
     yShift = 785
     for n in range(10):
-        print(xShift)
         if botVozdeistvie[imHero][n] == 3:
             pix = pygame.image.load('Images/dospechiFenicha_32.jpg')
             x_len = pix.get_width()
@@ -7868,7 +7863,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
             sc.blit(pix, (xShift,yShift))  
             xShift += 37 
         elif botVozdeistvie[imHero][n] == 0:
-            pygame.draw.rect(sc, (255, 255, 255), (410, 785, 32, 32))
+            pygame.draw.rect(sc, (255, 255, 255), (xShift, 785, 32, 32))
             xShift += 37           
     
     xShift = 410
@@ -10971,10 +10966,15 @@ def botActivity(nomerBota):
     
     if sobitie % 32 == 0: # тут обрабатывается действие долгодействующих ЗАКЛИНАНИЙ
         for n in range(15):
-            if botVozdeistvie[nomerBota][n] == 7 and botDeistvie[nomerBota][n] > 0:
+            if botVozdeistvie[nomerBota][n] == 7 and botDeistvie[nomerBota][n] > 0: # Отравление
                 botZdorovie[nomerBota] -= 5
                 botDeistvie[nomerBota][n] -= 1
-                print(botDeistvie[nomerBota][n], botVozdeistvie[nomerBota][n]) 
+                
+            if botVozdeistvie[nomerBota][n] == 14 and botDeistvie[nomerBota][n] > 0:  # Печать смерти
+                botDeistvie[nomerBota][n] -= 1
+                print("DEATH!!!")
+                if botDeistvie[nomerBota][n] == 1:
+                    botZdorovie[nomerBota] = -1000  
                 
                 
             if botDeistvie[nomerBota][n] == 0: botVozdeistvie[nomerBota][n] == 0
