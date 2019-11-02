@@ -723,6 +723,7 @@ def useInventar(dasLut):
 
     if botInventar[imHero][dasLut-1] == 11: 
         botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botDeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         if botMana[imHero] < botIshMana[imHero] - 500: botMana[imHero] += 500
         else: botMana[imHero] = botIshMana[imHero]
         if botZdorovie[imHero] < botIshZdorovie[imHero] - 500: botZdorovie[imHero] += 500
@@ -730,6 +731,7 @@ def useInventar(dasLut):
     
     if botInventar[imHero][dasLut-1] == 12: 
         botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botDeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     
     if botInventar[imHero][dasLut-1] == 26: # Используем топор
         botUseWeapon[imHero] = 3
@@ -10977,7 +10979,7 @@ def botActivity(nomerBota):
                     botZdorovie[nomerBota] = -1000  
                 
                 
-            if botDeistvie[nomerBota][n] == 0: botVozdeistvie[nomerBota][n] == 0
+            if botDeistvie[nomerBota][n] == 0: botVozdeistvie[nomerBota][n] = 0
     
     if sobitie % 2397 == 0:
         tmpInventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -12466,12 +12468,12 @@ botExpirience[imHero] = 0   # Главный герой
 botLvl[imHero] = 1
 botRasa[imHero] = 7
 botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botZaklinania[imHero] = [22,7,3,5,8,10,13,15,14,16,0,1,4,6,23,100]
+botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
 botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 botIshZdorovie[imHero] = 200
 botZdorovie[imHero] = 200
-botMana[imHero] = 1000
-botIshMana[imHero] = 1000
+botMana[imHero] = 100
+botIshMana[imHero] = 100
 botSila[imHero] = 10
 botLovkost[imHero] = 5
 botYdacha[imHero] = 9
