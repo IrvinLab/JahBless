@@ -52,6 +52,8 @@ xGameMap = 16
 yGameMap = 96 
 xMap = 0
 yMap = 0
+xShift = 410
+yShift = 785
 xHeroIcon = 0
 yHeroIcon = 0
 xMagic = 0
@@ -422,8 +424,8 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             if disable == 0:        
                 for n in range(15):
                     if botVozdeistvie[vragBot][n] == 0:
-                        botVozdeistvie[vragBot][n] = 700
-                        botDeistvie[vragBot][n] = 3
+                        botDeistvie[vragBot][n] = 700
+                        botVozdeistvie[vragBot][n] = 3
                         botMana[nom] -= 30
                         botExpirience[nom] += 10
                         break        
@@ -486,8 +488,8 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             if disable == 0:        
                 for n in range(15):
                     if botVozdeistvie[vragBot][n] == 0:
+                        botDeistvie[vragBot][n] = 10
                         botVozdeistvie[vragBot][n] = 8
-                        botDeistvie[vragBot][n] = 5
                         botMana[nom] -= 35
                         botExpirience[nom] += 10
                         break        
@@ -633,6 +635,11 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             yaKastanul = 1
             botExpirience[nom] += 10            
     
+    if botZaklinania[nom][poriad] == 23: # Рассеять чары 170 маны
+        if botMana[nom] >= 170:
+            botMana[nom] -= 170
+            botDeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            botVozdeistvie[nom] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     
     if botZdorovie[vragBot] <= 0 and attack == 0: 
         randomMoney = int(random.random()*10)
@@ -4947,7 +4954,7 @@ def textMagic(numerCeil):
         variableName = u"Рассеивает чары вокруг заклинателя "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"Требует 40 маны"
+        variableName = u"Требует 170 маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
     if botZaklinania[imHero][numerCeil-1] == 24:
@@ -5028,7 +5035,7 @@ def visibleMagic(xMag, yMag, por): # Функция, отображающая з
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
     if botZaklinania[imHero][por] == 10:
-        pix = pygame.image.load('Images/mochLda.png') 
+        pix = pygame.image.load('Images/mochPrirodi.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
@@ -7787,6 +7794,8 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     global botBronza
     global botZachita
     global botDeistvie
+    global xShift
+    global yShift
     
     global den
     global mesiac
@@ -7804,6 +7813,65 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     #x_len = pix.get_width()
     #y_len = pix.get_height() 
     #sc.blit(pix, (286,786))
+   
+    n = 0
+    xShift = 410
+    yShift = 785
+    for n in range(10):
+        print(xShift)
+        if botVozdeistvie[imHero][n] == 3:
+            pix = pygame.image.load('Images/dospechiFenicha_32.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift)) 
+            xShift += 37
+        elif botVozdeistvie[imHero][n] == 7:
+            pix = pygame.image.load('Images/jad_32.png')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift)) 
+            xShift += 37
+        elif botVozdeistvie[imHero][n] == 8:
+            pix = pygame.image.load('Images/krovojadnost_32.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift))  
+            xShift += 37
+        elif botVozdeistvie[imHero][n] == 10:
+            pix = pygame.image.load('Images/mochPrirodi_32.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift))  
+            xShift += 37           
+        elif botVozdeistvie[imHero][n] == 13:
+            pix = pygame.image.load('Images/pechatChaosa_32.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift))  
+            xShift += 37
+        elif botVozdeistvie[imHero][n] == 15:
+            pix = pygame.image.load('Images/poceluiSmerti_32.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift)) 
+            xShift += 37        
+        elif botVozdeistvie[imHero][n] == 14:
+            pix = pygame.image.load('Images/pechatSmerti_32.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift)) 
+            xShift += 37
+        elif botVozdeistvie[imHero][n] == 16:
+            pix = pygame.image.load('Images/prokliatie_32.png')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift))  
+            xShift += 37 
+        elif botVozdeistvie[imHero][n] == 0:
+            pygame.draw.rect(sc, (255, 255, 255), (410, 785, 32, 32))
+            xShift += 37           
+    
+    xShift = 410
     
     xHero = 340
     yHero = 548
@@ -10901,12 +10969,13 @@ def botActivity(nomerBota):
     
     #print("botActivity", str(sobitie))
     
-    if sobitie % 32 == 0:
+    if sobitie % 32 == 0: # тут обрабатывается действие долгодействующих ЗАКЛИНАНИЙ
         for n in range(15):
             if botVozdeistvie[nomerBota][n] == 7 and botDeistvie[nomerBota][n] > 0:
                 botZdorovie[nomerBota] -= 5
                 botDeistvie[nomerBota][n] -= 1
                 print(botDeistvie[nomerBota][n], botVozdeistvie[nomerBota][n]) 
+                
                 
             if botDeistvie[nomerBota][n] == 0: botVozdeistvie[nomerBota][n] == 0
     
@@ -12397,12 +12466,12 @@ botExpirience[imHero] = 0   # Главный герой
 botLvl[imHero] = 1
 botRasa[imHero] = 7
 botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botZaklinania[imHero] = [22,7,3,5,8,10,13,15,14,16,0,1,4,6,22,100]
+botZaklinania[imHero] = [22,7,3,5,8,10,13,15,14,16,0,1,4,6,23,100]
 botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 botIshZdorovie[imHero] = 200
 botZdorovie[imHero] = 200
-botMana[imHero] = 100
-botIshMana[imHero] = 100
+botMana[imHero] = 1000
+botIshMana[imHero] = 1000
 botSila[imHero] = 10
 botLovkost[imHero] = 5
 botYdacha[imHero] = 9
