@@ -561,7 +561,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 yaKastanul = 1
     
     if botZaklinania[nom][poriad] == 13: # Печать Хаоса
-        if botMana[nom] >= 100:
+        if botMana[nom] >= 175:
             botHod[nom] -= 1
             n = 0
             disable = 0
@@ -574,7 +574,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                     if botVozdeistvie[vragBot][n] == 0:
                         botVozdeistvie[vragBot][n] = 13
                         botDeistvie[vragBot][n] = 10
-                        botMana[nom] -= 100
+                        botMana[nom] -= 175
                         botExpirience[nom] += 40
                         break        
             n = 0
@@ -1476,7 +1476,7 @@ def textInventar(nomInv):
         variableName = u"Рассеять Чары "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        variableName = u"Куп./прод. 2650бр|20ср/700бр|14ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -1492,7 +1492,7 @@ def textInventar(nomInv):
         variableName = u"Рассеять Чары"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
-        variableName = u"Куп./прод. 550бр|12ср/385бр|8ср"
+        variableName = u"Куп./прод. 1100бр|12ср/385бр|8ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
@@ -3061,15 +3061,15 @@ def buyInvent(imBuy):
                 putInventar(10)
                 botBronza[imHero] -= 1350
         if market[thisPlace-1] == 11:
-            if botBronza[imHero] >= 1000:
+            if botBronza[imHero] >= 2650:
                 market[thisPlace-1] = 0
                 putInventar(11)
-                botBronza[imHero] -= 1000
+                botBronza[imHero] -= 2650
         if market[thisPlace-1] == 12:
-            if botBronza[imHero] >= 550:
+            if botBronza[imHero] >= 1100:
                 market[thisPlace-1] = 0
                 putInventar(12)
-                botBronza[imHero] -= 550
+                botBronza[imHero] -= 1100
         if market[thisPlace-1] == 13:
             if botBronza[imHero] >= 100:
                 market[thisPlace-1] = 0
@@ -3520,7 +3520,7 @@ def buyInvent(imBuy):
         variableName = u"Рассеять Чары "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))
-        variableName = u"Куп./прод. 1000бр|20ср/700бр|14ср"
+        variableName = u"Куп./прод. 2650бр|20ср/700бр|14ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -3536,7 +3536,7 @@ def buyInvent(imBuy):
         variableName = u"Рассеять Чары"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600))
-        variableName = u"Куп./прод. 550бр|12ср/385бр|8ср"
+        variableName = u"Куп./прод. 1100бр|12ср/385бр|8ср"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))
         variableName = u"Купить?"
@@ -4799,13 +4799,13 @@ def textMagic(numerCeil):
         variableName = u"Отравление, более того отнимает всю"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))  
-        variableName = u"ману и защиту. Защита восстанавливается"
+        variableName = u"ману. -15 здоровья каждый ход"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))     
-        variableName = u"через 10 ходов."
+        variableName = u"Действует 10 ходов."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))             
-        variableName = u"Требует 100 маны"
+        variableName = u"Требует 175 маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 700))             
     if botZaklinania[imHero][numerCeil-1] == 14:
@@ -7816,55 +7816,55 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     xShift = 410
     yShift = 785
     for n in range(10):
-        if botVozdeistvie[imHero][n] == 3:
+        if botVozdeistvie[imHero][n] == 3 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/dospechiFenicha_32.jpg')
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift)) 
             xShift += 37
-        elif botVozdeistvie[imHero][n] == 7:
+        elif botVozdeistvie[imHero][n] == 7 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/jad_32.png')
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift)) 
             xShift += 37
-        elif botVozdeistvie[imHero][n] == 8:
+        elif botVozdeistvie[imHero][n] == 8 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/krovojadnost_32.jpg')
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift))  
             xShift += 37
-        elif botVozdeistvie[imHero][n] == 10:
+        elif botVozdeistvie[imHero][n] == 10 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/mochPrirodi_32.jpg')
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift))  
             xShift += 37           
-        elif botVozdeistvie[imHero][n] == 13:
+        elif botVozdeistvie[imHero][n] == 13 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/pechatChaosa_32.jpg')
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift))  
             xShift += 37
-        elif botVozdeistvie[imHero][n] == 15:
+        elif botVozdeistvie[imHero][n] == 15 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/poceluiSmerti_32.jpg')
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift)) 
             xShift += 37        
-        elif botVozdeistvie[imHero][n] == 14:
+        elif botVozdeistvie[imHero][n] == 14 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/pechatSmerti_32.jpg')
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift)) 
             xShift += 37
-        elif botVozdeistvie[imHero][n] == 16:
+        elif botVozdeistvie[imHero][n] == 16 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/prokliatie_32.png')
             x_len = pix.get_width()
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift))  
             xShift += 37 
-        elif botVozdeistvie[imHero][n] == 0:
+        elif botVozdeistvie[imHero][n] == 0 and botDeistvie[imHero][n] == 0:
             pygame.draw.rect(sc, (255, 255, 255), (xShift, 785, 32, 32))
             xShift += 37           
     
@@ -8103,7 +8103,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
             sc.blit(nameObj,(440, 580))
             
         if drujbaMaga >= 1:
-            slova = int(random.random() * 10)
+            slova = int(random.random() * 20)
             if slova == 0:
                 variableName = u"Те кто хорошо овладел магической и"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -8138,7 +8138,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"твари в противном случае."
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 760))
-            if slova == 1:
+            elif slova == 1:
                 variableName = u"У гномов чаще всего есть серебро"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8154,7 +8154,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"и я тебя им тоже угощу"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 640))
-            if slova == 2:
+            elif slova == 2:
                 variableName = u"Самые страшные создания в этом мире"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8185,7 +8185,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"одиночку одолеть целое полчище врага"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 740))
-            if slova == 3:
+            elif slova == 3:
                 variableName = u"Гноллы - самые бесполезные создания"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8204,7 +8204,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"ценного при себе не бывает."
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 660))
-            if slova == 4:
+            elif slova == 4:
                 variableName = u"Духи-союзники иногда приходят в наши земли."
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8238,7 +8238,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"ним побегать"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 760))
-            if slova == 5:
+            elif slova == 5:
                 variableName = u"На первых порах лучше покупай зелья"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8248,7 +8248,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"Так дешевле выйдет залечивать свои раны"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 600))
-            if slova == 6:
+            elif slova == 6:
                 variableName = u"Когда появиться дух смерти, лучше"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8279,7 +8279,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"от него, как окажешься на том свете."
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 740))   
-            if slova == 7:
+            elif slova == 7:
                 variableName = u"У эльфиек обычно много бронзы при себе"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8295,7 +8295,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"растениями, и на рынок за снадобьями."
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 640))
-            if slova == 8 and botLvl[imHero] <= 5:
+            elif slova == 8 and botLvl[imHero] <= 5:
                 variableName = u"Знаешь, а у меня ведь есть камень"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8317,14 +8317,14 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"могущественен, что способен тебя убить"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 680)) 
-            if slova == 9:
+            elif slova == 9:
                 variableName = u"Послушай, может в другой раз поговорим?"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
                 variableName = u"Я сейчас очень занят"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 580))
-            if slova == 10:
+            elif slova == 10:
                 variableName = u"У Некромантов и Оккультистов есть"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 560)) 
@@ -8366,7 +8366,41 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 sc.blit(nameObj,(440, 820))
                 variableName = u"тебе продам"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-                sc.blit(nameObj,(440, 840))                                      
+                sc.blit(nameObj,(440, 840))
+            elif slova == 11:
+                variableName = u"Когда пойдёшь охотиться на колдунов"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"прихвати с собой рассеивающее зелье"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"или что-то ему подобное. Постигшие"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"магию хаоса и смерти, колдуны а в "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"особенности некроманты, способны накладывать"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))
+                variableName = u"такие заклинания как Печать Хаоса и"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))
+                variableName = u"Печать Смерти. Первое не так страшно"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680))
+                variableName = u"от него хотя бы больше шансов спастись."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 700))
+                variableName = u"А вот если на тебя наложат Печать Смерти"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 720))
+                variableName = u"и при тебе не будет рассеивающего зелья - "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 740))    
+                variableName = u"можешь рыть себе могилу на том же месте"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 760))                                    
         
     if selectLot == 3:
         hijinaMaga = 0
@@ -8965,9 +8999,9 @@ def randomBot():
                     botLvl[n] = 4
                     botZdorovie[n] = 375
                     botIshZdorovie[n] = 375
-                    botMana[n] = 180
-                    botIshMana[n] = 180
-                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botMana[n] = 280
+                    botIshMana[n] = 280
+                    botZaklinania[n]=[22,23,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 31
                     botLovkost[n] = 12
                     botYdacha[n] = 19
@@ -10437,6 +10471,9 @@ def randomBot():
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
                         botSerebro[n] = 5
                         botBronza[n] = 500
+                    if botRandom == 10:
+                        botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]       
+                        botZoloto[n] = 1
                     bornBot(n, tmp)
                         
                 if tmp == 157: # Странник 4 ур.
@@ -10972,15 +11009,22 @@ def botActivity(nomerBota):
                 botZdorovie[nomerBota] -= 5
                 botDeistvie[nomerBota][n] -= 1
                 
-            if botVozdeistvie[nomerBota][n] == 14 and botDeistvie[nomerBota][n] > 0:  # Печать смерти
+            elif botVozdeistvie[nomerBota][n] == 14 and botDeistvie[nomerBota][n] > 0:  # Печать смерти
                 botDeistvie[nomerBota][n] -= 1
                 print("DEATH!!!")
                 if botDeistvie[nomerBota][n] == 1:
-                    botZdorovie[nomerBota] = -1000  
+                    botZdorovie[nomerBota] = -1000
+                
+            elif botVozdeistvie[nomerBota][n] == 13 and botDeistvie[nomerBota][n] > 0: # Печать Хаоса
+                botDeistvie[nomerBota][n] -= 1
+                botMana[nomerBota] = 0
+                botZdorovie[nomerBota] -= 15          
                 
                 
-            if botDeistvie[nomerBota][n] == 0: botVozdeistvie[nomerBota][n] = 0
-    
+            if botDeistvie[nomerBota][n] <= 0: 
+                botVozdeistvie[nomerBota][n] = 0
+                botDeistvie[nomerBota][n] = 0
+                
     if sobitie % 2397 == 0:
         tmpInventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         for n in range(16): 
