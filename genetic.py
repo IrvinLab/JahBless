@@ -7,7 +7,7 @@ import random
 n = 0 
 m = 0
 myGen = 1
-test = 0 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
+test = 1 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
     genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 45]
@@ -373,6 +373,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
     global botDeistvie
     global zyxel
     global attack
+    global posohProzrenia
     
     print ("Колдовство: ",nom, poriad, vragBot)
         
@@ -440,12 +441,11 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
             botMana[vragBot] = 0         
             yaKastanul = 1
 
-    if botZaklinania[nom][poriad] == 5: # Обман
-        if botMana[nom] >= 50:
+    if botZaklinania[nom][poriad] == 5: # Прозрение
+        if botMana[nom] >= 70:
             botHod[nom] -= 1
-            botMana[nom] -= 50
-            botExpirience[nom] += 10
-            botAlgoritm[vragBot] = 0
+            botMana[nom] -= 70
+            posohProzrenia = 1
             yaKastanul = 1
 
     if botZaklinania[nom][poriad] == 6: # Огненная сфера
@@ -810,7 +810,7 @@ def useInventar(dasLut):
                 botZaklinania[imHero][n] = 17
                 break
 
-    if botInventar[imHero][dasLut-1] == 41: # Это книга обман
+    if botInventar[imHero][dasLut-1] == 41: # Это книга Прозрение
         n = 0
         for n in range(15):
             if botZaklinania[imHero][n] == 0:
@@ -1960,7 +1960,7 @@ def textInventar(nomInv):
         variableName = u"Книга"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Обучает заклинанию Обман"
+        variableName = u"Обучает заклинанию Прозрение"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
         variableName = u"Куп./прод. 2700бр|54ср/1890бр|38ср"
@@ -4004,7 +4004,7 @@ def buyInvent(imBuy):
         variableName = u"Книга"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Обучает заклинанию Обман"
+        variableName = u"Обучает заклинанию Прозрение"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))
         variableName = u"Куп./прод. 2700бр|54ср/1890бр|38ср"
@@ -4660,25 +4660,22 @@ def textMagic(numerCeil):
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620)) 
     if botZaklinania[imHero][numerCeil-1] == 5:
-        variableName = u"Обман"
+        variableName = u"Прозрение"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Заклинание хаоса 1 уровня"
+        variableName = u"Заклинание Природы 3 уровня"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Существо бездействует 1 ход"
+        variableName = u"С его помощью можно увидеть Ману, Силу"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"Полезно применять против сильного"
+        variableName = u"А также заклинания которыми владеет"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = u"если у него нет защиты от базовых"
+        variableName = u"враг и его инвентарь"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 640))  
-        variableName = u"заклинаний хаоса"
-        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))     
-        variableName = u"Требует 50 маны"
+        sc.blit(nameObj,(440, 640))      
+        variableName = u"Требует 70 маны"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))
     if botZaklinania[imHero][numerCeil-1] == 6:
@@ -12459,7 +12456,7 @@ if test == 0:
     botLvl[imHero] = 1
     botRasa[imHero] = 7
     botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+    botZaklinania[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botIshZdorovie[imHero] = 200
     botZdorovie[imHero] = 200
@@ -12484,7 +12481,7 @@ elif test == 1:
     botLvl[imHero] = 1
     botRasa[imHero] = 7
     botInventar[imHero] = [54,56,12,11,10,10,10,10,0,0,0,0,0,0,0,0]
-    botZaklinania[imHero] = [3,7,10,8,13,15,1,14,16,12,0,0,0,0,0,100]
+    botZaklinania[imHero] = [3,7,10,8,13,15,1,14,16,12,5,0,0,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botIshZdorovie[imHero] = 1200
     botZdorovie[imHero] = 1200
