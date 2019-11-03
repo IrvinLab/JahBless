@@ -574,7 +574,7 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 for n in range(15):
                     if botVozdeistvie[vragBot][n] == 0:
                         botVozdeistvie[vragBot][n] = 13
-                        botDeistvie[vragBot][n] = 10
+                        botDeistvie[vragBot][n] = 700
                         botMana[nom] -= 175
                         botExpirience[nom] += 40
                         break        
@@ -5717,7 +5717,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 if botInventar[imHero][n] == 29:
                     tmpMagExp = 0
                     zadanieMaga = 4
-                    botSerebro[imHero][n] += 7
+                    botSerebro[imHero] += 7
                     botInventar[imHero][n] = 0
                     drujbaMaga += 1
                     break                    
@@ -8503,6 +8503,13 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
                 variableName = u"Старайся, и однажды удача улыбнётся тебе"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
                 sc.blit(nameObj,(440, 660))
+            elif slova == 14:
+                variableName = u"Серебро не так просто найти. Но ты можешь"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"его заработать, выполняя мои поручения"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))      
             else:
                 variableName = u"Молодой человек, у меня нет времени"
                 nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -8515,7 +8522,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
     if selectLot == 3:
         hijinaMaga = 0
         hijina = 0
-        if zadanieMaga == 0:
+        if zadanieMaga == 0 or zadanieMaga == 1:
             zadanieMaga = 1
             variableName = u"У одного из представителя расы людей"
             nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
@@ -8533,7 +8540,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
             nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
             sc.blit(nameObj,(440, 640))
         
-        elif zadanieMaga == 2:
+        elif zadanieMaga == 2 or zadanieMaga == 3:
             zadanieMaga = 3
             variableName = u"Некоторое время назад жил маг, способный"
             nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
