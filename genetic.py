@@ -11096,7 +11096,7 @@ def botActivity(nomerBota):
             pass
             nn = 0 
             tmp = int(random.random()*75)
-            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56 or tmp == 29 or tmp == 30 or tmp == 31 or tmp == 65, tmp == 51, tmp == 50:
+            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56 or tmp == 29 or tmp == 30 or tmp == 31 or tmp == 65 or tmp == 51 or tmp == 50:
                 market[n] = tmpInventar[n] = 0
             else:
                 market[n] = tmpInventar[n] = tmp
