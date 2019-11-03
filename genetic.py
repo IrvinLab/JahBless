@@ -7,7 +7,7 @@ import random
 n = 0 
 m = 0
 myGen = 1
-startBotGeneration = 3
+test = 0 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
     genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 45]
@@ -45,6 +45,7 @@ zadanieMaga = 0
 drujbaMaga= 0
 tmpMagExp = 0
 posohSveta = 0
+posohProzrenia = 0
 
 iteration = 1
 FPS = 60
@@ -822,12 +823,21 @@ def useInventar(dasLut):
             if botZaklinania[imHero][n] == 0:
                 botZaklinania[imHero][n] = 23
                 break            
-
+    
+    if botInventar[imHero][dasLut-1] == 54 and yes == 1:   # Это посох Прозрения      
+        if botMana[imHero] >= 100:
+            posohProzrenia = 1
+            yes = 0
                 
     if botInventar[imHero][dasLut-1] == 55 and yes == 1:   # Это посох Смерти      
         if botMana[imHero] >= 100:
             posohSmerti = 1
             yes = 0
+    
+    if botInventar[imHero][dasLut-1] == 56 and yes == 1:   # Это посох Света      
+        if botMana[imHero] >= 50:
+            posohSveta = 1
+            yes = 0        
     
     if botInventar[imHero][dasLut-1] == 46: botZachita[imHero] = 3
     if botInventar[imHero][dasLut-1] == 47: botZachita[imHero] = 5
@@ -4979,547 +4989,547 @@ def textMagic(numerCeil):
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))       
 
-def visibleMagic(xMag, yMag, por): # Функция, отображающая заклинания
+def visibleMagic(xMag, yMag, por, whoam): # Функция, отображающая заклинания
     global botZaklinania
-    if botZaklinania[imHero][por] == 0:
+    if botZaklinania[whoam][por] == 0:
         pix = pygame.image.load('Images/zero.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[imHero][por] == 100:
+    if botZaklinania[whoam][por] == 100:
         pix = pygame.image.load('Images/attack.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[imHero][por] == 1:
+    if botZaklinania[whoam][por] == 1:
         pix = pygame.image.load('Images/pronzauchaiaSmert.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[imHero][por] == 2:
+    if botZaklinania[whoam][por] == 2:
         pix = pygame.image.load('Images/dobitIvoskresit.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[imHero][por] == 3:
+    if botZaklinania[whoam][por] == 3:
         pix = pygame.image.load('Images/dospechiFenicha.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[imHero][por] == 4:
+    if botZaklinania[whoam][por] == 4:
         pix = pygame.image.load('Images/krajaMagii.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[imHero][por] == 5:
+    if botZaklinania[whoam][por] == 5:
         pix = pygame.image.load('Images/obman.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))    
-    if botZaklinania[imHero][por] == 6:
+    if botZaklinania[whoam][por] == 6:
         pix = pygame.image.load('Images/ognennaiaSfera.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[imHero][por] == 7:
+    if botZaklinania[whoam][por] == 7:
         pix = pygame.image.load('Images/jad.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))
-    if botZaklinania[imHero][por] == 8:
+    if botZaklinania[whoam][por] == 8:
         pix = pygame.image.load('Images/krovojadnost.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))        
-    if botZaklinania[imHero][por] == 9:
+    if botZaklinania[whoam][por] == 9:
         pix = pygame.image.load('Images/lunniiObriad.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[imHero][por] == 10:
+    if botZaklinania[whoam][por] == 10:
         pix = pygame.image.load('Images/mochPrirodi.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[imHero][por] == 11:
+    if botZaklinania[whoam][por] == 11:
         pix = pygame.image.load('Images/mogilniiLuch.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag)) 
-    if botZaklinania[imHero][por] == 12:
+    if botZaklinania[whoam][por] == 12:
         pix = pygame.image.load('Images/molnia.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))    
-    if botZaklinania[imHero][por] == 13:
+    if botZaklinania[whoam][por] == 13:
         pix = pygame.image.load('Images/pechatChaosa.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))    
-    if botZaklinania[imHero][por] == 14:
+    if botZaklinania[whoam][por] == 14:
         pix = pygame.image.load('Images/pechatSmerti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))   
-    if botZaklinania[imHero][por] == 15:
+    if botZaklinania[whoam][por] == 15:
         pix = pygame.image.load('Images/poceluiSmerti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))      
-    if botZaklinania[imHero][por] == 16:
+    if botZaklinania[whoam][por] == 16:
         pix = pygame.image.load('Images/prokliatie.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))   
-    if botZaklinania[imHero][por] == 17:
+    if botZaklinania[whoam][por] == 17:
         pix = pygame.image.load('Images/pronzauchiiKrik.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))         
-    if botZaklinania[imHero][por] == 18:
+    if botZaklinania[whoam][por] == 18:
         pix = pygame.image.load('Images/reincarnation.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag)) 
-    if botZaklinania[imHero][por] == 19:
+    if botZaklinania[whoam][por] == 19:
         pix = pygame.image.load('Images/sjiganieMani.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag)) 
-    if botZaklinania[imHero][por] == 20:
+    if botZaklinania[whoam][por] == 20:
         pix = pygame.image.load('Images/vampirizm.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag)) 
-    if botZaklinania[imHero][por] == 21:
+    if botZaklinania[whoam][por] == 21:
         pix = pygame.image.load('Images/vosstanovitSkeletov.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[imHero][por] == 22:
+    if botZaklinania[whoam][por] == 22:
         pix = pygame.image.load('Images/lechenie.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))   
-    if botZaklinania[imHero][por] == 23:
+    if botZaklinania[whoam][por] == 23:
         pix = pygame.image.load('Images/rasseiatChari.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))  
-    if botZaklinania[imHero][por] == 24:
+    if botZaklinania[whoam][por] == 24:
         pix = pygame.image.load('Images/plenitDuchu.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xMag,yMag))              
                                 
-def visibleInventar(xInv, yInv, porNom): # Функция, отображающая заклинания
+def visibleInventar(xInv, yInv, porNom, whoam): # Функция, отображающая заклинания
     global botInventar
-    if botInventar[imHero][porNom] == 0:
+    if botInventar[whoam][porNom] == 0:
         pix = pygame.image.load('Images/zero.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 1:
+    if botInventar[whoam][porNom] == 1:
         pix = pygame.image.load('Images/healtPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 2:
+    if botInventar[whoam][porNom] == 2:
         pix = pygame.image.load('Images/healtPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 3:
+    if botInventar[whoam][porNom] == 3:
         pix = pygame.image.load('Images/healtPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 4:
+    if botInventar[whoam][porNom] == 4:
         pix = pygame.image.load('Images/healtPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 5:
+    if botInventar[whoam][porNom] == 5:
         pix = pygame.image.load('Images/healtPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))                       
-    if botInventar[imHero][porNom] == 6:
+    if botInventar[whoam][porNom] == 6:
         pix = pygame.image.load('Images/manaPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 7:
+    if botInventar[whoam][porNom] == 7:
         pix = pygame.image.load('Images/manaPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 8:
+    if botInventar[whoam][porNom] == 8:
         pix = pygame.image.load('Images/manaPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 9:
+    if botInventar[whoam][porNom] == 9:
         pix = pygame.image.load('Images/manaPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 10:
+    if botInventar[whoam][porNom] == 10:
         pix = pygame.image.load('Images/manaPoison.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))                
-    if botInventar[imHero][porNom] == 11:
+    if botInventar[whoam][porNom] == 11:
         pix = pygame.image.load('Images/zelieVostanovlenia.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 12:
+    if botInventar[whoam][porNom] == 12:
         pix = pygame.image.load('Images/zelieRasseivania.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))   
-    if botInventar[imHero][porNom] == 13:
+    if botInventar[whoam][porNom] == 13:
         pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 14:
+    if botInventar[whoam][porNom] == 14:
         pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 15:
+    if botInventar[whoam][porNom] == 15:
         pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 16:
+    if botInventar[whoam][porNom] == 16:
         pix = pygame.image.load('Images/zelieKipacheiKrovi.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))           
-    if botInventar[imHero][porNom] == 17:
+    if botInventar[whoam][porNom] == 17:
         pix = pygame.image.load('Images/zelieZaciti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 18:
+    if botInventar[whoam][porNom] == 18:
         pix = pygame.image.load('Images/zelieZaciti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 19:
+    if botInventar[whoam][porNom] == 19:
         pix = pygame.image.load('Images/zelieZaciti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))            
-    if botInventar[imHero][porNom] == 20:
+    if botInventar[whoam][porNom] == 20:
         pix = pygame.image.load('Images/zelieLovkosti.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 21:
+    if botInventar[whoam][porNom] == 21:
         pix = pygame.image.load('Images/zelieLovkosti.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 22:
+    if botInventar[whoam][porNom] == 22:
         pix = pygame.image.load('Images/zelieLovkosti.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))          
-    if botInventar[imHero][porNom] == 23:
+    if botInventar[whoam][porNom] == 23:
         pix = pygame.image.load('Images/zelieUdachi.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 24:
+    if botInventar[whoam][porNom] == 24:
         pix = pygame.image.load('Images/zelieUdachi.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 25:
+    if botInventar[whoam][porNom] == 25:
         pix = pygame.image.load('Images/zelieUdachi.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))        
-    if botInventar[imHero][porNom] == 26:
+    if botInventar[whoam][porNom] == 26:
         pix = pygame.image.load('Images/axe.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))   
-    if botInventar[imHero][porNom] == 27:
+    if botInventar[whoam][porNom] == 27:
         pix = pygame.image.load('Images/axe1.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 28:
+    if botInventar[whoam][porNom] == 28:
         pix = pygame.image.load('Images/axe2.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))         
-    if botInventar[imHero][porNom] == 29:
+    if botInventar[whoam][porNom] == 29:
         pix = pygame.image.load('Images/axe3.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 30:
+    if botInventar[whoam][porNom] == 30:
         pix = pygame.image.load('Images/axe4.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 31:
+    if botInventar[whoam][porNom] == 31:
         pix = pygame.image.load('Images/axe5.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 32:
+    if botInventar[whoam][porNom] == 32:
         pix = pygame.image.load('Images/axe6.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 33:
+    if botInventar[whoam][porNom] == 33:
         pix = pygame.image.load('Images/book.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 34:
+    if botInventar[whoam][porNom] == 34:
         pix = pygame.image.load('Images/book1.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 35:
+    if botInventar[whoam][porNom] == 35:
         pix = pygame.image.load('Images/book2.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 36:
+    if botInventar[whoam][porNom] == 36:
         pix = pygame.image.load('Images/book3.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 37:
+    if botInventar[whoam][porNom] == 37:
         pix = pygame.image.load('Images/book4.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 38:
+    if botInventar[whoam][porNom] == 38:
         pix = pygame.image.load('Images/book5.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 39:
+    if botInventar[whoam][porNom] == 39:
         pix = pygame.image.load('Images/book6.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 40:
+    if botInventar[whoam][porNom] == 40:
         pix = pygame.image.load('Images/book7.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 41:
+    if botInventar[whoam][porNom] == 41:
         pix = pygame.image.load('Images/book8.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 42:
+    if botInventar[whoam][porNom] == 42:
         pix = pygame.image.load('Images/book9.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))  
-    if botInventar[imHero][porNom] == 43:
+    if botInventar[whoam][porNom] == 43:
         pix = pygame.image.load('Images/bot1.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 44:
+    if botInventar[whoam][porNom] == 44:
         pix = pygame.image.load('Images/bot2.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 45:
+    if botInventar[whoam][porNom] == 45:
         pix = pygame.image.load('Images/bot3.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 46:
+    if botInventar[whoam][porNom] == 46:
         pix = pygame.image.load('Images/helmet.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 47:
+    if botInventar[whoam][porNom] == 47:
         pix = pygame.image.load('Images/helmet1.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 48:
+    if botInventar[whoam][porNom] == 48:
         pix = pygame.image.load('Images/helmet2.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 49:
+    if botInventar[whoam][porNom] == 49:
         pix = pygame.image.load('Images/helmet3.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 50:
+    if botInventar[whoam][porNom] == 50:
         pix = pygame.image.load('Images/helmet4.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 51:
+    if botInventar[whoam][porNom] == 51:
         pix = pygame.image.load('Images/helmet5.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 52:
+    if botInventar[whoam][porNom] == 52:
         pix = pygame.image.load('Images/jar.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 53:
+    if botInventar[whoam][porNom] == 53:
         pix = pygame.image.load('Images/ojerelie.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 54:
+    if botInventar[whoam][porNom] == 54:
         pix = pygame.image.load('Images/posohProzrenia.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 55:
+    if botInventar[whoam][porNom] == 55:
         pix = pygame.image.load('Images/posohSmerti.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))        
-    if botInventar[imHero][porNom] == 56:
+    if botInventar[whoam][porNom] == 56:
         pix = pygame.image.load('Images/posohSveta.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))        
-    if botInventar[imHero][porNom] == 57:
+    if botInventar[whoam][porNom] == 57:
         pix = pygame.image.load('Images/posohVechnoiJizni.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 58:
+    if botInventar[whoam][porNom] == 58:
         pix = pygame.image.load('Images/posohVoli.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))      
-    if botInventar[imHero][porNom] == 59:
+    if botInventar[whoam][porNom] == 59:
         pix = pygame.image.load('Images/runesBraslet.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv)) 
-    if botInventar[imHero][porNom] == 60:
+    if botInventar[whoam][porNom] == 60:
         pix = pygame.image.load('Images/sword.jpeg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 61:
+    if botInventar[whoam][porNom] == 61:
         pix = pygame.image.load('Images/sword1.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))     
-    if botInventar[imHero][porNom] == 62:
+    if botInventar[whoam][porNom] == 62:
         pix = pygame.image.load('Images/sword2.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))         
-    if botInventar[imHero][porNom] == 63:
+    if botInventar[whoam][porNom] == 63:
         pix = pygame.image.load('Images/sword3.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))         
-    if botInventar[imHero][porNom] == 64:
+    if botInventar[whoam][porNom] == 64:
         pix = pygame.image.load('Images/sword4.gif') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))         
-    if botInventar[imHero][porNom] == 65:
+    if botInventar[whoam][porNom] == 65:
         pix = pygame.image.load('Images/sword5.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))         
-    if botInventar[imHero][porNom] == 66:
+    if botInventar[whoam][porNom] == 66:
         pix = pygame.image.load('Images/usilenniiPosohVechnoiJizni.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))   
-    if botInventar[imHero][porNom] == 67:
+    if botInventar[whoam][porNom] == 67:
         pix = pygame.image.load('Images/hammer.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))         
-    if botInventar[imHero][porNom] == 68:
+    if botInventar[whoam][porNom] == 68:
         pix = pygame.image.load('Images/hammer1.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 69:
+    if botInventar[whoam][porNom] == 69:
         pix = pygame.image.load('Images/hammer2.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))    
-    if botInventar[imHero][porNom] == 70:
+    if botInventar[whoam][porNom] == 70:
         pix = pygame.image.load('Images/hammer3.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 71:
+    if botInventar[whoam][porNom] == 71:
         pix = pygame.image.load('Images/book10.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 72:
+    if botInventar[whoam][porNom] == 72:
         pix = pygame.image.load('Images/book11.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
-    if botInventar[imHero][porNom] == 73:
+    if botInventar[whoam][porNom] == 73:
         pix = pygame.image.load('Images/book12.png') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
 
 def printMagic(numberMagic):                                # Отображаем магические способности
-    if numberMagic == 0: visibleMagic(16,548,0)
-    if numberMagic == 1: visibleMagic(84,548,1)
-    if numberMagic == 2: visibleMagic(152,548,2)
-    if numberMagic == 3: visibleMagic(220,548,3)
-    if numberMagic == 4: visibleMagic(16,616,4)
-    if numberMagic == 5: visibleMagic(84,616,5)
-    if numberMagic == 6: visibleMagic(152,616,6)
-    if numberMagic == 7: visibleMagic(220,616,7)
-    if numberMagic == 8: visibleMagic(16,684,8)
-    if numberMagic == 9: visibleMagic(84,684,9)
-    if numberMagic == 10: visibleMagic(152,684,10)
-    if numberMagic == 11: visibleMagic(220,684,11)
-    if numberMagic == 12: visibleMagic(16,752,12)
-    if numberMagic == 13: visibleMagic(84,752,13)
-    if numberMagic == 14: visibleMagic(152,752,14)
-    if numberMagic == 15: visibleMagic(220,752,15)
+    if numberMagic == 0: visibleMagic(16,548,0,imHero)
+    if numberMagic == 1: visibleMagic(84,548,1,imHero)
+    if numberMagic == 2: visibleMagic(152,548,2,imHero)
+    if numberMagic == 3: visibleMagic(220,548,3,imHero)
+    if numberMagic == 4: visibleMagic(16,616,4,imHero)
+    if numberMagic == 5: visibleMagic(84,616,5,imHero)
+    if numberMagic == 6: visibleMagic(152,616,6,imHero)
+    if numberMagic == 7: visibleMagic(220,616,7,imHero)
+    if numberMagic == 8: visibleMagic(16,684,8,imHero)
+    if numberMagic == 9: visibleMagic(84,684,9,imHero)
+    if numberMagic == 10: visibleMagic(152,684,10,imHero)
+    if numberMagic == 11: visibleMagic(220,684,11,imHero)
+    if numberMagic == 12: visibleMagic(16,752,12,imHero)
+    if numberMagic == 13: visibleMagic(84,752,13,imHero)
+    if numberMagic == 14: visibleMagic(152,752,14,imHero)
+    if numberMagic == 15: visibleMagic(220,752,15,imHero)
          
 def printInventar(numberInventar):                                # Отображаем инвентарь
-    if numberInventar == 0: visibleInventar(772,548,0)
-    if numberInventar == 1: visibleInventar(840,548,1)
-    if numberInventar == 2: visibleInventar(908,548,2)
-    if numberInventar == 3: visibleInventar(976,548,3)
-    if numberInventar == 4: visibleInventar(772,616,4)
-    if numberInventar == 5: visibleInventar(840,616,5)
-    if numberInventar == 6: visibleInventar(908,616,6)
-    if numberInventar == 7: visibleInventar(976,616,7)
-    if numberInventar == 8: visibleInventar(772,684,8)
-    if numberInventar == 9: visibleInventar(840,684,9)
-    if numberInventar == 10: visibleInventar(908,684,10)
-    if numberInventar == 11: visibleInventar(976,684,11)
-    if numberInventar == 12: visibleInventar(772,752,12)
-    if numberInventar == 13: visibleInventar(840,752,13)
-    if numberInventar == 14: visibleInventar(908,752,14)
-    if numberInventar == 15: visibleInventar(976,752,15) 
+    if numberInventar == 0: visibleInventar(772,548,0,imHero)
+    if numberInventar == 1: visibleInventar(840,548,1,imHero)
+    if numberInventar == 2: visibleInventar(908,548,2,imHero)
+    if numberInventar == 3: visibleInventar(976,548,3,imHero)
+    if numberInventar == 4: visibleInventar(772,616,4,imHero)
+    if numberInventar == 5: visibleInventar(840,616,5,imHero)
+    if numberInventar == 6: visibleInventar(908,616,6,imHero)
+    if numberInventar == 7: visibleInventar(976,616,7,imHero)
+    if numberInventar == 8: visibleInventar(772,684,8,imHero)
+    if numberInventar == 9: visibleInventar(840,684,9,imHero)
+    if numberInventar == 10: visibleInventar(908,684,10,imHero)
+    if numberInventar == 11: visibleInventar(976,684,11,imHero)
+    if numberInventar == 12: visibleInventar(772,752,12,imHero)
+    if numberInventar == 13: visibleInventar(840,752,13,imHero)
+    if numberInventar == 14: visibleInventar(908,752,14,imHero)
+    if numberInventar == 15: visibleInventar(976,752,15,imHero) 
 
 def doebaca(hehmda):  #Функция отображающая информацию об объектах и позволяющая с ними взаимодействовать
     global botType, botStep, xBot, yBot, botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botInventar, botIshZdorovie, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha
@@ -5536,6 +5546,44 @@ def doebaca(hehmda):  #Функция отображающая информац�
                 variableName = u"Здоровье: " + str(botZdorovie[ktoZdesVrag]) + "/" + str(botIshZdorovie[ktoZdesVrag])
                 nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
                 sc.blit(nameObj,(440, 760))
+                if posohProzrenia == 1: # Если активировали посох прозрения
+                    variableName = u"Мана: " + str(botMana[ktoZdesVrag]) + "/" + str(botIshMana[ktoZdesVrag])
+                    nameObj = textNameHero.render(variableName, False, (0, 255, 255)) 
+                    sc.blit(nameObj,(440, 780))
+                    visibleMagic(16,548,0,ktoZdesVrag)
+                    visibleMagic(84,548,1,ktoZdesVrag)
+                    visibleMagic(152,548,2,ktoZdesVrag)
+                    visibleMagic(220,548,3,ktoZdesVrag)
+                    visibleMagic(16,616,4,ktoZdesVrag)
+                    visibleMagic(84,616,5,ktoZdesVrag)
+                    visibleMagic(152,616,6,ktoZdesVrag)
+                    visibleMagic(220,616,7,ktoZdesVrag)
+                    visibleMagic(16,684,8,ktoZdesVrag)
+                    visibleMagic(84,684,9,ktoZdesVrag)
+                    visibleMagic(152,684,10,ktoZdesVrag)
+                    visibleMagic(220,684,11,ktoZdesVrag)
+                    visibleMagic(16,752,12,ktoZdesVrag)
+                    visibleMagic(84,752,13,ktoZdesVrag)
+                    visibleMagic(152,752,14,ktoZdesVrag)
+                    visibleMagic(220,752,15,ktoZdesVrag)
+
+                    visibleInventar(772,548,0,ktoZdesVrag)
+                    visibleInventar(840,548,1,ktoZdesVrag)
+                    visibleInventar(908,548,2,ktoZdesVrag)
+                    visibleInventar(976,548,3,ktoZdesVrag)
+                    visibleInventar(772,616,4,ktoZdesVrag)
+                    visibleInventar(840,616,5,ktoZdesVrag)
+                    visibleInventar(908,616,6,ktoZdesVrag)
+                    visibleInventar(976,616,7,ktoZdesVrag)
+                    visibleInventar(772,684,8,ktoZdesVrag)
+                    visibleInventar(840,684,9,ktoZdesVrag)
+                    visibleInventar(908,684,10,ktoZdesVrag)
+                    visibleInventar(976,684,11,ktoZdesVrag)
+                    visibleInventar(772,752,12,ktoZdesVrag)
+                    visibleInventar(840,752,13,ktoZdesVrag)
+                    visibleInventar(908,752,14,ktoZdesVrag)
+                    visibleInventar(976,752,15,ktoZdesVrag) 
+                    
             break        
     
         
@@ -5562,8 +5610,10 @@ def doebaca(hehmda):  #Функция отображающая информац�
     
     
     ktoZdesVrag = 0    
+    
+                
     if posohSveta == 1: # Посох света
-        for ktoZdesVrag in range(200): # Определяем номер бота по клетке
+        for ktoZdesVrag in range(100): # Определяем номер бота по клетке
             if botLocation[ktoZdesVrag] == hehmda:
                 break  
 
@@ -5575,7 +5625,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
         posohSveta= 0
     
     if posohSmerti == 1:
-        for ktoZdesVrag in range(200): # Определяем номер бота по клетке
+        for ktoZdesVrag in range(100): # Определяем номер бота по клетке
             if botLocation[ktoZdesVrag] == hehmda:
                 break  
         
@@ -8606,6 +8656,11 @@ def bornBot(numerBurnBota, typeBurnBota):
             yBot[numerBurnBota] = 96
             world[30] = typeBurnBota
             botLocation[numerBurnBota] = 30
+        elif world[144] == 0:
+            xBot[numerBurnBota] = 528
+            yBot[numerBurnBota] = 224
+            world[144] = typeBurnBota
+            botLocation[numerBurnBota] = 144    
         elif world[63] == 0:
             xBot[numerBurnBota] = 976
             yBot[numerBurnBota] = 128
@@ -8621,11 +8676,6 @@ def bornBot(numerBurnBota, typeBurnBota):
             yBot[numerBurnBota] = 224
             world[146] = typeBurnBota
             botLocation[numerBurnBota] = 146
-        elif world[144] == 0:
-            xBot[numerBurnBota] = 528
-            yBot[numerBurnBota] = 224
-            world[144] = typeBurnBota
-            botLocation[numerBurnBota] = 144
         elif world[113] == 0:
             xBot[numerBurnBota] = 560
             yBot[numerBurnBota] = 192
@@ -8669,7 +8719,12 @@ def bornBot(numerBurnBota, typeBurnBota):
             xBot[numerBurnBota] = 16
             yBot[numerBurnBota] = 480
             world[384] = typeBurnBota
-            botLocation[numerBurnBota] = 384 
+            botLocation[numerBurnBota] = 384
+        elif world[177] == 0:
+            xBot[numerBurnBota] = 560
+            yBot[numerBurnBota] = 256
+            world[177] = typeBurnBota
+            botLocation[numerBurnBota] = 177       
         elif world[385] == 0:
             xBot[numerBurnBota] = 48
             yBot[numerBurnBota] = 480
@@ -8695,11 +8750,7 @@ def bornBot(numerBurnBota, typeBurnBota):
             yBot[numerBurnBota] = 192
             world[113] = typeBurnBota
             botLocation[numerBurnBota] = 113
-        elif world[177] == 0:
-            xBot[numerBurnBota] = 560
-            yBot[numerBurnBota] = 256
-            world[177] = typeBurnBota
-            botLocation[numerBurnBota] = 177     
+           
 def randomBot():
         global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world, tmpMagExp, zadanieMaga  
         for n in range(30):
@@ -9168,12 +9219,6 @@ def randomBot():
                     botHod[n] = botLovkost[n]
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
-                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 60
@@ -9201,12 +9246,6 @@ def randomBot():
                     botHod[n] = botLovkost[n]
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
-                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 60
@@ -9234,12 +9273,6 @@ def randomBot():
                     botHod[n] = botLovkost[n]
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
-                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-                    botBronza[n] = 0
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 200
@@ -9267,18 +9300,13 @@ def randomBot():
                     botHod[n] = botLovkost[n]
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 3
-                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
                     botBronza[n] = 100
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 150
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [61,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
-                        botBronza[n] = 250
+                        botBronza[n] = 200
                     if botRandom == 10:
                         botInventar[n] = [62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botSerebro[n] = 1
@@ -9625,14 +9653,14 @@ def randomBot():
                     botSerebro[n] = 0
                     botBronza[n] = 150
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [61,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [61,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
                         botBronza[n] = 300
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [62,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botBronza[n] = 400
                     if botRandom == 10:
-                        botInventar[n] = [63,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [64,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 550       
                     bornBot(n, tmp)
                         
@@ -9657,14 +9685,14 @@ def randomBot():
                     botSerebro[n] = 0
                     botBronza[n] = 150
                     if botRandom >= 30 and botRandom <= 40:
-                        botInventar[n] = [62,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [62,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
                         botBronza[n] = 250
                     if botRandom >= 20 and botRandom <= 25:
-                        botInventar[n] = [63,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
+                        botInventar[n] = [63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botSerebro[n] = 3
                     if botRandom == 10:
-                        botInventar[n] = [65,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botInventar[n] = [65,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botBronza[n] = 500       
                     bornBot(n, tmp)
                         
@@ -9690,7 +9718,6 @@ def randomBot():
                     botBronza[n] = 10
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
                         botSerebro[n] = 1
                         botBronza[n] = 20
                     if botRandom >= 20 and botRandom <= 25:
@@ -9724,7 +9751,6 @@ def randomBot():
                     botSerebro[n] = 0
                     botBronza[n] = 10
                     if botRandom >= 30 and botRandom <= 40:
-
                         botInventar[n] = [8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 1
                         botBronza[n] = 20
@@ -9753,11 +9779,6 @@ def randomBot():
                     botHod[n] = botLovkost[n]
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 4
-                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-
                     botBronza[n] = 10
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -9785,11 +9806,6 @@ def randomBot():
                     botHod[n] = botLovkost[n]
                     botVozdeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                     botAlgoritm[n] = 5
-                    botDeistvie[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                    botZoloto[n] = 0
-                    botSerebro[n] = 0
-
                     botBronza[n] = 0
                     if botRandom >= 30 and botRandom <= 40:
                         botInventar[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -9863,6 +9879,11 @@ def randomBot():
                         botInventar[n] = [10,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botSerebro[n] = 2
                         botBronza[n] = 70
+                    if botRandom == 13:
+                        botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 2
+                        botBronza[n] = 100       
+                    bornBot(n, tmp)
                     if botRandom == 12:
                         botInventar[n] = [55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
@@ -9876,6 +9897,7 @@ def randomBot():
                         botSerebro[n] = 7
                         botBronza[n] = 40       
                     bornBot(n, tmp)
+                    
                         
                 if tmp == 136: # Орк 1 ур.
                     botNumer[n] = n
@@ -11018,7 +11040,12 @@ def botActivity(nomerBota):
             elif botVozdeistvie[nomerBota][n] == 13 and botDeistvie[nomerBota][n] > 0: # Печать Хаоса
                 botDeistvie[nomerBota][n] -= 1
                 botMana[nomerBota] = 0
-                botZdorovie[nomerBota] -= 15          
+                botZdorovie[nomerBota] -= 15 
+            
+            elif botVozdeistvie[nomerBota][n] == 15 and botDeistvie[nomerBota][n] > 0: # Поцелуй смерти
+                botDeistvie[nomerBota][n] -= 1
+                botMana[nomerBota] = 0
+                botZdorovie[nomerBota] -= 40              
                 
                 
             if botDeistvie[nomerBota][n] <= 0: 
@@ -11031,7 +11058,7 @@ def botActivity(nomerBota):
             pass
             nn = 0 
             tmp = int(random.random()*75)
-            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56:
+            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56 or tmp == 29 or tmp == 30 or tmp == 31 or tmp == 65:
                 market[n] = tmpInventar[n] = 0
             else:
                 market[n] = tmpInventar[n] = tmp
@@ -11044,28 +11071,33 @@ def botActivity(nomerBota):
     
             
     if sobitie % 537 == 0: # Рожаем бота
-        if startBotGeneration == 3:
+        randBorn = int(random.random()*10)
+        if randBorn >= 0 and randBorn <= 5: 
+            randomBot()
+            randomBot()
+        elif randBorn == 6:
+            randomBot()
+            randomBot()
+            randomBot()
+        elif randBorn == 7:
+            randomBot()
+            randomBot()
+            randomBot()
+            randomBot()
+        elif randBorn == 8:
             randomBot()
             randomBot()
             randomBot()
             randomBot()
             randomBot()
-            randomBot()
-            startBotGeneration -= 1
-        elif startBotGeneration == 2:
-            randomBot()
-            randomBot()
-            randomBot()
-            randomBot()
-            startBotGeneration -= 1
-        elif startBotGeneration == 1:
-            randomBot()
-            randomBot()
-            randomBot()
-            startBotGeneration -= 1
         else:
             randomBot()
             randomBot()
+            randomBot()
+            randomBot()
+            randomBot()
+            randomBot()    
+            
         
                  
     
@@ -12507,31 +12539,58 @@ worldCreate()
 
 locations = [63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63]
 n = 0
-
-botExpirience[imHero] = 0   # Главный герой
-botLvl[imHero] = 1
-botRasa[imHero] = 7
-botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
-botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-botIshZdorovie[imHero] = 200
-botZdorovie[imHero] = 200
-botMana[imHero] = 100
-botIshMana[imHero] = 100
-botSila[imHero] = 10
-botLovkost[imHero] = 5
-botYdacha[imHero] = 9
-botZoloto[imHero] = 0
-botSerebro[imHero] = 0
-botBronza[imHero] = 0
-botHod[imHero] = botLovkost[imHero]
-botAlgoritm[imHero] = 4
-botVariant[imHero] = 52
-botDeistvie[imHero]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-world[172] = 52
-botLocation[imHero] = 172 # Исходное положение на карте
-xBot[imHero] = 400
-yBot[imHero] = 256
+    
+if test == 0:
+    botExpirience[imHero] = 0  
+    botLvl[imHero] = 1
+    botRasa[imHero] = 7
+    botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+    botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botIshZdorovie[imHero] = 200
+    botZdorovie[imHero] = 200
+    botMana[imHero] = 100
+    botIshMana[imHero] = 100
+    botSila[imHero] = 10
+    botLovkost[imHero] = 5
+    botYdacha[imHero] = 9
+    botZoloto[imHero] = 0
+    botSerebro[imHero] = 0
+    botBronza[imHero] = 0
+    botHod[imHero] = botLovkost[imHero]
+    botAlgoritm[imHero] = 4
+    botVariant[imHero] = 52
+    botDeistvie[imHero]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    world[172] = 52
+    botLocation[imHero] = 172 # Исходное положение на карте
+    xBot[imHero] = 400
+    yBot[imHero] = 256
+elif test == 1:
+    botExpirience[imHero] = 0  
+    botLvl[imHero] = 1
+    botRasa[imHero] = 7
+    botInventar[imHero] = [54,56,12,11,10,10,10,10,0,0,0,0,0,0,0,0]
+    botZaklinania[imHero] = [3,7,10,8,13,15,1,14,16,12,0,0,0,0,0,100]
+    botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botIshZdorovie[imHero] = 1200
+    botZdorovie[imHero] = 1200
+    botMana[imHero] = 1000
+    botIshMana[imHero] = 1000
+    botSila[imHero] = 50
+    botLovkost[imHero] = 5
+    botYdacha[imHero] = 9
+    botZoloto[imHero] = 0
+    botSerebro[imHero] = 1000
+    botBronza[imHero] = 100000
+    botHod[imHero] = botLovkost[imHero]
+    botAlgoritm[imHero] = 4
+    botVariant[imHero] = 52
+    botDeistvie[imHero]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botVozdeistvie[imHero]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    world[172] = 52
+    botLocation[imHero] = 172 # Исходное положение на карте
+    xBot[imHero] = 400
+    yBot[imHero] = 256
 
 
 n = 0
@@ -12577,6 +12636,7 @@ while True:
                 heroPanel(botVariant[imHero])
                 invent = 0
                 if tmpMarket == 2: yaNaRinke = 0
+                posohProzrenia = 0
                 
             elif i.key == pygame.K_RIGHT and xBot[imHero] <= 990 and world[botLocation[imHero]+1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -12591,6 +12651,7 @@ while True:
                 heroPanel(botVariant[imHero])
                 invent = 0
                 if tmpMarket == 2: yaNaRinke = 0
+                posohProzrenia = 0
                 
             elif i.key == pygame.K_UP and yBot[imHero] > 96 and world[botLocation[imHero]-32] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -12605,6 +12666,7 @@ while True:
                 heroPanel(botVariant[imHero])
                 invent = 0
                 if tmpMarket == 2: yaNaRinke = 0
+                posohProzrenia = 0
                 
             elif i.key == pygame.K_DOWN and yBot[imHero] <= 510 and world[botLocation[imHero]+32] == 0: 
                 pix = pygame.image.load('Images/weed.jpg')
@@ -12619,6 +12681,7 @@ while True:
                 heroPanel(botVariant[imHero])
                 invent = 0
                 if tmpMarket == 2: yaNaRinke = 0
+                posohProzrenia = 0
 
     mos_x, mos_y = pygame.mouse.get_pos() # Тут мы берём координаты мыши
 #============================================================================================================================================    
