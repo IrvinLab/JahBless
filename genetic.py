@@ -7,7 +7,7 @@ import random
 n = 0 
 m = 0
 myGen = 1
-test = 1 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
+test = 0 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
     genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 45]
@@ -8148,7 +8148,7 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
         hijina = 0
         if botSerebro[imHero] >= 25:
             botSerebro[imHero] -= 25
-            botIshMana[imHero] += 275
+            botIshMana[imHero] += 270
     
     if selectLot == 2:
         hijinaMaga = 0
@@ -9376,6 +9376,9 @@ def randomBot():
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
                         botSerebro[n] = 1
                         botBronza[n] = 250
+                    if botRandom == 11:
+                        botInventar[n] = [41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]      
+                        botSerebro[n] = 2   
                     bornBot(n, tmp)
                         
                 if tmp == 117: # Охотник за головами 3 ур.
@@ -9566,6 +9569,9 @@ def randomBot():
                         botInventar[n] = [51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 4       
                         botBronza[n] = 300
+                    if botRandom == 11:
+                        botInventar[n] = [41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 4    
                     bornBot(n, tmp)
                         
                 if tmp == 123: # Морлок 1 ур.
@@ -9812,7 +9818,10 @@ def randomBot():
                         botSerebro[n] = 2
                     if botRandom == 10:
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-                        botSerebro[n] = 3   
+                        botSerebro[n] = 3
+                    if botRandom == 11:
+                        botInventar[n] = [41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3        
                     bornBot(n, tmp)
                         
                 if tmp == 131: # Непобедимый 6 ур.
@@ -9956,10 +9965,13 @@ def randomBot():
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [10,54,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botSerebro[n] = 2
-                    if botRandom == 13:
+                    if botRandom == 14:
                         botInventar[n] = [33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 2
                         botBronza[n] = 100   
+                    if botRandom == 13:
+                        botInventar[n] = [41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1
                     if botRandom == 12:
                         botInventar[n] = [55,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
@@ -10225,6 +10237,10 @@ def randomBot():
                         botInventar[n] = [73,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3       
                         botBronza[n] = 300
+                    if botRandom == 11:
+                        botInventar[n] = [41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 1       
+                        botBronza[n] = 300    
                     bornBot(n, tmp)
                         
                 if tmp == 144: # Оккультист 7 ур.
@@ -10253,6 +10269,9 @@ def randomBot():
                     if botRandom >= 20 and botRandom <= 25:
                         botInventar[n] = [10,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botSerebro[n] = 2
+                    if botRandom == 13:
+                        botInventar[n] = [41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 4
                     if botRandom == 12:
                         botInventar[n] = [56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
@@ -10582,6 +10601,10 @@ def randomBot():
                         botInventar[n] = [59,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0] 
                         botSerebro[n] = 2
                         botBronza[n] = 95
+                    if botRandom == 11:
+                        botInventar[n] = [41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                        botSerebro[n] = 3
+                        botBronza[n] = 125 
                     if botRandom == 10:
                         botInventar[n] = [56,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                         botSerebro[n] = 3
@@ -10806,9 +10829,9 @@ def randomBot():
                     botZdorovie[n] = 350
                     botIshZdorovie[n] = 350
 
-                    botMana[n] = 450
-                    botIshMana[n] = 450
-                    botZaklinania[n]=[22,6,12,1,9,19,0,0,0,0,0,0,0,0,0,100]
+                    botMana[n] = 590
+                    botIshMana[n] = 590
+                    botZaklinania[n]=[19,13,15,1,9,0,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 20
                     botLovkost[n] = 7
                     botYdacha[n] = 25
@@ -11100,7 +11123,7 @@ def botActivity(nomerBota):
             pass
             nn = 0 
             tmp = int(random.random()*75)
-            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56 or tmp == 29 or tmp == 30 or tmp == 31 or tmp == 65 or tmp == 51 or tmp == 50:
+            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56 or tmp == 29 or tmp == 30 or tmp == 31 or tmp == 65 or tmp == 51 or tmp == 50 or tmp == 41:
                 market[n] = tmpInventar[n] = 0
             else:
                 market[n] = tmpInventar[n] = tmp
@@ -11125,7 +11148,13 @@ def botActivity(nomerBota):
             randomBot()
             randomBot()
             randomBot()    
-            randomBot()   
+            randomBot() 
+        elif randBorn == 8:
+            randomBot()
+            randomBot()
+            randomBot()    
+            randomBot()       
+            randomBot()
         else:
             randomBot()   
             
@@ -12456,7 +12485,7 @@ if test == 0:
     botLvl[imHero] = 1
     botRasa[imHero] = 7
     botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    botZaklinania[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+    botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botIshZdorovie[imHero] = 200
     botZdorovie[imHero] = 200
