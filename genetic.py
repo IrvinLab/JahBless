@@ -346,7 +346,7 @@ def myAttack(kletka):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
     
     n = 0
-    for n in range(20):
+    for n in range(40):
         if botLocation[n] == kletka and n != imHero:
             if botLocation[imHero] == botLocation[n]+1 or botLocation[imHero] == botLocation[n]-1 or botLocation[imHero] == botLocation[n]+32 or botLocation[imHero] == botLocation[n]-32 or botLocation[imHero] == botLocation[n]+33 or botLocation[imHero] == botLocation[n]+31 or botLocation[imHero] == botLocation[n]-33 or botLocation[imHero] == botLocation[n]-31:
                 if botSila[imHero] + botUseWeapon[imHero] > botZachita[n]:
@@ -9027,7 +9027,7 @@ def bornBot(numerBurnBota, typeBurnBota):
            
 def randomBot(tmp):
         global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world, tmpMagExp, zadanieMaga, kolizei, kolizeiBot  
-        for n in range(30):
+        for n in range(40):
             if botZdorovie[n] <= 0: #Если бот номер N мёртв, то занимаем его ID
                 botUseWeapon[n] = 0
                 botZachita[n] = 0
@@ -10895,9 +10895,9 @@ def randomBot(tmp):
                     botLvl[n] = 4
                     botZdorovie[n] = 245
                     botIshZdorovie[n] = 245
-                    botMana[n] = 0
-                    botIshMana[n] = 0
-                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botMana[n] = 100
+                    botIshMana[n] = 100
+                    botZaklinania[n]=[22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 27
                     botLovkost[n] = 6
                     botYdacha[n] = 4
@@ -10926,9 +10926,9 @@ def randomBot(tmp):
                     botLvl[n] = 5
                     botZdorovie[n] = 345
                     botIshZdorovie[n] = 345
-                    botMana[n] = 0
-                    botIshMana[n] = 0
-                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botMana[n] = 200
+                    botIshMana[n] = 200
+                    botZaklinania[n]=[22,7,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 39
                     botLovkost[n] = 6
                     botYdacha[n] = 4
@@ -10961,9 +10961,9 @@ def randomBot(tmp):
                     botZdorovie[n] = 495
 
                     botIshZdorovie[n] = 495
-                    botMana[n] = 0
-                    botIshMana[n] = 0
-                    botZaklinania[n]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botMana[n] = 300
+                    botIshMana[n] = 300
+                    botZaklinania[n]=[9,23,13,7,0,0,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 53
                     botLovkost[n] = 6
                     botYdacha[n] = 4
@@ -12577,7 +12577,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 45: # Бьём врага вверх 
             if botLocation[nomerBota]>=32:
                 if world[botLocation[nomerBota]-32] >= 50: # Если сверху кто-то есть, то...
-                    for n in range(30):
+                    for n in range(40):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]+32 and botZdorovie[n] > 0 and botAlgoritm[nomerBota] != botAlgoritm[n]:
                             if botZachita[n] < botSila[nomerBota]: 
@@ -12587,7 +12587,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 46: # Бьём врага вниз 
             if botLocation[nomerBota] <= 416:
                 if world[botLocation[nomerBota]+32] >= 50: # Если снизу кто-то есть, то...
-                    for n in range(30):
+                    for n in range(40):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]-32 and botZdorovie[n] > 0 and botAlgoritm[nomerBota] != botAlgoritm[n]: 
                             if botZachita[n] < botSila[nomerBota]: 
@@ -12598,7 +12598,7 @@ def botActivity(nomerBota):
             if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
 
                 if world[botLocation[nomerBota]-1] >= 50: # Если слева кто-то есть, то...
-                    for n in range(30):
+                    for n in range(40):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]+1 and botZdorovie[n] > 0 and botAlgoritm[nomerBota] != botAlgoritm[n]: 
                             if botZachita[n] < botSila[nomerBota]: 
@@ -12608,7 +12608,7 @@ def botActivity(nomerBota):
         elif genom[botStep[nomerBota]] == 48: # Бьём врага справа
             if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
                 if world[botLocation[nomerBota]+1] >= 50: # Если справа кто-то есть, то...
-                    for n in range(30):
+                    for n in range(40):
                         tmp = n
                         if botLocation[nomerBota] == botLocation[n]-1 and botZdorovie[n] > 0 and botAlgoritm[nomerBota] != botAlgoritm[n]: 
                             if botZachita[n] < botSila[nomerBota]: 
@@ -12620,7 +12620,7 @@ def botActivity(nomerBota):
                 if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
 
                     if world[botLocation[nomerBota]-31] >= 50: # Если справа кто-то есть, то...
-                        for n in range(30):
+                        for n in range(40):
                             tmp = n
                             if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0 and botAlgoritm[nomerBota] != botAlgoritm[n]: 
                                 if botZachita[n] < botSila[nomerBota]: 
@@ -12631,7 +12631,7 @@ def botActivity(nomerBota):
             if botLocation[nomerBota]>=32:
                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
                     if world[botLocation[nomerBota]-33] >= 50: # Если справа кто-то есть, то...
-                        for n in range(30):
+                        for n in range(40):
                             tmp = n
                             if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0 and botAlgoritm[nomerBota] != botAlgoritm[n]: 
                                 if botZachita[n] < botSila[nomerBota]: 
@@ -12643,7 +12643,7 @@ def botActivity(nomerBota):
                 if botLocation[nomerBota] != 31 and botLocation[nomerBota] != 63 and botLocation[nomerBota] != 95 and botLocation[nomerBota] != 127 and botLocation[nomerBota] != 159 and botLocation[nomerBota] != 191 and botLocation[nomerBota] != 223 and botLocation[nomerBota] != 255 and botLocation[nomerBota] != 287 and botLocation[nomerBota] != 319 and botLocation[nomerBota] != 351 and botLocation[nomerBota] != 383 and botLocation[nomerBota] != 415 and botLocation[nomerBota] != 447:
 
                     if world[botLocation[nomerBota]+33] >= 50: # Если справа кто-то есть, то...
-                        for n in range(30):
+                        for n in range(40):
                             tmp = n
                             if botLocation[nomerBota] == botLocation[n]-31 and botZdorovie[n] > 0 and botAlgoritm[nomerBota] != botAlgoritm[n]: 
                                 if botZachita[n] < botSila[nomerBota]: 
@@ -12654,7 +12654,7 @@ def botActivity(nomerBota):
             if botLocation[nomerBota]<=416:
                 if botLocation[nomerBota] != 0 and botLocation[nomerBota] != 32 and botLocation[nomerBota] != 64 and botLocation[nomerBota] != 96 and botLocation[nomerBota] != 128 and botLocation[nomerBota] != 160 and botLocation[nomerBota] != 192 and botLocation[nomerBota] != 224 and botLocation[nomerBota] != 256 and botLocation[nomerBota] != 288 and botLocation[nomerBota] != 320 and botLocation[nomerBota] != 352 and botLocation[nomerBota] != 384 and botLocation[nomerBota] != 416:
                     if world[botLocation[nomerBota]+31] >= 50: # Если справа кто-то есть, то...
-                        for n in range(30):
+                        for n in range(40):
                             tmp = n
                             if botLocation[nomerBota] == botLocation[n]-33 and botZdorovie[n] > 0 and botAlgoritm[nomerBota] != botAlgoritm[n]: 
                                 if botZachita[n] < botSila[nomerBota]: 
