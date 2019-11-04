@@ -7,7 +7,7 @@ import random
 n = 0 
 m = 0
 myGen = 1
-test = 1 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
+test = 0 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
     genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 45]
@@ -2989,7 +2989,12 @@ def marketPlace(press):
                 pix = pygame.image.load('Images/book12.png') 
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xInv,yInv))                 
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 74:
+                pix = pygame.image.load('Images/medal.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))                      
         
     if press == 2:  # Если на рынке нажали "НЕТ" т.е. продать инвентарь
         variableName = u"Нажмите на предмет, который"
@@ -5523,6 +5528,11 @@ def visibleInventar(xInv, yInv, porNom, whoam): # Функция, отображ
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xInv,yInv))
+    if botInventar[whoam][porNom] == 74:
+        pix = pygame.image.load('Images/medal.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))    
 
 def printMagic(numberMagic):                                # Отображаем магические способности
     if numberMagic == 0: visibleMagic(16,548,0,imHero)
@@ -5761,7 +5771,16 @@ def doebaca(hehmda):  #Функция отображающая информац�
                     botSerebro[imHero] += 7
                     botInventar[imHero][n] = 0
                     drujbaMaga += 1
-                    break                    
+                    break
+        if zadanieMaga == 5:  
+            for n in range(15):
+                if botInventar[imHero][n] == 29:
+                    tmpMagExp = 0
+                    zadanieMaga = 6
+                    botSerebro[imHero] += 13
+                    botInventar[imHero][n] = 0
+                    drujbaMaga += 1
+                    break                                 
     
                      
     if botLocation[imHero] == 146 or botLocation[imHero] == 144 or botLocation[imHero] == 177 or botLocation[imHero] == 176 or botLocation[imHero] == 178 or botLocation[imHero] == 113 or botLocation[imHero] == 112 or botLocation[imHero] == 114:
@@ -8166,7 +8185,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     pygame.display.update()  
 
 def ubiraemTrup(trup):
-    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, kolizei, kolizeiBot, kolizeiWin    
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, kolizei, kolizeiBot, kolizeiWin , imHero   
     
     if xBot[trup] != 0 and yBot[trup] != 0:
         pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
@@ -8194,15 +8213,29 @@ def ubiraemTrup(trup):
     botVariant[trup] = 0
     botAlgoritm[trup] = 0
     botLocation[trup] = 0
-    if kolizei > 0:
+    if kolizei > 1:
         m = 0
         for m in range(4):
             if kolizeiBot[m] == trup:
                kolizeiWin += 1
-               print(kolizeiBot)
                kolizeiBot[m] = 0
-               print("WELL DONE")
-               if kolizeiBot == [0,0,0,0]: kolizei += 1
+               if kolizeiWin == 12: # Убираем колизей
+                       z = 0
+                       for z in range(15): 
+                           if botInventar[imHero][z] == 0:
+                               botInventar[imHero][z] = 74
+                               break
+                       kolizei = 0
+                       pixelMount = 249
+                       for n in range(49):
+                           if n >= 0 and n <= 6: world[pixelMount] = 0
+                           elif n == 7 or n == 14 or n == 21 or n == 28 or n == 35 or n == 42: pixelMount+=25; world[pixelMount] = 0
+                           elif n == 13 or n == 20 or n == 27 or n == 34 or n == 41: world[pixelMount] = 0
+                           elif n >= 42 and n <= 48: world[pixelMount] = 0
+                           else: 
+                               if botLocation[imHero] != pixelMount:
+                                   world[pixelMount] = 0
+                           pixelMount += 1
 
 def magDoIt(selectLot): #Покупаем в Хижине магов
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world
@@ -8660,7 +8693,13 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
             sc.blit(nameObj,(440, 680))
             variableName = u"Принеси мне медаль Победителя Колизея"
             nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 700))           
+            sc.blit(nameObj,(440, 700))
+            variableName = u"Чтобы компенсировать потраченные там нервы"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 720))
+            variableName = u"Я заплачу тебе 13 Серебряных монет"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 740)) 
     
     
 def magPerdun(perdun): # Взаимодействие с хижиной Мага
@@ -8832,15 +8871,17 @@ def loviVebalo(nomBota): # Используется если у бота нет 
 
 def bornBot(numerBurnBota, typeBurnBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world, tmpMagExp, zadanieMaga, kolizei, kolizeiBot, xBot, yBot  
-    
-    if typeBurnBota == 100 or typeBurnBota == 101 or typeBurnBota == 102 or typeBurnBota == 106 or typeBurnBota == 107 or typeBurnBota == 108 or typeBurnBota == 109 or typeBurnBota == 110 or typeBurnBota == 111 or typeBurnBota == 112 or typeBurnBota == 113 or typeBurnBota == 114 or typeBurnBota == 115 or typeBurnBota == 116 or typeBurnBota == 117 or typeBurnBota == 118 or typeBurnBota == 126 or typeBurnBota == 127 or typeBurnBota == 128 or typeBurnBota == 129 or typeBurnBota == 145 or typeBurnBota == 146 or typeBurnBota == 157 or typeBurnBota == 165 or typeBurnBota == 166 or typeBurnBota == 167 or typeBurnBota == 168 or typeBurnBota == 169 or typeBurnBota == 170 or typeBurnBota == 171 or typeBurnBota == 172:
-        if zadanieMaga == 1 and tmpMagExp == 0:
-            if typeBurnBota == 114 or typeBurnBota == 116 or typeBurnBota == 117 or typeBurnBota == 118 or typeBurnBota == 128 or typeBurnBota == 130 or typeBurnBota == 135 or typeBurnBota == 144 or typeBurnBota == 145 or typeBurnBota == 146 or typeBurnBota == 157:
-                tmpMagExp = 1
-                botInventar[numerBurnBota] = [52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        print("FUCK YEAH -",numerBurnBota)
-        print("My Healt -",botZdorovie[numerBurnBota])        
-        if kolizei == 0:
+    if kolizei == 0: # Если колизей не активен
+        
+        if typeBurnBota == 100 or typeBurnBota == 101 or typeBurnBota == 102 or typeBurnBota == 106 or typeBurnBota == 107 or typeBurnBota == 108 or typeBurnBota == 109 or typeBurnBota == 110 or typeBurnBota == 111 or typeBurnBota == 112 or typeBurnBota == 113 or typeBurnBota == 114 or typeBurnBota == 115 or typeBurnBota == 116 or typeBurnBota == 117 or typeBurnBota == 118 or typeBurnBota == 126 or typeBurnBota == 127 or typeBurnBota == 128 or typeBurnBota == 129 or typeBurnBota == 145 or typeBurnBota == 146 or typeBurnBota == 157 or typeBurnBota == 165 or typeBurnBota == 166 or typeBurnBota == 167 or typeBurnBota == 168 or typeBurnBota == 169 or typeBurnBota == 170 or typeBurnBota == 171 or typeBurnBota == 172:
+        
+            if zadanieMaga == 1 and tmpMagExp == 0:
+                if typeBurnBota == 114 or typeBurnBota == 116 or typeBurnBota == 117 or typeBurnBota == 118 or typeBurnBota == 128 or typeBurnBota == 130 or typeBurnBota == 135 or typeBurnBota == 144 or typeBurnBota == 145 or typeBurnBota == 146 or typeBurnBota == 157:
+                    tmpMagExp = 1
+                    botInventar[numerBurnBota] = [52,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        
+               
+       
             if world[30] == 0:
                 xBot[numerBurnBota] = 976
                 yBot[numerBurnBota] = 96
@@ -8877,70 +8918,71 @@ def bornBot(numerBurnBota, typeBurnBota):
                 world[177] = typeBurnBota
                 botLocation[numerBurnBota] = 177
     
-            elif typeBurnBota == 173 or typeBurnBota == 174: # Если это духи
-                if world[240] == 0:
-                    xBot[numerBurnBota] = 528
-                    yBot[numerBurnBota] = 320
-                    world[240] = typeBurnBota
-                    botLocation[numerBurnBota] = 240
-                elif world[241] == 0:
-                    xBot[numerBurnBota] = 560
-                    yBot[numerBurnBota] = 320
-                    world[241] = typeBurnBota
-                    botLocation[numerBurnBota] = 241
-                elif world[242] == 0:
-                    xBot[numerBurnBota] = 592
-                    yBot[numerBurnBota] = 320
-                    world[242] = typeBurnBota
-                    botLocation[numerBurnBota] = 242
-                elif world[243] == 0:
-                    xBot[numerBurnBota] = 624
-                    yBot[numerBurnBota] = 320
-                    world[243] = typeBurnBota
-                    botLocation[numerBurnBota] = 243
-                elif world[244] == 0:
-                    xBot[numerBurnBota] = 656
-                    yBot[numerBurnBota] = 320
-                    world[244] = typeBurnBota
-                    botLocation[numerBurnBota] = 244             
+        elif typeBurnBota == 173 or typeBurnBota == 174: # Если это духи
+            if world[240] == 0:
+                xBot[numerBurnBota] = 528
+                yBot[numerBurnBota] = 320
+                world[240] = typeBurnBota
+                botLocation[numerBurnBota] = 240
+            elif world[241] == 0:
+                xBot[numerBurnBota] = 560
+                yBot[numerBurnBota] = 320
+                world[241] = typeBurnBota
+                botLocation[numerBurnBota] = 241
+            elif world[242] == 0:
+                xBot[numerBurnBota] = 592
+                yBot[numerBurnBota] = 320
+                world[242] = typeBurnBota
+                botLocation[numerBurnBota] = 242
+            elif world[243] == 0:
+                xBot[numerBurnBota] = 624
+                yBot[numerBurnBota] = 320
+                world[243] = typeBurnBota
+                botLocation[numerBurnBota] = 243
+            elif world[244] == 0:
+                xBot[numerBurnBota] = 656
+                yBot[numerBurnBota] = 320
+                world[244] = typeBurnBota
+                botLocation[numerBurnBota] = 244             
         
-            else:
-                if world[384] == 0:
-                    xBot[numerBurnBota] = 16
-                    yBot[numerBurnBota] = 480
-                    world[384] = typeBurnBota
-                    botLocation[numerBurnBota] = 384
-                elif world[177] == 0:
-                    xBot[numerBurnBota] = 560
-                    yBot[numerBurnBota] = 256
-                    world[177] = typeBurnBota
-                    botLocation[numerBurnBota] = 177       
-                elif world[385] == 0:
-                    xBot[numerBurnBota] = 48
-                    yBot[numerBurnBota] = 480
-                    world[385] = typeBurnBota
-                    botLocation[numerBurnBota] = 385 
-                elif world[417] == 0:
-                    xBot[numerBurnBota] = 48
-                    yBot[numerBurnBota] = 512
-                    world[417] = typeBurnBota
-                    botLocation[numerBurnBota] = 417
-                elif world[146] == 0:
-                    xBot[numerBurnBota] = 592
-                    yBot[numerBurnBota] = 224
-                    world[146] = typeBurnBota
-                    botLocation[numerBurnBota] = 146
-                elif world[144] == 0:
-                    xBot[numerBurnBota] = 528
-                    yBot[numerBurnBota] = 224
-                    world[144] = typeBurnBota
-                    botLocation[numerBurnBota] = 144
-                elif world[113] == 0:
-                    xBot[numerBurnBota] = 560
-                    yBot[numerBurnBota] = 192
-                    world[113] = typeBurnBota
-                    botLocation[numerBurnBota] = 113
-    elif kolizei == 2:
+        else:
+            if world[384] == 0:
+                xBot[numerBurnBota] = 16
+                yBot[numerBurnBota] = 480
+                world[384] = typeBurnBota
+                botLocation[numerBurnBota] = 384
+            elif world[177] == 0:
+                xBot[numerBurnBota] = 560
+                yBot[numerBurnBota] = 256
+                world[177] = typeBurnBota
+                botLocation[numerBurnBota] = 177       
+            elif world[385] == 0:
+                xBot[numerBurnBota] = 48
+                yBot[numerBurnBota] = 480
+                world[385] = typeBurnBota
+                botLocation[numerBurnBota] = 385 
+            elif world[417] == 0:
+                xBot[numerBurnBota] = 48
+                yBot[numerBurnBota] = 512
+                world[417] = typeBurnBota
+                botLocation[numerBurnBota] = 417
+            elif world[146] == 0:
+                xBot[numerBurnBota] = 592
+                yBot[numerBurnBota] = 224
+                world[146] = typeBurnBota
+                botLocation[numerBurnBota] = 146
+            elif world[144] == 0:
+                xBot[numerBurnBota] = 528
+                yBot[numerBurnBota] = 224
+                world[144] = typeBurnBota
+                botLocation[numerBurnBota] = 144
+            elif world[113] == 0:
+                xBot[numerBurnBota] = 560
+                yBot[numerBurnBota] = 192
+                world[113] = typeBurnBota
+                botLocation[numerBurnBota] = 113
+    elif kolizei >= 2: # Если рожаем в колизее
+        
         if world[282] == 0:
             xBot[numerBurnBota] = 848
             yBot[numerBurnBota] = 352
@@ -8991,7 +9033,7 @@ def randomBot(tmp):
                 botZachita[n] = 0
                 
                 if kolizei > 0:
-                    print ("Kolizei")
+                    print ("Kolizei", kolizei)
                     m = 0
                     for m in range(4):
                         if kolizeiBot[m] == 0: 
@@ -11239,7 +11281,7 @@ def randomBot(tmp):
                 break           
 
 def botActivity(nomerBota):
-    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, startBotGeneration, kolizei, kolizeiBot  
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, startBotGeneration, kolizei, kolizeiBot, kolizeiWin  
     
     #print("botActivity", str(sobitie))
     
@@ -11303,24 +11345,22 @@ def botActivity(nomerBota):
                 randomBot(0) 
             else:
                 randomBot(0)
-        elif kolizei == 2:
-            if kolizeiBot == [0,0,0,0]:
+        elif kolizei == 2: # Первый этап Колизея - Тролли 4 ур.
+            if kolizeiWin == 0:
                 randomBot(161)
                 randomBot(161)
                 randomBot(161)
                 randomBot(161)
-        elif kolizei == 3:
-            if kolizeiBot == [0,0,0,0]:
-                randomBot(165)
-                randomBot(165)
-                randomBot(165)
-                randomBot(165)
-        elif kolizei == 4:
-            if kolizeiBot == [0,0,0,0]:
+            elif kolizeiWin == 4: # Второй этап - Орки 7 ур.
+                randomBot(142)
+                randomBot(142)
+                randomBot(142)
+                randomBot(142)              
+            elif kolizeiWin == 8: # Третий этап - Душекрады 10 ур.
                 randomBot(156)
                 randomBot(156)
                 randomBot(156)
-                randomBot(156)       
+                randomBot(156)        
                        
             
         
