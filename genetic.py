@@ -7941,6 +7941,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     global botDeistvie
     global xShift
     global yShift
+    global botClass
     
     global den
     global mesiac
@@ -7958,7 +7959,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     n = 0
     xShift = 410
     yShift = 785
-    for n in range(10):
+    for n in range(10): #Отображаем воздействие заклинаний
         if botVozdeistvie[imHero][n] == 3 and botDeistvie[imHero][n] > 0:
             pix = pygame.image.load('Images/dospechiFenicha_32.jpg')
             x_len = pix.get_width()
@@ -8144,25 +8145,25 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617))
     
-    if botIshMana[imHero] >= botIshZdorovie[imHero] and (botSila[imHero])*10 < botIshZdorovie[imHero]:
+    if botIshMana[imHero] >= botIshZdorovie[imHero] and (botSila[imHero])*10 < botIshZdorovie[imHero]: # Отображаем класс
         botClass[imHero] = "Колдун"
         #print("Koldun")
         variableHealt = botClass[imHero] 
         healtObj = healt.render(variableHealt, False, (0, 0, 0))
         sc.blit(healtObj,(290, 631))
-    if (botSila[imHero])*10 >= botIshZdorovie[imHero] and botIshMana[imHero] <= botIshZdorovie[imHero]:
+    elif (botSila[imHero])*10 >= botIshZdorovie[imHero] and botIshMana[imHero] <= botIshZdorovie[imHero]:
         botClass[imHero] = "Воин"
         #print("voin")
         variableHealt = botClass[imHero]
         healtObj = healt.render(variableHealt, False, (0, 0, 0))
         sc.blit(healtObj,(290, 631))
-    if (botSila[imHero])*10 >= botIshZdorovie[imHero] and botIshMana[imHero] >= botIshZdorovie[imHero] and botClass[imHero] == "Воин":
+    elif (botSila[imHero])*10 >= botIshZdorovie[imHero] and botIshMana[imHero] >= botIshZdorovie[imHero] and botClass[imHero] == "Воин":
         botClass[imHero] = "Боевой маг"
         #print("boevoi mag")
         variableHealt = botClass[imHero]
         healtObj = healt.render(variableHealt, False, (0, 0, 0))
         sc.blit(healtObj,(290, 631))
-    if (botSila[imHero])*10 <= botIshZdorovie[imHero] and botIshMana[imHero] <= botIshZdorovie[imHero] and botZaklinania[imHero][0] == 22 and botClass[imHero] == 0:
+    else:
         botClass[imHero] = "Знахарь"
         #print("znahar")
         variableHealt = botClass[imHero]
@@ -11347,7 +11348,7 @@ def botActivity(nomerBota):
                 botVozdeistvie[nomerBota][n] = 0
                 botDeistvie[nomerBota][n] = 0
                 
-    if sobitie % 2397 == 0:
+    if sobitie % 2397 == 0 and botLocation[imHero] != 146 and botLocation[imHero] != 144 and botLocation[imHero] != 112 and botLocation[imHero] != 113 and botLocation[imHero] != 114 and botLocation[imHero] != 177 and botLocation[imHero] != 176 and botLocation[imHero] != 178:
         tmpInventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         for n in range(16): 
             pass
@@ -12718,36 +12719,36 @@ def botActivity(nomerBota):
 def nameBot(nBota):
     global botName
     myNameIs = int(random.random()*30)
-    if myNameIs == 0: botName[nBota] = 'Ворамир'  
-    elif myNameIs == 1: botName[nBota] = 'Геральд'
-    elif myNameIs == 2: botName[nBota] = 'Бейн'
-    elif myNameIs == 3: botName[nBota] = 'Кирк'
-    elif myNameIs == 4: botName[nBota] = 'Анетерон'
-    elif myNameIs == 5: botName[nBota] = 'Малгорн'
-    elif myNameIs == 6: botName[nBota] = 'Назгрел'
-    elif myNameIs == 7: botName[nBota] = 'Нобундо'
-    elif myNameIs == 8: botName[nBota] = 'Трифолиус'
-    elif myNameIs == 9: botName[nBota] = 'Целестиус'
-    elif myNameIs == 10: botName[nBota] = 'Нузертул'
-    elif myNameIs == 11: botName[nBota] = 'Альбуко'
-    elif myNameIs == 12: botName[nBota] = 'Ксавиан'
-    elif myNameIs == 13: botName[nBota] = 'Малигос'
-    elif myNameIs == 14: botName[nBota] = 'Рорин'
-    elif myNameIs == 15: botName[nBota] = 'Теразан'
-    elif myNameIs == 16: botName[nBota] = 'Назмултог'
-    elif myNameIs == 17: botName[nBota] = 'Эгвин'
-    elif myNameIs == 18: botName[nBota] = 'Калесгос'
-    elif myNameIs == 19: botName[nBota] = 'Терон'
-    elif myNameIs == 20: botName[nBota] = 'Торин'
-    elif myNameIs == 21: botName[nBota] = 'Винсент'
-    elif myNameIs == 22: botName[nBota] = 'Гадрин'
-    elif myNameIs == 23: botName[nBota] = 'Говард'
-    elif myNameIs == 24: botName[nBota] = 'Анебар'
-    elif myNameIs == 25: botName[nBota] = 'Кинчезар'
-    elif myNameIs == 26: botName[nBota] = 'Сагадаз'
-    elif myNameIs == 27: botName[nBota] = 'Ривен'
-    elif myNameIs == 28: botName[nBota] = 'Ходрим'
-    elif myNameIs == 29: botName[nBota] = 'Альберт'
+    if myNameIs == 0: botName[nBota] = 'Ворамир '  
+    elif myNameIs == 1: botName[nBota] = 'Геральд '
+    elif myNameIs == 2: botName[nBota] = 'Бейн '
+    elif myNameIs == 3: botName[nBota] = 'Кирк '
+    elif myNameIs == 4: botName[nBota] = 'Анетерон '
+    elif myNameIs == 5: botName[nBota] = 'Малгорн '
+    elif myNameIs == 6: botName[nBota] = 'Назгрел '
+    elif myNameIs == 7: botName[nBota] = 'Нобундо '
+    elif myNameIs == 8: botName[nBota] = 'Трифолиус '
+    elif myNameIs == 9: botName[nBota] = 'Целестиус '
+    elif myNameIs == 10: botName[nBota] = 'Нузертул '
+    elif myNameIs == 11: botName[nBota] = 'Альбуко '
+    elif myNameIs == 12: botName[nBota] = 'Ксавиан '
+    elif myNameIs == 13: botName[nBota] = 'Малигос '
+    elif myNameIs == 14: botName[nBota] = 'Рорин '
+    elif myNameIs == 15: botName[nBota] = 'Теразан '
+    elif myNameIs == 16: botName[nBota] = 'Назмултог '
+    elif myNameIs == 17: botName[nBota] = 'Эгвин '
+    elif myNameIs == 18: botName[nBota] = 'Калесгос '
+    elif myNameIs == 19: botName[nBota] = 'Терон '
+    elif myNameIs == 20: botName[nBota] = 'Торин '
+    elif myNameIs == 21: botName[nBota] = 'Винсент '
+    elif myNameIs == 22: botName[nBota] = 'Гадрин '
+    elif myNameIs == 23: botName[nBota] = 'Говард '
+    elif myNameIs == 24: botName[nBota] = 'Анебар '
+    elif myNameIs == 25: botName[nBota] = 'Кинчезар '
+    elif myNameIs == 26: botName[nBota] = 'Сагадаз '
+    elif myNameIs == 27: botName[nBota] = 'Ривен '
+    elif myNameIs == 28: botName[nBota] = 'Ходрим '
+    elif myNameIs == 29: botName[nBota] = 'Альберт '
 
 worldCreate()    
 
