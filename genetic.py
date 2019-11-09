@@ -8250,14 +8250,9 @@ def ubiraemTrup(trup):
     botAlgoritm[trup] = 0
     botLocation[trup] = 0
     if kolizei > 1:
-        m = 0
-        for m in range(4):
-            if kolizeiBot[m] == trup:
-               kolizeiWin += 1
-               kolizeiBot[m] = 0
-               if kolizeiWin == 12: # Убираем колизей
+                   if kolizeiWin == 12: # Убираем колизей
                        z = 0
-                       for z in range(15): 
+                       for z in range(15): # Даём медаль
                            if botInventar[imHero][z] == 0:
                                botInventar[imHero][z] = 74
                                break
@@ -11353,9 +11348,9 @@ def botActivity(nomerBota):
         for n in range(16): 
             pass
             nn = 0 
-            tmp = int(random.random()*75)
-            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56 or tmp == 29 or tmp == 30 or tmp == 31 or tmp == 65 or tmp == 51 or tmp == 50 or tmp == 41:
-                market[n] = tmpInventar[n] = 0
+            tmp = int(random.random()*74)
+            if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56 or tmp == 29 or tmp == 30 or tmp == 31 or tmp == 65 or tmp == 51 or tmp == 50 or tmp == 41 or tmp == 74:
+                market[n] = tmpInventar[n] = 0 # Если нет крутого и квестового лута, тогда меняет ассортимент рынка
             else:
                 market[n] = tmpInventar[n] = tmp
             lalsas1488 = int(random.random()*7)
@@ -11364,8 +11359,8 @@ def botActivity(nomerBota):
     
     if sobitie % 1097 == 0: mutation()
     
-    if sobitie % 537 == 0: # Рожаем бота
-        if kolizei == 0:
+    if sobitie % 737 == 0: # Рожаем бота
+        if kolizei < 2:
             randBorn = int(random.random()*20)
             if randBorn >= 0 and randBorn <= 7: 
                 randomBot(0)
