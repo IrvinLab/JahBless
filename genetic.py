@@ -98,6 +98,8 @@ botZoloto = []
 botSerebro = []
 botBronza = []
 botUseWeapon = []
+botName = []
+botClass = []
 botDeistvie = [] # Сколько времени действует заклинание. Пример: botVozdeistvie[n] = [3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                  #                                                  botDeistvie[n] = [10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
@@ -245,6 +247,8 @@ def worldCreate():
     botDeistvie.clear()
     botAttack.clear()
     botUseWeapon.clear()
+    botName.clear()
+    botClass.clear()
     n = 0 # Создаём массивы для ботов
     for n in range(1000):
         botZoloto.append(n)
@@ -277,6 +281,8 @@ def worldCreate():
         botDeistvie.append(n)
         botAttack.append(n)
         botUseWeapon.append(n)
+        botName.append(n)
+        botClass.append(n)
         
         botZoloto[n] = 0
         botSerebro[n] = 0
@@ -308,6 +314,8 @@ def worldCreate():
         botDeistvie[n] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botAttack[n] = 0
         botUseWeapon[n] = 0
+        botName[n] = 0
+        botClass[n] = 0
     worldUpdate()    
     n = 0  
     
@@ -8012,7 +8020,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Аками - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 51:
@@ -8020,7 +8028,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Артес - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 52:
@@ -8028,7 +8036,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Мефистофор - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 54:
@@ -8036,7 +8044,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Джепотай - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 55:
@@ -8044,7 +8052,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Фарион - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 56:
@@ -8052,7 +8060,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Гаритос - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 57:
@@ -8060,7 +8068,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Гендальф - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 58:
@@ -8068,7 +8076,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Иллидан - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 59:
@@ -8076,7 +8084,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Джайна - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 60:
@@ -8084,7 +8092,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Келл - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 70:
@@ -8092,7 +8100,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Утер - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 72:
@@ -8100,7 +8108,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Вул Джин - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 68:
@@ -8108,7 +8116,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Сильвана - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 65:
@@ -8116,7 +8124,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Прадмур - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 69:
@@ -8124,7 +8132,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Тралл - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(290, 617)) 
     if myHero == 73:
@@ -8132,55 +8140,82 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (xHero,yHero))
-        variableName = u"Задира - " + str(botLvl[imHero]) + " lvl"
+        variableName = u"" +str(botName[imHero]) + str(botLvl[imHero]) + " lvl"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(290, 617)) 
+        sc.blit(nameObj,(290, 617))
+    
+    if botIshMana[imHero] >= botIshZdorovie[imHero] and (botSila[imHero])*10 < botIshZdorovie[imHero]:
+        botClass[imHero] = "Колдун"
+        #print("Koldun")
+        variableHealt = botClass[imHero] 
+        healtObj = healt.render(variableHealt, False, (0, 0, 0))
+        sc.blit(healtObj,(290, 631))
+    if (botSila[imHero])*10 >= botIshZdorovie[imHero] and botIshMana[imHero] <= botIshZdorovie[imHero]:
+        botClass[imHero] = "Воин"
+        #print("voin")
+        variableHealt = botClass[imHero]
+        healtObj = healt.render(variableHealt, False, (0, 0, 0))
+        sc.blit(healtObj,(290, 631))
+    if (botSila[imHero])*10 >= botIshZdorovie[imHero] and botIshMana[imHero] >= botIshZdorovie[imHero] and botClass[imHero] == "Воин":
+        botClass[imHero] = "Боевой маг"
+        #print("boevoi mag")
+        variableHealt = botClass[imHero]
+        healtObj = healt.render(variableHealt, False, (0, 0, 0))
+        sc.blit(healtObj,(290, 631))
+    if (botSila[imHero])*10 <= botIshZdorovie[imHero] and botIshMana[imHero] <= botIshZdorovie[imHero] and botZaklinania[imHero][0] == 22 and botClass[imHero] == 0:
+        botClass[imHero] = "Знахарь"
+        #print("znahar")
+        variableHealt = botClass[imHero]
+        healtObj = healt.render(variableHealt, False, (0, 0, 0))
+        sc.blit(healtObj,(290, 631))
+                 
+             
     
     variableExpirience = "" + str(botExpirience[imHero]) + " XP"  # переменная типа String - опыт
     healtObj = textExpirience.render(variableExpirience, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(healtObj,(290, 631)) # Отображаем Опыт    
+    sc.blit(healtObj,(290, 644)) # Отображаем Опыт    
     
     variableHealt = "" + str(botZdorovie[imHero]) + " / " + str(botIshZdorovie[imHero]) # переменная типа String отображающая здоровье как ххх/ххх
     healtObj = healt.render(variableHealt, False, (0, 255, 0)) # Создали объект типа "текст" 
-    sc.blit(healtObj,(290, 644)) # Отображаем здоровье
+    sc.blit(healtObj,(290, 657)) # Отображаем здоровье
     
     variableMana = "" + str(botMana[imHero]) + " / " + str(botIshMana[imHero]) # переменная типа String отображающая ману как ххх/ххх
     manaObj = manna.render(variableMana, False, (0, 0, 255)) # Создали объект типа "текст" 
-    sc.blit(manaObj,(290, 657)) # Отображаем ману
+    sc.blit(manaObj,(290, 670)) # Отображаем ману
     
     if botUseWeapon[imHero] == 0:
         variableSila = u"Сила: " + str(botSila[imHero]) 
         silaObj = textSila.render(variableSila, False, (0, 0, 0)) # Создали объект типа "текст" 
-        sc.blit(silaObj,(290, 670)) 
+        sc.blit(silaObj,(290, 683)) 
     else:
         variableSila = u"Сила: " + str(botSila[imHero]) + u"+" + str(botUseWeapon[imHero])
         silaObj = textSila.render(variableSila, False, (0, 255, 0)) # Создали объект типа "текст" 
-        sc.blit(silaObj,(290, 670))
+        sc.blit(silaObj,(290, 683))
         
     variableLovk = u"Ловкость: " + str(botLovkost[imHero]) 
     lovkObj = textLovk.render(variableLovk, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(lovkObj,(290, 683)) 
+    sc.blit(lovkObj,(290, 696)) 
     
     variableYdacha = u"Удача: " + str(botYdacha[imHero]) 
     ydachaObj = textYdacha.render(variableYdacha, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(ydachaObj,(290, 696))
+    sc.blit(ydachaObj,(290, 709))
     
     if botZachita[imHero] > 0:
         variableZachita = u"Защита: " + str(botZachita[imHero])
         zachObj = textZachita.render(variableZachita, False, (0, 255, 0)) # Создали объект типа "текст" 
-        sc.blit(zachObj,(290, 709)) 
+        sc.blit(zachObj,(290, 735)) 
     
     variableZoloto = u"Золото: " + str(botZoloto[imHero]) 
     zolotoObj = textZoloto.render(variableZoloto, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(zolotoObj,(290, 735))
+    sc.blit(zolotoObj,(290, 748))
     
     variableSerebro = u"Серебро: " + str(botSerebro[imHero]) 
     serebroObj = textSerebro.render(variableSerebro, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(serebroObj,(290, 748))
+    sc.blit(serebroObj,(290, 761))
     
     variableBronza = u"Бронза: " + str(botBronza[imHero]) 
     bronzaObj = textBronza.render(variableBronza, False, (0, 0, 0)) # Создали объект типа "текст" 
-    sc.blit(bronzaObj,(290, 761))
+    sc.blit(bronzaObj,(290, 774))
     
     pygame.display.update()  
 
@@ -12679,24 +12714,58 @@ def botActivity(nomerBota):
         else: 
             ubiraemTrup(nomerBota)
             otdaiLut(n, nomerBota)
-   
+
+def nameBot(nBota):
+    global botName
+    myNameIs = int(random.random()*30)
+    if myNameIs == 0: botName[nBota] = 'Ворамир'  
+    elif myNameIs == 1: botName[nBota] = 'Геральд'
+    elif myNameIs == 2: botName[nBota] = 'Бейн'
+    elif myNameIs == 3: botName[nBota] = 'Кирк'
+    elif myNameIs == 4: botName[nBota] = 'Анетерон'
+    elif myNameIs == 5: botName[nBota] = 'Малгорн'
+    elif myNameIs == 6: botName[nBota] = 'Назгрел'
+    elif myNameIs == 7: botName[nBota] = 'Нобундо'
+    elif myNameIs == 8: botName[nBota] = 'Трифолиус'
+    elif myNameIs == 9: botName[nBota] = 'Целестиус'
+    elif myNameIs == 10: botName[nBota] = 'Нузертул'
+    elif myNameIs == 11: botName[nBota] = 'Альбуко'
+    elif myNameIs == 12: botName[nBota] = 'Ксавиан'
+    elif myNameIs == 13: botName[nBota] = 'Малигос'
+    elif myNameIs == 14: botName[nBota] = 'Рорин'
+    elif myNameIs == 15: botName[nBota] = 'Теразан'
+    elif myNameIs == 16: botName[nBota] = 'Назмултог'
+    elif myNameIs == 17: botName[nBota] = 'Эгвин'
+    elif myNameIs == 18: botName[nBota] = 'Калесгос'
+    elif myNameIs == 19: botName[nBota] = 'Терон'
+    elif myNameIs == 20: botName[nBota] = 'Торин'
+    elif myNameIs == 21: botName[nBota] = 'Винсент'
+    elif myNameIs == 22: botName[nBota] = 'Гадрин'
+    elif myNameIs == 23: botName[nBota] = 'Говард'
+    elif myNameIs == 24: botName[nBota] = 'Анебар'
+    elif myNameIs == 25: botName[nBota] = 'Кинчезар'
+    elif myNameIs == 26: botName[nBota] = 'Сагадаз'
+    elif myNameIs == 27: botName[nBota] = 'Ривен'
+    elif myNameIs == 28: botName[nBota] = 'Ходрим'
+    elif myNameIs == 29: botName[nBota] = 'Альберт'
+
 worldCreate()    
 
-locations = [63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63,63]
 n = 0
     
 if test == 0:
+    nameBot(imHero)
     botExpirience[imHero] = 0  
     botLvl[imHero] = 1
     botRasa[imHero] = 7
     botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    botIshZdorovie[imHero] = 200
-    botZdorovie[imHero] = 200
-    botMana[imHero] = 100
-    botIshMana[imHero] = 100
-    botSila[imHero] = 10
+    botIshZdorovie[imHero] = (int(random.random()*14) * 10) + 90
+    botZdorovie[imHero] = botIshZdorovie[imHero]
+    botIshMana[imHero] = (int(random.random()*17) * 10) + 30
+    botMana[imHero] = botIshMana[imHero]
+    botSila[imHero] = int(random.random()*8) + 7 
     botLovkost[imHero] = 5
     botYdacha[imHero] = 9
     botZoloto[imHero] = 0
@@ -12711,6 +12780,7 @@ if test == 0:
     xBot[imHero] = 400
     yBot[imHero] = 256
 elif test == 1:
+    nameBot(imHero)
     botExpirience[imHero] = 0  
     botLvl[imHero] = 1
     botRasa[imHero] = 7
