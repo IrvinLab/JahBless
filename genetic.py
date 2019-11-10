@@ -10,7 +10,7 @@ myGen = 1
 test = 1 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
-    genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 45]
+    genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 29, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 26]
 
 
 
@@ -5782,7 +5782,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                     break
         if zadanieMaga == 5:  
             for n in range(15):
-                if botInventar[imHero][n] == 29:
+                if botInventar[imHero][n] == 74:
                     tmpMagExp = 0
                     zadanieMaga = 6
                     botSerebro[imHero] += 13
@@ -9534,7 +9534,7 @@ def randomBot(tmp):
                     botIshZdorovie[n] = 125
                     botMana[n] = 90
                     botIshMana[n] = 90
-                    botZaklinania[n]=[6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botZaklinania[n]=[6,22,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 11
                     botLovkost[n] = 6
                     botYdacha[n] = 10
@@ -9557,11 +9557,11 @@ def randomBot(tmp):
                     botNumer[n] = n
                     botVariant[n] = tmp        
                     botLvl[n] = 2
-                    botZdorovie[n] = 165
-                    botIshZdorovie[n] = 165
-                    botMana[n] = 160
-                    botIshMana[n] = 160
-                    botZaklinania[n]=[6,22,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botZdorovie[n] = 195
+                    botIshZdorovie[n] = 195
+                    botMana[n] = 190
+                    botIshMana[n] = 190
+                    botZaklinania[n]=[6,22,7,0,0,0,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 14
                     botLovkost[n] = 6
                     botYdacha[n] = 12
@@ -9584,11 +9584,11 @@ def randomBot(tmp):
                     botNumer[n] = n
                     botVariant[n] = tmp        
                     botLvl[n] = 3
-                    botZdorovie[n] = 225
-                    botIshZdorovie[n] = 225
-                    botMana[n] = 250
-                    botIshMana[n] = 250
-                    botZaklinania[n]=[6,22,7,0,0,0,0,0,0,0,0,0,0,0,0,100]
+                    botZdorovie[n] = 295
+                    botIshZdorovie[n] = 295
+                    botMana[n] = 270
+                    botIshMana[n] = 270
+                    botZaklinania[n]=[6,22,7,13,0,0,0,0,0,0,0,0,0,0,0,100]
                     botSila[n] = 18
                     botLovkost[n] = 6
                     botYdacha[n] = 19
@@ -11367,7 +11367,7 @@ def botActivity(nomerBota):
     
     if sobitie % 737 == 0: # Рожаем бота
         if kolizei < 2:
-            randBorn = int(random.random()*20)
+            randBorn = int(random.random()*17)
             if randBorn >= 0 and randBorn <= 7: 
                 randomBot(0)
                 randomBot(0)
@@ -12787,10 +12787,10 @@ if test == 0:
 elif test == 1:
     nameBot(imHero)
     botExpirience[imHero] = 0  
-    botLvl[imHero] = 1
+    botLvl[imHero] = 10
     botRasa[imHero] = 7
-    botInventar[imHero] = [54,56,12,11,10,10,10,10,29,51,52,0,0,0,0,0]
-    botZaklinania[imHero] = [3,7,10,8,13,15,1,14,16,12,5,9,0,0,0,100]
+    botInventar[imHero] = [54,56,12,11,10,10,10,10,29,51,52,5,5,5,0,0]
+    botZaklinania[imHero] = [3,7,10,8,13,15,1,14,16,12,5,9,23,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botIshZdorovie[imHero] = 1200
     botZdorovie[imHero] = 1200
