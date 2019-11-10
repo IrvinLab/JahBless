@@ -7,7 +7,7 @@ import random
 n = 0 
 m = 0
 myGen = 1
-test = 0 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
+test = 1 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
     genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 29, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 26]
@@ -196,10 +196,11 @@ def worldCreate():
         if xMap >= 1040:
             xMap = 16
             yMap += 32  
-    
-    world[145] = 8  # А затем расставляем объекты
-    world[298] = 5
+    # А затем расставляем объекты
+    world[145] = 8  # Рынок
+    world[298] = 5  # Хижина Мага
     world[416] = 10
+    world[343] = 16 # Таверна
     world[31] = 15
     world[1] = 1
     world[33] = 1
@@ -5671,7 +5672,7 @@ def printInventar(numberInventar):                                # Отобра
 def doebaca(hehmda):  #Функция отображающая информацию об объектах и позволяющая с ними взаимодействовать
     global botType, botStep, xBot, yBot, botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botInventar, botIshZdorovie, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha
     global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, tmpMagExp, drujbaMaga, kolizei, koldunAssortiment, profit
-    
+    print(hehmda)
     n = 0
     yes = no = invent = 0
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
@@ -5814,6 +5815,31 @@ def doebaca(hehmda):  #Функция отображающая информац�
             heroPanel(hero)
             worldUpdate()        
             attack = 0
+    
+    if botLocation[imHero] == 310 or botLocation[imHero] == 311 or botLocation[imHero] == 312 or botLocation[imHero] == 342 or botLocation[imHero] == 343 or botLocation[imHero] == 344 or botLocation[imHero] == 347 or botLocation[imHero] == 375 or botLocation[imHero] == 376:
+        # Тут взаимодействуем с Таверной
+        imTaverna = 1
+        for n in range(15):     
+            if n == 0: xIn = 772; yIn = 548
+            if n == 1: xIn = 840; yIn = 548
+            if n == 2: xIn = 908; yIn = 548
+            if n == 3: xIn = 976; yIn = 548
+            if n == 4: xIn = 772; yIn = 616
+            if n == 5: xIn = 840; yIn = 616
+            if n == 6: xIn = 908; yIn = 616
+            if n == 7: xIn = 976; yIn = 616
+            if n == 8: xIn = 772; yIn = 684
+            if n == 9: xIn = 840; yIn = 684
+            if n == 10: xIn = 908; yIn = 684
+            if n == 11: xIn = 976; yIn = 684
+            if n == 12: xIn = 772; yIn = 752
+            if n == 13: xIn = 840; yIn = 752
+            if n == 14: xIn = 908; yIn = 752
+            if n == 15: xIn = 976; yIn = 752
+            pix = pygame.image.load('Images/zero.jpg') 
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xIn,yIn))
     
     if botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
         # Тут мы взаимодействуем с Хижиной Мага
@@ -6146,22 +6172,22 @@ def doebaca(hehmda):  #Функция отображающая информац�
         variableName = u"Таверна"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 560)) 
-        variableName = u"Это находка, оазис по среди холодных гор"
+        variableName = u"Здесь можно учавствовать в лотерее в "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 580))  
-        variableName = u"Тут ты можешь нанять пару бойцов для"
+        variableName = u"которой можно выйграть редкие предметы."
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 600)) 
-        variableName = u"похода, получить задание, купить редкие "
+        variableName = u"Можно играть в кости. А ещё сражаться в "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 620))    
-        variableName = u"предметы и сыграть в кости."
+        variableName = u"Колизее за ценный лут. В целом это"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 640))  
-        variableName = u"Так же здесь ты можешь создать задание"
+        variableName = u"интересное место, которое стоит время "
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 660))  
-        variableName = u"Возможно кто-то за него возмётся"
+        variableName = u"от времени посещать"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
         sc.blit(nameObj,(440, 680))  
     if world[hehmda] == 100:
@@ -11716,7 +11742,7 @@ def botActivity(nomerBota):
     
     if sobitie % 1097 == 0: mutation()
     
-    if sobitie % 737 == 0: # Рожаем бота
+    if sobitie % 637 == 0: # Рожаем бота
         if kolizei < 2:
             randBorn = int(random.random()*17)
             if randBorn >= 0 and randBorn <= 7: 
