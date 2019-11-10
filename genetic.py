@@ -7,13 +7,10 @@ import random
 n = 0 
 m = 0
 myGen = 1
-test = 1 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
+test = 0 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
     genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 29, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 26]
-
-
-
 
 elif myGen == 2:
     genom = []
@@ -22,8 +19,7 @@ elif myGen == 2:
         createGen = int(random.random() * 64)
         genom[n] = createGen
 
-print(genom)
-
+worldLog = [" "," "," "," "," "]
 newGame = 1
 newGameButton = 0
 imHero = 5
@@ -126,6 +122,7 @@ textDescription = pygame.font.SysFont('Monospace Regular', 20) #Описание
 textHod = pygame.font.SysFont('Monospace Regular', 20) # Отображает количество оставшегося хода
 textExpirience = pygame.font.SysFont('Monospace Regular', 20) # Отображает опыт
 textZachita = pygame.font.SysFont('Monospace Regular', 20)  # Отображаем защиту
+
 
 
 # Создаём мир
@@ -336,6 +333,24 @@ for yMap in range(14): # Рисуем игровое поле
 xGameMap = 16
 yGameMap = 548  
 
+def printLog(stroka): # Выводим лог игры вниз
+    global worldLog
+    if stroka != 0:
+        pygame.draw.rect(sc, (255, 255, 255), (16, 820, 500, 76))
+        tmp1 = worldLog[1]
+        tmp2 = worldLog[2]
+        tmp3 = worldLog[3]
+        tmp4 = worldLog[4]
+        worldLog=[tmp1,tmp2,tmp3,tmp4,stroka]
+        yLog = 820
+        for n in range(5):
+            variableSila = worldLog[n]
+            silaObj = textSila.render(variableSila, False, (0, 0, 0)) # Создали объект типа "текст" 
+            sc.blit(silaObj,(16, yLog))
+            yLog += 13
+        pygame.display.update()         
+
+
 def levelUp(nomerBota):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
     
@@ -351,6 +366,7 @@ def levelUp(nomerBota):
         botYdacha[nomerBota] += 1
         botVozdeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         botDeistvie[nomerBota] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        printLog("Повышение уровня Героя")
 
 def myAttack(kletka):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations  
@@ -417,7 +433,6 @@ def botKoldun(nom, poriad, vragBot): # функция колдовства (Но
                 yaKastanul = 1
                 
     if botZaklinania[nom][poriad] == 2:  # Телепортация
-        print("2ch")
         if botMana[nom] >= 350:
             
             if world[vragBot] == 0:
@@ -987,7 +1002,7 @@ def otdaiLut(nom, vragBot):
                                                                         else:
                                                                             if botInventar[nom][15] == 0: botInventar[nom][15] = botInventar[vragBot][tempEnum]
 
-def magicInventar(imBuy):
+def magicInventar(imBuy): # Покупаем у Колдуна
     global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto, yaNaRinke, koldunAssortiment, botZaklinania, botSila, botIshZdorovie, profit
     
     pix = pygame.image.load('Images/yes.png') 
@@ -5903,6 +5918,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                     botBronza[imHero] += 1000
                     botInventar[imHero][n] = 0
                     drujbaMaga += 1
+                    printLog("Задание Колдуна - найти зелье ВЫПОЛНЕНО")
                     break
         if zadanieMaga == 3:  
             for n in range(15):
@@ -5912,6 +5928,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                     botSerebro[imHero] += 7
                     botInventar[imHero][n] = 0
                     drujbaMaga += 1
+                    printLog("Задание Колдуна - найти топор Алчности ВЫПОЛНЕНО")
                     break
         if zadanieMaga == 5:  
             for n in range(15):
@@ -5921,6 +5938,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
                     botSerebro[imHero] += 13
                     botInventar[imHero][n] = 0
                     drujbaMaga += 1
+                    printLog("Задание Колдуна - Колизей ВЫПОЛНЕНО")
                     break                                 
     
                      
@@ -8086,9 +8104,9 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     for n in range(16): # Рисуем иконки инвентаря
         printInventar(n)  
     
-    pygame.draw.rect(sc, (255, 255, 255), (284, 548, 481, 896)) 
+    pygame.draw.rect(sc, (255, 255, 255), (284, 548, 481, 302)) 
     pygame.draw.rect(sc, (255, 255, 255), (405, 550, 365, 896))
-   
+    
     n = 0
     xShift = 410
     yShift = 785
@@ -8382,6 +8400,7 @@ def ubiraemTrup(trup):
     botVariant[trup] = 0
     botAlgoritm[trup] = 0
     botLocation[trup] = 0
+    if trup == 5: printLog("Вы погибли")
     if kolizei > 1:
            b = 0
            for b in range(4):    
@@ -8842,39 +8861,65 @@ def magDoIt(selectLot): #Покупаем в Хижине магов
             sc.blit(nameObj,(440, 720)) 
             
         elif zadanieMaga == 4 or zadanieMaga == 5:
-            zadanieMaga = 5
-            world[348] = 11
-            kolizei = 1
-            variableName = u"Я намерен учить тебя тайным знаниям магии"
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 560)) 
-            variableName = u"Но брать в ученики кого попало с улицы"
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 580))  
-            variableName = u"не хочу. Ты должен доказать мне, что"
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 600)) 
-            variableName = u"достоин ученичества. Иди на юго-восток"
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 620)) 
-            variableName = u"там ты активируешь магический круг и"
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 640))   
-            variableName = u"попадёшь в Колизей. Если выживешь - "
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 660))     
-            variableName = u"Я буду учить тебя магическому искуству."
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 680))
-            variableName = u"Принеси мне медаль Победителя Колизея"
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 700))
-            variableName = u"Чтобы компенсировать потраченные там нервы"
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 720))
-            variableName = u"Я заплачу тебе 13 Серебряных монет"
-            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-            sc.blit(nameObj,(440, 740)) 
+            if botLvl[imHero] >= 3:
+                zadanieMaga = 5
+                world[348] = 11
+                kolizei = 1
+                variableName = u"Я намерен учить тебя тайным знаниям магии"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"Но брать в ученики кого попало с улицы"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"не хочу. Ты должен доказать мне, что"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"достоин ученичества. Иди на юго-восток"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"там ты активируешь магический круг и"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))   
+                variableName = u"попадёшь в Колизей. Если выживешь - "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))     
+                variableName = u"Я буду учить тебя магическому искуству."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680))
+                variableName = u"Принеси мне медаль Победителя Колизея"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 700))
+                variableName = u"Чтобы компенсировать потраченные там нервы"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 720))
+                variableName = u"Я заплачу тебе 13 Серебряных монет"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 740))
+            else:
+                variableName = u"Для прохождения следующего задания"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 560)) 
+                variableName = u"ты должен быть не меньше ТРЕТЬЕГО уровня."
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 580))  
+                variableName = u"Иначе тебя разорвут там, куда я хочу"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 600)) 
+                variableName = u"тебя отправить. А также я советую тебе"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 620)) 
+                variableName = u"по лучше снарядиться. Купи парочку зелий"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 640))   
+                variableName = u"рассеивания, защиту по лучше, зелья маны"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 660))     
+                variableName = u"и здоровья. Как только будешь готов - "
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 680))
+                variableName = u"приходи ко мне. Тебя будет ждать Колизей"
+                nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+                sc.blit(nameObj,(440, 700)) 
     
     
 def magPerdun(perdun): # Взаимодействие с хижиной Мага
@@ -9084,6 +9129,7 @@ def magPerdun(perdun): # Взаимодействие с хижиной Мага
 def mutation(): # Изменяем геном. Меняем случайный ген случайным образом
     global genom, iteration, lifeTime
     
+    printLog("Поведение мобов изменилось")
     genMutant = int(random.random() * 128)
     iteration += 1
     lifeTime = 0
@@ -9298,7 +9344,6 @@ def bornBot(numerBurnBota, typeBurnBota):
                 world[113] = typeBurnBota
                 botLocation[numerBurnBota] = 113
     elif kolizei >= 2: # Если рожаем в колизее
-        
         if world[282] == 0:
             xBot[numerBurnBota] = 848
             yBot[numerBurnBota] = 352
@@ -9349,18 +9394,28 @@ def randomBot(tmp):
                 botZachita[n] = 0
                 
                 if kolizei > 0:
-                    print ("Kolizei", kolizei)
                     m = 0
                     for m in range(5):
                         if kolizeiBot[m] == 0: 
                             kolizeiBot[m] = n
                             print(kolizeiBot)
                             break
-                        
-                if tmp == 0: # Если не вызван конкретный бот
-                    tmp = int(random.random()*73)+100 # Генеруем вид бота
+                    
                 botRandom = int(random.random()*100) # Переменная для случайного распределения артефактов
+                if botLvl[imHero] <= 2 and kolizei == 0: # Если уровень игрока низкий (1 или 2 лвл) не позволяем создавать сильных ботов, а так же если мы не в колизее
+                    tmp = int(random.random()*73)+100
+                    while tmp == 156 or tmp == 172 or tmp == 171 or tmp == 170 or tmp == 162 or tmp == 163 or tmp == 165 or tmp == 153 or tmp == 154 or tmp == 155 or tmp == 144 or tmp == 147 or tmp == 135 or tmp == 142 or tmp == 141 or tmp == 140 or tmp == 130 or tmp == 131 or tmp == 132 or tmp == 121 or tmp == 122:
+                        print("Bot fail", tmp)
+                        tmp = int(random.random()*73)+100 # Генерируем другого бота в надежде на то, что родится кто-то по слабже
+                        
+                   
+                elif botLvl[imHero] > 2 and kolizei == 0:
+                     tmp = int(random.random()*73)+100 # Генеруем ботов без ограничений    
+                  
+                       
+                
                 print("BORN bot #",str(n)," variant -",str(tmp))
+                
                 if tmp == 100: # Эльф 1 ур.
                     botNumer[n] = n
                     botVariant[n] = tmp        
@@ -11606,22 +11661,26 @@ def botActivity(nomerBota):
             if botVozdeistvie[nomerBota][n] == 7 and botDeistvie[nomerBota][n] > 0: # Отравление
                 botZdorovie[nomerBota] -= 5
                 botDeistvie[nomerBota][n] -= 1
+                if nomerBota == imHero: printLog("На Вас действует заклинание Отравление, -5 Здоровья")
                 
             elif botVozdeistvie[nomerBota][n] == 14 and botDeistvie[nomerBota][n] > 0:  # Печать смерти
                 botDeistvie[nomerBota][n] -= 1
                 print("DEATH!!!")
+                if nomerBota == imHero: printLog("На Вас действует заклинание Печать Смерти, Вы скоро умрёте")
                 if botDeistvie[nomerBota][n] == 1:
                     botZdorovie[nomerBota] = -1000
                 
             elif botVozdeistvie[nomerBota][n] == 13 and botDeistvie[nomerBota][n] > 0: # Печать Хаоса
                 botDeistvie[nomerBota][n] -= 1
                 botMana[nomerBota] = 0
-                botZdorovie[nomerBota] -= 15 
+                botZdorovie[nomerBota] -= 15
+                if nomerBota == imHero: printLog("На Вас действует заклинание Печать Хаоса, -15 Здоровья") 
             
             elif botVozdeistvie[nomerBota][n] == 15 and botDeistvie[nomerBota][n] > 0: # Поцелуй смерти
                 botDeistvie[nomerBota][n] -= 1
                 botMana[nomerBota] = 0
-                botZdorovie[nomerBota] -= 40              
+                botZdorovie[nomerBota] -= 40
+                if nomerBota == imHero: printLog("На Вас действует заклинание Поцелуй Смерти, -40 Здоровья, Мана = 0")              
                 
                 
             if botDeistvie[nomerBota][n] <= 0: 
@@ -11641,6 +11700,7 @@ def botActivity(nomerBota):
             lalsas1488 = int(random.random()*7)
             if lalsas1488 == 5: market[n] = tmpInventar[n] = 0
         print("Market change: " + str(market))
+        printLog("Ассортимент рынка изменился")
     
     if sobitie % 2797 == 0 and botLocation[imHero] != 146 and botLocation[imHero] != 144 and botLocation[imHero] != 112 and botLocation[imHero] != 113 and botLocation[imHero] != 114 and botLocation[imHero] != 177 and botLocation[imHero] != 176 and botLocation[imHero] != 178:
         # Меняем ассортимент в хижине мага
@@ -11652,6 +11712,7 @@ def botActivity(nomerBota):
             if tmp != 0:
                 koldunAssortiment[n] = tmp 
         print("Magic assortiment change: " + str(koldunAssortiment))
+        printLog("Маг предлагает новые услуги")
     
     if sobitie % 1097 == 0: mutation()
     
@@ -11661,18 +11722,23 @@ def botActivity(nomerBota):
             if randBorn >= 0 and randBorn <= 7: 
                 randomBot(0)
                 randomBot(0)
+                printLog("Появилось Два новых моба")
             elif randBorn >= 9 and randBorn <= 11:
                 randomBot(0)
                 randomBot(0)
                 randomBot(0)
+                printLog("Появилось Три новых моба")
             elif randBorn == 12:
                 randomBot(0)
                 randomBot(0)
                 randomBot(0)    
-                randomBot(0) 
+                randomBot(0)
+                printLog("Появилось Четыре новых моба") 
             else:
                 randomBot(0)
+                printLog("Появился Один новый моб")
         elif kolizei == 2: # Первый этап Колизея - Тролли 4 ур.
+            printLog("В Колизее появились новые противники")
             if kolizeiWin == 0:
                 kolizeiBot=[0,0,0,0] 
                 randomBot(161)
@@ -13113,8 +13179,10 @@ for n in range(16): # Рисуем иконки инвентаря
     printInventar(n)
 n = 0  
 
-heroPanel(52)    
+heroPanel(52) 
+printLog("СТАРТ")   
 pygame.display.update()   
+
 while True:
     clock.tick(160)
     if botZdorovie[n] > 0: botActivity(n)
