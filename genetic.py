@@ -50,6 +50,7 @@ posohProzrenia = 0
 kolizei = 0
 kolizeiWin = 0
 kolizeiBot = [0,0,0,0]
+koldunAssortiment = [0,0,0,0] # Ассортимент в хижине мага
 
 iteration = 1
 FPS = 60
@@ -984,6 +985,77 @@ def otdaiLut(nom, vragBot):
                                                                         if botInventar[nom][14] == 0: botInventar[nom][14] = botInventar[vragBot][tempEnum]
                                                                         else:
                                                                             if botInventar[nom][15] == 0: botInventar[nom][15] = botInventar[vragBot][tempEnum]
+
+def magicInventar(imBuy):
+    global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto, yaNaRinke, koldunAssortiment, botZaklinania, botSila, botZdorovie
+    
+    pix = pygame.image.load('Images/yes.png') 
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (462,786))    
+    pix = pygame.image.load('Images/no.png') 
+    x_len = pix.get_width()
+    y_len = pix.get_height() 
+    sc.blit(pix, (530,786))
+    if koldunAssortiment[imBuy] == 1:
+        if botSerebro[imHero] >= 2:
+            koldunAssortiment[imBuy] = 0
+            putInventar(6)
+            botSerebro[imHero] -= 2
+    if koldunAssortiment[imBuy] == 2:
+        if botSerebro[imHero] >= 5:
+            koldunAssortiment[imBuy] = 0
+            putInventar(8)
+            botSerebro[imHero] -= 5
+    if koldunAssortiment[imBuy] == 3:
+        if botSerebro[imHero] >= 12:
+            koldunAssortiment[imBuy] = 0
+            putInventar(10)
+            botSerebro[imHero] -= 12
+    if koldunAssortiment[imBuy] == 4:
+        if botSerebro[imHero] >= 12:
+            koldunAssortiment[imBuy] = 0
+            putInventar(12)
+            botSerebro[imHero] -= 12
+    if koldunAssortiment[imBuy] == 5:
+        if botSerebro[imHero] >= 20:
+            market[thisPlace-1] = 0
+            putInventar(11)
+            botSerebro[imHero] -= 20
+    if koldunAssortiment[imBuy] == 6:
+        if botSerebro[imHero] >= 40:
+            for n in range(15):
+                if botZaklinania[imHero][n] == 1: break
+                if botZaklinania[imHero][n] == 0:
+                    botZaklinania[imHero][n] = 1
+                    botSerebro[imHero] -= 40
+                    break
+    if koldunAssortiment[imBuy] == 7:
+        if botSerebro[imHero] >= 20:
+            for n in range(15):
+                if botZaklinania[imHero][n] == 5: break
+                if botZaklinania[imHero][n] == 0:
+                    botZaklinania[imHero][n] = 5
+                    botSerebro[imHero] -= 20
+                    break 
+    if koldunAssortiment[imBuy] == 8:
+        if botSerebro[imHero] >= 40:   
+            for n in range(15):
+                if botZaklinania[imHero][n] == 14: break
+                if botZaklinania[imHero][n] == 0:
+                    botZaklinania[imHero][n] = 14
+                    botSerebro[imHero] -= 40
+                    break                                       
+    if koldunAssortiment[imBuy] == 9:
+        if botSerebro[imHero] >= 30:
+            botSerebro[imHero] -= 30
+            botZdorovie[imHero] += 200
+    if koldunAssortiment[imBuy] == 10:
+        if botSerebro[imHero] >= 40:
+            botSerebro[imHero] -= 40
+            botSila[imHero] += 10        
+            
+            
 
 def textInventar(nomInv):
     global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto, yaNaRinke
@@ -5580,7 +5652,7 @@ def printInventar(numberInventar):                                # Отобра
 
 def doebaca(hehmda):  #Функция отображающая информацию об объектах и позволяющая с ними взаимодействовать
     global botType, botStep, xBot, yBot, botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botInventar, botIshZdorovie, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha
-    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, tmpMagExp, drujbaMaga, kolizei
+    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, tmpMagExp, drujbaMaga, kolizei, koldunAssortiment
     
     n = 0
     yes = no = invent = 0
@@ -5762,6 +5834,63 @@ def doebaca(hehmda):  #Функция отображающая информац�
         x_len = pix.get_width()
         y_len = pix.get_height() 
         sc.blit(pix, (908,548))
+        xK = 772
+        for n in range(4):
+            if koldunAssortiment[n] == 1 or koldunAssortiment[n] == 2 or koldunAssortiment[n] == 3:
+                pix = pygame.image.load('Images/manaPoison.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68 
+            elif koldunAssortiment[n] == 4:
+                pix = pygame.image.load('Images/poison1.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68
+            elif koldunAssortiment[n] == 5:
+                pix = pygame.image.load('Images/poison.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68
+            elif koldunAssortiment[n] == 6:
+                pix = pygame.image.load('Images/corpseExplode.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68 
+            elif koldunAssortiment[n] == 7:
+                pix = pygame.image.load('Images/obman.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68 
+            elif koldunAssortiment[n] == 8:
+                pix = pygame.image.load('Images/pechatSmerti.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68 
+            elif koldunAssortiment[n] == 9:
+                pix = pygame.image.load('Images/zdorovie.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68      
+            elif koldunAssortiment[n] == 10:
+                pix = pygame.image.load('Images/attack.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68                                  
+            else:
+                pix = pygame.image.load('Images/zero.jpg')
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xK,616))
+                xK += 68  
+            
         if zadanieMaga == 1:  # Тут мы обрабатываем условие выполнение заданий Мага
             for n in range(15):
                 if botInventar[imHero][n] == 52:
@@ -8276,9 +8405,14 @@ def ubiraemTrup(trup):
 
 def magDoIt(selectLot): #Покупаем в Хижине магов
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world
-    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, kolizei 
+    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, kolizei, koldunAssortiment 
     
     pygame.draw.rect(sc, (255, 255, 255), (405, 550, 365, 896))
+    if selectLot >= 5 and selectLot <= 8: # Если мы покупаем инвентарь
+        if selectLot == 5: magicInventar(0)
+        elif selectLot == 6: magicInventar(1)
+        elif selectLot == 7: magicInventar(2)
+        elif selectLot == 8: magicInventar(3)
     if selectLot == 1:
         hijinaMaga = 0
         hijina = 0
@@ -8799,7 +8933,148 @@ def magPerdun(perdun): # Взаимодействие с хижиной Мага
         sc.blit(nameObj,(440, 580))  
         variableName = u"выполнив поручение старого Колдуна"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 600))          
+        sc.blit(nameObj,(440, 600))
+    elif perdun >= 4 and perdun <= 8: # дальше обраватываем ассортимент
+        if koldunAssortiment[perdun-5] == 1:
+            variableName = u"Зелье маны 1ур."
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Восстанавливает 60 маны"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))  
+            variableName = u"Стоимость 2 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))
+            variableName = u"Купить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+        elif koldunAssortiment[perdun-5] == 2:
+            variableName = u"Зелье маны 3ур."
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Восстанавливает 260 маны"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))  
+            variableName = u"Стоимость 5 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))
+            variableName = u"Купить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+        elif koldunAssortiment[perdun-5] == 3:
+            variableName = u"Зелье маны 5ур."
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Восстанавливает 1100 маны"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))  
+            variableName = u"Стоимость 12 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))
+            variableName = u"Купить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+        elif koldunAssortiment[perdun-5] == 4:
+            variableName = u"Зелье Рассеивания"
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Рассеивает все наложенные чары"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))  
+            variableName = u"Стоимость 12 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))
+            variableName = u"Купить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+        elif koldunAssortiment[perdun-5] == 5:
+            variableName = u"Зелье Восстановления"
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Рассеивает все наложенные чары"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))
+            variableName = u"А также +500 Здоровья и +500 Маны"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))  
+            variableName = u"Стоимость 12 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+            variableName = u"Купить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 640))
+        elif koldunAssortiment[perdun-5] == 6:
+            variableName = u"Заклинание Пронзающей Смерти"
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"-300 Здоровья +200 Маны"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))  
+            variableName = u"Стоимость 40 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))
+            variableName = u"Изучить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+        elif koldunAssortiment[perdun-5] == 7:
+            variableName = u"Заклинание Прозрения"
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Позволяет видеть силу, ману, инвентарь"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))
+            variableName = u"и доступные заклинания противника"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))  
+            variableName = u"Стоимость 20 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+            variableName = u"Изучить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 640))
+        elif koldunAssortiment[perdun-5] == 8:
+            variableName = u"Заклинание Печать Смерти"
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Противник умрёт через 1-2 минуты"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))
+            variableName = u"Это заклинание можно рассеять"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))  
+            variableName = u"Стоимость 40 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+            variableName = u"Изучить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 640))
+        elif koldunAssortiment[perdun-5] == 9:
+            variableName = u"Увеличить здоровье"
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Колдун увеличит твой запас здоровья на 200 ед."
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))  
+            variableName = u"Стоимость 30 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))
+            variableName = u"Купить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))
+        elif koldunAssortiment[perdun-5] == 10:
+            variableName = u"Увеличить Силу"
+            nameObj = textNameHero.render(variableName, False, (0, 255, 0)) 
+            sc.blit(nameObj,(440, 560)) 
+            variableName = u"Колдун увеличит твою силу на 10 ед."
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 580))  
+            variableName = u"Стоимость 40 серебра"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 600))
+            variableName = u"Купить - ДА"
+            nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+            sc.blit(nameObj,(440, 620))                                            
+                       
      
 
 def mutation(): # Изменяем геном. Меняем случайный ген случайным образом
@@ -11352,7 +11627,7 @@ def botActivity(nomerBota):
     if sobitie % 2397 == 0 and botLocation[imHero] != 146 and botLocation[imHero] != 144 and botLocation[imHero] != 112 and botLocation[imHero] != 113 and botLocation[imHero] != 114 and botLocation[imHero] != 177 and botLocation[imHero] != 176 and botLocation[imHero] != 178:
         tmpInventar = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         for n in range(16): 
-            pass
+            # Меняем ассортимент на рынке
             nn = 0 
             tmp = int(random.random()*74)
             if tmp == 66 or tmp == 53 or tmp == 52 or tmp == 57 or tmp == 58 or tmp == 55 or tmp == 33 or tmp == 56 or tmp == 29 or tmp == 30 or tmp == 31 or tmp == 65 or tmp == 51 or tmp == 50 or tmp == 41 or tmp == 74:
@@ -11362,6 +11637,17 @@ def botActivity(nomerBota):
             lalsas1488 = int(random.random()*7)
             if lalsas1488 == 5: market[n] = tmpInventar[n] = 0
         print("Market change: " + str(market))
+    
+    if sobitie % 2797 == 0 and botLocation[imHero] != 146 and botLocation[imHero] != 144 and botLocation[imHero] != 112 and botLocation[imHero] != 113 and botLocation[imHero] != 114 and botLocation[imHero] != 177 and botLocation[imHero] != 176 and botLocation[imHero] != 178:
+        # Меняем ассортимент в хижине мага
+        tmpInventar = [0,0,0,0]
+        for n in range(4): 
+            pass
+            nn = 0 
+            tmp = int(random.random()*16)
+            if tmp != 0:
+                koldunAssortiment[n] = tmp 
+        print("Magic assortiment change: " + str(koldunAssortiment))
     
     if sobitie % 1097 == 0: mutation()
     
@@ -12790,7 +13076,8 @@ elif test == 1:
     botLvl[imHero] = 10
     botRasa[imHero] = 7
     botInventar[imHero] = [54,56,12,11,10,10,10,10,29,51,52,5,5,5,0,0]
-    botZaklinania[imHero] = [3,7,10,8,13,15,1,14,16,12,5,9,23,0,0,100]
+    botZaklinania[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100] 
+    #botZaklinania[imHero] = [3,7,10,8,13,15,1,14,16,12,5,9,23,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botIshZdorovie[imHero] = 1200
     botZdorovie[imHero] = 1200
