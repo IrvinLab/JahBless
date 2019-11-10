@@ -51,6 +51,7 @@ kolizei = 0
 kolizeiWin = 0
 kolizeiBot = [0,0,0,0]
 koldunAssortiment = [0,0,0,0] # Ассортимент в хижине мага
+profit = 0
 
 iteration = 1
 FPS = 60
@@ -987,7 +988,7 @@ def otdaiLut(nom, vragBot):
                                                                             if botInventar[nom][15] == 0: botInventar[nom][15] = botInventar[vragBot][tempEnum]
 
 def magicInventar(imBuy):
-    global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto, yaNaRinke, koldunAssortiment, botZaklinania, botSila, botZdorovie
+    global botInventar, hero, tmpMarket, yes, no, botBronza, botSerebro, botZoloto, yaNaRinke, koldunAssortiment, botZaklinania, botSila, botIshZdorovie, profit
     
     pix = pygame.image.load('Images/yes.png') 
     x_len = pix.get_width()
@@ -997,64 +998,66 @@ def magicInventar(imBuy):
     x_len = pix.get_width()
     y_len = pix.get_height() 
     sc.blit(pix, (530,786))
-    if koldunAssortiment[imBuy] == 1:
-        if botSerebro[imHero] >= 2:
-            koldunAssortiment[imBuy] = 0
-            putInventar(6)
-            botSerebro[imHero] -= 2
-    if koldunAssortiment[imBuy] == 2:
-        if botSerebro[imHero] >= 5:
-            koldunAssortiment[imBuy] = 0
-            putInventar(8)
-            botSerebro[imHero] -= 5
-    if koldunAssortiment[imBuy] == 3:
-        if botSerebro[imHero] >= 12:
-            koldunAssortiment[imBuy] = 0
-            putInventar(10)
-            botSerebro[imHero] -= 12
-    if koldunAssortiment[imBuy] == 4:
-        if botSerebro[imHero] >= 12:
-            koldunAssortiment[imBuy] = 0
-            putInventar(12)
-            botSerebro[imHero] -= 12
-    if koldunAssortiment[imBuy] == 5:
-        if botSerebro[imHero] >= 20:
-            market[thisPlace-1] = 0
-            putInventar(11)
-            botSerebro[imHero] -= 20
-    if koldunAssortiment[imBuy] == 6:
-        if botSerebro[imHero] >= 40:
-            for n in range(15):
-                if botZaklinania[imHero][n] == 1: break
-                if botZaklinania[imHero][n] == 0:
-                    botZaklinania[imHero][n] = 1
-                    botSerebro[imHero] -= 40
-                    break
-    if koldunAssortiment[imBuy] == 7:
-        if botSerebro[imHero] >= 20:
-            for n in range(15):
-                if botZaklinania[imHero][n] == 5: break
-                if botZaklinania[imHero][n] == 0:
-                    botZaklinania[imHero][n] = 5
-                    botSerebro[imHero] -= 20
-                    break 
-    if koldunAssortiment[imBuy] == 8:
-        if botSerebro[imHero] >= 40:   
-            for n in range(15):
-                if botZaklinania[imHero][n] == 14: break
-                if botZaklinania[imHero][n] == 0:
-                    botZaklinania[imHero][n] = 14
-                    botSerebro[imHero] -= 40
-                    break                                       
-    if koldunAssortiment[imBuy] == 9:
-        if botSerebro[imHero] >= 30:
-            botSerebro[imHero] -= 30
-            botZdorovie[imHero] += 200
-    if koldunAssortiment[imBuy] == 10:
-        if botSerebro[imHero] >= 40:
-            botSerebro[imHero] -= 40
-            botSila[imHero] += 10        
-            
+    if profit == 1:
+        if koldunAssortiment[imBuy] == 1:
+            if botSerebro[imHero] >= 2:
+                koldunAssortiment[imBuy] = 0
+                putInventar(6)
+                botSerebro[imHero] -= 2
+        if koldunAssortiment[imBuy] == 2:
+            if botSerebro[imHero] >= 5:
+                koldunAssortiment[imBuy] = 0
+                putInventar(8)
+                botSerebro[imHero] -= 5
+        if koldunAssortiment[imBuy] == 3:
+            if botSerebro[imHero] >= 12:
+                koldunAssortiment[imBuy] = 0
+                putInventar(10)
+                botSerebro[imHero] -= 12
+        if koldunAssortiment[imBuy] == 4:
+            if botSerebro[imHero] >= 12:
+                koldunAssortiment[imBuy] = 0
+                putInventar(12)
+                botSerebro[imHero] -= 12
+        if koldunAssortiment[imBuy] == 5:
+            if botSerebro[imHero] >= 20:
+                koldunAssortiment[imBuy] = 0
+                putInventar(11)
+                botSerebro[imHero] -= 20
+        if koldunAssortiment[imBuy] == 6:
+            if botSerebro[imHero] >= 40:
+                for n in range(15):
+                    if botZaklinania[imHero][n] == 1: break
+                    if botZaklinania[imHero][n] == 0:
+                        botZaklinania[imHero][n] = 1
+                        botSerebro[imHero] -= 40
+                        break
+        if koldunAssortiment[imBuy] == 7:
+            if botSerebro[imHero] >= 20:
+                for n in range(15):
+                    if botZaklinania[imHero][n] == 5: break
+                    if botZaklinania[imHero][n] == 0:
+                        botZaklinania[imHero][n] = 5
+                        botSerebro[imHero] -= 20
+                        break 
+        if koldunAssortiment[imBuy] == 8:
+            if botSerebro[imHero] >= 40:   
+                for n in range(15):
+                    if botZaklinania[imHero][n] == 14: break
+                    if botZaklinania[imHero][n] == 0:
+                        botZaklinania[imHero][n] = 14
+                        botSerebro[imHero] -= 40
+                        break                                       
+        if koldunAssortiment[imBuy] == 9:
+            if botSerebro[imHero] >= 30:
+                botSerebro[imHero] -= 30
+                botIshZdorovie[imHero] += 200
+        if koldunAssortiment[imBuy] == 10:
+            if botSerebro[imHero] >= 40:
+                botSerebro[imHero] -= 40
+                botSila[imHero] += 10        
+        
+        profit = 0 # Тут мы заканчиваем всё покупать    
             
 
 def textInventar(nomInv):
@@ -5652,7 +5655,7 @@ def printInventar(numberInventar):                                # Отобра
 
 def doebaca(hehmda):  #Функция отображающая информацию об объектах и позволяющая с ними взаимодействовать
     global botType, botStep, xBot, yBot, botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botInventar, botIshZdorovie, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha
-    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, tmpMagExp, drujbaMaga, kolizei, koldunAssortiment
+    global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, tmpMagExp, drujbaMaga, kolizei, koldunAssortiment, profit
     
     n = 0
     yes = no = invent = 0
@@ -5799,6 +5802,7 @@ def doebaca(hehmda):  #Функция отображающая информац�
     
     if botLocation[imHero] == 299 or botLocation[imHero] == 297 or botLocation[imHero] ==  266 or botLocation[imHero] == 265 or botLocation[imHero] == 267 or botLocation[imHero] == 330 or botLocation[imHero] == 329 or botLocation[imHero] == 331:
         # Тут мы взаимодействуем с Хижиной Мага
+        profit=1
         hijinaMaga = 1
         for n in range(15):     
             if n == 0: xIn = 772; yIn = 548
@@ -13144,6 +13148,7 @@ while True:
                 invent = 0
                 if tmpMarket == 2: yaNaRinke = 0
                 posohProzrenia = 0
+                profit = 0
                 
             elif i.key == pygame.K_RIGHT and xBot[imHero] <= 990 and world[botLocation[imHero]+1] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -13159,6 +13164,7 @@ while True:
                 invent = 0
                 if tmpMarket == 2: yaNaRinke = 0
                 posohProzrenia = 0
+                profit = 0
                 
             elif i.key == pygame.K_UP and yBot[imHero] > 96 and world[botLocation[imHero]-32] == 0:
                 pix = pygame.image.load('Images/weed.jpg')
@@ -13174,6 +13180,7 @@ while True:
                 invent = 0
                 if tmpMarket == 2: yaNaRinke = 0
                 posohProzrenia = 0
+                profit = 0
                 
             elif i.key == pygame.K_DOWN and yBot[imHero] <= 510 and world[botLocation[imHero]+32] == 0: 
                 pix = pygame.image.load('Images/weed.jpg')
@@ -13189,6 +13196,7 @@ while True:
                 invent = 0
                 if tmpMarket == 2: yaNaRinke = 0
                 posohProzrenia = 0
+                profit = 0
     
     
     
