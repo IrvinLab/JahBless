@@ -7,7 +7,7 @@ import random
 n = 0 
 m = 0
 myGen = 1
-test = 0 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
+test = 1 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
     genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 63, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 45]
@@ -8250,6 +8250,12 @@ def ubiraemTrup(trup):
     botAlgoritm[trup] = 0
     botLocation[trup] = 0
     if kolizei > 1:
+           b = 0
+           for b in range(4):    
+               if trup == kolizeiBot[b]:
+                   kolizeiBot[b] = 0
+                   kolizeiWin += 1
+                   print(kolizeiBot)
                    if kolizeiWin == 12: # Убираем колизей
                        z = 0
                        for z in range(15): # Даём медаль
@@ -9057,7 +9063,7 @@ def bornBot(numerBurnBota, typeBurnBota):
             botLocation[numerBurnBota] = 413            
            
 def randomBot(tmp):
-        global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world, tmpMagExp, zadanieMaga, kolizei, kolizeiBot  
+        global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, sobitie, locations, world, tmpMagExp, zadanieMaga, kolizei, kolizeiBot, kolizeiWin  
         for n in range(40):
             if botZdorovie[n] <= 0: #Если бот номер N мёртв, то занимаем его ID
                 botUseWeapon[n] = 0
@@ -9066,7 +9072,7 @@ def randomBot(tmp):
                 if kolizei > 0:
                     print ("Kolizei", kolizei)
                     m = 0
-                    for m in range(4):
+                    for m in range(5):
                         if kolizeiBot[m] == 0: 
                             kolizeiBot[m] = n
                             print(kolizeiBot)
@@ -11378,16 +11384,19 @@ def botActivity(nomerBota):
                 randomBot(0)
         elif kolizei == 2: # Первый этап Колизея - Тролли 4 ур.
             if kolizeiWin == 0:
+                kolizeiBot=[0,0,0,0] 
                 randomBot(161)
                 randomBot(161)
                 randomBot(161)
                 randomBot(161)
             elif kolizeiWin == 4: # Второй этап - Орки 7 ур.
+                kolizeiBot=[0,0,0,0]  
                 randomBot(142)
                 randomBot(142)
                 randomBot(142)
                 randomBot(142)              
             elif kolizeiWin == 8: # Третий этап - Душекрады 10 ур.
+                kolizeiBot=[0,0,0,0]  
                 randomBot(156)
                 randomBot(156)
                 randomBot(156)
@@ -11662,7 +11671,7 @@ def botActivity(nomerBota):
                                     if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 else: pass #print("Less that 200 mana")  
-                #if n==14 and botZaklinania[nomerBota][n] != 1: loviVebalo(nomerBota)
+                if n==14 and botZaklinania[nomerBota][n] != 1: loviVebalo(nomerBota)
                         
         elif genom[botStep[nomerBota]] == 14:  # Применяем заклинание "Fair Ball"
             for n in range(15):
@@ -11744,7 +11753,7 @@ def botActivity(nomerBota):
                                             if n == imHero: heroPanel(imHero)
                                             if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                             break
-                #if n==14 and botZaklinania[nomerBota][n] != 6: loviVebalo(nomerBota)
+                if n==14 and botZaklinania[nomerBota][n] != 6: loviVebalo(nomerBota)
                                            
         elif genom[botStep[nomerBota]] == 15:  # Применяем заклинание "Молния"
             for n in range(15):
@@ -11825,7 +11834,7 @@ def botActivity(nomerBota):
                                     if n == imHero: heroPanel(imHero)
                                     if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
-                #if n==14 and botZaklinania[nomerBota][n] != 12: loviVebalo(nomerBota) 
+                if n==14 and botZaklinania[nomerBota][n] != 12: loviVebalo(nomerBota) 
         
         elif genom[botStep[nomerBota]] == 16:  # Применяем заклинание "Лечение"
             for n in range(15):
@@ -11861,7 +11870,7 @@ def botActivity(nomerBota):
                                 world[botLocation[nomerBota]] = 0
                                 botLocation[nomerBota] = teleport
                                 profit = 1
-                #if n==14 and botZaklinania[nomerBota][n] != 3: loviVebalo(nomerBota)
+                if n==14 and botZaklinania[nomerBota][n] != 3: loviVebalo(nomerBota)
                                 
         elif genom[botStep[nomerBota]] == 19: # Идём вверх-влево
             if botLocation[nomerBota]>=32:
@@ -12001,7 +12010,7 @@ def botActivity(nomerBota):
                                     if botZdorovie[n] <= 0: otdaiLut(nomerBota, n)
                                     break
                                 break
-                #if n==14 and botZaklinania[nomerBota][n] != 11: loviVebalo(nomerBota)
+                if n==14 and botZaklinania[nomerBota][n] != 11: loviVebalo(nomerBota)
                                                 
                                 
         elif genom[botStep[nomerBota]] == 24:  # Применяем заклинание "Доспехи Феникса"
@@ -12163,7 +12172,7 @@ def botActivity(nomerBota):
                             
                     else: print("Need a mana for Bloodthirstiness")
                     break
-                #if n==14 and botZaklinania[nomerBota][n] != 8: loviVebalo(nomerBota)    
+                if n==14 and botZaklinania[nomerBota][n] != 8: loviVebalo(nomerBota)    
                     
         elif genom[botStep[nomerBota]] == 28:  # Применяем заклинание "Мощь Природы"
             for n in range(15):
@@ -12740,7 +12749,7 @@ def nameBot(nBota):
     elif myNameIs == 23: botName[nBota] = 'Говард '
     elif myNameIs == 24: botName[nBota] = 'Анебар '
     elif myNameIs == 25: botName[nBota] = 'Кинчезар '
-    elif myNameIs == 26: botName[nBota] = 'Сагадаз '
+    elif myNameIs == 26: botName[nBota] = 'Пинче '
     elif myNameIs == 27: botName[nBota] = 'Ривен '
     elif myNameIs == 28: botName[nBota] = 'Ходрим '
     elif myNameIs == 29: botName[nBota] = 'Альберт '
