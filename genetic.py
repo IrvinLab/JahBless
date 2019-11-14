@@ -7,7 +7,7 @@ import random
 n = 0 
 m = 0
 myGen = 1
-test = 1 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
+test = 0 #0 - Стандартная игра (для удовольствия), 1 - игра в режиме тестирования с увеличенным количеством здоровья, маны и прочего
 
 if myGen == 1:
     genom = [36, 14, 6, 33, 53, 15, 16, 2, 4, 18, 7, 10, 5, 2, 6, 18, 15, 57, 14, 25, 50, 19, 8, 15, 11, 1, 38, 8, 0, 13, 5, 10, 43, 19, 43, 9, 15, 47, 55, 47, 3, 31, 3, 36, 58, 9, 47, 12, 13, 20, 6, 9, 11, 12, 23, 26, 13, 10, 17, 17, 62, 56, 39, 10, 42, 32, 22, 49, 48, 4, 35, 10, 52, 41, 11, 23, 59, 61, 47, 21, 22, 3, 16, 24, 55, 34, 9, 22, 1, 36, 18, 19, 39, 41, 29, 43, 1, 41, 46, 51, 3, 28, 6, 29, 14, 53, 30, 29, 22, 47, 0, 8, 28, 30, 43, 47, 56, 44, 28, 42, 54, 13, 4, 6, 44, 8, 5, 26]
@@ -5672,7 +5672,7 @@ def printInventar(numberInventar):                                # Отобра
 def doebaca(hehmda):  #Функция отображающая информацию об объектах и позволяющая с ними взаимодействовать
     global botType, botStep, xBot, yBot, botExpirience, botLvl, botRasa, botZaklinania, botVozdeistvie, botInventar, botIshZdorovie, botZdorovie, botMana, botIshMana, botSila, botLovkost, botYdacha
     global botZachita, botHod, world, botNumer, botVariant, botAlgoritm, botLocation, attack, zakl, botDeistvie, posohSmerti, posohProzrenia, posohSveta, posohVoli, posohVechnoiJizni, yaNaRinke, yes, no, invent, hijinaMaga, zadanieMaga, tmpMagExp, drujbaMaga, kolizei, koldunAssortiment, profit
-    print(hehmda)
+    #print(hehmda)
     n = 0
     yes = no = invent = 0
     pygame.draw.rect(sc, (255, 255, 255), (405, 558, 365, 896)) 
