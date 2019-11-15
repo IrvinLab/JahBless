@@ -11742,7 +11742,7 @@ def botActivity(nomerBota):
     
     if sobitie % 1097 == 0: mutation()
     
-    if sobitie % 637 == 0: # Рожаем бота
+    if sobitie % 537 == 0: # Рожаем бота
         if kolizei < 2:
             randBorn = int(random.random()*17)
             if randBorn >= 0 and randBorn <= 7: 
