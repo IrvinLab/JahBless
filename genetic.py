@@ -940,7 +940,16 @@ def useInventar(dasLut):
         for n in range(15):
             if botZaklinania[imHero][n] == 0:
                 botZaklinania[imHero][n] = 4
-                break 
+                break
+
+    if botInventar[imHero][dasLut-1] == 75: # Это свиток перерождения
+        n = 0
+        for n in range(15):
+            if botVozdeistvie[imHero][n] == 0:
+                botVozdeistvie[imHero][n] = 30 # Номер воздействия свитка перерождения - 30
+                botDeistvie[imHero][n] = 9999999
+                botInventar[imHero][dasLut-1] = 0
+                break                
     
     if botInventar[imHero][dasLut-1] > 0 and botInventar[imHero][dasLut-1] <= 25:
         invent = 0
@@ -1457,6 +1466,11 @@ def textInventar(nomInv):
             botInventar[imHero][nomInv-1] = 0
             if randMoney >= 0 and randMoney <= 3:
                 botBronza[imHero] += 2100
+            else: botSerebro[imHero] += 42 
+        if botInventar[imHero][nomInv-1] == 75: 
+            botInventar[imHero][nomInv-1] = 0
+            if randMoney >= 0 and randMoney <= 3:
+                botBronza[imHero] += 7300
             else: botSerebro[imHero] += 42             
             
         heroPanel(hero)    
@@ -2686,7 +2700,23 @@ def textInventar(nomInv):
         sc.blit(nameObj,(440, 640))        
         variableName = u"Использовать - (Да) Выкинуть - (Нет)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))                
+        sc.blit(nameObj,(440, 660))
+    if botInventar[imHero][nomInv-1] == 75:
+        variableName = u"Свиток перерождения"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Если существо, использовавшее этот"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"свиток падёт в бою, оно переродится"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))
+        variableName = u"Цена продажи: 7300 бронзы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660))         
+        variableName = u"Использовать - (Да) Выкинуть - (Нет)"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))           
 
 def marketPlace(press):
     global hero
@@ -3093,7 +3123,12 @@ def marketPlace(press):
                 pix = pygame.image.load('Images/medal.jpg') 
                 x_len = pix.get_width()
                 y_len = pix.get_height() 
-                sc.blit(pix, (xInv,yInv))                      
+                sc.blit(pix, (xInv,yInv))
+            if market[nMark] == 75:
+                pix = pygame.image.load('Images/scroll.jpg') 
+                x_len = pix.get_width()
+                y_len = pix.get_height() 
+                sc.blit(pix, (xInv,yInv))                
         
     if press == 2:  # Если на рынке нажали "НЕТ" т.е. продать инвентарь
         variableName = u"Нажмите на предмет, который"
@@ -4734,7 +4769,24 @@ def buyInvent(imBuy):
         sc.blit(nameObj,(440, 640))        
         variableName = u"Купить?)"
         nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
-        sc.blit(nameObj,(440, 660))           
+        sc.blit(nameObj,(440, 660)) 
+    if market[imBuy-1] == 75:
+        variableName = u"Свиток перерождения"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 560)) 
+        variableName = u"Если существо, использовавшее этот свиток"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 580))
+        variableName = u"Падёт в бою, оно переродится"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 640))        
+        variableName = u"Цена продажи: 7300 бронзы"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 660)) 
+        variableName = u"Продать - Нет"
+        nameObj = textNameHero.render(variableName, False, (0, 0, 0)) 
+        sc.blit(nameObj,(440, 680))         
+        
             
             
             
@@ -5631,7 +5683,12 @@ def visibleInventar(xInv, yInv, porNom, whoam): # Функция, отображ
         pix = pygame.image.load('Images/medal.jpg') 
         x_len = pix.get_width()
         y_len = pix.get_height() 
-        sc.blit(pix, (xInv,yInv))    
+        sc.blit(pix, (xInv,yInv))
+    if botInventar[whoam][porNom] == 75:
+        pix = pygame.image.load('Images/scroll.jpg') 
+        x_len = pix.get_width()
+        y_len = pix.get_height() 
+        sc.blit(pix, (xInv,yInv))         
 
 def printMagic(numberMagic):                                # Отображаем магические способности
     if numberMagic == 0: visibleMagic(16,548,0,imHero)
@@ -8185,6 +8242,12 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
             y_len = pix.get_height() 
             sc.blit(pix, (xShift,yShift))  
             xShift += 37 
+        elif botVozdeistvie[imHero][n] == 30 and botDeistvie[imHero][n] > 0:
+            pix = pygame.image.load('Images/scroll_32.jpg')
+            x_len = pix.get_width()
+            y_len = pix.get_height() 
+            sc.blit(pix, (xShift,yShift))  
+            xShift += 37     
         elif botVozdeistvie[imHero][n] == 0 and botDeistvie[imHero][n] == 0:
             pygame.draw.rect(sc, (255, 255, 255), (xShift, 785, 32, 32))
             xShift += 37           
@@ -8399,33 +8462,46 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
 
 def ubiraemTrup(trup):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, kolizei, kolizeiBot, kolizeiWin , imHero   
-    
+    tempTrup = 0
+    for n in range(15):
+        if botVozdeistvie[trup][n] == 30:
+            print("SCROLL")
+            botZdorovie[trup] == botIshZdorovie[trup]
+            botMana[trup] == 0
+            botVozdeistvie[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            botDeistvie[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            tempTrup = 1
+            break
+            
     if xBot[trup] != 0 and yBot[trup] != 0:
         pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
-    botType[trup] = 0
-    botStep[trup] = 0
-    xBot[trup] = 0
-    yBot[trup] = 0
-    botExpirience[trup] = 0
-    botLvl[trup] = 0
-    botRasa[trup] = 0
-    botZaklinania[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    botVozdeistvie[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    botInventar[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    botIshZdorovie[trup] = 0
-    botZdorovie[trup] = 0
-    botMana[trup] = 0
-    botIshMana[trup] = 0
-    botSila[trup] = 0
-    botLovkost[trup] = 0
-    botYdacha[trup] = 0
-    botZachita[trup] = 0
-    botHod[trup] = 0
-    world[botLocation[trup]] = 0
-    botNumer[trup] = 0
-    botVariant[trup] = 0
-    botAlgoritm[trup] = 0
-    botLocation[trup] = 0
+    
+    if tempTrup == 0:
+        botType[trup] = 0
+        botStep[trup] = 0
+        xBot[trup] = 0
+        yBot[trup] = 0
+        botExpirience[trup] = 0
+        botLvl[trup] = 0
+        botRasa[trup] = 0
+        botZaklinania[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botVozdeistvie[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botInventar[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botDeistvie[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        botIshZdorovie[trup] = 0
+        botZdorovie[trup] = 0
+        botMana[trup] = 0
+        botIshMana[trup] = 0
+        botSila[trup] = 0
+        botLovkost[trup] = 0
+        botYdacha[trup] = 0
+        botZachita[trup] = 0
+        botHod[trup] = 0
+        world[botLocation[trup]] = 0
+        botNumer[trup] = 0
+        botVariant[trup] = 0
+        botAlgoritm[trup] = 0
+        botLocation[trup] = 0
     if trup == 5: printLog("Вы погибли")
     if kolizei > 1:
            b = 0
@@ -13145,7 +13221,7 @@ if test == 0:
     botExpirience[imHero] = 0  
     botLvl[imHero] = 1
     botRasa[imHero] = 7
-    botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botInventar[imHero] = [75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botIshZdorovie[imHero] = (int(random.random()*14) * 10) + 90
