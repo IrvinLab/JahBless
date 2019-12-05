@@ -8462,7 +8462,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
 
 def ubiraemTrup(trup):
     global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, kolizei, kolizeiBot, kolizeiWin , imHero   
-    tempTrup = 0
+    
     for n in range(15):
         if botVozdeistvie[trup][n] == 30:
             print("SCROLL")
@@ -8470,13 +8470,13 @@ def ubiraemTrup(trup):
             botMana[trup] == 0
             botVozdeistvie[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             botDeistvie[trup] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-            tempTrup = 1
+            svitok = 0
             break
             
     if xBot[trup] != 0 and yBot[trup] != 0:
         pix = pygame.image.load('Images/weed.jpg'); x_len = pix.get_width(); y_len = pix.get_height();sc.blit(pix, (xBot[trup],yBot[trup]))
     
-    if tempTrup == 0:
+    if svitok == 0:
         botType[trup] = 0
         botStep[trup] = 0
         xBot[trup] = 0
@@ -13221,7 +13221,7 @@ if test == 0:
     botExpirience[imHero] = 0  
     botLvl[imHero] = 1
     botRasa[imHero] = 7
-    botInventar[imHero] = [75,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    botInventar[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botZaklinania[imHero] = [22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     botIshZdorovie[imHero] = (int(random.random()*14) * 10) + 90
@@ -13247,7 +13247,7 @@ elif test == 1:
     botExpirience[imHero] = 0  
     botLvl[imHero] = 10
     botRasa[imHero] = 7
-    botInventar[imHero] = [54,56,12,11,10,10,10,10,29,51,52,5,5,5,0,0]
+    botInventar[imHero] = [54,56,12,11,10,10,10,10,29,51,52,5,5,75,0,0]
     botZaklinania[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,100] 
     #botZaklinania[imHero] = [3,7,10,8,13,15,1,14,16,12,5,9,23,0,0,100]
     botVozdeistvie[imHero] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
