@@ -42,6 +42,7 @@ drujbaMaga= 0
 tmpMagExp = 0
 posohSveta = 0
 posohProzrenia = 0
+svitok = 0
 
 kolizei = 0
 kolizeiWin = 0
@@ -8461,7 +8462,7 @@ def heroPanel(myHero): # Рисуем панель героя с его карт
     pygame.display.update()  
 
 def ubiraemTrup(trup):
-    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, kolizei, kolizeiBot, kolizeiWin , imHero   
+    global botAlgoritm, botAttack, botBronza, botDeistvie, botExpirience, botHod, botInventar, botIshMana, botIshZdorovie, botLocation, botLovkost, botLvl, botMana, botMap, botNumer, botRasa, botSerebro, botSila, botStep, botType, botUseWeapon, botVariant, botVozdeistvie, botYdacha, botZachita, botZaklinania, botZdorovie, botZoloto, kolizei, kolizeiBot, kolizeiWin , imHero, svitok   
     
     for n in range(15):
         if botVozdeistvie[trup][n] == 30:
